@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\CuponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,29 @@ Route::controller(ProductoController::class)->group(function () {
     Route::put('productos/{producto}', 'update')->name('productos.update');
     Route::delete('productos/{producto}', 'destroy')->name('productos.destroy');
 });
+
+
+
+/*
+|--------------------------------------------------------------------------
+| cupones
+|--------------------------------------------------------------------------
+| La ruta de cupones es administrada por el controlador 
+| CuponController, ya que debe cumplir con la funciones 
+| de CRUD para cupones. 
+*/
+Route::controller(CuponController::class)->group(function () {
+    Route::get('cupones', 'index')->name('cupones.index');
+    /*Route::get('cupones/create', 'create')->name('cupones.create')->middleware('administrador');*/
+    Route::post('cupones', 'store')->name('cupones.store');
+    /*Route::get('cupones/{cupon}', 'show')->name('cupones.show')->middleware('administrador');*/
+    Route::get('cupones/{cupon}/edit', 'edit')->name('cupones.edit');
+    Route::put('cupones/{cupon}', 'update')->name('cupones.update');
+    Route::delete('cupones/{cupon}', 'destroy')->name('cupones.destroy');
+});
+
+
+
 
 
 

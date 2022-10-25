@@ -143,7 +143,7 @@
     
     
                 
-                <form action="{{ route('productos.destroy', $producto) }}" method="POST">
+                <form action="{{ route('productos.destroy', $producto) }}" method="POST" class="alerta-antes-de-eliminar">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-outline-danger mt-2">Eliminar</button>

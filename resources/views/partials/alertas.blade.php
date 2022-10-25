@@ -1,6 +1,6 @@
 
 @if(session('exito'))
-<div class="container position-fixed mt-2 alerta">
+{{--<div class="container position-fixed mt-2 alerta">
     <div class="float-right">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Exito! </strong> {{session('exito')}}
@@ -9,11 +9,31 @@
             </button>
         </div>
     </div>
-</div>
+</div>--}}
+
+<script>
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 6000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+
+    Toast.fire({
+    icon: 'success',
+    title: '{{session('exito')}}'
+    })
+</script>
+
 @endif
 
 @if(session('no_permitido'))
-<div class="container position-fixed mt-2 alerta">
+{{--<div class="container position-fixed mt-2 alerta">
     <div class="float-right">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>No Permitido! </strong> {{session('no_permitido')}}
@@ -22,12 +42,32 @@
             </button>
         </div>
     </div>
-</div>
+</div>--}}
+
+<script>
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 6000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+
+    Toast.fire({
+    icon: 'warning',
+    title: '{{session('no_permitido')}}'
+    })
+</script>
+
 @endif
 
 
-<script>
+{{--<script>
 $(document).ready(function(){
     $(".alerta").fadeOut(15000);
 });
-</script>
+</script>--}}
