@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CuponController;
+use App\Http\Controllers\CostoDeEnvioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,26 @@ Route::controller(CuponController::class)->group(function () {
     Route::delete('cupones/{cupon}', 'destroy')->name('cupones.destroy');
 });
 
+
+
+
+/*
+|--------------------------------------------------------------------------
+| costos_de_envio
+|--------------------------------------------------------------------------
+| La ruta de costos_de_envio es administrada por el controlador 
+| CostoDeEnvioController, ya que debe cumplir con la funciones 
+| de CRUD para costos_de_envio. 
+*/
+Route::controller(CostoDeEnvioController::class)->group(function () {
+    Route::get('costos_de_envio', 'index')->name('costos_de_envio.index');
+    /*Route::get('costos_de_envio/create', 'create')->name('costos_de_envio.create')->middleware('administrador');*/
+    Route::post('costos_de_envio', 'store')->name('costos_de_envio.store');
+    /*Route::get('costos_de_envio/{costo_de_envio}', 'show')->name('costos_de_envio.show')->middleware('administrador');*/
+    Route::get('costos_de_envio/{costo_de_envio}/edit', 'edit')->name('costos_de_envio.edit');
+    Route::put('costos_de_envio/{costo_de_envio}', 'update')->name('costos_de_envio.update');
+    Route::delete('costos_de_envio/{costo_de_envio}', 'destroy')->name('costos_de_envio.destroy');
+});
 
 
 
