@@ -124,7 +124,9 @@
                                 @if (count($producto->multimedias))
                                     <div class="card-columns talleres my-2">
                                         @foreach ($producto->multimedias as $imagen)
-                                            <img src="{{$imagen->url}}" style="width: 150px;" class="my-3 img-thumbnail" alt="...">
+                                            <div class="mb-2">
+                                                <img src="{{$imagen->url}}" style="width: 150px;" class="my-3 img-thumbnail" alt="...">
+                                            </div>
                                         @endforeach
                                     </div>
                                 @endif

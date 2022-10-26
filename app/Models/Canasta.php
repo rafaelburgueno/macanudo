@@ -33,6 +33,26 @@ class Canasta extends Model
     }
 
 
+    /**
+     * Devuelve un array con el id de los productos que forman parte de esta instancia de Canasta
+     * relacion muchos a muchos
+     * testeado tinker exitoso
+     * @var array Producto->id
+     */
+    public function arrayProductos(){
+        $arrayDeId = [];
+
+        $coleccion_de_productos = $this->productos;
+
+        foreach($coleccion_de_productos as $producto){
+            array_push($arrayDeId, $producto->id);
+        }
+
+        //return ["3", "4", "5", "6", "7"];
+        return $arrayDeId;
+    }
+
+
 
     /**
      * Devuelve un array de elementos del modelo Comentario que se vinculan a esta instancia de Canasta

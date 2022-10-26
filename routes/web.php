@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CuponController;
 use App\Http\Controllers\CostoDeEnvioController;
+use App\Http\Controllers\CanastaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,26 @@ Route::controller(CostoDeEnvioController::class)->group(function () {
     Route::delete('costos_de_envio/{costo_de_envio}', 'destroy')->name('costos_de_envio.destroy');
 });
 
+
+
+
+/*
+|--------------------------------------------------------------------------
+| canastas
+|--------------------------------------------------------------------------
+| La ruta de canastas es administrada por el controlador 
+| CostoDeEnvioController, ya que debe cumplir con la funciones 
+| de CRUD para canastas. 
+*/
+Route::controller(CanastaController::class)->group(function () {
+    Route::get('canastas', 'index')->name('canastas.index');
+    /*Route::get('canastas/create', 'create')->name('canastas.create')->middleware('administrador');*/
+    Route::post('canastas', 'store')->name('canastas.store');
+    /*Route::get('canastas/{canasta}', 'show')->name('canastas.show')->middleware('administrador');*/
+    Route::get('canastas/{canasta}/edit', 'edit')->name('canastas.edit');
+    Route::put('canastas/{canasta}', 'update')->name('canastas.update');
+    Route::delete('canastas/{canasta}', 'destroy')->name('canastas.destroy');
+});
 
 
 
