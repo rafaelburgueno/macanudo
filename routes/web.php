@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Artisan;
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CuponController;
 use App\Http\Controllers\CostoDeEnvioController;
@@ -16,13 +18,97 @@ use App\Http\Controllers\CanastaController;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the "web" middleware group.
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+/*
+|--------------------------------------------------------------------------
+| home
+|--------------------------------------------------------------------------
+| El método __invoke() de la clase HomeController.php 
+| se encarga de devolver la vista del home.
+| Se utiliza un controlador porque se envían a la vista  
+| datos adicionales como los datos del $banner, $productos, etc.
+*/
+Route::get('/', HomeController::class)->name('home');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| nosotros
+|--------------------------------------------------------------------------
+| Esta ruta solo devuelve una vista, por lo tanto no es 
+| necesario utilizar un controlador.
+*/
+Route::get('/nosotros', function () {
+    return view('nosotros');
+    //return "nosotros";
+})->name('nosotros');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| nuestros_productos
+|--------------------------------------------------------------------------
+| Esta ruta solo devuelve una vista, por lo tanto no es 
+| necesario utilizar un controlador.
+*/
+Route::get('/nuestros_productos', function () {
+    //return view('nuestros_productos');
+    return "nuestros_productos";
+})->name('nuestros_productos');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| puntos_de_venta
+|--------------------------------------------------------------------------
+| Esta ruta solo devuelve una vista, por lo tanto no es 
+| necesario utilizar un controlador.
+*/
+Route::get('/puntos_de_venta', function () {
+    return view('puntos_de_venta');
+    //return "puntos_de_venta";
+})->name('puntos_de_venta');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| club_del_noqueso
+|--------------------------------------------------------------------------
+| Esta ruta solo devuelve una vista, por lo tanto no es 
+| necesario utilizar un controlador.
+*/
+Route::get('/club_del_noqueso', function () {
+    //return view('club_del_noqueso');
+    return "club_del_noqueso";
+})->name('club_del_noqueso');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| blog
+|--------------------------------------------------------------------------
+| El método __invoke() de la clase BlogController.php 
+| se encarga de devolver la vista de blog.
+| Se utiliza un controlador porque se envían a la vista  
+| datos adicionales como los post.
+*/
+Route::get('/blog', BlogController::class)->name('blog');
+
 
 
 
@@ -43,6 +129,7 @@ Route::controller(ProductoController::class)->group(function () {
     Route::put('productos/{producto}', 'update')->name('productos.update');
     Route::delete('productos/{producto}', 'destroy')->name('productos.destroy');
 });
+
 
 
 
@@ -122,7 +209,6 @@ Route::middleware([
 
 
 
-
 /* 
 |--------------------------------------------------------------------------
 | storage_link
@@ -138,3 +224,35 @@ Route::get('/storage_link', function () {
     //symlink('/home/u520718481/domains/casaraiz.uy/casaraiz/storage/app/public', '/home/u520718481/domains/casaraiz.uy/public_html/storage');
     //return view('casa_raiz');
 });
+
+
+
+
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| welcome
+|--------------------------------------------------------------------------
+| Esta ruta solo devuelve una vista, por lo tanto no es 
+| necesario utilizar un controlador.
+*/
+Route::get('/welcome', function () {
+    return view('welcome');
+    //return "welcome";
+})->name('welcome');
+
+
+/*
+|--------------------------------------------------------------------------
+| dashboard
+|--------------------------------------------------------------------------
+| Esta ruta solo devuelve una vista, por lo tanto no es 
+| necesario utilizar un controlador.
+*/
+Route::get('/dashboard', function () {
+    return view('dashboard');
+    //return "dashboard";
+})->name('dashboard');
