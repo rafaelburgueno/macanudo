@@ -1,10 +1,12 @@
 <x-jet-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profile Information') }}
+        {{ __('Información del perfil') }}
+        {{--{{ __('Profile Information') }}--}}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{ __('Actualice la información de perfil y la dirección de email de su cuenta.') }}
+        {{--{{ __('Update your account\'s profile information and email address.') }}--}}
     </x-slot>
 
     <x-slot name="form">
@@ -24,7 +26,7 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             " />
 
-                <x-jet-label for="photo" value="{{ __('Photo') }}" />
+                <x-jet-label for="photo" value="{{ __('Foto') }}{{--{{ __('Photo') }}--}}" />
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
@@ -39,12 +41,14 @@
                 </div>
 
                 <x-jet-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                    {{ __('Select A New Photo') }}
+                    {{ __('Seleccione una nueva foto') }}
+                    {{--{{ __('Select A New Photo') }}--}}
                 </x-jet-secondary-button>
 
                 @if ($this->user->profile_photo_path)
                     <x-jet-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                        {{ __('Remove Photo') }}
+                        {{ __('Eliminar foto') }}
+                        {{--{{ __('Remove Photo') }}--}}
                     </x-jet-secondary-button>
                 @endif
 
@@ -67,16 +71,18 @@
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2">
-                    {{ __('Your email address is unverified.') }}
-
+                    {{ __('Su dirección de correo electrónico no está verificada.') }}
+                    {{--{{ __('Your email address is unverified.') }}--}}
                     <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900" wire:click.prevent="sendEmailVerification">
-                        {{ __('Click here to re-send the verification email.') }}
+                        {{ __('Haga clic aquí para volver a enviar el correo electrónico de verificación.') }}
+                        {{--{{ __('Click here to re-send the verification email.') }}--}}
                     </button>
                 </p>
 
                 @if ($this->verificationLinkSent)
                     <p v-show="verificationLinkSent" class="mt-2 font-medium text-sm text-green-600">
-                        {{ __('A new verification link has been sent to your email address.') }}
+                        {{ __('Se ha enviado un nuevo enlace de verificación a su dirección de email.') }}
+                        {{--{{ __('A new verification link has been sent to your email address.') }}--}}
                     </p>
                 @endif
             @endif
@@ -85,11 +91,13 @@
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
+            {{ __('Guardado.') }}
+            {{--{{ __('Saved.') }}--}}
         </x-jet-action-message>
 
         <x-jet-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('Guardar') }}
+            {{--{{ __('Save') }}--}}
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>

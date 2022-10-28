@@ -196,6 +196,36 @@ Route::controller(CanastaController::class)->group(function () {
 
 
 
+/*
+|--------------------------------------------------------------------------
+| mi_perfil
+|--------------------------------------------------------------------------
+| Esta ruta solo devuelve una vista, por lo tanto no es 
+| necesario utilizar un controlador.
+*/
+Route::get('/mi_perfil', function () {
+    return view('mi_perfil');
+    //return "mi_perfil";
+})->name('mi_perfil');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| mi_carrito
+|--------------------------------------------------------------------------
+| Esta ruta solo devuelve una vista, por lo tanto no es 
+| necesario utilizar un controlador.
+*/
+Route::get('/mi_carrito', function () {
+    return view('mi_carrito');
+    //return "mi_carrito";
+})->name('mi_carrito');
+
+
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
