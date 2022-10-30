@@ -41,7 +41,7 @@ class CanastaController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request->all();
+        return $request->all();
         $request->validate([ //TODO: revisar las validaciones porque no funcionan
             'nombre' => 'required|max:255',
             'descripcion' => 'max:255',

@@ -10,6 +10,19 @@ class Post extends Model
     use HasFactory;
 
 
+
+    /**
+     * Get the route key for the model.
+     * Esto es para que el slug sea el nombre del post en la url
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+
+
     /**
      * Devuelve un array de elementos del modelo Comentario, asociados a esa instancia de Post
      * relacion uno(Post) a muchos(Comentario) polimorfica

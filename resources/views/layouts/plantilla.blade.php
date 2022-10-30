@@ -23,6 +23,9 @@
     <!-- Estilos de liwire -->
     @livewireStyles
 
+    <!--Popper-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
     <!--Jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -32,13 +35,25 @@
     <!-- JS BOOTSTRAP 5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!--Popper-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    
 
     
 
     <!-- Sweet alert 2-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    {{--@if(request()->routeIs('post.*'))
+
+    @endif--}}
+    <!-- Summernote -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <!--summernote local-->
+    <!--summernote local-->
+    {{--<script src="{{ asset('/js/summernote.js')}}"></script>--}}
+
+
 
     <!-- ESTILOS CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/index.css')}}">

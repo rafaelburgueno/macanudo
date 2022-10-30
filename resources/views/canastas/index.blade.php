@@ -168,13 +168,12 @@
                             <div class="form-check my-4">
                                 <input type="checkbox" class="form-check-input" id="productos" name="productos[]" value="{{ $producto->id }}" @checked(old('productos'))>
                                 <label class="form-check-label" for="activo">{{ $producto->nombre }}</label>
+                                <!--input para añadir mas unidades-->
+                                <!-- TODO -->
+                                <input type="number" class="rounded p-2 w-25" id="{{ $producto->id }}" name="{{ $producto->id }}" value="1" min="1">
                             </div>
                         
                         @endforeach
-
-
-                        
-                        
                             
                     </div>
                 </div>

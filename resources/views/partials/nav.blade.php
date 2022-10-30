@@ -16,7 +16,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{route('nuestros_productos')}}" style=" {{request()->routeIs('nuestros_productos') ? 'color: yellow;' : ''}}">PRODUCTOS</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('puntos_de_venta')}}" style=" {{request()->routeIs('puntos_de_venta') ? 'color: yellow;' : ''}}">PUNTOS DE VENTA</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('club_del_noqueso')}}" style=" {{request()->routeIs('club_del_noqueso') ? 'color: yellow;' : ''}}">CLUB MACANUDO</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{route('blog')}}" style=" {{request()->routeIs('blog') ? 'color: yellow;' : ''}}">BLOG</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{route('blog.index')}}" style=" {{request()->routeIs('blog') ? 'color: yellow;' : ''}}">BLOG</a></li>
 
 
             </ul>

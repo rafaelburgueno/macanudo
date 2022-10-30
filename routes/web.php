@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CuponController;
 use App\Http\Controllers\CostoDeEnvioController;
 use App\Http\Controllers\CanastaController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,12 +103,17 @@ Route::get('/club_del_noqueso', function () {
 |--------------------------------------------------------------------------
 | blog
 |--------------------------------------------------------------------------
-| El método __invoke() de la clase BlogController.php 
-| se encarga de devolver la vista de blog.
+| La clase BlogController.php se encarga de devolver
+| la vista de blog y una vista 'show' para leer cada post.
 | Se utiliza un controlador porque se envían a la vista  
 | datos adicionales como los post.
 */
-Route::get('/blog', BlogController::class)->name('blog');
+//Route::get('/blog', BlogController::class)->name('blog');
+Route::controller(BlogController::class)->group(function () {
+    Route::get('blog', 'index')->name('blog.index');
+    Route::get('blog/{post}', 'show')->name('blog.show');
+
+});
 
 
 
@@ -191,6 +197,27 @@ Route::controller(CanastaController::class)->group(function () {
     Route::get('canastas/{canasta}/edit', 'edit')->name('canastas.edit');
     Route::put('canastas/{canasta}', 'update')->name('canastas.update');
     Route::delete('canastas/{canasta}', 'destroy')->name('canastas.destroy');
+});
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| posts
+|--------------------------------------------------------------------------
+| La ruta de posts es administrada por el controlador 
+| CostoDeEnvioController, ya que debe cumplir con la funciones 
+| de CRUD para posts. 
+*/
+Route::controller(PostController::class)->group(function () {
+    Route::get('posts', 'index')->name('posts.index');
+    /*Route::get('posts/create', 'create')->name('posts.create')->middleware('administrador');*/
+    Route::post('posts', 'store')->name('posts.store');
+    /*Route::get('posts/{post}', 'show')->name('posts.show')->middleware('administrador');*/
+    Route::get('posts/{post}/edit', 'edit')->name('posts.edit');
+    Route::put('posts/{post}', 'update')->name('posts.update');
+    Route::delete('posts/{post}', 'destroy')->name('posts.destroy');
 });
 
 
