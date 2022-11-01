@@ -81,15 +81,6 @@
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
-
-                            <div class="form-group mb-3">
-                                <label for="color">Color</label>
-                                <input type="color" class="form-control" id="color" name="color" value="{{old('color', $producto->color)}}">
-                                @error('color')
-                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
-
     
                         </div>
                     

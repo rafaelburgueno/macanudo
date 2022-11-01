@@ -50,6 +50,7 @@ class ProductoController extends Controller
             'peso_neto' => 'numeric|nullable',
             'informacion_nutricional' => 'max:1000|nullable',
             'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            'color' => 'nullable|max:20',
         ]);
         
         $producto = new Producto();
@@ -68,6 +69,10 @@ class ProductoController extends Controller
             $producto->activo = true;
         }else{
             $producto->activo = false;
+        }
+
+        if($request->color){
+            $producto->color = $request->color;
         }
 
         //$producto->categorias = $request->categorias;
@@ -142,6 +147,7 @@ class ProductoController extends Controller
             'peso_neto' => 'numeric|nullable',
             'informacion_nutricional' => 'max:1000|nullable',
             'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            'color' => 'nullable|max:20',
         ]);
 
         //TODO actualizar el campo slug
@@ -160,6 +166,10 @@ class ProductoController extends Controller
             $producto->activo = true;
         }else{
             $producto->activo = false;
+        }
+
+        if($request->color){
+            $producto->color = $request->color;
         }
 
         $producto -> save();

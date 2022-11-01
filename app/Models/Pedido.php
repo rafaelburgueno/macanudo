@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Pedido extends Model
 {
@@ -74,6 +75,40 @@ class Pedido extends Model
     public function productos(){
         return $this->belongsToMany('App\Models\Producto');
     }
+
+
+
+    /**
+     * Devuelve un array de strings con la lista de elementos del modelo Producto que se vinculan a esta instancia de Pedido
+     * 
+     * 
+     * @var array String
+     */
+    public function listaDeProductos(){
+
+        $lista_de_productos = array();
+
+        //$pedido_producto = $this->belongsToMany('App\Models\Producto');
+        $pedido_producto = DB::table('pedido_producto')->where('pedido_id', $this->id)->get();
+
+
+        //dd($pedido_producto);
+        //var_dump($pedido_producto);
+
+        foreach($pedido_producto as $producto){
+
+            array_push($lista_de_productos, $producto->producto_id);
+
+            /*if (!in_array($producto->nombre, $lista_de_productos)) {
+                array_push($lista_de_productos, $producto->nombre);
+            }*/
+
+        }
+
+        //return $pedido_producto;
+        return $lista_de_productos;
+    }
+
 
 
 }

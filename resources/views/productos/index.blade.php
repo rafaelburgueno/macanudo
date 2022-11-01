@@ -61,21 +61,21 @@
 						</td>
 						<td>{{ $producto->tipo }}</td>
 						{{--<td>{{ $producto->descripcion }}</td>--}}
-						<td>{{ $producto->precio }}</td>
+						<td>${{ $producto->precio }}</td>
 						<td>{{ $producto->stock }}</td>
-                        <td>{{ $producto->peso_neto }}</td>
+                        <td>{{ $producto->peso_neto }}g</td>
 						{{--<td>{{ $producto->ingredientes }}</td>--}}
                         {{--<td>{{ $producto->informacion_nutricional }}</td>--}}
 						
 						<td>{{ $producto->created_at->format('d/m/Y') }}</td>
-                        <td>
+                        <td style="background-color: {{$producto->color}};">
                             @if (count($producto->multimedias))
                                 <img src="{{$producto->multimedias->last()->url}}" style="width: 150px;" class="img-thumbnail" alt="...">
                             @else
                                 NO    
                             @endif
                         </td>
-						<td><a href="{{route('productos.edit', $producto)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>
+						<td style="background-color: {{$producto->color}};"><a href="{{route('productos.edit', $producto)}}" class="btn btn-sm btn-light ">Editar ></a></td>
 
 						
 					</tr>
@@ -160,6 +160,14 @@
                             <label for="descripcion">Descripción</label>
                             <textarea required class="form-control" id="descripcion" name="descripcion" rows="3">{{old('descripcion')}}</textarea>
                             @error('descripcion')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="color">Color</label>
+                            <input type="color" class="form-control" id="color" name="color" value="{{old('color', '#70802c')}}">
+                            @error('color')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>

@@ -13,12 +13,12 @@
 
 
 <div class="container">
-    <div class="d-flex flex-wrap flex-row">
+    <div class="card-columns">
     
         
         @foreach ($posts as $post)
-        <div class="col-md-6">
-            <div class="card">
+        <div class="px-3 pb-5">
+            <div class="card m-0">
                 
                 @if (count($post->multimedias))
                     <a href="{{route('blog.show', $post)}}" class="">

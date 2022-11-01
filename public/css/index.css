@@ -72,6 +72,7 @@ estilos para que las tarjetas y las imagenes se ordenen correctamente
   .card-columns{
       column-count: 1;
   }
+  
 }
 @media (min-width: 768px) { 
   .card-columns{
@@ -82,6 +83,25 @@ estilos para que las tarjetas y las imagenes se ordenen correctamente
 @media (min-width: 992px) { 
   .card-columns{
       column-count: 3;
+  }
+
+}
+
+@media (min-width: 576px) { 
+  .card-columns-2{
+      column-count: 1;
+  }
+  
+}
+@media (min-width: 768px) { 
+  .card-columns-2{
+      column-count: 2;
+  }
+  
+}
+@media (min-width: 992px) { 
+  .card-columns-2{
+      column-count: 2;
   }
 
 }

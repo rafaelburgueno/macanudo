@@ -18,7 +18,9 @@
 
 <div class="text-center my-4 text-white">
     <h1 id="in" class="text-center pt-2">{{ $post->titulo }}</h1>
-    <p>{{ $post->descripcion }}</p>
+    @if($post->descripcion)
+        <p>{{ $post->descripcion }}</p>
+    @endif
 </div>
 
 
@@ -26,10 +28,6 @@
     <div class="mb-5">
 
         <div class="card mt-3">
-
-            <div class="">
-                {{--<h3 class="h3 mt-3 text-center">{{ $post->titulo }}</h3>--}}
-            </div>
 
             <div class="card-body">
                 {!! $post->texto !!}

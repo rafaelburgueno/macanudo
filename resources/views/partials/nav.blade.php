@@ -43,6 +43,31 @@
                                 </svg>
                         </a>
                     </li>
+
+                    @if( Auth::user()->rol == 'administrador' )
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {{--<a class="dropdown-item" href="{{route('mi_perfil')}}">Mi perfil</a>
+                                <div class="dropdown-divider"></div>--}}
+                                <a class="dropdown-item" href="{{route('pedidos.index')}}">Pedidos</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{route('productos.index')}}">Productos</a>
+                                <a class="dropdown-item" href="{{route('canastas.index')}}">Canastas</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{route('posts.index')}}">Posts</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{route('cupones.index')}}">Cupones</a>
+                                <a class="dropdown-item" href="{{route('costos_de_envio.index')}}">Costos de envio</a>
+                                
+                            </div>
+                        </li>
+                    @endif
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('cerrar_sesion')}}" class="ml-5">Salir</a>
+                    </li>
+
                 </ul>
             @else
 
