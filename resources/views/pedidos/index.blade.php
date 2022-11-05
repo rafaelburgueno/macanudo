@@ -48,20 +48,27 @@
 				@foreach ($pedidos as $pedido)
 					<tr>
                         <td>{{ $pedido->id }}</td>
-                        <td>{{ $pedido->estatus }}</td>
+                        <td>{{ $pedido->status }}</td>
                         <td>{{ $pedido->nombre }}</td>
-						<td>{{ $pedido->costo_de_envio->region }}</td>
+                        
+						<td>
+                            @if($pedido->costo_de_envio)
+                                {{ $pedido->costo_de_envio->region }}
+                            @endif
+                        </td>
+                        
 						<td>{{ $pedido->monto }}</td>
 
 						<td>
                             <ul>
-                            {{--
-                            @foreach($pedido->listaDeProductos() as $producto)
-                                <li>{{ $producto }}</li>
-                            @endforeach
-                            --}}
+                            
+                            {{--@foreach($pedido->listaDeProductos() as $producto)
+                                <li>{{ $producto->nombre }} | x {{ $producto->pivot->unidades }}</li>
+                            @endforeach--}}
+                            
                             @foreach($pedido->productos as $producto)
-                                <li>{{ $producto->nombre }}</li>
+                                {{--<li>{{ $producto->nombre }} x {{ $producto->unidades($pedido->id) }}</li>--}}
+                                <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
                             @endforeach
                             </ul>
                         </td>
@@ -91,7 +98,7 @@
     <div class="row mb-5 mt-2">
         <div class="col-md-12">
 
-            <form class="p-3" action="{{route('pedidos.store')}}" method="POST" enctype="multipart/form-data">
+            <form id="form_crear_pedido" class="p-3" action="{{route('pedidos.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
 
@@ -261,31 +268,32 @@
 
                                 <!--input para cada producto-->
                                 <div class="form-check my-4">
-                                    <input type="checkbox" class="form-check-input" id="producto{{ $producto->id }}" name="productos[]" value="{{ $producto->id }}" @checked(old('productos')) onclick="masCantidad{{ $producto->id }}()">
-                                    <label class="form-check-label" for="producto{{ $producto->id }}">{{ $producto->nombre }}</label>
+                                    <input type="checkbox" class="rounded p-2 " id="producto{{ $producto->id }}" name="productos[]" value="{{ $producto->id }}" @checked(old('productos')) onclick="masCantidad{{ $producto->id }}()">
+                                    <label class="" for="producto{{ $producto->id }}">{{ $producto->nombre }}</label>
                                     <!--input para añadir mas unidades-->
-                                    <!-- TODO -->
-                                    {{--<p id="cantidad{{ $producto->id }}" style="display:none">Checkbox is CHECKED!</p>--}}
-                                    <input type="number" style="display:none" class="rounded p-2 w-25" id="cantidad{{ $producto->id }}" name="{{ $producto->id }}" value="1" min="1">
+                                    <input type="number" style="display:none" class="cantidades rounded p-2 " id="cantidad{{ $producto->id }}" name="cantidades[]" value="0" min="0">
                                 </div>
                                 <script>
                                     function masCantidad{{ $producto->id }}() {
                                         // Get the checkbox
                                         var checkBox = document.getElementById('producto{{ $producto->id }}');
-                                        // Get the output text
-                                        var text = document.getElementById('cantidad{{ $producto->id }}');
+                                        // Get the intput cantidad
+                                        var cantidad = document.getElementById('cantidad{{ $producto->id }}');
 
-                                        // If the checkbox is checked, display the output text
+                                        // If the checkbox is checked, display the output cantidad
                                         if (checkBox.checked == true){
-                                            text.style.display = "block";
+                                            cantidad.value = 1;
+                                            cantidad.style.display = "block";
                                         } else {
-                                            text.style.display = "none";
+                                            cantidad.style.display = "none";
+                                            cantidad.value = 0;
                                         }
                                         //alert('aprete el checkbox!');
                                     }
                                 </script>
                             
                             @endforeach
+                            {{--<input id="cantidadesFinales" name="cantidadesFinales[]" type="hidden">--}}
                         </div>
 
 
@@ -325,6 +333,30 @@
                 </div>
         
                 <button type="submit" class="btn btn-outline-secondary btn-block">Confirmar</button>
+
+                <script>
+                    /*$("#form_crear_pedido").submit(function(e){
+                        e.preventDefault();
+
+                        var valueArray = $('.cantidades').map(function() {
+                            if(this.value >= 0){
+                                return this.value;
+                            }
+
+                        }).get();
+
+                        let arrayCantidades = [];
+                        arrayCantidades = valueArray.filter(function(elemento){
+                            return elemento != 0;
+                        });
+
+                        $("#cantidadesFinales").push(arrayCantidades);
+
+                        //alert('las cantidades finales son: ' + $("#cantidadesFinales").val());
+                        this.submit();
+                    });*/
+                </script>
+
             </form>
         </div>
     </div>

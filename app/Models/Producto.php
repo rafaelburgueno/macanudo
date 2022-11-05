@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Producto extends Model
 {
@@ -66,6 +67,20 @@ class Producto extends Model
     public function categorias(){
         return $this->morphToMany('App\Models\Categoria', 'categoriaable');
     }    
+
+
+     /**
+     * Devuelve un int con el campo 'unidades' de la tabla pivote pedido_producto
+     * relacion uno a muchos polimorfica
+     * testeado tinker exitoso
+     * @var int
+     */
+    /*public function unidades($pedido_id){
+
+        $unidades = DB::table('pedido_producto')->where('producto_id', $this->id)->where('pedido_id', $pedido_id)->first()->unidades;
+        //dd($unidades);
+        return $unidades;
+    }   */ 
 
 
 }

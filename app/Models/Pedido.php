@@ -73,7 +73,7 @@ class Pedido extends Model
      * @var array Producto
      */
     public function productos(){
-        return $this->belongsToMany('App\Models\Producto');
+        return $this->belongsToMany('App\Models\Producto')->withPivot('unidades');;
     }
 
 
@@ -81,21 +81,24 @@ class Pedido extends Model
     /**
      * Devuelve un array de strings con la lista de elementos del modelo Producto que se vinculan a esta instancia de Pedido
      * 
-     * 
+     * NO SE ESTA USANDO ESTE METODO
      * @var array String
      */
     public function listaDeProductos(){
 
-        $lista_de_productos = array();
+        $pedido = Pedido::with('productos')->find($this->id); 
+        $lista_de_productos = $pedido->productos; 
+
+        //$lista_de_productos = array();
 
         //$pedido_producto = $this->belongsToMany('App\Models\Producto');
-        $pedido_producto = DB::table('pedido_producto')->where('pedido_id', $this->id)->get();
+        //$productos_del_pedido = DB::table('pedido_producto')->where('pedido_id', $this->id)->get();
 
 
-        //dd($pedido_producto);
-        //var_dump($pedido_producto);
+        //dd($productos_del_pedido);
+        //var_dump($productos_del_pedido);
 
-        foreach($pedido_producto as $producto){
+        /*foreach($productos_del_pedido as $producto){
 
             array_push($lista_de_productos, $producto->producto_id);
 
@@ -103,10 +106,11 @@ class Pedido extends Model
                 array_push($lista_de_productos, $producto->nombre);
             }*/
 
-        }
+        //}
 
-        //return $pedido_producto;
+        //return $productos_del_pedido;
         return $lista_de_productos;
+
     }
 
 

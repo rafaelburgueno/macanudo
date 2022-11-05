@@ -15,6 +15,7 @@ use App\Http\Controllers\CanastaController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\NuestrosProductosController;
+use App\Http\Controllers\MiCarritoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -271,10 +272,11 @@ Route::get('/mi_perfil', function () {
 | Esta ruta solo devuelve una vista, por lo tanto no es 
 | necesario utilizar un controlador.
 */
-Route::get('/mi_carrito', function () {
+Route::get('/mi_carrito', MiCarritoController::class)->name('mi_carrito');
+/*Route::get('/mi_carrito', function () {
     return view('mi_carrito');
     //return "mi_carrito";
-})->name('mi_carrito');
+})->name('mi_carrito');*/
 
 
 
