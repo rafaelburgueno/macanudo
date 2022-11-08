@@ -16,7 +16,7 @@
     <div class="row mb-5 mt-2">
         <div class="col-md-12">
 
-            <form id="form_crear_pedido" class="p-3" action="{{route('pedidos.update', $pedido)}}" method="POST">
+            <form id="form_crear_pedido" action="{{route('pedidos.update', $pedido)}}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -52,32 +52,32 @@
 
                         
                         <!--input para el nombre-->
-                        <div class="form-group mb-3">
+                        {{--<div class="form-group mb-3">
                             <label for="nombre">Nombre</label>
                             <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre', $pedido->nombre)}}">
                             @error('nombre')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
 
                         <!--input para el email-->
-                        <div class="form-group mb-3">
+                        {{--<div class="form-group mb-3">
                             <label for="email">Email</label>
                             <input required type="text" class="form-control" id="email" name="email" placeholder="..." value="{{old('email', $pedido->email)}}">
                             @error('email')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
                         <!--input para el documento_de_identidad-->
-                        <div class="form-group mb-3">
+                        {{--<div class="form-group mb-3">
                             <label for="documento_de_identidad">Documento de identidad</label>
                             <input type="number" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad', $pedido->documento_de_identidad)}}" min="0">
                             @error('documento_de_identidad')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
                         <!--input para el telefono-->
                         <div class="form-group mb-3">
@@ -118,13 +118,13 @@
                         </div>
 
                         <!--input para la Pais-->
-                        <div class="form-group mb-3">
+                        {{--<div class="form-group mb-3">
                             <label for="Pais">Pais</label>
                             <input type="text" class="form-control" id="pais" name="pais" placeholder="..." value="{{old('pais', $pedido->pais)}}">
                             @error('Pais')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
 
                     </div>
@@ -132,22 +132,22 @@
                     <div class="col-md-6">
 
                         <!--input para el monto-->
-                        <div class="form-group mb-3">
+                        {{--<div class="form-group mb-3">
                             <label for="monto">Monto</label>
                             <input type="number" class="form-control" id="monto" name="monto" placeholder="..." value="{{old('monto', $pedido->monto)}}" min="0">
                             @error('monto')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
                         <!--input para checkbox Recibir novedades -->
-                        <div class="form-check my-4">
+                        {{--<div class="form-check my-4">
                             <input type="checkbox" class="form-check-input" id="recibir_novedades" name="recibir_novedades" value="1" @checked(old('recibir_novedades', $pedido->recibir_novedades))>
                             <label class="form-check-label" for="recibir_novedades">Recibir novedades</label>
                             @error('recibir_novedades')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
                         <!--input para la tipo_de_cliente-->
                         <div class="form-group mb-3">
@@ -168,7 +168,7 @@
                         </div>
 
 
-                        <div class="form-group mb-3 border rounded border-light p-2">
+                        {{--<div class="form-group mb-3 border rounded border-light p-2">
                             <h4>Canasta</h4>
                             @foreach ($canastas as $canasta)
                                 <!--input para cada canasta-->
@@ -177,11 +177,12 @@
                                     <label class="form-check-label" for="canasta_id">{{ $canasta->nombre }}</label>
                                 </div>
                             @endforeach
-                        </div>
+                        </div>--}}
                         
 
                         <div class="form-group mb-3 border rounded border-light  p-2">
                             <h4>Productos</h4>
+                            <hr>
 
                             <ul>
                                 @foreach($pedido->productos as $producto)
@@ -190,8 +191,7 @@
                                 @endforeach
                             </ul>
 
-                            <hr>
-                            @foreach ($lista_de_productos as $key => $producto)
+                            {{--@foreach ($lista_de_productos as $key => $producto)
 
                                 <!--input para cada producto-->
                                 <div class="form-check my-4">
@@ -219,12 +219,12 @@
                                     }
                                 </script>
                             
-                            @endforeach
+                            @endforeach--}}
                             {{--<input id="cantidadesFinales" name="cantidadesFinales[]" type="hidden">--}}
                         </div>
 
 
-                        <div class="form-group mb-3 border rounded border-light  p-2">
+                        {{--<div class="form-group mb-3 border rounded border-light  p-2">
                             <h4>Costos de envio</h4>
                             @foreach ($costos_de_envio as $costo_de_envio)
 
@@ -235,10 +235,10 @@
                                 </div>
                             
                             @endforeach
-                        </div>
+                        </div>--}}
                         
 
-                        <div class="form-group mb-3 border rounded border-light  p-2">
+                        {{--<div class="form-group mb-3 border rounded border-light  p-2">
                             <h4>Cupones</h4>
                             @foreach ($cupones as $cupon)
 
@@ -249,7 +249,7 @@
                                 </div>
                             
                             @endforeach
-                        </div>                      
+                        </div>        --}}              
                        
 
                         

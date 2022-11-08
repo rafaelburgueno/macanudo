@@ -241,6 +241,7 @@ Route::controller(PedidoController::class)->group(function () {
     Route::get('pedidos', 'index')->name('pedidos.index')->middleware('acceso.administrador');
     /*Route::get('pedidos/create', 'create')->name('pedidos.create');*/
     Route::post('pedidos', 'store')->name('pedidos.store')->middleware('acceso.administrador');
+    Route::post('pedidos', 'carrito')->name('pedidos.carrito');
     /*Route::get('pedidos/{pedido}', 'show')->name('pedidos.show')->middleware('acceso.administrador');*/
     Route::get('pedidos/{pedido}/edit', 'edit')->name('pedidos.edit')->middleware('acceso.administrador');
     Route::put('pedidos/{pedido}', 'update')->name('pedidos.update')->middleware('acceso.administrador');

@@ -13,7 +13,7 @@
 	$(document).ready( function () {
 		$('#tabla_pedidos').DataTable({
 			order: [
-				[1, 'asc']
+				[0, 'desc']
 			]
 		});
 	} );
@@ -33,7 +33,7 @@
 					<th>id</th>
 					<th>Estatus</th>
 					<th>Nombre</th>
-					<th>Costo de envio</th>
+					<th>Destino del envio</th>
 					<th>Monto</th>
 					<th>Productos</th>
 					{{--<th>Ingredientes</th>--}}
@@ -57,7 +57,7 @@
                             @endif
                         </td>
                         
-						<td>{{ $pedido->monto }}</td>
+						<td>{{ $pedido->monto }} $</td>
 
 						<td>
                             <ul>
@@ -98,7 +98,7 @@
     <div class="row mb-5 mt-2">
         <div class="col-md-12">
 
-            <form id="form_crear_pedido" class="p-3" action="{{route('pedidos.store')}}" method="POST" enctype="multipart/form-data">
+            {{--<form id="form_crear_pedido" class="p-3" action="{{route('pedidos.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
 
@@ -293,7 +293,7 @@
                                 </script>
                             
                             @endforeach
-                            {{--<input id="cantidadesFinales" name="cantidadesFinales[]" type="hidden">--}}
+                            
                         </div>
 
 
@@ -357,7 +357,7 @@
                     });*/
                 </script>
 
-            </form>
+            </form>--}}
         </div>
     </div>
 

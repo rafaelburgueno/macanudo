@@ -16,13 +16,13 @@ class VerificarCupon extends Component
     public function verificarCupon()
     {
 
-        $cupon = Cupon::where('activo', true)->where('codigo', $this->codigo)->first();
+        $cupon = Cupon::where('activo', true)->where('cantidad', '>', 0)->where('codigo', $this->codigo)->first();
 
         if(isset($cupon)){
-            $this->respuesta = 'cupon valido' ;
+            $this->respuesta = ' <h6 class="mt-3 mb-0 text-success">Se aplicaran los descuentos de tu cupón.</h6>' ;
             $this->descuento = $cupon->descuento;
         }else{
-            $this->respuesta = 'cupon no valido';
+            $this->respuesta = '<h6 class="mt-3 mb-0 text-danger">El cupón no existe o esta desactivado.</h6>';
             $this->descuento = 0;
         }
         $this->dispatchBrowserEvent('calcularCupon');
