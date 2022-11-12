@@ -8,16 +8,16 @@
 
 
 <div class="mt-3 mr-0 mb-3 ml-0 contenedor">
-    <div class="row">
-        <div class="col-sm">
+    <div class="row m-0 p-0">
+        <div class="col-sm m-0 p-0">
             <img src="{{asset('/storage/img/club.png')}}" class="nav d-block w-100 m-0" alt="..." width="">
         </div>
     </div>
 </div>
 
 <div class="mt-3 mr-0 mb-3 ml-0 contenedor">
-    <div class="row">
-        <div class="col-sm">
+    <div class="row m-0 p-0">
+        <div class="col-sm m-0 p-0">
             <a href="{{route('mi_carrito')}}" class="btn-azul btn1 btn-club shadown">Únete a nuestro club</a>
         </div>
     </div>
@@ -25,7 +25,8 @@
 
 <br>
 
-<div class="container1">
+
+<div class="container11 container">
     <div class="row">
         <div class="col">
             <h1 class="text-center mb-5 mt-5 scroll-content fadeLeft" style="color: var(--gris);">
@@ -104,45 +105,48 @@
 
 </div>
 
-<div class="row">
-    <div class="col">
-        <h1 class="text-center text-white">¿Te encantan los beneficios?</h1>
-        <br>
-        <br>
-        <h2 class="text-center  scroll-content fadeRight" style=" color: var(--gris) ;">Estas en el lugar correcto</h2>
-        <br>
-        <br>
-        <h3 class="text-center  scroll-content fadeLeft" style=" color: var(--lila) ;">los quesos del club</h3>
-        <br>
-        <br>
-        <h1 class="text-center  scroll-content fadeRight" style=" color: var(--rojo) ;">tienen DESCUENTOS</h1>
-        <br>
-        <br>
-        <h1 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
-            el packaging es MÁS SUSTENTABLE 
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-box2-heart ml-3" viewBox="0 0 16 16">
-                <path d="M8 7.982C9.664 6.309 13.825 9.236 8 13 2.175 9.236 6.336 6.31 8 7.982Z" />
-                <path d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4h-8.5Zm0 1H7.5v3h-6l2.25-3ZM8.5 4V1h3.75l2.25 3h-6ZM15 5v10H1V5h14Z" />
-            </svg>
-        </h1>
-        <br>
-        <h3 class="text-center  scroll-content fadeRight" style=" color: var(--verde-claro) ;">
-            y como si fuera poco
-        </h3>
-        <br>
-        <h2 class="text-center  scroll-content fadeLeft" style=" color: var(--verde) ;">
-            en el mes de tu cumpleaños 
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-gift ml-3" viewBox="0 0 16 16">
-                <path d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A2.968 2.968 0 0 1 3 2.506V2.5zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.522.522 0 0 0 .023.07zM9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0V3zM1 4v2h6V4H1zm8 0v2h6V4H9zm5 3H9v8h4.5a.5.5 0 0 0 .5-.5V7zm-7 8V7H2v7.5a.5.5 0 0 0 .5.5H7z" />
-            </svg>
-        </h2>
-        <br>
-        <h1 class="text-center  scroll-content fadeRight" style=" color: var(--azul) ;">
-            AUMENTAMOS<br>tu<br>
-            <img src="{{asset('/storage/img/canasta.png')}}" width="15%">
-        </h1>
-        <br>
-        <br>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center text-white">¿Te encantan los beneficios?</h1>
+            <br>
+            <br>
+            <h2 class="text-center  scroll-content fadeRight" style=" color: var(--gris) ;">Estas en el lugar correcto</h2>
+            <br>
+            <br>
+            <h3 class="text-center  scroll-content fadeLeft" style=" color: var(--lila) ;">los quesos del club</h3>
+            <br>
+            <br>
+            <h1 class="text-center  scroll-content fadeRight" style=" color: var(--rojo) ;">tienen DESCUENTOS</h1>
+            <br>
+            <br>
+            <h1 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
+                el packaging es MÁS SUSTENTABLE 
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-box2-heart ml-3" viewBox="0 0 16 16">
+                    <path d="M8 7.982C9.664 6.309 13.825 9.236 8 13 2.175 9.236 6.336 6.31 8 7.982Z" />
+                    <path d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4h-8.5Zm0 1H7.5v3h-6l2.25-3ZM8.5 4V1h3.75l2.25 3h-6ZM15 5v10H1V5h14Z" />
+                </svg>
+            </h1>
+            <br>
+            <h3 class="text-center  scroll-content fadeRight" style=" color: var(--verde-claro) ;">
+                y como si fuera poco
+            </h3>
+            <br>
+            <h2 class="text-center  scroll-content fadeLeft" style=" color: var(--verde) ;">
+                en el mes de tu cumpleaños 
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-gift ml-3" viewBox="0 0 16 16">
+                    <path d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A2.968 2.968 0 0 1 3 2.506V2.5zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.522.522 0 0 0 .023.07zM9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0V3zM1 4v2h6V4H1zm8 0v2h6V4H9zm5 3H9v8h4.5a.5.5 0 0 0 .5-.5V7zm-7 8V7H2v7.5a.5.5 0 0 0 .5.5H7z" />
+                </svg>
+            </h2>
+            <br>
+            <h1 class="text-center  scroll-content fadeRight" style=" color: var(--azul) ;">
+                AUMENTAMOS<br>tu<br>
+                <img src="{{asset('/storage/img/canasta.png')}}" width="15%">
+            </h1>
+            <br>
+            <br>
+        </div>
     </div>
 </div>
 <br>
