@@ -24,7 +24,7 @@
     <h1 class="text-center pt-2">CANASTAS</h1>
 </div>
 
-<div class="container bg-white py-2 rounded">
+<div class="container bg-white text-dark py-2 rounded">
 
 	<div class="pb-3" style="overflow-x: scroll;">
 		<table id="tabla_canastas" class="display {{--table table-striped table-hover table-sm--}}">
@@ -125,7 +125,7 @@
                         <!--input para el precio-->
                         <div class="form-group mb-3">
                             <label for="precio">Precio</label>
-                            <input type="number" class="form-control" id="precio" name="precio" placeholder="..." value="{{old('precio')}}" min="0">
+                            <input type="number" class="form-control" id="precio" name="precio" placeholder="..." value="{{old('precio')}}" min="0" style="width: 100%;">
                             @error('precio')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
@@ -134,7 +134,7 @@
                         <!--input para el stock-->
                         <div class="form-group mb-3">
                             <label for="stock">Stock</label>
-                            <input type="number" class="form-control" id="stock" name="stock" placeholder="..." value="{{old('stock')}}" min="0">
+                            <input type="number" class="form-control" id="stock" name="stock" placeholder="..." value="{{old('stock')}}" min="0" style="width: 100%;">
                             @error('stock')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror

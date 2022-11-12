@@ -20,7 +20,7 @@
     <div class="row ccard-columns-2 ">
         
         @foreach($productos as $producto)
-            <div class="col-md-6 ">    
+            <div class="col-md-6 mb-5">    
 
                 <div class="card text-white border border-5 border-light" style="background-color:{{$producto->color}};">
                     @if (count($producto->multimedias))
@@ -94,6 +94,7 @@
                 title: 'Se añadio al carrito'
                 })
 
+                actualizarContadorDelCarrito();
 
             }
 

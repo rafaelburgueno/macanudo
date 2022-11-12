@@ -24,7 +24,7 @@
     <h1 class="text-center pt-2">COSTOS DE ENVÍO</h1>
 </div>
 
-<div class="container bg-white py-2 rounded">
+<div class="container bg-white text-dark py-2 rounded">
 
 	<div class="pb-3" style="overflow-x: scroll;">
 		<table id="tabla_costos" class="display {{--table table-striped table-hover table-sm--}}">
@@ -120,7 +120,7 @@
                         <!--input para el dias_de_demora-->
                         <div class="form-group mb-3">
                             <label for="dias_de_demora">Días de demora</label>
-                            <input type="number" class="form-control" id="dias_de_demora" name="dias_de_demora" placeholder="..." value="{{old('dias_de_demora')}}" min="0">
+                            <input type="number" class="form-control" id="dias_de_demora" name="dias_de_demora" placeholder="..." value="{{old('dias_de_demora')}}" min="0" style="width: 100%;">
                             @error('dias_de_demora')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
@@ -156,7 +156,7 @@
                         <!--input para el costo_de_envio-->
                         <div class="form-group mb-3">
                             <label for="costo_de_envio">Costo de envío ($)</label>
-                            <input type="number" class="form-control" id="costo_de_envio" name="costo_de_envio" placeholder="..." value="{{old('costo_de_envio')}}" min="0">
+                            <input type="number" class="form-control" id="costo_de_envio" name="costo_de_envio" placeholder="..." value="{{old('costo_de_envio')}}" min="0" style="width: 100%;">
                             @error('costo_de_envio')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror

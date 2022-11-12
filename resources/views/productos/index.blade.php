@@ -24,7 +24,7 @@
     <h1 class="text-center pt-2">PRODUCTOS</h1>
 </div>
 
-<div class="container bg-white py-2 rounded">
+<div class="container bg-white text-dark py-2 rounded">
 
 	<div class="pb-3" style="overflow-x: scroll;">
 		<table id="tabla_productos" class="display {{--table table-striped table-hover table-sm--}}">
@@ -131,7 +131,7 @@
                          <!--input para el precio-->
                          <div class="form-group mb-3">
                             <label for="precio">Precio unitario</label>
-                            <input type="number" class="form-control" id="precio" name="precio" placeholder="..." value="{{old('precio')}}" min="0">
+                            <input type="number" class="form-control" id="precio" name="precio" placeholder="..." value="{{old('precio')}}" min="0" style="width: 100%;">
                             @error('precio')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
@@ -140,7 +140,7 @@
                         <!--input para el stock-->
                         <div class="form-group mb-3">
                             <label for="stock">Stock</label>
-                            <input type="number" class="form-control" id="stock" name="stock" placeholder="..." value="{{old('stock')}}" min="0">
+                            <input type="number" class="form-control" id="stock" name="stock" placeholder="..." value="{{old('stock')}}" min="0" style="width: 100%;">
                             @error('stock')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
@@ -149,7 +149,7 @@
                         <!--input para el peso-->
                         <div class="form-group mb-3">
                             <label for="peso_neto">Peso neto</label>
-                            <input type="number" class="form-control" id="peso_neto" name="peso_neto" placeholder="..." value="{{old('peso_neto')}}" min="0">
+                            <input type="number" class="form-control" id="peso_neto" name="peso_neto" placeholder="..." value="{{old('peso_neto')}}" min="0" style="width: 100%;">
                             @error('peso_neto')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror

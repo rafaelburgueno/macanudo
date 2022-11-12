@@ -11,6 +11,8 @@ use App\Models\Costo_de_envio;
 use App\Models\Cupon;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Http;
+
 class PedidoController extends Controller
 {
     
@@ -349,7 +351,6 @@ class PedidoController extends Controller
         }
         */
 
-
         $pedido->delete();
         session()->flash('exito', 'El pedido fue eliminado.');
 
@@ -397,7 +398,8 @@ class PedidoController extends Controller
         
         $pedido = new Pedido();
 
-        $pedido->status =  $request->status;
+        //$pedido->status =  $request->status;
+        $pedido->status =  'pedido sin pagar';
         $pedido->tipo = $request->tipo;
 
         /*if($request->canasta_id){
@@ -460,16 +462,18 @@ class PedidoController extends Controller
         $suma_de_productos_con_descuento = $suma_de_productos - (($suma_de_productos*$descuento_por_cupon)/100);
 
         $total_de_la_compra = $suma_de_productos_con_descuento + $costo_de_envio;
-        dd($total_de_la_compra);
+        //dd($total_de_la_compra);
 
         if($total_de_la_compra != $monto_desde_el_front){
             session()->flash('error', 'La compra fue rechazada.');
             return redirect() -> route('mi_carrito');
         }
 
+        $pedido->monto = $total_de_la_compra;
+
         //restamos una unidad en el cupon utilizado
         if($request->nombre_del_cupon){
-            $cupon->cantdad = (int)$cupon->cantdad -1;
+            $cupon->cantidad = (((int)$cupon->cantidad) -1);
             $cupon->save();
         }
 
@@ -523,8 +527,87 @@ class PedidoController extends Controller
 
         }
 
-        session()->flash('exito', 'La compra fue realizada con exito. En breve recibira nuestra visita.');
-        return redirect() -> route('nuestros_productos');
+        //session()->flash('exito', 'La compra fue realizada con exito. En breve recibira nuestra visita.');
+        //return redirect() -> route('nuestros_productos');
+        session()->flash('exito', 'El pedido fue realizado. Ya solo queda realizar el pago');
+        return  redirect()->route('realizar_pago', compact('pedido'));
+    }
+
+
+
+
+        /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Pedido  $pedido
+     * @return \Illuminate\Http\Response
+     */
+    public function realizarPago(Pedido $pedido)
+    {
+
+            
+        return view('realizar_pago')->with('pedido', $pedido);
+        //return view('pedidos.edit', compact('pedido'));
+    }
+
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Pedido  $pedido
+     * @return \Illuminate\Http\Response
+     */
+    public function mostrarPago(Pedido $pedido)
+    {
+        return view('mostrar_pago')->with('pedido', $pedido);
+        //return view('pedidos.edit', compact('pedido'));
+    }
+
+
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Pedido  $pedido
+     * @return \Illuminate\Http\Response
+     */
+    public function pay(Request $request, Pedido $pedido)
+    {
+
+        //$payment_id = $request->payment_id;
+        $payment_id = $request->get('payment_id');
+
+        //$status = $request->get('status');
+        //"status":"approved"
+
+        
+        //MP_ACCESS_TOKEN=APP_USR-2952913337666388-110911-b51dc0d1fb918eb22ad56cc723e9accb-1235337281
+        //$response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-2952913337666388-110911-b51dc0d1fb918eb22ad56cc723e9accb-1235337281");
+        $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=".env('MP_ACCESS_TOKEN'));
+
+
+        $response = json_decode($response);
+
+        //dump($response);
+
+        $status = $response->status;
+
+        if($status == 'approved'){
+            $pedido->status = 'pago recibido';
+            $pedido->save();
+
+            session()->flash('exito', 'La compra fue PAGADA con exito. En breve recibira nuestra visita.');
+            return redirect() -> route('nuestros_productos');
+        }else{
+            session()->flash('error', 'Algo salio mal, el pago fue rechazado. Por favor comuniquese con nosotros');
+            return redirect() -> route('mi_carrito');
+        }
+
+        //return $request->all();
+        //return view('pay')->with('pedido', $pedido);
+        //return view('pedidos.edit', compact('pedido'));
     }
 
 

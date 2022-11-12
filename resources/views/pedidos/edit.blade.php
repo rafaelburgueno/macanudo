@@ -25,6 +25,13 @@
 
                         <!--input para el status-->
                         <div class="form-group mb-3">
+                            <label for="status">status</label>
+                            <input required type="text" class="form-control" id="status" name="status" placeholder="..." value="{{old('status', $pedido->status)}}">
+                            @error('status')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        {{--<div class="form-group mb-3">
                             <label for="status">Status</label>
                             <select class="form-control" id="status" name="status">
                                 <option value="pedido" @selected((old('status') == "pedido") || $pedido->status == "pedido" )>Pedido</option>
@@ -35,7 +42,7 @@
                             @error('status')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
 
                         <!--input para el tipo-->
@@ -51,11 +58,11 @@
                         </div>
 
                         
-                        <!--input para el nombre-->
+                        <!--input para el status-->
                         {{--<div class="form-group mb-3">
-                            <label for="nombre">Nombre</label>
-                            <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre', $pedido->nombre)}}">
-                            @error('nombre')
+                            <label for="status">status</label>
+                            <input required type="text" class="form-control" id="status" name="status" placeholder="..." value="{{old('status', $pedido->status)}}">
+                            @error('status')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>--}}
@@ -82,7 +89,7 @@
                         <!--input para el telefono-->
                         <div class="form-group mb-3">
                             <label for="telefono">Telefono</label>
-                            <input type="number" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono', $pedido->telefono)}}" min="0">
+                            <input type="number" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono', $pedido->telefono)}}" min="0" style="width: 100%;">
                             @error('telefono')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
@@ -161,7 +168,7 @@
                         <!--input para el numero_de_factura-->
                         <div class="form-group mb-3">
                             <label for="numero_de_factura">Numero de factura</label>
-                            <input type="number" class="form-control" id="numero_de_factura" name="numero_de_factura" placeholder="..." value="{{old('numero_de_factura', $pedido->numero_de_factura)}}" min="0">
+                            <input type="number" class="form-control" id="numero_de_factura" name="numero_de_factura" placeholder="..." value="{{old('numero_de_factura', $pedido->numero_de_factura)}}" min="0" style="width: 100%;">
                             @error('numero_de_factura')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
@@ -263,7 +270,7 @@
 
             </form>
 
-            <form action="{{ route('pedidos.destroy', $producto) }}" method="POST" class="alerta-antes-de-eliminar">
+            <form action="{{ route('pedidos.destroy', $pedido) }}" method="POST" class="alerta-antes-de-eliminar">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-outline-danger mt-2">Eliminar</button>

@@ -24,56 +24,48 @@
     <h1 class="text-center pt-2">PEDIDOS</h1>
 </div>
 
-<div class="container bg-white py-2 rounded">
+<div class="container bg-white text-dark py-2 rounded">
 
 	<div class="pb-3" style="overflow-x: scroll;">
 		<table id="tabla_pedidos" class="display {{--table table-striped table-hover table-sm--}}">
 			<thead>
 				<tr>
-					<th>id</th>
-					<th>Estatus</th>
-					<th>Nombre</th>
-					<th>Destino del envio</th>
-					<th>Monto</th>
+                    <th>Estatus</th>
+					<th>Teléfono</th>
+                    <th>Dirección</th>
 					<th>Productos</th>
-					{{--<th>Ingredientes</th>--}}
-                    {{--<th>Informacion nutricional</th>--}}
+                    <th>Nombre</th>
+					<th>Monto</th>
                     <th>Fecha</th>
+					{{--<th>id</th>--}}
 					<th>Administrar</th>
 					
 				</tr>
 			</thead>
 			<tbody>
+                {{--entregado-telefono-direccion- lista del pedido- nombre--}}
 			
 				@foreach ($pedidos as $pedido)
 					<tr>
-                        <td>{{ $pedido->id }}</td>
                         <td>{{ $pedido->status }}</td>
-                        <td>{{ $pedido->nombre }}</td>
-                        
-						<td>
+                        <td>{{ $pedido->telefono }}</td>
+                        <td>{{ $pedido->direccion }}
                             @if($pedido->costo_de_envio)
-                                {{ $pedido->costo_de_envio->region }}
+                                | {{ $pedido->costo_de_envio->region }}
                             @endif
                         </td>
-                        
-						<td>{{ $pedido->monto }} $</td>
-
-						<td>
+                        <td>
                             <ul>
-                            
-                            {{--@foreach($pedido->listaDeProductos() as $producto)
-                                <li>{{ $producto->nombre }} | x {{ $producto->pivot->unidades }}</li>
-                            @endforeach--}}
-                            
-                            @foreach($pedido->productos as $producto)
-                                {{--<li>{{ $producto->nombre }} x {{ $producto->unidades($pedido->id) }}</li>--}}
-                                <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
-                            @endforeach
+                                @foreach($pedido->productos as $producto)
+                                    <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                @endforeach
                             </ul>
                         </td>
-						
-						<td>{{ $pedido->created_at->format('d/m/Y') }}</td>
+                        <td>{{ $pedido->nombre }}</td>
+						<td>{{ $pedido->monto }} $</td>
+						<td>{{ $pedido->created_at }}</td>
+                        {{--<td>{{ $pedido->created_at->format('d/m/Y') }}</td>--}}
+                        {{--<td>{{ $pedido->id }}</td>--}}
                         
 						<td><a href="{{route('pedidos.edit', $pedido)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>
 
@@ -88,9 +80,9 @@
 </div>
 
 
-<div class="text-center text-white mt-5">
+{{--<div class="text-center text-white mt-5">
     <h2 class="text-center pt-2">CREAR PEDIDO</h2>
-</div>
+</div>--}}
     
     
 <div class="container text-white">

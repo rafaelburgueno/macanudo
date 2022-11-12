@@ -34,7 +34,7 @@
             </div>
             
             <div class="card-footer">
-                <small class="">Creado el {{ $post->created_at->format('d/m/Y') }}</small>
+                <small class="text-dark">Creado el {{ $post->created_at->format('d/m/Y') }}</small>
                     
                 @if(count($post->categorias))
                     <p><span class="badge">{{ $post->categorias }}</span></p>

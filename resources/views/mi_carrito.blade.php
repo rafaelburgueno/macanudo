@@ -7,39 +7,65 @@
 @section('content')
 
 
+{{--@php
+	// SDK de Mercado Pago
+	//require __DIR__ .  '/vendor/autoload.php';
+	require base_path('vendor/autoload.php');
+	// Agrega credenciales
+	//MercadoPago\SDK::setAccessToken('PROD_ACCESS_TOKEN');
+	MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
+
+
+	// Crea un objeto de preferencia
+	$preference = new MercadoPago\Preference();
+
+	// Crea un ítem en la preferencia
+	$item = new MercadoPago\Item();
+	$item->title = 'Mi producto';
+	$item->quantity = 1;
+	$item->unit_price = 75.56;
+	$preference->items = array($item);
+	$preference->save();
+
+@endphp--}}
+
+
 <div class="text-center text-white my-4">
     <h1 class="text-center pt-2">MI CARRITO</h1>
 </div>
 
 <!-- Barra de progreso de la compra -->
-<div class="container">
-<div class="progress" style="height: 30px;">
-	<div class="progress-bar pl-5" role="progressbar" style="width: 25%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
-		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16" >
-			<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-	  	</svg>
+{{--<div class="container">
+	<div class="progress" style="height: 30px;">
+		<div class="progress-bar pl-5" role="progressbar" style="width: 25%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16" >
+				<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+			</svg>
+		</div>
+		<div class="progress-bar bg-success pl-5" role="progressbar" style="width: 25%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
+				<path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z"/>
+			</svg>
+		</div>
+		<div class="progress-bar bg-info pl-5" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
+				<path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+			</svg>
+		</div>
+		<div class="progress-bar bg-primary pl-5" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+				<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
+				<path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
+			</svg>
+		</div>
 	</div>
-	<div class="progress-bar bg-success pl-5" role="progressbar" style="width: 25%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
-			<path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z"/>
-		</svg>
-	</div>
-	<div class="progress-bar bg-info pl-5" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
-			<path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-		</svg>
-	</div>
-	<div class="progress-bar bg-primary pl-5" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
-			<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
-			<path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
-		</svg>
-	</div>
-  </div>
-<div>
+<div>--}}
 
 
-<div class="container mt-5">
+<div class="container mt-5 text-dark">
+	
+	
+	
 	<div class="row">
 		<div class="col-lg-6 mb-5">
 		
@@ -60,14 +86,14 @@
 									<div class="row">
 										<div class="form-group col-sm-6">
 											<label for="cantidad">Cantidad: </label>
-											<input type="number" class="form-control recalcularPrecioo" id="cantidad-{{$producto->id}}" class="cantidad" name="cantidad" value="0" min="0" onclick="cambiarCantidad({{$producto->id}})">
+											<input  style="width: 100%;" type="number" class="form-control recalcularPrecioo" id="cantidad-{{$producto->id}}" class="cantidad" name="cantidad" value="0" min="0" onclick="cambiarCantidad({{$producto->id}})">
 											<span style="font-size: 14px;"> $ {{$producto->precio}} c/u</span> 
 											<input type="hidden" id="precio-{{$producto->id}}" name="precio" value="{{$producto->precio}}">
 										</div>
 
 										<div class="form-group col-sm-6">
 											<label for="precio">Precio: $</label>
-											<input type="number" class="form-control" value="{{$producto->precio}}" readonly id="precio_multiplicado-{{$producto->id}}" name="precio_multiplicado">
+											<input  style="width: 100%;" type="number" class="form-control" value="{{$producto->precio}}" readonly id="precio_multiplicado-{{$producto->id}}" name="precio_multiplicado">
 										</div>
 									</div>
 								</form>
@@ -92,12 +118,9 @@
 		</div>
 
 
-
-
-
 		<div class="col-lg-6 mb-5 ">
 
-			<div class="card shadown-gris">
+			<div class="card shadown-gris mb-3" >
 				<div class="card-header">
 					<strong>Métodos de envío</strong>
 				</div>
@@ -160,7 +183,7 @@
 				</div>
 				<div class="card-footer">
 					<h5>Total: <strong id="total_de_la_compra"></strong> $ UYU</h5>
-					<button type="submit" class="btn btn-lg shadown" style="color: #4554a4;" id="paso2"><strong>Confirmar compra </strong></button>
+					<button class="btn btn-lg shadown" style="color: #4554a4;" id="btn_confirmar_compra"><strong>Confirmar compra </strong></button>
 
 				</div>
 			</div>
@@ -169,10 +192,15 @@
 	</div><!-- fin del row-->
 
 
+
+
+
+
+
 	<!-- Resumen de la compra -->
 	<!-- Resumen de la compra -->
 	<!-- Resumen de la compra -->
-	<div class="row mb-5">
+	<div class="row mb-5" id="panel_resumen_de_la_compra" style="display: none;">
 
 		<div class="card p-0">
 			<div class="card-header">
@@ -213,7 +241,7 @@
 				</div>
 
 				<hr>
-				<button class="btn btn-block btn-outline-success">Comprar</button>
+				<button class="btn btn-block btn-outline-success" id="btn_comprar">Comprar</button>
 			</div>
 			
 		</div>
@@ -223,176 +251,151 @@
 
 
 
+	<form id="form_crear_pedido" action="{{route('pedidos.carrito')}}" method="POST">
+		@csrf
+		@method('POST')
+
+		<!-- completar los datos del pedido -->
+		<!-- completar los datos del pedido -->
+		<!-- completar los datos del pedido -->
+		<div class="card" id="panel_completar_datos_del_pedido" style="display: none;">
+			<div class="card-header">
+				<h4 class="text-center">Datos de envío</h4>
+			</div>
+
+			<div class="card-body">
+				{{--<form id="form_crear_pedido" action="{{route('pedidos.carrito')}}" method="POST">
+					@csrf
+					@method('POST')--}}
+					<div class="row">
+						<div class="col-lg-6 ">
+
+							<!--input para el status-->
+							<input type="hidden" id="status" name="status" value="pedido">
+							
+							<!--input para el tipo-->
+							<input type="hidden" id="tipo" name="tipo" value="pedido normal">
+							
+							
+							<!--input para el nombre-->
+							<div class="form-group mb-3">
+								<label for="nombre">Nombre</label>
+								<input required type="text" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}">
+								@error('nombre')
+									<div class="alert alert-danger mt-1">{{ $message }}</div>
+								@enderror
+							</div>
 
 
+							<!--input para el email-->
+							<div class="form-group mb-3">
+								<label for="email">Email</label>
+								<input required type="text" class="form-control" id="email" name="email" placeholder="..." value="{{old('email')}}">
+								@error('email')
+									<div class="alert alert-danger mt-1">{{ $message }}</div>
+								@enderror
+							</div>
+
+							<!--input para el documento_de_identidad-->
+							<div class="form-group mb-3">
+								<label for="documento_de_identidad">Documento de identidad</label>
+								<input style="width: 100%;" type="number" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" min="0">
+								@error('documento_de_identidad')
+									<div class="alert alert-danger mt-1">{{ $message }}</div>
+								@enderror
+							</div>
+
+							<!--input para el telefono-->
+							<div class="form-group mb-3">
+								<label for="telefono">Teléfono</label>
+								<input style="width: 100%;" type="number" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" min="0">
+								@error('telefono')
+									<div class="alert alert-danger mt-1">{{ $message }}</div>
+								@enderror
+							</div>
 
 
+							<!--input para la departamento-->
+							<!--<input type="hidden" id="departamento" name="departamento" value="">-->
+							
 
+							<!--input para la Pais-->
+							<!--<input type="hidden" id="pais" name="pais" value="">-->
+							
 
+							<!--input para la Costo de envio id-->
+							<input type="hidden" id="costo_de_envio_id" name="costo_de_envio_id" value="">
 
-	<!-- completar los datos del pedido -->
-	<!-- completar los datos del pedido -->
-	<!-- completar los datos del pedido -->
-	<!-- completar los datos del pedido -->
-	<div class="card">
-		<div class="card-header">
-			<h4 class="text-center">Datos de envío</h4>
-		</div>
+							<!--input para la Cupon id-->
+							<input type="hidden" id="nombre_del_cupon" name="nombre_del_cupon" value="">
 
-		<div class="card-body">
-			<form id="form_crear_pedido" action="{{route('pedidos.carrito')}}" method="POST">
-				@csrf
-				@method('POST')
-				<div class="row">
-					<div class="col-lg-6 mb-5">
+							<!--input para la medio de pago-->
+							<input type="hidden" id="medio_de_pago" name="medio_de_pago" value="">
 
-						<!--input para el status-->
-						<input type="hidden" id="status" name="status" value="pedido">
-						
-						<!--input para el tipo-->
-						<input type="hidden" id="tipo" name="tipo" value="pedido normal">
-						
-						
-						<!--input para el nombre-->
-						<div class="form-group mb-3">
-							<label for="nombre">Nombre</label>
-							<input required type="text" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}">
-							@error('nombre')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
+							<!--input para el monto-->
+							<input type="hidden" id="monto" name="monto" value="">
+
+							<!--input para el tipo_de_cliente-->
+							<input type="hidden" id="tipo_de_cliente" name="tipo_de_cliente" value="cliente del ecommerce">
+
+							<!--input para el numero_de_factura-->
+							<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="555">
+
+							<!--input para el productos-->
+							<input type="hidden" id="productos" name="productos[]" value="">
+
+							<!--input para el cantidades-->
+							<input type="hidden" id="cantidades" name="cantidades[]" value="">
+
 						</div>
-
-
-						<!--input para el email-->
-						<div class="form-group mb-3">
-							<label for="email">Email</label>
-							<input required type="text" class="form-control" id="email" name="email" placeholder="..." value="{{old('email')}}">
-							@error('email')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<!--input para el documento_de_identidad-->
-						<div class="form-group mb-3">
-							<label for="documento_de_identidad">Documento de identidad</label>
-							<input type="number" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" min="0">
-							@error('documento_de_identidad')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<!--input para el telefono-->
-						<div class="form-group mb-3">
-							<label for="telefono">Teléfono</label>
-							<input type="number" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" min="0">
-							@error('telefono')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-
-
-						<!--input para la departamento-->
-						<!--<input type="hidden" id="departamento" name="departamento" value="">-->
-						
-
-						<!--input para la Pais-->
-						<!--<input type="hidden" id="pais" name="pais" value="">-->
-						
-
-						<!--input para la Costo de envio id-->
-						<input type="hidden" id="costo_de_envio_id" name="costo_de_envio_id" value="">
-
-						<!--input para la Cupon id-->
-						<input type="hidden" id="nombre_del_cupon" name="nombre_del_cupon" value="">
-
-						<!--input para la medio de pago-->
-						<input type="hidden" id="medio_de_pago" name="medio_de_pago" value="">
-
-						<!--input para el monto-->
-						<input type="hidden" id="monto" name="monto" value="">
-
-						<!--input para el tipo_de_cliente-->
-						<input type="hidden" id="tipo_de_cliente" name="tipo_de_cliente" value="cliente del ecommerce">
-
-						<!--input para el numero_de_factura-->
-						<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="555">
-
-						<!--input para el productos-->
-						<input type="hidden" id="productos" name="productos[]" value="">
-
-						<!--input para el cantidades-->
-						<input type="hidden" id="cantidades" name="cantidades[]" value="">
-
-					</div>
-				
-					<div class="col-md-6">
-						
-						<!--input para la direccion-->
-						<div class="form-group mb-3">
-							<label for="direccion">Dirección</label>
-							<textarea required class="form-control" id="direccion" name="direccion" rows="3">{{old('direccion')}}</textarea>
-							@error('direccion')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<!--input para la localidad-->
-						<div class="form-group mb-3">
-							<label for="localidad">Localidad o barrio</label>
-							<input type="text" class="form-control" id="localidad" name="localidad" placeholder="..." value="{{old('localidad')}}">
-							@error('localidad')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<!--input para checkbox Recibir novedades -->
-						<div class="form-check my-4">
-							<input type="checkbox" class="form-check-input" id="recibir_novedades" name="recibir_novedades" value="1" @checked(old('recibir_novedades'))>
-							<label class="form-check-label" for="recibir_novedades">Recibir novedades</label>
-							@error('recibir_novedades')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-						
-						<!--input para el numero_de_factura-->
-						<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="001">
-						
-
-					</div>
-
-					<div>
-						<button type="submit" class=" btn btn-outline-secondary btn-block">Confirmar compra</button>
-					</div>
-
-				</div>
-
-			</form>
-		</div>
-	</div>
-
-
-
-	<!-- Seleccionar metodo de pago -->
-	<!-- Seleccionar metodo de pago -->
-	<!-- Seleccionar metodo de pago -->
-	<div class="row">
-		<div class="col-lg-6 mb-5">
-			
-			<div class="card">
-				<div class="card-header">
-					<h4 class="text-center">Seleccionar metodo de pago</h4>
-				</div>
-
-				<div class="card-body">
-					<button class="btn btn-block btn-outline-primary my-3" onclick="elegir_medio_de_pago('mercado pago')">pagar con Mercado pago</button>
-					<button class="btn btn-block btn-outline-primary my-3" onclick="elegir_medio_de_pago('paypal')">pagar con Paypal</button>
-					<button class="btn btn-block btn-outline-primary my-3" onclick="elegir_medio_de_pago('pagar al recibir')">Pagar al recibir</button>
-				</div>
 					
+						<div class="col-lg-6">
+							
+							<!--input para la direccion-->
+							<div class="form-group mb-3">
+								<label for="direccion">Dirección</label>
+								<textarea required class="form-control" id="direccion" name="direccion" rows="3">{{old('direccion')}}</textarea>
+								@error('direccion')
+									<div class="alert alert-danger mt-1">{{ $message }}</div>
+								@enderror
+							</div>
+
+							<!--input para la localidad-->
+							<div class="form-group mb-3">
+								<label for="localidad">Localidad o barrio</label>
+								<input type="text" class="form-control" id="localidad" name="localidad" placeholder="..." value="{{old('localidad')}}">
+								@error('localidad')
+									<div class="alert alert-danger mt-1">{{ $message }}</div>
+								@enderror
+							</div>
+
+							<!--input para checkbox Recibir novedades -->
+							<div class="form-check my-4">
+								<input type="checkbox" class="form-check-input" id="recibir_novedades" name="recibir_novedades" value="1" @checked(old('recibir_novedades'))>
+								<label class="form-check-label" for="recibir_novedades">Recibir novedades</label>
+								@error('recibir_novedades')
+									<div class="alert alert-danger mt-1">{{ $message }}</div>
+								@enderror
+							</div>
+							
+							<!--input para el numero_de_factura-->
+							<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="001">
+							
+
+						</div>
+
+						<div>
+							{{--<button type="button" class="btn btn-outline-secondary btn-block" id="btn_confirmar_datos_de_entrega">Confirmar compra</button>--}}
+							<button type="submit" class="btn btn-outline-secondary btn-block">Finalizar compra (seleccionar el medio de pago)</button>
+						</div>
+
+					</div>
+
+				{{--</form>--}}
 			</div>
 		</div>
-	</div>
 
+	</form>	
 
 
 </div>
@@ -401,23 +404,35 @@
 <script>
 
 	$(document).ready(function(){
+
+		$("#btn_confirmar_compra").click(function(){
+			$("#panel_resumen_de_la_compra").slideDown("slow");
+		});
+
+
+		$("#btn_comprar").click(function(){
+			$("#panel_completar_datos_del_pedido").slideDown("slow");
+		});
 		
-	//=============================================================
-	//inicializacion del carrito
-	//=============================================================
-	iniciarCarrito();
+
+
+
+		//=============================================================
+		//inicializacion del carrito
+		//=============================================================
+		iniciarCarrito();
 
 
 
 
-	//=============================================================
-	//evento para desplegar el input del cupon
-	//=============================================================
-	$("#btn-desplegar-cupon").click(function(){
-		$("#input-cupon-desplegable").slideDown("slow");
-	});
+		//=============================================================
+		//evento para desplegar el input del cupon
+		//=============================================================
+		$("#btn-desplegar-cupon").click(function(){
+			$("#input-cupon-desplegable").slideDown("slow");
+		});
 
-	$("#input-cupon-desplegable").hide();
+		$("#input-cupon-desplegable").hide();
 
 	});
 
@@ -523,10 +538,10 @@
 
 		let total_de_la_compra = suma_de_productos_con_descuento + costo_de_envio_final;
 		
-		console.log('el descuento es: ' + cupon_de_descuento);
+		/*console.log('el descuento es: ' + cupon_de_descuento);
 		console.log('la suma de productos es: ' + suma_de_productos);
 		console.log('el costo de envio es: ' + costo_de_envio_final);
-		console.log('el total de la compra es: '+ total_de_la_compra);
+		console.log('el total de la compra es: '+ total_de_la_compra);*/
 
 		// escribe el decuento en el carrito y en el resumen
 		$('#resumen_porcentage_de_descuento').html(cupon_de_descuento);
@@ -541,6 +556,7 @@
 		$('#resumen_total_de_la_compra').html(total_de_la_compra);
 		document.getElementById("monto").value = total_de_la_compra;
 
+		actualizarContadorDelCarrito();
 
 	}
 
@@ -582,6 +598,7 @@
 	// input hidden que se va a enviar al backend
 	//=============================================================
 	function elegir_medio_de_pago(medio_de_pago){
+		console.log('se ejecuto la funcion elegir_medio_de_pago: '+medio_de_pago);
 		document.getElementById("medio_de_pago").value = medio_de_pago;
 	}
 
@@ -696,11 +713,35 @@
 
 	}
 
-
+	
 
 
 
 </script>
+
+<!-- SDK MercadoPago.js V2 -->
+{{--<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+
+
+
+<script>
+  const mp = new MercadoPago("{{config('services.mercadopago.key')}}", {
+	//const mp = new MercadoPago('PUBLIC_KEY', {
+    locale: 'es-AR'
+  });
+
+  mp.checkout({
+    preference: {
+      id: '{{ $preference->id }}'
+	  //id: 'YOUR_PREFERENCE_ID'
+    },
+    render: {
+      container: '.cho-container',
+      label: 'Pagar',
+    }
+  });
+</script>--}}
 
 
 

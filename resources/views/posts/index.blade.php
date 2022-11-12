@@ -24,7 +24,7 @@
     <h1 class="text-center pt-2">POSTS</h1>
 </div>
 
-<div class="container bg-white py-2 rounded">
+<div class="container bg-white text-dark py-2 rounded">
 
 	<div class="pb-3" style="overflow-x: scroll;">
 		<table id="tabla_posts" class="display {{--table table-striped table-hover table-sm--}}">

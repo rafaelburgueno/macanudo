@@ -16,6 +16,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\NuestrosProductosController;
 use App\Http\Controllers\MiCarritoController;
+use App\Http\Controllers\WebhooksController;
+use App\Http\Controllers\ClubMacanudoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,10 +99,11 @@ Route::get('/puntos_de_venta', function () {
 | Esta ruta solo devuelve una vista, por lo tanto no es 
 | necesario utilizar un controlador.
 */
-Route::get('/club_del_noqueso', function () {
+Route::get('/club_macanudo', ClubMacanudoController::class)->name('club_macanudo');
+/*Route::get('/club_del_noqueso', function () {
     //return view('club_del_noqueso');
     return "club_del_noqueso";
-})->name('club_del_noqueso');
+})->name('club_del_noqueso');*/
 
 
 
@@ -246,8 +249,24 @@ Route::controller(PedidoController::class)->group(function () {
     Route::get('pedidos/{pedido}/edit', 'edit')->name('pedidos.edit')->middleware('acceso.administrador');
     Route::put('pedidos/{pedido}', 'update')->name('pedidos.update')->middleware('acceso.administrador');
     Route::delete('pedidos/{pedido}', 'destroy')->name('pedidos.destroy')->middleware('acceso.administrador');
+    //Route::get('realizar_pago/{pedido}', 'realizarPago')->name('realizar_pago');
 });
 
+
+
+
+/*
+|--------------------------------------------------------------------------
+| PAGOS
+|--------------------------------------------------------------------------
+| 
+| 
+*/
+Route::get('/realizar_pago/{pedido}', [PedidoController::class, 'realizarPago'])->name('realizar_pago');
+Route::get('/pagos/{pedido}', [PedidoController::class, 'mostrarPago'])->name('mostrar_pago');
+Route::get('/pagos/{pedido}/pay', [PedidoController::class, 'pay'])->name('pay');
+
+Route::post('webhooks', WebhooksController::class);
 
 
 

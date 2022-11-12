@@ -9,105 +9,212 @@
 
 
 
-{{--<div class="container">
-    <h3 class="text-center" style="color: #e1e1e1"> Este sitio se encuentra en construcción <br><svg
-            xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-android"
-            viewBox="0 0 16 16">
-            <path
-                d="M2.76 3.061a.5.5 0 0 1 .679.2l1.283 2.352A8.94 8.94 0 0 1 8 5a8.94 8.94 0 0 1 3.278.613l1.283-2.352a.5.5 0 1 1 .878.478l-1.252 2.295C14.475 7.266 16 9.477 16 12H0c0-2.523 1.525-4.734 3.813-5.966L2.56 3.74a.5.5 0 0 1 .2-.678ZM5 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm6 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" />
-        </svg>
-    </h3>
-</div>--}}
-<div class="mt-2 mr-0 mb-2 ml-0 contenedor">
-    <img src="{{asset('/storage/img/img.1.png')}}" class="nav d-block w-100" alt="...">
-    <!--<div class="texto-encima">Texto</div>-->
-    <div class="centrado">
-        <h3 style="text-shadow:  0px 1px 2px #f3f5eb">¿Querés conocer algo mejor que el queso?</h3>
-    </div>
-</div>
-<div class="mt-0 mr-0 mb-2 ml-0 contenedor">
-    <img src="{{asset('/storage/img/img.2.png')}}" class="nav d-block w-100" alt="...">
-    <div class="texto-encima"></div>
-    <div class="centrado">
-        <h3 style="text-shadow:  0px 1px 2px #ebf0f5"><strong>nuestros alimentos</strong></h3>
-        <h6 class="bg-light">NO CONTIEN LÁCTEOS</h6>
-    </div> 
-    <a href="productos.html" role="button" class="btn btn-dark texto-abajo">Ver productos</a>
-
-</div>
-<div class="mt-0 mr-0 mb-2 ml-0 contenedor">
-    <img src="{{asset('/storage/img/img.3.png')}}" class="nav d-block w-100" alt="...">
-    <div class="texto-encima"></div>
-    <div class="centrado">
-        <h3 class="text-light" style="text-shadow:  0px 2px 2px #1e1e1e" ;>seguimos el proceso de la quesería
-            tradicional</h3><br>
-    </div>
-    <button class="btn btn-dark texto-abajo">Ver proceso</button>
-</div>
-
-<div class="mt-0 mr-0 mb-0 ml-0 contenedor">
-    <img src="{{asset('/storage/img/img.5.png')}}" class="nav d-block w-100" alt="...">
-    <div class="texto-encima"></div>
-    <div class="centrado">
-        <h3 style="text-shadow:  0px 2px 2px #ebf0f5"><strong>pero elaboramos</strong></h3>
-        <h6 class="bg-light">CON CASTAÑAS DE CAJÚ</h6>
-    </div>
-    <button class="btn btn-dark texto-abajo">Ver beneficios</button>
-</div>
-
-<div class="mt-0 mr-0 mb-0 ml-0 contenedor">
-    <img src="{{asset('/storage/img/img.6.png')}}" class="nav d-block w-100" alt="...">
-    <div class="texto-encima"></div>
-    <div class="centrado">
-        <h3 style="text-shadow:  0px 2px 3px #ebf0f3"><strong>invitamos a que seamos </strong></h3>
-        <h6 class="bg-light">MAS AMIGABLES CON EL PLANETA</h6>
-    </div>
-    <a href="quienes_somos.html" class="btn btn-dark texto-abajo" role="button">Nosotros</a>
-</div>
-</div>
-
-<div class="mt-0 mr-0 mb-0 ml-0 contenedor">
-    <img src="{{asset('/storage/img/img.7.png')}}" class="nav d-block w-100" alt="...">
-    <div class="texto-encima"></div>
-    <div class="centrado">
-        <h3 style="text-shadow:  0px 2px 3px #ebf0f3"><strong>y a disfrutar</strong></h3>
-        <h6 class="bg-light">MAS SALUDABLE Y NUTRITIVO</h6>
+<div class="mt-3 mx-0 mb-3 ml-0 contenedor">
+    <div class="row  m-0 p-0">
+        <div class="col m-0 p-0">
+            <img src="{{asset('/storage/img/index.png')}}" class="nav d-block w-100 m-0" alt="...">
+            <p class="abajo-centrado">
+                    <a class="btn1 btnn btn-lg shadownn btn-light" type="button" href="{{route('nuestros_productos')}}">
+                    Ver productos
+                </a>
+            </p>
+        </div>
     </div>
 </div>
 
 
-<style>
-    .contenedor {
-        position: relative;
-        display: block;
-        text-align: center;
-    }
+<div class="contenedorr container">
+    <div class="row">
+        <div class="col">
 
-    .texto-encima {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-    }
-
-    .texto-abajo {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-    }
-
-    .centrado {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-</style>
+            <h3 class="text-center scroll-content fadeLeft">Esto 
+                <span class="spanletrasrojo"> no es queso</span>,
+                <br>
+                es alimento a base de castañas de caju.
+            </h3><br>
+            <h3 class="text-center scroll-content fadeRight">
+                Elaboramos siguiendo los procesos de la
+                quesería tradicional<br>pero 
+                <span class=" spanletrasrojo">no usamos leche de ningún animal</span>,
+                <br>usamos castañas.
+            </h3>
+            <br>
+        </div>
+    </div>
+</div>
 
 
+<div class="mt-3 mx-0 mb-3 contenedor">
+    <div class="row m-0 p-0">
+        <div class="col m-0 p-0">
+            <img src="{{asset('/storage/img/index.2.png')}}" class="nav d-block w-100" alt="...">
+            <p class="abajo-centrado">
+                <a href="blog.html" class="btn1 btn-lg shadown btn-light" type="button" href="blog.html">Ver proceso</a>
+            </p>
+        </div>
+    </div>
+</div>
+<br>
+<br>
 
 
-    
-    
+<!--slider---slider---slider---slider---slider---slider---slider---slider----->
+<div class="contenedorr p-3">
+    <div class="row">
+        <div class="slider w-100">
+            <div class="slide-track w-100">
+                <div class="slide">
+                    <img src="{{asset('/storage/img/5.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/7.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/6.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/8.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/5.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/7.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/6.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/8.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/5.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/7.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/6.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/8.png')}}" height="100" width="250" alt="" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+
+
+<div class="mt-0 mr-0 mb-3  ml-0 contenedor">
+    <div class="row m-0 p-0">
+        <div class="col m-0 p-0">
+            <img src="{{asset('/storage/img/index.3.png')}}" class="nav d-block w-100" alt="...">
+
+            <p class="abajo-centrado">
+                <a class="btn1 btn-lg shadown btn-light" type="button" href="productos.html">
+                    Ver beneficios
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="contenedorr container">
+    <div class="row">
+        <div class="col">
+            <h3 class="text-center scroll-content fadeLeft">Cuidamos los recursos</h3>
+            <br>
+            <h2 class="text-center scroll-content fadeRight"> utilizamos materiales reutilizables</h2><br>
+            <h3 class="text-center scroll-content fadeLeft">minimizamos el packaging</h3>
+            <br>
+            <h2 class="text-center scroll-content fadeRight">y no involucramos animales.</h2>
+            <br>
+        </div>
+    </div>
+</div>
+
+
+<div class="mt-0 mr-0 mb-3  ml-0 contenedor">
+    <div class="row m-0 p-0">
+        <div class="col m-0 p-0">
+            <img src="{{asset('/storage/img/index.4.png')}}" class="nav d-block w-100" alt="...">
+            <p class="abajo-centrado">
+                <a class="btn1 btn-lg shadown btn-light" type="button" href="productos.html">
+                    Nosotros
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="contenedorr container">
+    <div class="row ">
+        <div class="col  ">
+            <h3 class="text-center scroll-content fadeLeft" style="line-height: 50px ;"> 
+                Detrás de cada producto<br> está la mano de un artesano, 
+                <br>que cuida todo el proceso 
+                <br>desde la castaña
+                <br> hasta que el alimento llega a tu mesa.
+            </h3><br>
+        </div>
+
+    </div>
+</div>
+
+
+<!--slider---slider---slider---slider---slider---slider---slider---slider----->
+<div class="contenedorr p-3">
+    <div class="row">
+        <div class="slider w-100">
+            <div class="slide-track w-100">
+                <div class="slide">
+                    <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/singluten.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/sinl.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/sinlactosa.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/slider.4.png')}} " height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/singluten.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/sinl.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/sinlactosa.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/7.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/6.png')}}" height="100" width="250" alt="" />
+                </div>
+                <div class="slide">
+                    <img src="{{asset('/storage/img/8.png')}}" height="100" width="250" alt="" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br>
 
 
 

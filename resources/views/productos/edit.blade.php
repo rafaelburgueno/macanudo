@@ -48,7 +48,7 @@
 
                             <div class="form-group mb-3">
                                 <label for="precio">Precio unitario</label>
-                                <input type="number" class="form-control" id="precio" name="precio" placeholder="..." value="{{old('precio', $producto->precio)}}" min="0">
+                                <input type="number" class="form-control" id="precio" name="precio" placeholder="..." value="{{old('precio', $producto->precio)}}" min="0" style="width: 100%;">
                                 @error('precio')
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
@@ -57,7 +57,7 @@
 
                             <div class="form-group mb-3">
                                 <label for="stock">Stock</label>
-                                <input type="number" class="form-control" id="stock" name="stock" placeholder="..." value="{{old('stock', $producto->stock)}}" min="0">
+                                <input type="number" class="form-control" id="stock" name="stock" placeholder="..." value="{{old('stock', $producto->stock)}}" min="0" style="width: 100%;">
                                 @error('stock')
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
@@ -66,7 +66,7 @@
 
                             <div class="form-group mb-3">
                                 <label for="peso_neto">Peso neto</label>
-                                <input type="number" class="form-control" id="peso_neto" name="peso_neto" placeholder="..." value="{{old('peso_neto', $producto->peso_neto)}}" min="0">
+                                <input type="number" class="form-control" id="peso_neto" name="peso_neto" placeholder="..." value="{{old('peso_neto', $producto->peso_neto)}}" min="0" style="width: 100%;">
                                 @error('peso_neto')
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror

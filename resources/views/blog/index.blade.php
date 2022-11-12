@@ -32,10 +32,10 @@
                     </a>
                     
                     @if ($post->descripcion)
-                        <p class="card-text">{{$post->descripcion}}</p>
+                        <p class="card-text text-dark">{{$post->descripcion}}</p>
                     @endif
                     
-                    <small class="mb-0">Creado el {{ $post->updated_at->format('d/m/Y') }}</small>
+                    <small class="mb-0 text-dark">Creado el {{ $post->updated_at->format('d/m/Y') }}</small>
                     
                 </div>
                 

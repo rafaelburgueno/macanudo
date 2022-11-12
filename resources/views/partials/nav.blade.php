@@ -15,7 +15,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{route('nosotros')}}" style=" {{request()->routeIs('nosotros') ? 'color: yellow;' : ''}}">NOSOTROS</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('nuestros_productos')}}" style=" {{request()->routeIs('nuestros_productos') ? 'color: yellow;' : ''}}">PRODUCTOS</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('puntos_de_venta')}}" style=" {{request()->routeIs('puntos_de_venta') ? 'color: yellow;' : ''}}">PUNTOS DE VENTA</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{route('club_del_noqueso')}}" style=" {{request()->routeIs('club_del_noqueso') ? 'color: yellow;' : ''}}">CLUB MACANUDO</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{route('club_macanudo')}}" style=" {{request()->routeIs('club_macanudo') ? 'color: yellow;' : ''}}">CLUB MACANUDO</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('blog.index')}}" style=" {{request()->routeIs('blog') ? 'color: yellow;' : ''}}">BLOG</a></li>
 
 
@@ -24,10 +24,36 @@
             <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('mi_carrito')}}" class="ml-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                                class="bi bi-cart2" viewBox="0 0 16 16">
-                        <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-                            </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                        </svg>
+                        <span class="badge badge-pill badge-danger h6" id="badgeDelCarrito">0</span>
+                        <script>
+                            function actualizarContadorDelCarrito(){
+                                let mi_carrito = [];
+                                // trae los elementos que ubieran en el carrito
+                                if ( localStorage.getItem("carrito") ){
+                                    let texto = localStorage.getItem("carrito");
+                                    mi_carrito = texto.split(",");
+                                }
+
+                                //console.log('se ejecuta la funcion de actualizar el contador del carrito');
+
+                                // elimina los duplicados
+                                mi_carrito = mi_carrito.filter((element, index) => {
+                                    return mi_carrito.indexOf(element) === index;
+                                });
+
+                                if(mi_carrito.length){
+                                    document.getElementById("badgeDelCarrito").innerHTML = mi_carrito.length;
+                                    document.getElementById("badgeDelCarrito").style.display = "inline";
+                                }else{
+                                    document.getElementById("badgeDelCarrito").innerHTML = mi_carrito.length;
+                                    document.getElementById("badgeDelCarrito").style.display = "none";
+                                }
+                            }
+                            actualizarContadorDelCarrito();
+                        </script>
                     </a>
                 </li>
             </ul>

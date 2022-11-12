@@ -24,7 +24,7 @@
     <h1 class="text-center pt-2">CUPONES</h1>
 </div>
 
-<div class="container bg-white py-2 rounded">
+<div class="container bg-white text-dark py-2 rounded">
 
 	<div class="pb-3" style="overflow-x: scroll;">
 		<table id="tabla_cupones" class="display {{--table table-striped table-hover table-sm--}}">
@@ -113,7 +113,7 @@
                                 <!--input para el cantidad-->
                                 <div class="form-group mb-3">
                                     <label for="cantidad">Cantidad</label>
-                                    <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="..." value="{{old('cantidad')}}" min="0">
+                                    <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="..." value="{{old('cantidad')}}" min="0" style="width: 100%;">
                                     @error('cantidad')
                                         <div class="alert alert-danger mt-1">{{ $message }}</div>
                                     @enderror
@@ -124,7 +124,7 @@
                                 <!--input para el descuento-->
                                 <div class="form-group mb-3">
                                     <label for="descuento">Descuento (%)</label>
-                                    <input type="number" class="form-control" id="descuento" name="descuento" placeholder="..." value="{{old('descuento')}}" min="0" max="100">
+                                    <input type="number" class="form-control" id="descuento" name="descuento" placeholder="..." value="{{old('descuento')}}" min="0" max="100" style="width: 100%;">
                                     @error('descuento')
                                         <div class="alert alert-danger mt-1">{{ $message }}</div>
                                     @enderror

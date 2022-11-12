@@ -43,7 +43,7 @@
                                 
                             <div class="form-group mb-3">
                                 <label for="precio">Precio</label>
-                                <input type="number" class="form-control" id="precio" name="precio" placeholder="..." value="{{old('precio', $canasta->precio)}}" min="0">
+                                <input type="number" class="form-control" id="precio" name="precio" placeholder="..." value="{{old('precio', $canasta->precio)}}" min="0" style="width: 100%;">
                                 @error('precio')
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
@@ -52,7 +52,7 @@
 
                             <div class="form-group mb-3">
                                 <label for="stock">Stock</label>
-                                <input type="number" class="form-control" id="stock" name="stock" placeholder="..." value="{{old('stock', $canasta->stock)}}" min="0">
+                                <input type="number" class="form-control" id="stock" name="stock" placeholder="..." value="{{old('stock', $canasta->stock)}}" min="0" style="width: 100%;">
                                 @error('stock')
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
