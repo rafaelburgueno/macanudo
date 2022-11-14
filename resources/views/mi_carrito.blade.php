@@ -71,13 +71,13 @@
 		
 			@foreach($productos as $producto)
 		
-				<div class="card mb-3 shadown-gris producto" id="producto-{{$producto->id}}">
+				<div class="card mb-3 shadown-gris producto" id="producto-{{$producto->id}}" style="background-color: #e1e1e1; max-width: 540px; max-height: 200px ;">
 					<div class="row g-0">
-						<div class="col-4">
-							<img src="{{$producto->multimedias->last()->url}}" class='img-fluid shadown' alt="...">
+						<div class="col-4 card-imgg">
+							<img src="{{$producto->multimedias->last()->url}}" class="img-fluid shadown rounded-3" alt="..." style="max-height: 180px">
 						</div>
 						
-						<div class="col-8">
+						<div class="col-7">
 							<div class="card-body">
 								<h5 class="card-title">{{$producto->nombre}} | id:{{$producto->id}}</h5>
 
@@ -98,18 +98,18 @@
 									</div>
 								</form>
 
+								<a class="btn-quitarDelCarrito mt-2 bg-transparent" style="color:var(--rojo);" onclick="quitarDelCarrito({{$producto->id}})">Eliminar</a>
 							</div>
 						</div>
 			
 					</div>
 			
-					<div class="card-footer text-center">
-						<button class="btn shadown btn-quitarDelCarrito" style="color:#f04643;" onclick="quitarDelCarrito({{$producto->id}})">Eliminar</button>
+					{{--<div class="card-footer text-center">
 						<button class="btn btn-outline shadown " style="color: #4554a4; ">Seguir comprando</button>
 						<button class="btn shadown" style=" color:#dab926 ;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
 							<path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" /></svg>
 						</button>
-					</div>
+					</div>--}}
 				</div>
 		
 			@endforeach
@@ -120,8 +120,8 @@
 
 		<div class="col-lg-6 mb-5 ">
 
-			<div class="card shadown-gris mb-3" >
-				<div class="card-header">
+			<div class="card shadown-gris mb-5" >
+				<div class="card-header bg-info">
 					<strong>Métodos de envío</strong>
 				</div>
 
@@ -173,7 +173,7 @@
 			</div>--}}
 
 			
-			<div class="card bg-light shadown-gris" style="max-width:240px; max-height: 300px; margin-top: 30px; margin-left: 75px;">
+			<div class="card bg-danger text-light shadown" style="max-width:240px; max-height: 300px; margin-top: 30px; margin-left: 75px;">
 				<div class="card-header">
 					<h6><strong>SubTotal: </strong><span id="sub_total_de_la_compra"></span> $ UYU</h6>
 				</div>
@@ -183,7 +183,7 @@
 				</div>
 				<div class="card-footer">
 					<h5>Total: <strong id="total_de_la_compra"></strong> $ UYU</h5>
-					<button class="btn btn-lg shadown" style="color: #4554a4;" id="btn_confirmar_compra"><strong>Confirmar compra </strong></button>
+					<button class="btn btn-lg shadown bg-light" style="color: #4554a4;" id="btn_confirmar_compra"><strong>Confirmar compra </strong></button>
 
 				</div>
 			</div>
@@ -241,7 +241,10 @@
 				</div>
 
 				<hr>
-				<button class="btn btn-block btn-outline-success" id="btn_comprar">Comprar</button>
+				<div class="text-center">
+					<button class="btn btn-block btn-outline-success w-50" id="btn_comprar">Comprar</button>
+				</div>
+
 			</div>
 			
 		</div>
@@ -384,9 +387,9 @@
 
 						</div>
 
-						<div>
+						<div class="text-center">
 							{{--<button type="button" class="btn btn-outline-secondary btn-block" id="btn_confirmar_datos_de_entrega">Confirmar compra</button>--}}
-							<button type="submit" class="btn btn-outline-secondary btn-block">Finalizar compra (seleccionar el medio de pago)</button>
+							<button type="submit" class="btn btn-outline-success btn-block w-50">Finalizar compra (seleccionar el medio de pago)</button>
 						</div>
 
 					</div>

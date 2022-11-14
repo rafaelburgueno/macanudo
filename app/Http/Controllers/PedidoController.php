@@ -583,8 +583,6 @@ class PedidoController extends Controller
         //"status":"approved"
 
         
-        //MP_ACCESS_TOKEN=APP_USR-2952913337666388-110911-b51dc0d1fb918eb22ad56cc723e9accb-1235337281
-        //$response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-2952913337666388-110911-b51dc0d1fb918eb22ad56cc723e9accb-1235337281");
         $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=".env('MP_ACCESS_TOKEN'));
 
 

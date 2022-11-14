@@ -326,13 +326,30 @@ Route::middleware([
 Route::get('/storage_link', function () {
     Artisan::call('storage:link');
     dd(Artisan::output());
-    //symlink('/home/u520718481/domains/casaraiz.uy/casaraiz/storage/app/public', '/home/u520718481/domains/casaraiz.uy/public_html/storage');
-    //return view('casa_raiz');
+    // /home/u297868560/domains/macanudonoqueso.com/macanudonoqueso
+    //symlink('/home/u297868560/domains/macanudonoqueso.com/macanudonoqueso/storage/app/public', '/home/u297868560/domains/macanudonoqueso.com/public_html/storage');
+    //return view('home');
 });
 
 
 
 
+/* 
+|--------------------------------------------------------------------------
+| artisan
+|--------------------------------------------------------------------------
+| Esta ruta se usa para ejecutar comandos artisan desde la web,
+| mayormente para ejecutar las migraciones en produccion
+| En produccion se debe desactivar despues de usar
+| La ruta para ejecutar las migraciones debe verse 
+| asi -> https://www.macanudonoqueso.com/artisan/migrate
+| Como medida extra de seguridad, utiliza el middelware 'administrador'
+*/
+Route::get('/artisan/{command}', function ($command) {
+    Artisan::call($command);
+    dd(Artisan::output());
+    //return Artisan::output();
+})->middleware('acceso.administrador');
 
 
 
