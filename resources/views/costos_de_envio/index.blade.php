@@ -117,11 +117,11 @@
                             @enderror
                         </div>
 
-                        <!--input para el dias_de_demora-->
+                        <!--input para el dia_de_entrega-->
                         <div class="form-group mb-3">
-                            <label for="dias_de_demora">Días de demora</label>
-                            <input type="number" class="form-control" id="dias_de_demora" name="dias_de_demora" placeholder="..." value="{{old('dias_de_demora')}}" min="0" style="width: 100%;">
-                            @error('dias_de_demora')
+                            <label for="dia_de_entrega">Día de entrega</label>
+                            <input type="text" class="form-control" id="dia_de_entrega" name="dia_de_entrega" placeholder="..." value="{{old('dia_de_entrega')}}" maxlength="50">
+                            @error('dia_de_entrega')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>
@@ -132,11 +132,11 @@
 
                         <div class="row">
                             <div class="col col-sm-6">
-                                <!--input para el dia_de_entrega-->
+                                <!--input para el dias_de_demora-->
                                 <div class="form-group mb-3">
-                                    <label for="dia_de_entrega">Día de entrega</label>
-                                    <input type="text" class="form-control" id="dia_de_entrega" name="dia_de_entrega" placeholder="..." value="{{old('dia_de_entrega')}}" maxlength="50">
-                                    @error('dia_de_entrega')
+                                    <label for="dias_de_demora">Días de demora</label>
+                                    <input type="number" class="form-control" id="dias_de_demora" name="dias_de_demora" placeholder="..." value="{{old('dias_de_demora')}}" min="0" style="width: 100%;">
+                                    @error('dias_de_demora')
                                         <div class="alert alert-danger mt-1">{{ $message }}</div>
                                     @enderror
                                 </div>

@@ -29,8 +29,10 @@ class Canasta extends Model
      * @var array Producto
      */
     public function productos(){
-        return $this->belongsToMany('App\Models\Producto');
+        //return $this->belongsToMany('App\Models\Producto');
+        return $this->belongsToMany('App\Models\Producto')->withPivot('unidades');
     }
+    
 
 
     /**

@@ -64,7 +64,7 @@ $(document).ready(function(){
 });
 
 
-
+// TODO: en lapagina de canastas apareceun error en la linea 72 VVV
 window.addEventListener('scroll', function()  {
     let element = document.getElementById('scroll-content');
     let screenSize = window.innerHeight;

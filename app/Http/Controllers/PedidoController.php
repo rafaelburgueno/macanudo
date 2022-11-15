@@ -372,7 +372,7 @@ class PedidoController extends Controller
      */
     public function carrito(Request $request)
     {
-        //return $request->all();
+        return $request->all();
         $request->validate([ 
             'status' => 'required|max:50',
             'tipo' => 'nullable|max:50',

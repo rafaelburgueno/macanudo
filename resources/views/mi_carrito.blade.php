@@ -79,7 +79,7 @@
 						
 						<div class="col-7">
 							<div class="card-body">
-								<h5 class="card-title">{{$producto->nombre}} | id:{{$producto->id}}</h5>
+								<h5 class="card-title">{{$producto->nombre}}</h5>
 
 								<form id="datosEnvio" class="">
 
@@ -98,7 +98,7 @@
 									</div>
 								</form>
 
-								<a class="btn-quitarDelCarrito mt-2 bg-transparent" style="color:var(--rojo);" onclick="quitarDelCarrito({{$producto->id}})">Eliminar</a>
+								<a class="btn-quitarDelCarrito mt-2 bg-transparent btn-sm" style="color:var(--rojo);" onclick="quitarDelCarrito({{$producto->id}})">Eliminar</a>
 							</div>
 						</div>
 			
@@ -128,7 +128,7 @@
 					<ul class="list-group list-group-flush">
 						@foreach ($costos_de_envio as $costo_de_envio)
 							<li class="list-group-item">
-								<input class="recalcularCostoDeEnvio" type="radio" id="costo_de_envio-{{ $costo_de_envio->id }}" value="1" @checked(($costo_de_envio->costo_de_envio_id == 0))  name="costo_de_envio_id" onchange="recalcularCostoDeEnvio({{ $costo_de_envio->costo_de_envio}},{{ $costo_de_envio->id}})">
+								<input class="recalcularCostoDeEnvio" type="radio" id="costo_de_envio-{{ $costo_de_envio->id }}" value="1" @checked(($costo_de_envio->costo_de_envio == 0))  name="costo_de_envio_id" onchange="recalcularCostoDeEnvio({{ $costo_de_envio->costo_de_envio}},{{ $costo_de_envio->id}})">
 								<label class="form-check-label " for="costo_de_envio-{{ $costo_de_envio->id }}">
 									<small>
 										@if($costo_de_envio->dia_de_entrega){{ $costo_de_envio->dia_de_entrega }} en @endif
@@ -173,7 +173,7 @@
 			</div>--}}
 
 			
-			<div class="card bg-danger text-light shadown" style="max-width:240px; max-height: 300px; margin-top: 30px; margin-left: 75px;">
+			<div class="card bg-danger text-light shadown" style="max-width:240px; margin-top: 30px; margin-left: 75px;">
 				<div class="card-header">
 					<h6><strong>SubTotal: </strong><span id="sub_total_de_la_compra"></span> $ UYU</h6>
 				</div>
@@ -183,7 +183,7 @@
 				</div>
 				<div class="card-footer">
 					<h5>Total: <strong id="total_de_la_compra"></strong> $ UYU</h5>
-					<button class="btn btn-lg shadown bg-light" style="color: #4554a4;" id="btn_confirmar_compra"><strong>Confirmar compra </strong></button>
+					<button class="btn btn-lg shadown bg-light my-2" style="color: #4554a4;" id="btn_confirmar_compra"><strong>Confirmar compra </strong></button>
 
 				</div>
 			</div>

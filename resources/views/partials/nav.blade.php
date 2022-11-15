@@ -41,9 +41,9 @@
                                 //console.log('se ejecuta la funcion de actualizar el contador del carrito');
 
                                 // elimina los duplicados
-                                mi_carrito = mi_carrito.filter((element, index) => {
+                                /*mi_carrito = mi_carrito.filter((element, index) => {
                                     return mi_carrito.indexOf(element) === index;
-                                });
+                                });*/
 
                                 if(mi_carrito.length){
                                     document.getElementById("badgeDelCarrito").innerHTML = mi_carrito.length;

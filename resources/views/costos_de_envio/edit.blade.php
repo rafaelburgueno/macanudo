@@ -42,15 +42,16 @@
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
-                                
-                            <!--input para el dias_de_demora-->
+
+                            <!--input para la dia_de_entrega-->
                             <div class="form-group mb-3">
-                                <label for="dias_de_demora">Días_de_demora</label>
-                                <input type="number" class="form-control" id="dias_de_demora" name="dias_de_demora" placeholder="..." value="{{old('dias_de_demora', $costo_de_envio->dias_de_demora)}}" min="0">
-                                @error('dias_de_demora')
+                                <label for="dia_de_entrega">dia_de_entrega</label>
+                                <input type="text" class="form-control" id="dia_de_entrega" name="dia_de_entrega" placeholder="..." value="{{old('dia_de_entrega', $costo_de_envio->dia_de_entrega)}}" min="0">
+                                @error('dia_de_entrega')
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
+                                
                                
                         </div>
                     
@@ -58,11 +59,11 @@
                             
                             <div class="row">
                                 <div class="col col-sm-6">
-                                    <!--input para la dia_de_entrega-->
+                                    <!--input para el dias_de_demora-->
                                     <div class="form-group mb-3">
-                                        <label for="dia_de_entrega">dia_de_entrega</label>
-                                        <input type="text" class="form-control" id="dia_de_entrega" name="dia_de_entrega" placeholder="..." value="{{old('dia_de_entrega', $costo_de_envio->dia_de_entrega)}}" min="0">
-                                        @error('dia_de_entrega')
+                                        <label for="dias_de_demora">Días_de_demora</label>
+                                        <input type="number" class="form-control" id="dias_de_demora" name="dias_de_demora" placeholder="..." value="{{old('dias_de_demora', $costo_de_envio->dias_de_demora)}}" min="0" style="width: 100%;">
+                                        @error('dias_de_demora')
                                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -82,7 +83,7 @@
                             <!--input para el costo_de_envio-->
                             <div class="form-group mb-3">
                                 <label for="costo_de_envio">Costo de envío ($)</label>
-                                <input type="number" class="form-control" id="costo_de_envio" name="costo_de_envio" placeholder="..." value="{{old('costo_de_envio', $costo_de_envio->costo_de_envio)}}" min="0">
+                                <input type="number" class="form-control" id="costo_de_envio" name="costo_de_envio" placeholder="..." value="{{old('costo_de_envio', $costo_de_envio->costo_de_envio)}}" min="0" style="width: 100%;">
                                 @error('costo_de_envio')
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Multimedia;
 use App\Models\Producto;
+use Illuminate\Support\Facades\DB;
 
 class CanastaController extends Controller
 {
@@ -41,7 +42,7 @@ class CanastaController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        //return $request->all();
         $request->validate([ //TODO: revisar las validaciones porque no funcionan
             'nombre' => 'required|max:255',
             'descripcion' => 'max:255',
@@ -49,6 +50,7 @@ class CanastaController extends Controller
             'stock' => 'numeric|nullable',
             'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'productos' => 'required',
+            'cantidades' => 'required',
         ]);
         
         $canasta = new Canasta();
@@ -63,6 +65,8 @@ class CanastaController extends Controller
         }else{
             $canasta->activo = false;
         }
+
+        $canasta->save();
 
 
         // ****************************************************************
@@ -83,9 +87,23 @@ class CanastaController extends Controller
 
         }*/
 
-        $canasta->save();
+        $cantidades = $request->cantidades;
 
-        $canasta->productos()->sync($request->productos);
+        $created_at = now();
+
+        foreach($request->productos as $key => $producto){
+
+            $cantidad_del_producto = (int)($cantidades[$key]);
+            //dd($cantidad_del_producto);
+
+            DB::table('canasta_producto')->insert([
+                'canasta_id' => $canasta->id,
+                'producto_id' => $producto,
+                'unidades' => $cantidad_del_producto,
+                'created_at' => $created_at
+            ]);
+            
+        }
 
         //IMAGEN
         //se guarda en la carpeta storage/app/public/canastas/
@@ -153,7 +171,7 @@ class CanastaController extends Controller
             'precio' => 'required|numeric',
             'stock' => 'numeric|nullable',
             'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
-            'productos' => 'required',
+            //'productos' => 'required',
         ]);
 
         $canasta->nombre = $request->nombre;
@@ -167,9 +185,32 @@ class CanastaController extends Controller
             $canasta->activo = false;
         }
 
-        $canasta->productos()->sync($request->productos);
-
         $canasta -> save();
+        
+        //$canasta->productos()->sync($request->productos);
+        if($request->productos){
+
+            // TODO: borrar los registros previos
+            DB::table('canasta_producto')->where('canasta_id', $canasta->id)->delete();
+
+            $cantidades = $request->cantidades;
+
+            $created_at = now();
+    
+            foreach($request->productos as $key => $producto){
+    
+                $cantidad_del_producto = (int)($cantidades[$key]);
+                //dd($cantidad_del_producto);
+    
+                DB::table('canasta_producto')->insert([
+                    'canasta_id' => $canasta->id,
+                    'producto_id' => $producto,
+                    'unidades' => $cantidad_del_producto,
+                    'created_at' => $created_at
+                ]);
+                
+            } 
+        }
         
 
         //IMAGEN

@@ -73,7 +73,7 @@ class Pedido extends Model
      * @var array Producto
      */
     public function productos(){
-        return $this->belongsToMany('App\Models\Producto')->withPivot('unidades');;
+        return $this->belongsToMany('App\Models\Producto')->withPivot('unidades');
     }
 
 
