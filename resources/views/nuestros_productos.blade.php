@@ -8,7 +8,7 @@
 
 
 <div class="text-center text-white my-4">
-    <h1 class="text-center pt-2">NUESTROS PRODUCTOS</h1>
+    <h1 class="text-center pt-2 h2">NUESTROS PRODUCTOS</h1>
 </div>
 
 

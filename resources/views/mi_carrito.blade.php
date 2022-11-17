@@ -79,15 +79,29 @@
 						
 						<div class="col-7">
 							<div class="card-body">
-								<h5 class="card-title">{{$producto->nombre}}</h5>
+								<h5 class="card-title">{{$producto->nombre}} | id:{{$producto->id}}</h5>
 
 								<form id="datosEnvio" class="">
 
 									<div class="row">
 										<div class="form-group col-sm-6">
 											<label for="cantidad">Cantidad: </label>
-											<input  style="width: 100%;" type="number" class="form-control recalcularPrecioo" id="cantidad-{{$producto->id}}" class="cantidad" name="cantidad" value="0" min="0" onclick="cambiarCantidad({{$producto->id}})">
-											<span style="font-size: 14px;"> $ {{$producto->precio}} c/u</span> 
+
+											<select class="form-control" id="cantidad-{{$producto->id}}" name="cantidad" onclick="cambiarCantidad({{$producto->id}})">
+												<option value="1" selected>1 u.</option>
+												<option value="2">2 u.</option>
+												<option value="3">3 u.</option>
+												<option value="4">4 u.</option>
+												<option value="5">5 u.</option>
+												<option value="6">6 u.</option>
+												<option value="7">7 u.</option>
+												<option value="8">8 u.</option>
+												<option value="9">9 u.</option>
+												<option value="10">10 u.</option>
+											</select>
+
+											{{--<input  style="width: 100%;" type="number" class="form-control recalcularPrecioo" id="cantidad-{{$producto->id}}" class="cantidad" name="cantidad" value="0" min="0" onclick="cambiarCantidad({{$producto->id}})">--}}
+											<span style="font-size: 16px;"> $ {{$producto->precio}} c/u</span> 
 											<input type="hidden" id="precio-{{$producto->id}}" name="precio" value="{{$producto->precio}}">
 										</div>
 
@@ -98,7 +112,7 @@
 									</div>
 								</form>
 
-								<a class="btn-quitarDelCarrito mt-2 bg-transparent btn-sm" style="color:var(--rojo);" onclick="quitarDelCarrito({{$producto->id}})">Eliminar</a>
+								<a class="btn btn-quitarDelCarrito mb-2 bg-transparent btn-sm float-right" style="color:var(--rojo);" onclick="quitarDelCarrito({{$producto->id}})">Eliminar</a>
 							</div>
 						</div>
 			
@@ -141,38 +155,18 @@
 						@endforeach
 					</ul>
 				
-				{{--<ul class="list-group list-group-flush">
-					<li class=" list-group-item">
-						<input class="form recalcularPrecio" type="radio" id="premium" onchange="envio()" value="1" name="local">
-						Maldonado primer y tercer jueves de cada mes. $60
-					</li>
-					<li class="list-group-item">
-						<input class="form recalcularPrecio" type="radio" id="standard" onchange="envio()" name="local">
-						Montevideo, Ciudad de la Costa y Costa de Oro todos los jueves. $60
-					</li>
-					<li class="list-group-item">
-						<input class="form recalcularPrecio" type="radio" id="express" onchange="envio()" name="local">
-						Retiro en un Punto Macanudo. $ 0
-					</li>
-				</ul>--}}
 			</div>
 
-			<livewire:verificar-cupon /> 
-			{{--<div class="card shadown-gris" style="max-width:460px; max-height: 260px;">
-				<div class="card-header">
-					<strong>¿Tenes un cupón de descuento?</strong>
-				</div>
-				<div class="card-body p-3">
-					<div class="form-group m-0">
-						<input type="text" class="form-control" id="cupon" name="cupon" placeholder="Escribilo acá" value="{{old('cupon')}}">
-						@error('cupon')
-							<div class="alert alert-danger mt-1">{{ $message }}</div>
-						@enderror
-					</div>
-				</div>
-			</div>--}}
 
+			<!-- Panel para verifiacar cupon de descuento -->
+			<!-- Panel para verifiacar cupon de descuento -->
+			<!-- Panel para verifiacar cupon de descuento -->
+			<livewire:verificar-cupon /> 
 			
+
+			<!-- calculos totales de la compra -->
+			<!-- calculos totales de la compra -->
+			<!-- calculos totales de la compra -->
 			<div class="card bg-danger text-light shadown" style="max-width:240px; margin-top: 30px; margin-left: 75px;">
 				<div class="card-header">
 					<h6><strong>SubTotal: </strong><span id="sub_total_de_la_compra"></span> $ UYU</h6>
@@ -194,211 +188,196 @@
 
 
 
-
-
-
 	<!-- Resumen de la compra -->
 	<!-- Resumen de la compra -->
 	<!-- Resumen de la compra -->
-	<div class="row mb-5" id="panel_resumen_de_la_compra" style="display: none;">
+	<div class="" id="panel_resumen_de_la_compra" style="display: none;">
+		<div class="row mb-5 d-flex justify-content-center" >
 
-		<div class="card p-0">
-			<div class="card-header">
-				<h4 class="text-center">Resumen de la compra</h4>
-			</div>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-md-8">
-						<table class="table">
-							<thead>
-							  <tr>
-								<th>Producto</th>
-								<th>Precio unitario</th>
-								<th>Cantidad</th>
-								<th>Total</th>
-							  </tr>
-							</thead>
-							<tbody>
-								@foreach($productos as $producto)
-									<tr id="resumen-producto-{{$producto->id}}" class="producto">
-										<td>{{$producto->nombre}}</td>
-										<td>{{$producto->precio}} $</td>
-										<td><span id="resumen-cantidad-{{$producto->id}}"></span></td>
-										<td><span id="resumen-precio_multiplicado-{{$producto->id}}"></span> $</td>
-									</tr>
-								@endforeach
-							</tbody>
-						</table>
-					</div>
-					<div class="col-md-4">
-						<div class="float-right">
-							<p>SubTotal: <span id="resumen_sub_total_de_la_compra"></span> $ UYU</p>
-							<p>Envío: <span id="resumen_costo_de_envio_final">0</span> $ UYU</p>
-							<p class="porcentage_de_descuento">Descuento: <span id="resumen_porcentage_de_descuento">0</span> %</p>
-							<p class="h4">Total: <span id="resumen_total_de_la_compra"></span> $ UYU</p>
+			<div class="card p-0">
+				<div class="card-header">
+					<h4 class="text-center">Resumen de la compra</h4>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-8">
+							<table class="table">
+								<thead>
+								<tr>
+									<th>Producto</th>
+									<th>Precio unitario</th>
+									<th>Cantidad</th>
+									<th>Total</th>
+								</tr>
+								</thead>
+								<tbody>
+									@foreach($productos as $producto)
+										<tr id="resumen-producto-{{$producto->id}}" class="producto">
+											<td>{{$producto->nombre}}</td>
+											<td>{{$producto->precio}} $</td>
+											<td><span id="resumen-cantidad-{{$producto->id}}"></span></td>
+											<td><span id="resumen-precio_multiplicado-{{$producto->id}}"></span> $</td>
+										</tr>
+									@endforeach
+								</tbody>
+							</table>
+						</div>
+						<div class="col-md-4">
+							<div class="float-right pl-2">
+								<p>SubTotal: <span id="resumen_sub_total_de_la_compra"></span> $ UYU</p>
+								<p>Envío: <span id="resumen_costo_de_envio_final">0</span> $ UYU</p>
+								<p class="porcentage_de_descuento">Descuento: <span id="resumen_porcentage_de_descuento">0</span> %</p>
+								<p class="h5">Total: <span id="resumen_total_de_la_compra"></span> $ UYU</p>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<hr>
-				<div class="text-center">
-					<button class="btn btn-block btn-outline-success w-50" id="btn_comprar">Comprar</button>
-				</div>
+					<hr>
 
+					<div class="d-flex justify-content-center">
+						<button class="btn btn-block btn-outline-success w-50" id="btn_comprar">Comprar</button>
+					</div>
+
+				</div>
+				
 			</div>
 			
-		</div>
-		
 
-	</div><!-- FIN del Resumen de la compra -->
-
+		</div><!-- FIN del Resumen de la compra -->
+	</div>
 
 
+
+	{{--<livewire:verifica-y-crea-pedido /> --}}
+
+
+
+
+
+	<!-- completar los datos del pedido -->
+	<!-- completar los datos del pedido -->
+	<!-- completar los datos del pedido -->
 	<form id="form_crear_pedido" action="{{route('pedidos.carrito')}}" method="POST">
 		@csrf
 		@method('POST')
 
-		<!-- completar los datos del pedido -->
-		<!-- completar los datos del pedido -->
-		<!-- completar los datos del pedido -->
 		<div class="card" id="panel_completar_datos_del_pedido" style="display: none;">
 			<div class="card-header">
 				<h4 class="text-center">Datos de envío</h4>
 			</div>
 
 			<div class="card-body">
-				{{--<form id="form_crear_pedido" action="{{route('pedidos.carrito')}}" method="POST">
-					@csrf
-					@method('POST')--}}
-					<div class="row">
-						<div class="col-lg-6 ">
+				
+				<div class="row">
+					<div class="col-lg-6 ">
 
-							<!--input para el status-->
-							<input type="hidden" id="status" name="status" value="pedido">
-							
-							<!--input para el tipo-->
-							<input type="hidden" id="tipo" name="tipo" value="pedido normal">
-							
-							
-							<!--input para el nombre-->
-							<div class="form-group mb-3">
-								<label for="nombre">Nombre</label>
-								<input required type="text" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}">
-								@error('nombre')
-									<div class="alert alert-danger mt-1">{{ $message }}</div>
-								@enderror
-							</div>
-
-
-							<!--input para el email-->
-							<div class="form-group mb-3">
-								<label for="email">Email</label>
-								<input required type="text" class="form-control" id="email" name="email" placeholder="..." value="{{old('email')}}">
-								@error('email')
-									<div class="alert alert-danger mt-1">{{ $message }}</div>
-								@enderror
-							</div>
-
-							<!--input para el documento_de_identidad-->
-							<div class="form-group mb-3">
-								<label for="documento_de_identidad">Documento de identidad</label>
-								<input style="width: 100%;" type="number" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" min="0">
-								@error('documento_de_identidad')
-									<div class="alert alert-danger mt-1">{{ $message }}</div>
-								@enderror
-							</div>
-
-							<!--input para el telefono-->
-							<div class="form-group mb-3">
-								<label for="telefono">Teléfono</label>
-								<input style="width: 100%;" type="number" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" min="0">
-								@error('telefono')
-									<div class="alert alert-danger mt-1">{{ $message }}</div>
-								@enderror
-							</div>
-
-
-							<!--input para la departamento-->
-							<!--<input type="hidden" id="departamento" name="departamento" value="">-->
-							
-
-							<!--input para la Pais-->
-							<!--<input type="hidden" id="pais" name="pais" value="">-->
-							
-
-							<!--input para la Costo de envio id-->
-							<input type="hidden" id="costo_de_envio_id" name="costo_de_envio_id" value="">
-
-							<!--input para la Cupon id-->
-							<input type="hidden" id="nombre_del_cupon" name="nombre_del_cupon" value="">
-
-							<!--input para la medio de pago-->
-							<input type="hidden" id="medio_de_pago" name="medio_de_pago" value="">
-
-							<!--input para el monto-->
-							<input type="hidden" id="monto" name="monto" value="">
-
-							<!--input para el tipo_de_cliente-->
-							<input type="hidden" id="tipo_de_cliente" name="tipo_de_cliente" value="cliente del ecommerce">
-
-							<!--input para el numero_de_factura-->
-							<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="555">
-
-							<!--input para el productos-->
-							<input type="hidden" id="productos" name="productos[]" value="">
-
-							<!--input para el cantidades-->
-							<input type="hidden" id="cantidades" name="cantidades[]" value="">
-
-						</div>
-					
-						<div class="col-lg-6">
-							
-							<!--input para la direccion-->
-							<div class="form-group mb-3">
-								<label for="direccion">Dirección</label>
-								<textarea required class="form-control" id="direccion" name="direccion" rows="3">{{old('direccion')}}</textarea>
-								@error('direccion')
-									<div class="alert alert-danger mt-1">{{ $message }}</div>
-								@enderror
-							</div>
-
-							<!--input para la localidad-->
-							<div class="form-group mb-3">
-								<label for="localidad">Localidad o barrio</label>
-								<input type="text" class="form-control" id="localidad" name="localidad" placeholder="..." value="{{old('localidad')}}">
-								@error('localidad')
-									<div class="alert alert-danger mt-1">{{ $message }}</div>
-								@enderror
-							</div>
-
-							<!--input para checkbox Recibir novedades -->
-							<div class="form-check my-4">
-								<input type="checkbox" class="form-check-input" id="recibir_novedades" name="recibir_novedades" value="1" @checked(old('recibir_novedades'))>
-								<label class="form-check-label" for="recibir_novedades">Recibir novedades</label>
-								@error('recibir_novedades')
-									<div class="alert alert-danger mt-1">{{ $message }}</div>
-								@enderror
-							</div>
-							
-							<!--input para el numero_de_factura-->
-							<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="001">
-							
-
+						<!--input para el nombre-->
+						<div class="form-group mb-3">
+							<label for="nombre">Nombre</label>
+							<input required type="text" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}">
+							@error('nombre')
+								<div class="alert alert-danger mt-1">{{ $message }}</div>
+							@enderror
 						</div>
 
-						<div class="text-center">
-							{{--<button type="button" class="btn btn-outline-secondary btn-block" id="btn_confirmar_datos_de_entrega">Confirmar compra</button>--}}
-							<button type="submit" class="btn btn-outline-success btn-block w-50">Finalizar compra (seleccionar el medio de pago)</button>
+						<!--input para el email-->
+						<div class="form-group mb-3">
+							<label for="email">Email</label>
+							<input required type="text" class="form-control" id="email" name="email" placeholder="..." value="{{old('email')}}">
+							@error('email')
+								<div class="alert alert-danger mt-1">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<!--input para el documento_de_identidad-->
+						<div class="form-group mb-3">
+							<label for="documento_de_identidad">Documento de identidad</label>
+							<input style="width: 100%;" type="number" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" min="0">
+							@error('documento_de_identidad')
+								<div class="alert alert-danger mt-1">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<!--input para el telefono-->
+						<div class="form-group mb-3">
+							<label for="telefono">Teléfono</label>
+							<input style="width: 100%;" type="number" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" min="0">
+							@error('telefono')
+								<div class="alert alert-danger mt-1">{{ $message }}</div>
+							@enderror
+						</div>
+
+					</div>
+				
+					<div class="col-lg-6">
+						
+						<!--input para la direccion-->
+						<div class="form-group mb-3">
+							<label for="direccion">Dirección</label>
+							<textarea required class="form-control" id="direccion" name="direccion" rows="3">{{old('direccion')}}</textarea>
+							@error('direccion')
+								<div class="alert alert-danger mt-1">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<!--input para la localidad-->
+						<div class="form-group mb-3">
+							<label for="localidad">Localidad o barrio</label>
+							<input type="text" class="form-control" id="localidad" name="localidad" placeholder="..." value="{{old('localidad')}}">
+							@error('localidad')
+								<div class="alert alert-danger mt-1">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<!--input para checkbox Recibir novedades -->
+						<div class="form-check my-4">
+							<input type="checkbox" class="form-check-input" id="recibir_novedades" name="recibir_novedades" value="1" @checked(old('recibir_novedades'))>
+							<label class="form-check-label" for="recibir_novedades">Recibir novedades</label>
+							@error('recibir_novedades')
+								<div class="alert alert-danger mt-1">{{ $message }}</div>
+							@enderror
 						</div>
 
 					</div>
 
-				{{--</form>--}}
+					<!--input para la departamento-->
+					<!--<input type="hidden" id="departamento" name="departamento" value="">-->
+					<!--input para la Pais-->
+					<!--<input type="hidden" id="pais" name="pais" value="">-->
+					<!--input para el status-->
+					<!--<input type="hidden" id="status" name="status" value="pedido">-->
+					<!--input para el tipo-->
+					<input type="hidden" id="tipo" name="tipo" value="pedido normal">
+					<!--input para la Costo de envio id-->
+					<input type="hidden" id="costo_de_envio_id" name="costo_de_envio_id" value="">
+					<!--input para la Cupon id-->
+					<input type="hidden" id="nombre_del_cupon" name="nombre_del_cupon" value="">
+					<!--input para la medio de pago-->
+					<input type="hidden" id="medio_de_pago" name="medio_de_pago" value="">
+					<!--input para el monto-->
+					<input type="hidden" id="monto" name="monto" value="">
+					<!--input para el tipo_de_cliente-->
+					<input type="hidden" id="tipo_de_cliente" name="tipo_de_cliente" value="cliente del ecommerce">
+					<!--input para el numero_de_factura-->
+					<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="555">
+					<!--input para el productos-->
+					<input type="hidden" id="productos" name="productos[]" value="">
+					<!--input para el cantidades-->
+					<input type="hidden" id="cantidades" name="cantidades[]" value="">
+					<!--input para el numero_de_factura-->
+					<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="001">
+						
+				</div>
+
+				<div class="d-flex justify-content-center">
+					<button type="submit" class="btn btn-outline-success btn-block btn-lg w-50">Selecciona el medio de pago</button>
+				</div>
+
+
 			</div>
 		</div>
 
-	</form>	
+	</form>
 
 
 </div>
@@ -449,7 +428,7 @@
 	function iniciarCarrito(){
 		$('.producto').hide();
 		$('.porcentage_de_descuento').hide();
-		console.log('localStorage->carrito: ' + localStorage.getItem("carrito"));
+		console.log('carrito: ' + localStorage.getItem("carrito"));
 
 		let mi_carrito = [];
 		
@@ -459,12 +438,29 @@
 			mi_carrito = texto.split(",");
 		}
 
-		for(let i = 0; i < mi_carrito.length; i++){
-			$('#producto-'+mi_carrito[i]).show();
-			$('#resumen-producto-'+mi_carrito[i]).show();
-			let cantidad = parseInt($('#cantidad-'+mi_carrito[i]).val());
-			$('#cantidad-'+mi_carrito[i]).val(cantidad + 1);
-			$('#resumen-cantidad-'+mi_carrito[i]).html(cantidad + 1);
+		// elimina los duplicados
+		mi_carrito_sin_duplicados = mi_carrito.filter((element, index) => {
+			return mi_carrito.indexOf(element) === index;
+		});
+		console.log('carrito sin duplicados: ' + mi_carrito_sin_duplicados);
+
+		for(let i = 0; i < mi_carrito_sin_duplicados.length; i++){
+			$('#producto-'+mi_carrito_sin_duplicados[i]).show();
+			$('#resumen-producto-'+mi_carrito_sin_duplicados[i]).show();
+
+			let cantidad = 0;
+
+			for(let j = 0; j < mi_carrito.length; j++){
+				if(mi_carrito_sin_duplicados[i] == mi_carrito[j]){
+					cantidad += 1;
+				}
+			}
+			
+			//let cantidad = parseInt($('#cantidad-'+mi_carrito[i]).val());
+
+			$('#cantidad-'+mi_carrito_sin_duplicados[i]).val(cantidad);
+			//$('#cantidad-'+mi_carrito[i]).val(6);
+			$('#resumen-cantidad-'+mi_carrito_sin_duplicados[i]).html(cantidad + 1);
 			//console.log('muestro el producto: '+mi_carrito[i]);
 		}
 
@@ -479,7 +475,7 @@
 	// y los muestra en el html
 	//=============================================================
 	function calcular(){
-
+		console.log('localStorage->carrito: ' + localStorage.getItem("carrito"));
 		let mi_carrito = [];
 		let cantidades = [];
 		let suma_de_productos = 0;

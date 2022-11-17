@@ -28,7 +28,7 @@
 
 <div class="container11 container">
     <div class="row">
-        <div class="col">
+        <div class="col" style="overflow: hidden;">
             <h1 class="text-center mb-5 mt-5 scroll-content fadeLeft" style="color: var(--gris);">
                 ¡Tenemos una 
                 <img src="{{asset('/storage/img/canasta.png')}}" width="25%">
@@ -108,8 +108,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col">
-            <h1 class="text-center text-white">¿Te encantan los beneficios?</h1>
+        <div class="col" style="overflow: hidden;">
+            <h1 class="text-center text-white h1">¿Te encantan los beneficios?</h1>
             <br>
             <br>
             <h2 class="text-center  scroll-content fadeRight" style=" color: var(--gris) ;">Estas en el lugar correcto</h2>
@@ -118,10 +118,10 @@
             <h3 class="text-center  scroll-content fadeLeft" style=" color: var(--lila) ;">los quesos del club</h3>
             <br>
             <br>
-            <h1 class="text-center  scroll-content fadeRight" style=" color: var(--rojo) ;">tienen DESCUENTOS</h1>
+            <h1 class="text-center  scroll-content fadeRight h1" style=" color: var(--rojo) ;">tienen DESCUENTOS</h1>
             <br>
             <br>
-            <h1 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
+            <h1 class="text-center  scroll-content fadeLeft h1" style="line-height:50px; color: var(--amarillo) ;">
                 el packaging es MÁS SUSTENTABLE 
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-box2-heart ml-3" viewBox="0 0 16 16">
                     <path d="M8 7.982C9.664 6.309 13.825 9.236 8 13 2.175 9.236 6.336 6.31 8 7.982Z" />
@@ -140,9 +140,9 @@
                 </svg>
             </h2>
             <br>
-            <h1 class="text-center  scroll-content fadeRight" style=" color: var(--azul) ;">
+            <h1 class="text-center  scroll-content fadeRight h1" style=" color: var(--azul) ;">
                 AUMENTAMOS<br>tu<br>
-                <img src="{{asset('/storage/img/canasta.png')}}" width="15%">
+                <img src="{{asset('/storage/img/canasta.png')}}" width="30%">
             </h1>
             <br>
             <br>

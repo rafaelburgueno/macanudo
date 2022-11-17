@@ -1,7 +1,7 @@
 :root {
-  --lila: #f5ada9;
+  --lila: #f4aeaa;
   --rojo: #f04643;
-  --amarillo: #dab926;
+  --amarillo: #dab827;
   --azul: #4554a4;
   --verde: #70802c;
   --verde-claro: #92ad3d;
@@ -9,7 +9,6 @@
   --blanco: #e1e1e1;
   --negro: #1e1e1e;
   --gris: #e5e6e1;
-  --gris-oscuro: #646563;
 }
 
 input[type=number] {
@@ -32,16 +31,13 @@ body{
   align-items: center;
   -ms-flex-pack: justify;
   justify-content: space-between;
-
-
-  z-index: 11;
+  z-index: 11; /*elementos por delante*/
   -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px); /*desenfoque*/
   opacity: 86%;
   text-align: justify;
 
 }
-
 
 .nav-link {
   margin-left: 10px;
@@ -49,14 +45,12 @@ body{
   color: #e1e1e1;
 }
 
-
 .navbar-logo {
   display: inline-block;
   vertical-align: middle;
   width: 80px;
 
 }
-
 
 .navbar-logo img {
   display: block;
@@ -76,6 +70,9 @@ footer svg {
   margin-bottom: 0%;
   margin-left: 0%;
   margin-right: 0%;
+  text-align: center;
+  position: relative;
+  display: block;
 }
 
 .productos {
@@ -195,9 +192,8 @@ footer svg {
 
 .abajo-centrado {
   position: relative;
-  bottom: 2px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 18px;
+  
 }
 
 
@@ -293,14 +289,44 @@ footer svg {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  /*color: var(--blanco);*/
-  color: var(--gris-oscuro);
+  color: var(--blanco);
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
-  /*font-size: 1rem;*/
+  font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.rojo {
+  color: var(--rojo);
+}
+
+.negro {
+  color: var(--negro);
+}
+
+.azul {
+  color: var(--azul);
+}
+
+.amarillo {
+  color: var(--amarillo);
+}
+
+.verde {
+  color: var(--verde);
+}
+
+.verdeC {
+  color: var(--verde-claro);
+}
+
+.lila {
+  color: var(--lila);
+}
+
+.gris {
+  color: var(--gris);
 }
 
 .btn-rojo {
@@ -331,16 +357,29 @@ footer svg {
   background-color: var(--lila);
 }
 
+.btn-blanco {
+  background-color: var(--blanco);
+}
+
 .btn-derecho {
   position: absolute;
   bottom: 10px;
   right: 10px;
 }
-
+.btn-derecho-sm {
+  position: absolute;
+  bottom: 6px;
+  right: 4px;
+}
 .btn-medio {
   position: absolute;
   bottom: 10px;
   right: 65px;
+}
+.btn-medio-sm {
+  position: absolute;
+  bottom: 6px;
+  right: 44px;
 }
 
 .btn-izquierdo {
@@ -379,6 +418,7 @@ h1 {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 70px;
   font-stretch: extra-expanded;
+  color: var(--gris) ;
 }
 
 .btn-club {
@@ -389,9 +429,27 @@ h1 {
   color:var(--gris);
   background:var(--negro);
   border-radius:50px;
-  border: 3px solid var(--lila);
+  border: 2px solid var(--azul);
   transition: all 0.9s;
   text-align: center;
   width:60%;
-  box-shadow: -5px 1px 3px 2px var(--azul);
+  box-shadow: -5px 1px 3px 2px var(--lila);
+  
+}
+
+.mercadopago-button{
+  background-color: var(--azul);
+  color:var(--rojo);
+  font-weight: bold;
+  display: block;
+  width: 100%;
+  font-size: 1rem !important;
+  /*padding:20px;
+  background:var(--negro);
+  border-radius:50px;
+  border: 2px solid var(--azul);
+  transition: all 0.9s;
+  text-align: center;
+  width:60%;
+  box-shadow: -5px 1px 3px 2px var(--lila);*/
 }

@@ -372,9 +372,9 @@ class PedidoController extends Controller
      */
     public function carrito(Request $request)
     {
-        return $request->all();
+        //return $request->all();
         $request->validate([ 
-            'status' => 'required|max:50',
+            //'status' => 'required|max:50',
             'tipo' => 'nullable|max:50',
             //'canasta_id' => 'nullable|numeric',
             'nombre' => 'required|max:255',
@@ -399,7 +399,7 @@ class PedidoController extends Controller
         $pedido = new Pedido();
 
         //$pedido->status =  $request->status;
-        $pedido->status =  'pedido sin pagar';
+        $pedido->status =  'sin definir la forma de pago';
         $pedido->tipo = $request->tipo;
 
         /*if($request->canasta_id){
@@ -465,7 +465,7 @@ class PedidoController extends Controller
         //dd($total_de_la_compra);
 
         if($total_de_la_compra != $monto_desde_el_front){
-            session()->flash('error', 'La compra fue rechazada.');
+            session()->flash('error', 'La compra fue rechazada por incongruencia de los datos.');
             return redirect() -> route('mi_carrito');
         }
 
@@ -545,8 +545,13 @@ class PedidoController extends Controller
     public function realizarPago(Pedido $pedido)
     {
 
+        if($pedido->status ==  'sin definir la forma de pago'){
+            return view('realizar_pago')->with('pedido', $pedido);
+        }else{
+            session()->flash('error', 'Ya se ha definido una forma de pago.');
+            return redirect() -> route('mi_carrito');
+        }
             
-        return view('realizar_pago')->with('pedido', $pedido);
         //return view('pedidos.edit', compact('pedido'));
     }
 

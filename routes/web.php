@@ -234,6 +234,22 @@ Route::controller(PostController::class)->group(function () {
 
 /*
 |--------------------------------------------------------------------------
+| mi_carrito
+|--------------------------------------------------------------------------
+| Esta ruta solo devuelve una vista, por lo tanto no es 
+| necesario utilizar un controlador.
+*/
+Route::get('/mi_carrito', MiCarritoController::class)->name('mi_carrito');
+/*Route::get('/mi_carrito', function () {
+    return view('mi_carrito');
+    //return "mi_carrito";
+})->name('mi_carrito');*/
+
+
+
+
+/*
+|--------------------------------------------------------------------------
 | pedidos
 |--------------------------------------------------------------------------
 | La ruta de pedidos es administrada por el controlador 
@@ -285,18 +301,7 @@ Route::get('/mi_perfil', function () {
 
 
 
-/*
-|--------------------------------------------------------------------------
-| mi_carrito
-|--------------------------------------------------------------------------
-| Esta ruta solo devuelve una vista, por lo tanto no es 
-| necesario utilizar un controlador.
-*/
-Route::get('/mi_carrito', MiCarritoController::class)->name('mi_carrito');
-/*Route::get('/mi_carrito', function () {
-    return view('mi_carrito');
-    //return "mi_carrito";
-})->name('mi_carrito');*/
+
 
 
 

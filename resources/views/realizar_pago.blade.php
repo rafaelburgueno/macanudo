@@ -56,9 +56,9 @@
 @endphp
 
 
-<div class="text-center text-white my-4">
+{{--<div class="text-center text-white my-4">
     <h1 class="text-center pt-2">Realizar el pago</h1>
-</div>
+</div>--}}
 
 <!-- Barra de progreso de la compra -->
 {{--<div class="container">
@@ -105,17 +105,21 @@
 
                     <div class="m-3">
                         {{--<input type="checkbox" class="form-check-input" id="mercado_pago" name="medio_de_pago" value="mercado pago" onclick="elegir_medio_de_pago('mercado pago')">--}}
-                        <div class="cho-container"></div>
+                        <div class="cho-container btn-block"></div>
                         {{--<label class="form-check-label" for="mercado_pago">Mercado pago</label>--}}
                         {{--<img src="{{asset('/storage/img/mercadopago.png')}}" class="img-thumbnail" alt="...">--}}
                     </div>
 
+                    <livewire:editar-pedido /> 
+
+
+                    {{-- TODO --}}
                     <div class="m-3">
                         <form id="form_crear_pedido" action="{{route('pedidos.carrito')}}" method="POST">
                             @csrf
                             @method('POST')
                             <input type="hidden" id="pagar_al_recibir" name="medio_de_pago" value="pagar al recibir">
-                            <button type="submit" class="btn btn-primary ">Pagar al recibir</button>
+                            <button type="submit" class="btn1 btn-rojo gris btn-block">Cancelar</button>
                         </form>
                     </div>
 
@@ -171,16 +175,18 @@
   mp.checkout({
     preference: {
       id: '{{ $preference->id }}'
-	  //id: 'YOUR_PREFERENCE_ID'
+	  //id: 'ACA_ESTA_EL_YOUR_PREFERENCE_ID'
     },
     render: {
       container: '.cho-container',
-      label: 'Pagar con MercadoPago',
+      label: 'Pagar online',
+    },
+    theme: {
+        elementsColor: "#1188bb",
+        headerColor: '#c0392b',
     }
   });
 </script>
-
-
 
 @endsection
 

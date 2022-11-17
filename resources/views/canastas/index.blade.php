@@ -48,7 +48,7 @@
 					<tr>
                         <td>{{ $canasta->id }}</td>
                         <td>{{ $canasta->nombre }}</td>
-                        <td>{{ $canasta->descripcion }} $</td>
+                        <td>{{ $canasta->descripcion }}</td>
                         <td>{{ $canasta->precio }} $</td>
                         <td>{{ $canasta->stock }}</td>
                         <td>

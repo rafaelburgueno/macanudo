@@ -11,20 +11,20 @@
     <h1 class="text-center pt-2">BLOG</h1>
 </div>
 
-
 <div class="container">
     <div class="card-columns">
-    
+        
         
         @foreach ($posts as $post)
         <div class="px-3 pb-5">
             <div class="card m-0">
                 
                 @if (count($post->multimedias))
-                    <a href="{{route('blog.show', $post)}}" class="">
-                        <img src="{{$post->multimedias->last()->url}}" class="card-img-top" alt="{{ $post->multimedias->last()->descripcion }}">
-                    </a>
+                <a href="{{route('blog.show', $post)}}" class="">
+                    <img src="{{$post->multimedias->last()->url}}" class="card-img-top" alt="{{ $post->multimedias->last()->descripcion }}">
+                </a>
                 @endif
+                
 
                 <div class="card-body pb-2">
                     <a href="{{route('blog.show', $post)}}" class="">
@@ -39,6 +39,7 @@
                     
                 </div>
                 
+                
             </div>
         </div>
         @endforeach
@@ -46,10 +47,6 @@
     
     </div>
 </div>
-
-
-
-
 
 
 @endsection

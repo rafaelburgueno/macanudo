@@ -14,7 +14,7 @@
         <div class="col m-0 p-0">
             <img src="{{asset('/storage/img/index.png')}}" class="nav d-block w-100 m-0" alt="...">
             <p class="abajo-centrado">
-                    <a class="btn1 btnn btn-lg shadownn btn-light" type="button" href="{{route('nuestros_productos')}}">
+                    <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('nuestros_productos')}}">
                     Ver productos
                 </a>
             </p>
@@ -25,9 +25,9 @@
 
 <div class="contenedorr container">
     <div class="row">
-        <div class="col">
+        <div class="col" style="overflow: hidden;">
 
-            <h3 class="text-center scroll-content fadeLeft">Esto 
+            <h3 class="text-center scroll-content fadeLeftt">Esto 
                 <span class="spanletrasrojo"> no es queso</span>,
                 <br>
                 es alimento a base de castañas de caju.
@@ -49,7 +49,7 @@
         <div class="col m-0 p-0">
             <img src="{{asset('/storage/img/index.2.png')}}" class="nav d-block w-100" alt="...">
             <p class="abajo-centrado">
-                <a href="blog.html" class="btn1 btn-lg shadown btn-light" type="button" href="blog.html">Ver proceso</a>
+                <a href="blog.html" class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('blog.index')}}">Ver proceso</a>
             </p>
         </div>
     </div>
@@ -115,7 +115,7 @@
             <img src="{{asset('/storage/img/index.3.png')}}" class="nav d-block w-100" alt="...">
 
             <p class="abajo-centrado">
-                <a class="btn1 btn-lg shadown btn-light" type="button" href="productos.html">
+                <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('blog.index')}}">
                     Ver beneficios
                 </a>
             </p>
@@ -126,7 +126,7 @@
 
 <div class="contenedorr container">
     <div class="row">
-        <div class="col">
+        <div class="col" style="overflow: hidden;">
             <h3 class="text-center scroll-content fadeLeft">Cuidamos los recursos</h3>
             <br>
             <h2 class="text-center scroll-content fadeRight"> utilizamos materiales reutilizables</h2><br>
@@ -144,7 +144,7 @@
         <div class="col m-0 p-0">
             <img src="{{asset('/storage/img/index.4.png')}}" class="nav d-block w-100" alt="...">
             <p class="abajo-centrado">
-                <a class="btn1 btn-lg shadown btn-light" type="button" href="productos.html">
+                <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="productos.html">
                     Nosotros
                 </a>
             </p>
