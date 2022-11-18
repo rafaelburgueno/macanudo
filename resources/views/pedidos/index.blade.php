@@ -30,12 +30,13 @@
 		<table id="tabla_pedidos" class="display {{--table table-striped table-hover table-sm--}}">
 			<thead>
 				<tr>
+                    <th></th>
                     <th>Estatus</th>
 					<th>Teléfono</th>
                     <th>Dirección</th>
 					<th>Productos</th>
-                    <th>Nombre</th>
-					<th>Monto</th>
+                    {{--<th>Nombre</th>
+					<th>Monto</th>--}}
                     <th>Fecha</th>
 					{{--<th>id</th>--}}
 					<th>Administrar</th>
@@ -47,11 +48,25 @@
 			
 				@foreach ($pedidos as $pedido)
 					<tr>
-                        <td>{{ $pedido->status }}</td>
+                        <td><a class="btn btn-outline-success" data-toggle="modal" data-target="#info_del_pedido_{{ $pedido->id }}">Ver</a></td>
+
+                        @if($pedido->status == 'sin definir la forma de pago')
+                            <td style="background-color:  var(--rojo);">
+                        @elseif($pedido->status == 'pedido sin pagar')
+                            <td style="background-color:  var(--rojo);">
+                        @elseif($pedido->status == 'pagar al retirar')
+                            <td style="background-color:  var(--amarillo);">
+                        @elseif($pedido->status == 'pago recibido')
+                            <td style="background-color:  var(--verde);">
+                        @else
+                            <td>
+                        @endif
+                            {{ $pedido->status }}
+                        </td>
                         <td>{{ $pedido->telefono }}</td>
                         <td>{{ $pedido->direccion }}
                             @if($pedido->costo_de_envio)
-                                | {{ $pedido->costo_de_envio->region }}
+                                , {{ $pedido->costo_de_envio->region }}
                             @endif
                         </td>
                         <td>
@@ -61,16 +76,60 @@
                                 @endforeach
                             </ul>
                         </td>
-                        <td>{{ $pedido->nombre }}</td>
-						<td>{{ $pedido->monto }} $</td>
+                        {{--<td>{{ $pedido->nombre }}</td>
+						<td>{{ $pedido->monto }} $</td>--}}
 						<td>{{ $pedido->created_at }}</td>
                         {{--<td>{{ $pedido->created_at->format('d/m/Y') }}</td>--}}
                         {{--<td>{{ $pedido->id }}</td>--}}
                         
-						<td><a href="{{route('pedidos.edit', $pedido)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>
+						<td>
+                            
+                            <a href="{{route('pedidos.edit', $pedido)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>
 
 						
 					</tr>
+
+
+                    <!--MODAL CON INFORMACION DEL PEDIDO-->
+                    <!--MODAL CON INFORMACION DEL PEDIDO-->
+                    <!--MODAL CON INFORMACION DEL PEDIDO-->
+                    <div class="modal fade" id="info_del_pedido_{{ $pedido->id }}" tabindex="-1" role="dialog" aria-labelledby="info_del_pedido_{{ $pedido->id }}Label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content align-items-center negro">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <h5 class="modal-title text-center" id="info_del_pedido_{{ $pedido->id }}Label">{{$pedido->nombre}}</h5><br>
+                                <h4 class="text-center rojo">{{ $pedido->monto }} $</h4><br>
+                                
+                                <div class="modal-body ">
+                                    <p>Estatus: {{ $pedido->status }}</p>
+                                    <p>C.I.: {{ $pedido->documento_de_identidad }}</p>
+                                    <p>Medio de pago: {{ $pedido->medio_de_pago }}</p>
+                                    <p>Factura: {{ $pedido->numero_de_factura }}</p>
+                                    <p>Dirección: {{ $pedido->direccion }}</p>
+                                    <p>Teléfono: {{ $pedido->telefono }}</p>
+                                    @if($pedido->costo_de_envio)
+                                        <p>Localidad: {{ $pedido->costo_de_envio->region }}</p>
+                                        <p>Departamento: {{ $pedido->costo_de_envio->departamento}}</p>
+                                    @endif
+                                    <h3>Detalle del pedido:</h3>
+                                    <ul>
+                                        @foreach($pedido->productos as $producto)
+                                            <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
 				@endforeach
 			</tbody>
 		</table>

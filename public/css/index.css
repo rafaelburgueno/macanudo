@@ -416,7 +416,7 @@ footer svg {
 
 h1 {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 70px;
+  /*font-size: 70px;*/
   font-stretch: extra-expanded;
   color: var(--gris) ;
 }
