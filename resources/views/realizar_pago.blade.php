@@ -121,7 +121,47 @@
                     </div>
 
 
-                    <livewire:editar-pedido /> 
+                    {{--<livewire:editar-pedido /> --}}
+
+                    {{-- TODO pagar al recibir --}}
+                    <div class="m-3">
+                        <form action="{{route('pagos.pagar_al_recibir', $pedido)}}" method="POST" class="form_pagar_al_recibir">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn1 btn-gris azul btn-block" id="btn_pagar_al_recibir" onclick="btn_pagar_al_recibir();">Pagar al recibir</button>
+                        </form>
+                    </div>
+
+                    <script>
+                        $(document).ready(function(){
+
+                            $('.form_pagar_al_recibir').submit(function(e){
+                                e.preventDefault();
+
+                                Swal.fire({
+                                    title: 'Exelente!',
+                                    text: "Elegiste pagar al recibir el pedido!",
+                                    icon: 'success',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Sí, es correcto.',
+                                    cancelButtonText: 'Cancelar.'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                    /*Swal.fire(
+                                        'Deleted!',
+                                        'Your file has been deleted.',
+                                        'success'
+                                    );*/
+                                        this.submit();
+                                    }
+                                })
+
+                            });
+
+                        });
+                    </script>
 
 
                     {{-- TODO --}}

@@ -127,11 +127,11 @@
 <div class="contenedorr container">
     <div class="row">
         <div class="col" style="overflow: hidden;">
-            <h2 class="mb-3 text-center scroll-content fadeRight verde">Cuidamos los recursos,</h2>
+            <h2 class="mb-3 text-center scroll-content fadeRight rojo">Cuidamos los recursos,</h2>
             <br>
-            <h1 class="mb-3 text-center scroll-content fadeRight verdeC"> utilizamos materiales reutilizables,</h1>
+            <h1 class="mb-3 text-center scroll-content fadeRight amarillo"> utilizamos materiales reutilizables,</h1>
             <br>
-            <h3 class="mb-3 text-center scroll-content fadeRight amarillo">minimizamos el packaging,</h3>
+            <h3 class="mb-3 text-center scroll-content fadeRight lila">minimizamos el packaging,</h3>
             <br>
             <h1 class="mb-3 text-center scroll-content fadeRight gris"> y no involucramos animales.</h1><br>
         </div>
@@ -152,10 +152,10 @@
 <div class="contenedor mt-3 mb-5 p-3">
     <div class="row ">
         <div class="col" style="overflow: hidden;">
-            <h2 class="mb-3 text-center scroll-content fadeRight verde">Detrás de cada producto</h2>
+            <h2 class="mb-3 text-center scroll-content fadeRight rojo">Detrás de cada producto</h2>
             <br>
-            <h1 class="mb-3 text-center scroll-content fadeRight verdeC">está la mano de un artesano,</h1><br>
-            <h3 class="mb-3 text-center scroll-content fadeRight amarillo">que cuida todo el proceso </h3>
+            <h1 class="mb-3 text-center scroll-content fadeRight amarillo">está la mano de un artesano,</h1><br>
+            <h3 class="mb-3 text-center scroll-content fadeRight lila">que cuida todo el proceso </h3>
             <br>
             <h1 class="mb-3 text-center scroll-content fadeRight gris">desde la
                 castaña<br>hasta que el alimento llega a tu mesa.</h1>

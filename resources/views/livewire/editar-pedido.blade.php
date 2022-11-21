@@ -4,10 +4,10 @@
         
         {{--TODO
             --}}
-        <input type="hidden" id="pedidoId" name="pedidoId" wire:model.lazy="pedidoId" value="{{--{{$pedido->id}}--}}">
-        <button type="button" class="btn1 btn-gris azul btn-block" onclick="btn_pagar_al_recibir();" wire:click="pagarAlRecibir">Pagar al recibir</button>
+        <input type="hidden" id="pedidoId" name="pedidoId" wire:model.lazy="pedidoId">
+        <button type="button" class="btn1 btn-gris azul btn-block" onclick="btn_pagar_al_recibir();" wire:click="pagarAlRecibir(81)">Pagar al recibir</button>
         
-        {!! $respuesta !!}
+        <div class="text-dark">{!! $respuesta !!}</div>
     </div>
 
 
@@ -20,7 +20,7 @@
     // productos y resetear el carrito
 	//=============================================================
 	window.addEventListener('seDefinioPagarAlRecibir', event => {
-
+        console.log("hola mundouuuU");
 		alert('Se ejecuta desde el servidor... pagar al recibir ');
 		
 	});

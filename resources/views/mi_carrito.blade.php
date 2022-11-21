@@ -70,8 +70,60 @@
 		<div class="col-lg-6 mb-5">
 		
 			@foreach($productos as $producto)
-		
-				<div class="card mb-3 shadown-gris producto" id="producto-{{$producto->id}}" style="background-color: #e1e1e1; max-width: 540px; max-height: 200px ;">
+
+				<div class="card mb-5 shadown-gris producto" id="producto-{{$producto->id}}" style="background-color: #e1e1e1; max-width: 540px; max-height: 180px ;">
+					<div class="row g-0">
+				  		<div class="col-5 card-img">
+							<img src="{{$producto->multimedias->last()->url}}" class='img-fluid shadown rounded-3' alt="..." style="max-height: 180px">
+				  		</div>
+				  		
+						<div class="col-7 px-0">
+							<div class="card-body px-0">
+					  			<h5 class="card-title">{{$producto->nombre}}</h5>
+	  
+					  			<form id="datosEnvio" class="was-validated">
+									<div class="form row">
+						  				<div class="form group col-sm">
+											<label class="form-label" style="font-size: 0.9em" for="cantidad">Cantidad: </label>
+											{{--
+											<input type="number" id="cantidad" class="cantidad" width="30px" name="cantidad" placeholder="1" rows="2">
+											<span style="font-size: 14px;"> $ 300 c/u</span>
+											--}}
+											<select class="cantidad py-1" id="cantidad-{{$producto->id}}" name="cantidad" onclick="cambiarCantidad({{$producto->id}})" width="30px">
+												<option value="1" selected>1 u.</option>
+												<option value="2">2 u.</option>
+												<option value="3">3 u.</option>
+												<option value="4">4 u.</option>
+												<option value="5">5 u.</option>
+												<option value="6">6 u.</option>
+												<option value="7">7 u.</option>
+												<option value="8">8 u.</option>
+												<option value="9">9 u.</option>
+												<option value="10">10 u.</option>
+											</select>
+											<br><span style="font-size: 14px;"> $ {{$producto->precio}} c/u</span>
+												
+											<input type="hidden" id="precio-{{$producto->id}}" name="precio" value="{{$producto->precio}}">
+										</div>
+	  
+						  				<div class="form group col-sm">
+											<label class="form-label" style="font-size: 0.9em" for="precio">Precio: $</label>
+											{{--<input type="number" value="3000" readonly id="precio" name="precio" width="4em">--}}
+											{{--<input type="number" value="3000" readonly id="precio_multiplicado-{{$producto->id}}" name="precio_multiplicado" width="4em">--}}
+											<span class="h5" id="precio_multiplicado-{{$producto->id}}"></span>
+						  				</div>
+									</div>
+					  			</form>
+					  			{{--<a class="mt-2 bg-transparent" style="color:var(--rojo)">Eliminar</a>--}}
+								<a class="mb-2 bg-transparent" style="color:var(--rojo);" onclick="quitarDelCarrito({{$producto->id}})">Eliminar</a>
+	  
+							</div>
+				  		</div>
+	  
+					</div>
+				</div>
+				{{--====================================================================--}}
+				{{--<div class="card mb-3 shadown-gris producto" id="producto-{{$producto->id}}" style="background-color: #e1e1e1; max-width: 540px; max-height: 200px ;">
 					<div class="row g-0">
 						<div class="col-4 card-imgg">
 							<img src="{{$producto->multimedias->last()->url}}" class="img-fluid shadown rounded-3" alt="..." style="max-height: 180px">
@@ -86,22 +138,21 @@
 									<div class="row">
 										<div class="form-group col-sm-6">
 											<label for="cantidad">Cantidad: </label>
-
 											<select class="form-control" id="cantidad-{{$producto->id}}" name="cantidad" onclick="cambiarCantidad({{$producto->id}})">
-												<option value="1" selected>1 u.</option>
-												<option value="2">2 u.</option>
-												<option value="3">3 u.</option>
-												<option value="4">4 u.</option>
-												<option value="5">5 u.</option>
-												<option value="6">6 u.</option>
-												<option value="7">7 u.</option>
-												<option value="8">8 u.</option>
-												<option value="9">9 u.</option>
-												<option value="10">10 u.</option>
+												<option value="1" selected>1 unidad</option>
+												<option value="2">2 unidades</option>
+												<option value="3">3 unidades</option>
+												<option value="4">4 unidades</option>
+												<option value="5">5 unidades</option>
+												<option value="6">6 unidades</option>
+												<option value="7">7 unidades</option>
+												<option value="8">8 unidades</option>
+												<option value="9">9 unidades</option>
+												<option value="10">10 unidades</option>
 											</select>
 
 											{{--<input  style="width: 100%;" type="number" class="form-control recalcularPrecioo" id="cantidad-{{$producto->id}}" class="cantidad" name="cantidad" value="0" min="0" onclick="cambiarCantidad({{$producto->id}})">--}}
-											<span style="font-size: 16px;"> $ {{$producto->precio}} c/u</span> 
+											{{--<span style="font-size: 16px;"> $ {{$producto->precio}} c/u</span> 
 											<input type="hidden" id="precio-{{$producto->id}}" name="precio" value="{{$producto->precio}}">
 										</div>
 
@@ -118,13 +169,7 @@
 			
 					</div>
 			
-					{{--<div class="card-footer text-center">
-						<button class="btn btn-outline shadown " style="color: #4554a4; ">Seguir comprando</button>
-						<button class="btn shadown" style=" color:#dab926 ;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-							<path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" /></svg>
-						</button>
-					</div>--}}
-				</div>
+				</div>--}}
 		
 			@endforeach
 		
@@ -720,7 +765,8 @@
 			
 			let precio = parseInt($('#precio-'+mi_carrito[i]).val());
 			let cantidad = parseInt($('#cantidad-'+mi_carrito[i]).val());
-			$('#precio_multiplicado-'+mi_carrito[i]).val((precio * cantidad));
+			/*$('#precio_multiplicado-'+mi_carrito[i]).val((precio * cantidad));*/
+			$('#precio_multiplicado-'+mi_carrito[i]).html((precio * cantidad));
 			$('#resumen-precio_multiplicado-'+mi_carrito[i]).html((precio * cantidad));
 			suma_de_productos += (precio * cantidad);
 			console.log(mi_carrito[i] + ': ' + cantidad);

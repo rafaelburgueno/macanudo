@@ -120,8 +120,8 @@ Route::get('/club_macanudo', ClubMacanudoController::class)->name('club_macanudo
 */
 //Route::get('/blog', BlogController::class)->name('blog');
 Route::controller(BlogController::class)->group(function () {
-    Route::get('blog', 'index')->name('blog.index');
-    Route::get('blog/{post}', 'show')->name('blog.show');
+    Route::get('blog', 'index')->name('blog.index')->middleware('mantenimiento');
+    Route::get('blog/{post}', 'show')->name('blog.show')->middleware('mantenimiento');
 
 });
 
@@ -240,7 +240,7 @@ Route::controller(PostController::class)->group(function () {
 | Esta ruta solo devuelve una vista, por lo tanto no es 
 | necesario utilizar un controlador.
 */
-Route::get('/mi_carrito', MiCarritoController::class)->name('mi_carrito');
+Route::get('/mi_carrito', MiCarritoController::class)->name('mi_carrito')->middleware('mantenimiento'); 
 /*Route::get('/mi_carrito', function () {
     return view('mi_carrito');
     //return "mi_carrito";
@@ -283,6 +283,7 @@ Route::get('/realizar_pago/{pedido}', [PagosController::class, 'realizarPago'])-
 Route::post('pagos', [MiCarritoController::class ,'verificar_carrito'])->name('pagos.verificar_carrito');
 Route::get('/pagos/{pedido}/pay', [PagosController::class, 'pay'])->name('pagos.pay');
 Route::get('/pagos/{pedido}', [PedidoController::class, 'mostrarPago'])->name('mostrar_pago');
+Route::put('pagos/{pedido}', [PagosController::class ,'pagar_al_recibir'])->name('pagos.pagar_al_recibir');
 
 Route::post('webhooks', WebhooksController::class); 
 

@@ -13,21 +13,21 @@ class EditarPedido extends Component
     public $respuesta;
 
 
-    public function pagarAlRecibir()
+    public function pagarAlRecibir($id)
     {
 
-        $pedido = Pedido::find($this->pedidoId);
+        $pedido = Pedido::find($id);
         //dd($pedido);
         //if($pedido->status ==  'sin definir la forma de pago' || true){
         if(true){
             //$pedido->status = 'pagar al recibir';
             //$pedido->save();
 
-            $this->respuesta = $this->pedidoId;
+            $this->respuesta = $id;
 
-            $this->dispatchBrowserEvent('seDefinioPagarAlRecibir');
         }
-    }
+        $this->dispatchBrowserEvent('seDefinioPagarAlRecibir');
+    } 
 
 
 

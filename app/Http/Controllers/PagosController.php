@@ -77,4 +77,40 @@ class PagosController extends Controller
 
 
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Pedido  $pedido
+     * @return \Illuminate\Http\Response
+     */
+    public function pagar_al_recibir(Pedido $pedido)
+    {
+
+        //dd($pedido->id);
+
+        if($pedido->status ==  'sin definir la forma de pago' ){
+            $pedido->status = 'pagar al recibir';
+            $pedido->save();
+            //dd($pedido->status);
+            session()->flash('pagar_al_recibir', 'Gracias. Debera pagar su pedido al momento de recibirlo.');
+            return redirect() -> route('nuestros_productos');
+        }else{
+            //dd($pedido->status);
+            session()->flash('error', 'Ya se ha definido una forma de pago.');
+            return redirect() -> route('mi_carrito');
+        }
+
+
+        // TODO: verificar el tiempo que paso desde que se inicio la compra
+        // como medida de seguridad para no poder modificar un pedido despues de pasado cierto tiempo
+        /*if($pedido->status ==  'sin definir la forma de pago'){
+            return view('realizar_pago')->with('pedido', $pedido);
+        }*/
+            
+        //return view('pedidos.edit', compact('pedido'));
+    }
+
+
+
+
 }
