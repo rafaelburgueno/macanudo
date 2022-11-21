@@ -177,7 +177,7 @@
 				</div>
 				<div class="card-footer">
 					<h5>Total: <strong id="total_de_la_compra"></strong> $ UYU</h5>
-					<button class="btn btn-lg shadown bg-light my-2" style="color: #4554a4;" id="btn_confirmar_compra"><strong>Confirmar compra </strong></button>
+					<button class="btn btn-lg shadown bg-light my-2" style="color: #4554a4;" id="btn_confirmar_compra" data-toggle="modal" data-target="#resumen_de_la_compra_y_datos_del_pedido"><strong>Confirmar compra </strong></button>
 
 				</div>
 			</div>
@@ -188,10 +188,20 @@
 
 
 
+
+
+	
+
+
+
+
+
+
+
 	<!-- Resumen de la compra -->
 	<!-- Resumen de la compra -->
 	<!-- Resumen de la compra -->
-	<div class="" id="panel_resumen_de_la_compra" style="display: none;">
+	{{--<div class="" id="panel_resumen_de_la_compra" style="display: none;">
 		<div class="row mb-5 d-flex justify-content-center" >
 
 			<div class="card p-0">
@@ -244,7 +254,7 @@
 			
 
 		</div><!-- FIN del Resumen de la compra -->
-	</div>
+	</div>--}}
 
 
 
@@ -257,7 +267,7 @@
 	<!-- completar los datos del pedido -->
 	<!-- completar los datos del pedido -->
 	<!-- completar los datos del pedido -->
-	<form id="form_crear_pedido" action="{{route('pedidos.carrito')}}" method="POST">
+	{{--<form id="form_crear_pedido" action="{{route('pedidos.carrito')}}" method="POST">
 		@csrf
 		@method('POST')
 
@@ -377,24 +387,219 @@
 			</div>
 		</div>
 
-	</form>
+	</form>--}}
 
 
 </div>
+
+
+
+
+<!--MODAL RESUMEN DE LA COMPRA Y DATOS DEL PEDIDO-->
+<!--MODAL RESUMEN DE LA COMPRA Y DATOS DEL PEDIDO-->
+<div class="modal fade" id="resumen_de_la_compra_y_datos_del_pedido" tabindex="-1" role="dialog" aria-labelledby="resumen_de_la_compra_y_datos_del_pedidoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content align-items-center negro">
+            <div class="modal-header ">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+            </div>
+            <h5 class="modal-title text-center" id="resumen_de_la_compra_y_datos_del_pedidoLabel"></h5>
+            <div class="modal-body">
+            	<h4 class="text-center rojo"></h4>	
+				<!-- Resumen de la compra -->
+				<!-- Resumen de la compra -->
+				<!-- Resumen de la compra -->
+				<div class="cardd p-0 mb-5">
+					<div class="card-headerr">
+						<h4 class="text-center">Resumen de la compra</h4>
+					</div>
+					<div class="card-bodyy">
+						<div class="row">
+							<div class="col-md-8">
+								<table class="table table-sm">
+									<thead>
+									<tr>
+										<th>Producto</th>
+										<th>Precio unitario</th>
+										<th>Cantidad</th>
+										<th>Total</th>
+									</tr>
+									</thead>
+									<tbody>
+										@foreach($productos as $producto)
+											<tr id="resumen-producto-{{$producto->id}}" class="producto">
+												<td>{{$producto->nombre}}</td>
+												<td>{{$producto->precio}} $</td>
+												<td><span id="resumen-cantidad-{{$producto->id}}"></span></td>
+												<td><span id="resumen-precio_multiplicado-{{$producto->id}}"></span> $</td>
+											</tr>
+										@endforeach
+									</tbody>
+								</table>
+							</div>
+							<div class="col-md-4">
+								<div class="float-right pl-2">
+									<p>SubTotal: <span id="resumen_sub_total_de_la_compra"></span> $ UYU</p>
+									<p>Envío: <span id="resumen_costo_de_envio_final">0</span> $ UYU</p>
+									<p class="porcentage_de_descuento">Descuento: <span id="resumen_porcentage_de_descuento">0</span> %</p>
+									<p class="h5">Total: <span id="resumen_total_de_la_compra"></span> $ UYU</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- FIN del Resumen de la compra -->
+
+
+				<!-- completar los datos del pedido -->
+				<!-- completar los datos del pedido -->
+				<!-- completar los datos del pedido -->
+				<form id="form_crear_pedido" action="{{route('pagos.verificar_carrito')}}" method="POST">
+					@csrf
+					@method('POST')
+
+					<div class="cardd" id="panel_completar_datos_del_pedido">
+						<div class="card-headerr">
+							<h4 class="text-center">Datos de envío</h4>
+						</div>
+
+						<div class="card-bodyy">
+							
+							<div class="row">
+								<div class="col-lg-6 ">
+
+									<!--input para el nombre-->
+									<div class="form-group mb-3">
+										<label for="nombre">Nombre</label>
+										<input required type="text" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}">
+										@error('nombre')
+											<div class="alert alert-danger mt-1">{{ $message }}</div>
+										@enderror
+									</div>
+
+									<!--input para el email-->
+									<div class="form-group mb-3">
+										<label for="email">Email</label>
+										<input required type="text" class="form-control" id="email" name="email" placeholder="..." value="{{old('email')}}">
+										@error('email')
+											<div class="alert alert-danger mt-1">{{ $message }}</div>
+										@enderror
+									</div>
+
+									<!--input para el documento_de_identidad-->
+									<div class="form-group mb-3">
+										<label for="documento_de_identidad">Documento de identidad</label>
+										<input style="width: 100%;" type="number" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" min="0">
+										@error('documento_de_identidad')
+											<div class="alert alert-danger mt-1">{{ $message }}</div>
+										@enderror
+									</div>
+
+									<!--input para el telefono-->
+									<div class="form-group mb-3">
+										<label for="telefono">Teléfono</label>
+										<input style="width: 100%;" type="number" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" min="0">
+										@error('telefono')
+											<div class="alert alert-danger mt-1">{{ $message }}</div>
+										@enderror
+									</div>
+
+								</div>
+							
+								<div class="col-lg-6">
+									
+									<!--input para la direccion-->
+									<div class="form-group mb-3">
+										<label for="direccion">Dirección</label>
+										<textarea required class="form-control" id="direccion" name="direccion" rows="3">{{old('direccion')}}</textarea>
+										@error('direccion')
+											<div class="alert alert-danger mt-1">{{ $message }}</div>
+										@enderror
+									</div>
+
+									<!--input para la localidad-->
+									<div class="form-group mb-3">
+										<label for="localidad">Localidad o barrio</label>
+										<input type="text" class="form-control" id="localidad" name="localidad" placeholder="..." value="{{old('localidad')}}">
+										@error('localidad')
+											<div class="alert alert-danger mt-1">{{ $message }}</div>
+										@enderror
+									</div>
+
+									<!--input para checkbox Recibir novedades -->
+									<div class="form-check my-4">
+										<input type="checkbox" class="form-check-input" id="recibir_novedades" name="recibir_novedades" value="1" @checked(old('recibir_novedades'))>
+										<label class="form-check-label" for="recibir_novedades">Recibir novedades</label>
+										@error('recibir_novedades')
+											<div class="alert alert-danger mt-1">{{ $message }}</div>
+										@enderror
+									</div>
+
+								</div>
+
+								<!--input para la departamento-->
+								<!--<input type="hidden" id="departamento" name="departamento" value="">-->
+								<!--input para la Pais-->
+								<!--<input type="hidden" id="pais" name="pais" value="">-->
+								<!--input para el status-->
+								<!--<input type="hidden" id="status" name="status" value="pedido">-->
+								<!--input para el tipo-->
+								<input type="hidden" id="tipo" name="tipo" value="pedido normal">
+								<!--input para la Costo de envio id-->
+								<input type="hidden" id="costo_de_envio_id" name="costo_de_envio_id" value="">
+								<!--input para la Cupon id-->
+								<input type="hidden" id="nombre_del_cupon" name="nombre_del_cupon" value="">
+								<!--input para la medio de pago-->
+								<input type="hidden" id="medio_de_pago" name="medio_de_pago" value="">
+								<!--input para el monto-->
+								<input type="hidden" id="monto" name="monto" value="">
+								<!--input para el tipo_de_cliente-->
+								<input type="hidden" id="tipo_de_cliente" name="tipo_de_cliente" value="cliente del ecommerce">
+								<!--input para el numero_de_factura-->
+								<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="555">
+								<!--input para el productos-->
+								<input type="hidden" id="productos" name="productos[]" value="">
+								<!--input para el cantidades-->
+								<input type="hidden" id="cantidades" name="cantidades[]" value="">
+								<!--input para el numero_de_factura-->
+								<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="001">
+									
+							</div>
+
+							<div class="d-flex justify-content-center">
+								<button type="submit" class="btn btn-outline-success btn-block btn-lg w-50">Selecciona el medio de pago</button>
+							</div>
+
+
+						</div>
+					</div>
+
+				</form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
 
 
 <script>
 
 	$(document).ready(function(){
 
-		$("#btn_confirmar_compra").click(function(){
+		/*$("#btn_confirmar_compra").click(function(){
 			$("#panel_resumen_de_la_compra").slideDown("slow");
 		});
 
 
 		$("#btn_comprar").click(function(){
 			$("#panel_completar_datos_del_pedido").slideDown("slow");
-		});
+		});*/
 		
 
 

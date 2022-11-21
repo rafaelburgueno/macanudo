@@ -53,9 +53,9 @@
 <br>
 
 <!--slider---slider---slider---slider---slider---slider---slider---slider----->
-<div class="contenedorr mt-3 mb-5 p-3">
-    <div class="row">
-        <div class="slider">
+<div class="contenedorr mt-3 mb-5 m-0 p-0">
+    <div class="row w-100 m-0 p-0">
+        <div class="slider w-100 m-0 p-0">
             <div class="slide-track">
                 <div class="slide">
                     <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="" />
@@ -216,10 +216,10 @@
 <hr>
 
 <!--slider---slider---slider---slider---slider---slider---slider---slider----->
-<div class="contenedorr mt-3 mb-5  ">
-    <div class="row m-0 p-0 w-100">
-        <div class="slider w-100">
-            <div class="slide-track w-100">
+<div class="contenedorr mt-3 mb-5 m-0 p-0">
+    <div class="row w-100 m-0 p-0">
+        <div class="slider w-100 m-0 p-0">
+            <div class="slide-track">
                 <div class="slide">
                     <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="" />
                 </div>

@@ -31,9 +31,10 @@
 			<thead>
 				<tr>
                     <th></th>
-                    <th>Estatus</th>
-					<th>Teléfono</th>
+                    {{--<th>Estatus</th>--}}
                     <th>Dirección</th>
+                    <th>Teléfono</th>
+					<th>Nombre</th>
 					<th>Productos</th>
                     {{--<th>Nombre</th>
 					<th>Monto</th>--}}
@@ -47,24 +48,34 @@
                 {{--entregado-telefono-direccion- lista del pedido- nombre--}}
 			
 				@foreach ($pedidos as $pedido)
-					<tr>
-                        <td><a class="btn btn-outline-success" data-toggle="modal" data-target="#info_del_pedido_{{ $pedido->id }}">Ver</a></td>
-
-                        @if($pedido->status == 'sin definir la forma de pago')
-                            <td style="background-color:  var(--rojo);">
-                        @elseif($pedido->status == 'pedido sin pagar')
-                            <td style="background-color:  var(--rojo);">
+                    @if($pedido->status == 'pago recibido')
+					<tr style="background-color:#beffbe;">
+                    @elseif($pedido->status == 'pedido sin pagar')
+					<tr style="background-color:#ffd4db;">
                         @elseif($pedido->status == 'pagar al retirar')
-                            <td style="background-color:  var(--amarillo);">
+					<tr style="background-color:#f8ff92;">
+                    @else
+                    <tr>
+                    @endif
+                        {{--<td>
+                            <a class="btn btn-outline-success" data-toggle="modal" data-target="#info_del_pedido_{{ $pedido->id }}">Ver</a></td>
+                        <td>--}}
+                        @if($pedido->status == 'sin definir la forma de pago')
+                            <td class="rounded p-3">
+                        @elseif($pedido->status == 'pedido sin pagar')
+                            <td class="rounded p-3 btn-rojo">
+                        @elseif($pedido->status == 'pagar al retirar')
+                            <td class="rounded p-3 btn-amarillo">
                         @elseif($pedido->status == 'pago recibido')
-                            <td style="background-color:  var(--verde);">
+                            <td class="rounded p-3 btn-verdeC">
                         @else
-                            <td>
+                            <td class="rounded p-3">
                         @endif
-                            {{ $pedido->status }}
+                            <a class="btn btn-light" data-toggle="modal" data-target="#info_del_pedido_{{ $pedido->id }}">Ver</a>
                         </td>
-                        <td>{{ $pedido->telefono }}</td>
                         <td>{{ $pedido->direccion }}
+                        <td>{{ $pedido->telefono }}</td>
+                        <td>{{ $pedido->nombre }}</td>
                             @if($pedido->costo_de_envio)
                                 , {{ $pedido->costo_de_envio->region }}
                             @endif
@@ -82,9 +93,7 @@
                         {{--<td>{{ $pedido->created_at->format('d/m/Y') }}</td>--}}
                         {{--<td>{{ $pedido->id }}</td>--}}
                         
-						<td>
-                            
-                            <a href="{{route('pedidos.edit', $pedido)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>
+						<td><a href="{{route('pedidos.edit', $pedido)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>
 
 						
 					</tr>
@@ -106,22 +115,24 @@
                                 <h4 class="text-center rojo">{{ $pedido->monto }} $</h4><br>
                                 
                                 <div class="modal-body ">
-                                    <p>Estatus: {{ $pedido->status }}</p>
-                                    <p>C.I.: {{ $pedido->documento_de_identidad }}</p>
-                                    <p>Medio de pago: {{ $pedido->medio_de_pago }}</p>
-                                    <p>Factura: {{ $pedido->numero_de_factura }}</p>
                                     <p>Dirección: {{ $pedido->direccion }}</p>
                                     <p>Teléfono: {{ $pedido->telefono }}</p>
                                     @if($pedido->costo_de_envio)
                                         <p>Localidad: {{ $pedido->costo_de_envio->region }}</p>
                                         <p>Departamento: {{ $pedido->costo_de_envio->departamento}}</p>
                                     @endif
-                                    <h3>Detalle del pedido:</h3>
                                     <ul>
+                                        <h3>Detalle del pedido:</h3>
                                         @foreach($pedido->productos as $producto)
                                             <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
                                         @endforeach
                                     </ul>
+                                    <p>Estatus: {{ $pedido->status }}</p>
+                                    <p>C.I.: {{ $pedido->documento_de_identidad }}</p>
+                                    <p>Medio de pago: {{ $pedido->medio_de_pago }}</p>
+                                    <p>Factura: {{ $pedido->numero_de_factura }}</p>
+                                    
+                                    
                                 </div>
 
                             </div>

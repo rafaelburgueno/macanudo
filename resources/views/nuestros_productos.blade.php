@@ -63,7 +63,7 @@
                 <!-- boton de comprar -->
                 <!-- TODO: suma el producto al carrito y nos lleva a la pagina de carrito -->
                 <!-- boton de comprar -->
-                <a onclick="anadirAlCarrito({{$producto->id}})" class="btn1 btn-medio shadown" style="background-color:{{$producto->color}};">Comprar</a>
+                <a onclick="anadirEIeAlCarrito({{$producto->id}})" class="btn1 btn-medio shadown" style="background-color:{{$producto->color}};">Comprar</a>
 
                 <!-- boton de carrito -->
                 <!-- boton de carrito -->
@@ -101,9 +101,9 @@
 
 
   <!--slider---slider---slider---slider---slider---slider---slider---slider----->
-<div class="contenedor">
-    <div class="row m-0 p-0">
-        <div class="slider">
+<div class="contenedorr mt-3 mb-5 m-0 p-0">
+    <div class="row w-100 m-0 p-0">
+        <div class="slider w-100 m-0 p-0">
             <div class="slide-track">
                 <div class="slide">
                     <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="" />
@@ -207,6 +207,15 @@
 
 
 <script>
+
+    //let ruta_al_carrito = "{{route('mi_carrito')}}";
+    //console.log("el carrito esta en: " + ruta_al_carrito);
+
+    function anadirEIeAlCarrito(id){
+        anadirAlCarrito(id);
+        //alert("se agrego al carrito?");
+        location.replace("{{route('mi_carrito')}}");
+    }
 
     function anadirAlCarrito(id){
         let mi_carrito = [];

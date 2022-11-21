@@ -19,7 +19,7 @@ class NuestrosProductosController extends Controller
         //return view('home');
 
         // Consulta a la base de datos para traer los elementos (imágenes) que se muestran en el banner.
-        $productos = Producto::where('activo', true)->get();
+        $productos = Producto::where('activo', true)->orderBy('updated_at','desc')->get();
         
         //$eventos = Evento::where('fecha', '>', now())->where('activo', true)->where('tipo', '!=', 'taller')->orderBy('relevancia')->take(6)->get();
         //$talleres = Evento::where('fecha', '>', now())->where('activo', true)->where('tipo', 'taller')->orderBy('relevancia')->take(6)->get();

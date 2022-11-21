@@ -2,7 +2,13 @@
         style=" background-color: #1e1e1e; color:#e1e1e1; position: sticky">
 
 
-        <a class="navbar-brand navbar-logo" href="{{route('home')}}"><img src="{{asset('/storage/img/maca.1.png')}}" width="240%"></a>
+        <a class="navbar-brand navbar-logo" href="{{route('home')}}">
+            @if(request()->routeIs('home'))
+                <img src="{{asset('/storage/img/maca.1.png')}}" width="150px"> <!--width="240%"-->
+            @else
+                <img src="{{asset('/storage/img/castana negro.png')}}" width="60%"> <!--width="60%"-->
+            @endif
+        </a>
 
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

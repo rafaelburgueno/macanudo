@@ -19,6 +19,14 @@
 	// Crea un objeto de preferencia
 	$preference = new MercadoPago\Preference();
 
+    //Shipments define los costos de envio
+    $shipments = new MercadoPago\Shipments();
+    $shipments->cost = 10;
+    $shipments->mode = "not_specified";
+    $preference->shipments = $shipments;
+
+
+
 	// Crea un ítem en la preferencia
 	$item = new MercadoPago\Item();
     
@@ -38,7 +46,7 @@
     $preference = new MercadoPago\Preference();
     //...
     $preference->back_urls = array(
-        "success" => route('pay', $pedido),
+        "success" => route('pagos.pay', $pedido),
         "failure" => "http://www.tu-sitio/failure",
         "pending" => "http://www.tu-sitio/pending"
     );
@@ -94,11 +102,13 @@
     <!-- Seleccionar metodo de pago -->
     <!-- Seleccionar metodo de pago -->
     <div class="row" id="panel_seleccionar_metodo_de_pago">
+        
+        <!-- Botones de pago -->
         <div class="col-lg-6 mb-5">
             
             <div class="card">
                 <div class="card-header">
-                    <h4 class="text-center text-dark">Seleccionar metodo de pago</h4>
+                    <h4 class="text-center text-dark">Selecciona el metodo de pago</h4>
                 </div>
 
                 <div class="card-body">
@@ -110,18 +120,62 @@
                         {{--<img src="{{asset('/storage/img/mercadopago.png')}}" class="img-thumbnail" alt="...">--}}
                     </div>
 
+
                     <livewire:editar-pedido /> 
 
 
                     {{-- TODO --}}
                     <div class="m-3">
-                        <form id="form_crear_pedido" action="{{route('pedidos.carrito')}}" method="POST">
+                        {{--<form id="form_crear_pedido" action="{{route('pedidos.carrito')}}" method="POST">
                             @csrf
-                            @method('POST')
+                            @method('POST')--}}
                             <input type="hidden" id="pagar_al_recibir" name="medio_de_pago" value="pagar al recibir">
-                            <button type="submit" class="btn1 btn-rojo gris btn-block">Cancelar</button>
-                        </form>
+                            <button class="btn1 btn-rojo gris btn-block" id="btn_cancelar_compra" onclick="btn_cancelar_compra();">Cancelar</button>
+                        {{--</form>--}}
                     </div>
+
+                    <script>
+                        
+                        function btn_cancelar_compra(){
+                            //console.log("click!!!");
+                            const swalWithBootstrapButtons = Swal.mixin({
+                                customClass: {
+                                    confirmButton: 'btn btn-success',
+                                    cancelButton: 'btn btn-danger'
+                                },
+                                buttonsStyling: false
+                                })
+
+                                swalWithBootstrapButtons.fire({
+                                title: 'Esta seguro?',
+                                text: "Realmente quiere abandonar la compra?",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Si, Cancelar.',
+                                cancelButtonText: 'No',
+                                reverseButtons: true
+                                }).then((result) => {
+                                if (result.isConfirmed) {
+                                    /*swalWithBootstrapButtons.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                    );*/
+                                    location.replace("{{route('mi_carrito')}}");
+                                } /*else if (
+                                    // Read more about handling dismissals below 
+                                    result.dismiss === Swal.DismissReason.cancel
+                                ) {
+                                    swalWithBootstrapButtons.fire(
+                                    'Cancelled',
+                                    'Your imaginary file is safe :)',
+                                    'error'
+                                    )
+                                }*/
+                            })
+                        }
+                        
+                    </script>
 
                     {{--<div class="form-check my-4 text-dark">
                         <input type="checkbox" class="form-check-input" id="paypal" name="medio_de_pago" value="paypal" onclick="elegir_medio_de_pago('paypal')">
@@ -144,6 +198,50 @@
 
             </div>
         </div>
+
+        <!-- Resumen de la compra -->
+        <div class="col-lg-6">
+            <div class="cardd p-0 mb-5">
+                <div class="card-headerr">
+                    <h4 class="text-center">Resumen de la compra</h4>
+                </div>
+                <div class="card-bodyy">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <table class="table table-sm table-dark">
+                                <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Precio unitario</th>
+                                    <th>Cantidad</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($pedido->productos as $producto)
+                                        <tr id="resumen-producto-{{$producto->id}}" class="producto ">
+                                            <td>{{$producto->nombre}}</td>
+                                            <td>{{$producto->precio}} $</td>
+                                            <td>{{ $producto->pivot->unidades }}</td>
+                                            <td>{{($producto->precio * $producto->pivot->unidades)}} $</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="float-right pl-2">
+                                <p>SubTotal: $ UYU</p>
+                                <p>Envío: 0 $ UYU</p>
+                                <p>Descuento: 0 %</p>
+                                <p class="h5">Total: {{$pedido->monto}} $ UYU</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN del Resumen de la compra -->
+        </div>
     </div>
 	
 </div>
@@ -151,13 +249,13 @@
 
 <script>
 
-	
-
-
-
-
-
-
+    $(document).ready(function(){
+        $("#pedidoId").val('{{$pedido->id}}');
+        /*$("#pedidoId").val();*/
+        
+    });
+    
+    
 </script>
 
 <!-- SDK MercadoPago.js V2 -->

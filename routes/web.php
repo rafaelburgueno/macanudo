@@ -18,6 +18,7 @@ use App\Http\Controllers\NuestrosProductosController;
 use App\Http\Controllers\MiCarritoController;
 use App\Http\Controllers\WebhooksController;
 use App\Http\Controllers\ClubMacanudoController;
+use App\Http\Controllers\PagosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -260,7 +261,7 @@ Route::controller(PedidoController::class)->group(function () {
     Route::get('pedidos', 'index')->name('pedidos.index')->middleware('acceso.administrador');
     /*Route::get('pedidos/create', 'create')->name('pedidos.create');*/
     Route::post('pedidos', 'store')->name('pedidos.store')->middleware('acceso.administrador');
-    Route::post('pedidos', 'carrito')->name('pedidos.carrito');
+    /*Route::post('pedidos', 'carrito')->name('pedidos.carrito');*/
     /*Route::get('pedidos/{pedido}', 'show')->name('pedidos.show')->middleware('acceso.administrador');*/
     Route::get('pedidos/{pedido}/edit', 'edit')->name('pedidos.edit')->middleware('acceso.administrador');
     Route::put('pedidos/{pedido}', 'update')->name('pedidos.update')->middleware('acceso.administrador');
@@ -278,11 +279,12 @@ Route::controller(PedidoController::class)->group(function () {
 | 
 | 
 */
-Route::get('/realizar_pago/{pedido}', [PedidoController::class, 'realizarPago'])->name('realizar_pago');
+Route::get('/realizar_pago/{pedido}', [PagosController::class, 'realizarPago'])->name('realizar_pago');
+Route::post('pagos', [MiCarritoController::class ,'verificar_carrito'])->name('pagos.verificar_carrito');
+Route::get('/pagos/{pedido}/pay', [PagosController::class, 'pay'])->name('pagos.pay');
 Route::get('/pagos/{pedido}', [PedidoController::class, 'mostrarPago'])->name('mostrar_pago');
-Route::get('/pagos/{pedido}/pay', [PedidoController::class, 'pay'])->name('pay');
 
-Route::post('webhooks', WebhooksController::class);
+Route::post('webhooks', WebhooksController::class); 
 
 
 
