@@ -62,6 +62,13 @@
 
     </head>
     <body class="font-sanss antialiasedd">
+        <style>
+            /*estos estilos arreglan el problema que los links no se ven en esta pagina*/
+            .collapse{
+                visibility: visible;
+                padding-right: 7%;
+            }
+        </style>
         @include('partials.nav')
         <x-jet-banner />
 

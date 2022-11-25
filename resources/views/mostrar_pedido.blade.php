@@ -28,6 +28,8 @@
                 </style>
                 <tr><td>Id: </td><td>{{$pedido->id}}</td></tr>
                 <tr><td>Status: </td><td>{{$pedido->status}}</td></tr>
+                <tr><td>Medio de pago: </td><td>{{$pedido->medio_de_pago}}</td></tr>
+                <tr><td>Estado del pago: </td><td>{{$pedido->estado_del_pago}}</td></tr>
                 <tr><td>Tipo: </td><td>{{$pedido->tipo}}</td></tr>
                 <tr><td>Monto: </td><td>{{$pedido->monto}} $</td></tr>
 

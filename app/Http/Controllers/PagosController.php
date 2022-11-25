@@ -50,8 +50,8 @@ class PagosController extends Controller
 
         if($pedido->medio_de_pago ==  'sin definir' ){
             $pedido->status = 'pedido';
-            $pedido->medio_de_pago ==  'pagar al recibir';
-            $pedido->estado_del_pago ==  'pendiente';
+            $pedido->medio_de_pago =  'pagar al recibir';
+            $pedido->estado_del_pago =  'pendiente';
             $pedido->save();
             //dd($pedido->status);
 

@@ -40,7 +40,7 @@
                 <div class="card-img-overlay">
                 <h4 class="card-title tituloProducto shadown" style="background-color:{{$producto->color}};">{{$producto->nombre}}</h4>
                 <br>
-                <p class="card-text parrafoProd" style="opacity:60%; background-color:{{$producto->color}};">
+                <p class="card-text parrafoProd px-1" style="opacity:60%; background-color:{{$producto->color}};">
                     {{--{{Str::of($producto->descripcion)->limit(50)}}
                     {{Str::of($producto->descripcion)->words(10, '...')}}--}}
                     {{Str::of($producto->descripcion)->words(10, '...')}}
@@ -194,9 +194,7 @@
                 <img class="img-fluid" src="{{asset('/storage/img/roque-info.png')}}">
 
                 <p class="" style="color:{{$producto->color}};">¿Más datos? Consultá la sección de 
-                    <a href="preguntas_frecuentes.html">
-                        preguntas frecuentes
-                    </a>
+                    <a href="#" data-toggle="modal" data-target="#preguntas_frecuentes">Preguntas frecuentes</a>
                 </p>
 
             </div>

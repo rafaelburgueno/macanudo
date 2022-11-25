@@ -102,29 +102,38 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content negro">
                                 <div class="modal-header text-center">
+                                    <h5 class="modal-title" id="info_del_pedido_{{ $pedido->id }}Label">{{$pedido->created_at}}</h5><br>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
 
-                                <h5 class="modal-title text-center" id="info_del_pedido_{{ $pedido->id }}Label">{{$pedido->nombre}}</h5><br>
-                                <h4 class="text-center rojo">{{ $pedido->monto }} $</h4><br>
+                                {{--<h4 class="text-center rojo">{{ $pedido->monto }} $</h4><br>--}}
                                 
                                 <div class="modal-body ">
-                                    <p>Status: {{ $pedido->status }}</p>
-                                    <p>Medio de pago: {{ $pedido->medio_de_pago }}</p>
-                                    <p>Estado del pago: {{ $pedido->estado_del_pago }}</p>
-                                    <p>Factura: {{ $pedido->numero_de_factura }}</p>
+                                    <!-- Botones para editar el pedido -->
+                                    <!-- Botones para editar el pedido -->
+                                    {{--<livewire:editar-pedido />--}}
+                                    @livewire('editar-pedido', [$pedido])
+                                    <!-- Botones para editar el pedido -->
+                                    <!-- Botones para editar el pedido -->
                                     <hr>
-                                    <p>Dirección: {{ $pedido->direccion }}</p>
-                                    <p>Teléfono: {{ $pedido->telefono }}</p>
-                                    <p>C.I.: {{ $pedido->documento_de_identidad }}</p>
+                                    <p>Monto: <strong>{{ $pedido->monto }} $</strong></p>
+                                    {{--<p>Status: <strong>{{ $pedido->status }}</strong></p>--}}
+                                    <p>Medio de pago: <strong>{{ $pedido->medio_de_pago }}</strong></p>
+                                    {{--<p>Estado del pago: <strong>{{ $pedido->estado_del_pago }}</strong></p>--}}
+                                    <p>Factura: <strong>{{ $pedido->numero_de_factura }}</strong></p>
+                                    <hr>
+                                    <p>Nombre: <strong>{{ $pedido->nombre }}</strong></p>
+                                    <p>Dirección: <strong>{{ $pedido->direccion }}</strong></p>
+                                    <p>Teléfono: <strong>{{ $pedido->telefono }}</strong></p>
+                                    <p>C.I.: <strong>{{ $pedido->documento_de_identidad }}</strong></p>
                                     @if($pedido->costo_de_envio)
-                                        <p>Localidad: {{ $pedido->costo_de_envio->region }}</p>
-                                        <p>Departamento: {{ $pedido->costo_de_envio->departamento}}</p>
+                                        <p>Localidad: <strong>{{ $pedido->costo_de_envio->region }}</strong></p>
+                                        <p>Departamento: <strong>{{ $pedido->costo_de_envio->departamento }}</strong></p>
                                     @endif
                                     <hr>
-                                    <h3>Productos:</h3>
+                                    <h4>Productos:</h4>
                                     <ul>
                                         @foreach($pedido->productos as $producto)
                                             <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
