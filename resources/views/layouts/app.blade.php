@@ -56,14 +56,19 @@
 
         <!-- Styles -->
         @livewireStyles
+
+         <!-- ESTILOS CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/index.css')}}">
+
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sanss antialiasedd">
+        @include('partials.nav')
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
             {{--@livewire('navigation-menu')--}}
             <!-- Header -->
-            @include('partials.nav')
+            {{--@include('partials.nav')--}}
 
             <!-- Page Heading -->
             @if (isset($header))

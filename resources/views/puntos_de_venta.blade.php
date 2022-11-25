@@ -15,7 +15,7 @@
 
 <div class="container">
     <div class="card map-responsive">
-        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=13Y16rpsNzvf6A2ybMbV-TEEtXPgdehY&ehbc=2E312F" height="640"></iframe>
+        <iframe src="https://www.google.com/maps/d/embed?mid=1ycvQhsZ8ift8jHkpa9kqeslwAOlTNis&ehbc=2E312F" height="640"></iframe>
         <!--<h5 class="m-1 text-center text-dark">Mapa de los puntos de Venta</h5>-->
     </div>
 </div>

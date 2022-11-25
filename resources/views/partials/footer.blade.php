@@ -11,7 +11,7 @@
                     <p><a class="nav-link" href="{{route('nuestros_productos')}}">Productos</a></p>
                     <p><a class="nav-link" href="{{route('puntos_de_venta')}}">Puntos de venta</a></p>
                     <p><a class="nav-link" href="{{route('club_macanudo')}}">Club Macanudo</a></p>
-                    <p><a class="nav-link" href="{{route('blog.index')}}">Blog</a></p>
+                    {{--<p><a class="nav-link" href="{{route('blog.index')}}">Blog</a></p>--}}
                     <p><a class="nav-link" href="{{route('mi_carrito')}}">Mi carrito</a></p>
                     <p><a class="nav-link" href="{{route('profile.show')}}">Mi perfil</a></p>
 
@@ -19,11 +19,11 @@
 
                 <div class="col-sm-4 d-flex flex-column align-items-center">
                     <h5 class="text-center mr-4">Institucional</h5>
-                    <p><a class="nav-link" href="preguntas_frecuentes.html">Preguntas frecuentes</a> </p>
-                    <p><a class="nav-link" href="terminos_condiciones.html">Terminos y condiciones</a> </p>
-                    <p><a class="nav-link" href="politicas_privacidad.html">Politicas de privacidad</a> </p>
+                    <p><a class="nav-link" href="#" data-toggle="modal" data-target="#preguntas_frecuentes">Preguntas frecuentes</a> </p>
+                    <p><a class="nav-link" href="#" data-toggle="modal" data-target="#modal_terminos_y_condiciones">Terminos y condiciones</a> </p>
+                    <p><a class="nav-link" href="#" data-toggle="modal" data-target="#politicas_de_privacidad">Politicas de privacidad</a> </p>
                     <p><a class="nav-link" href="#" class="link" data-toggle="modal" data-target="#politicas_de_envio">Políticas de envío</a></p>
-                    <p><a class="nav-link" href="vender_macanudo.html">Vender Macanudo</a></p>
+                    <p><a class="nav-link" href="#" data-toggle="modal" data-target="#vender_macanudo">Vender Macanudo</a></p>
 
                 </div>
 
@@ -36,7 +36,7 @@
                         <p></p>
                         <p><span class="oi oi-phone footer-address-icon"></span> 099 760 201</p>
                         <p></p>
-                        <p><span class="oi oi-envelope-closed footer-address-icon"></span>contacto@macanudo.com</p>
+                        <p><span class="oi oi-envelope-closed footer-address-icon"></span>contacto@macanudonoqueso.com</p>
                     </address><br><br>
                     <img src="{{asset('/storage/img/macanudo_logoNegro.png')}}" width="70%" /><br>
 
@@ -78,8 +78,123 @@
         </footer>
     </div>
 
-<!--MODAL POLITICAS DE ENTREGA--MODAL POLITICAS DE ENTREGA--MODAL POLITICAS DE ENTREGA-->
-<!--MODAL POLITICAS DE ENTREGA--MODAL POLITICAS DE ENTREGA--MODAL POLITICAS DE ENTREGA-->
+<!--MODAL PREGUNTAS FRECUENTES--MODAL PREGUNTAS FRECUENTES--MODAL PREGUNTAS FRECUENTES-->
+<!--MODAL PREGUNTAS FRECUENTES--MODAL PREGUNTAS FRECUENTES--MODAL PREGUNTAS FRECUENTES-->
+<div class="modal fade" id="preguntas_frecuentes" tabindex="-1" role="dialog" aria-labelledby="preguntas_frecuentesLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content align-items-center negro">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <h5 class="modal-title text-center" id="preguntas_frecuentesLabel">Preguntas frecuentes</h5><br>
+            <div class="modal-body">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+                    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!--MODAL TERMINOS Y CONDICIONES -- MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES-->
+<!--MODAL TERMINOS Y CONDICIONES -- MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES-->
+<div class="modal fade" id="modal_terminos_y_condiciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog negro" role="document">
+        <div class="modal-content align-items-center">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="borrar()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <h5 class="modal-title text-center" id="exampleModalLabel">Términos y condiciones</h5>
+            <div class="modal-body">
+                <p> al aceptar la suscripci+on mensual etc etc etc etc<br>al aceptar la suscripci+on mensual etc etc
+                    etc etc. al aceptar la suscripci+on mensual etc etc etc etc,al aceptar la suscripci+on mensual
+                    etc etc etc etc</p>
+                <p> al aceptar la suscripci+on mensual etc etc etc etc<br>al aceptar la suscripci+on mensual etc etc
+                    etc etc. al aceptar la suscripci+on mensual etc etc etc etc,al aceptar la suscripci+on mensual
+                    etc etc etc etc al aceptar la suscripci+on mensual etc etc etc etc<br>al aceptar la suscripci+on
+                    mensual etc etc etc etc. al aceptar la suscripci+on mensual etc etc etc etc,al aceptar la
+                    suscripci+on mensual etc etc etc etc al aceptar la suscripci+on mensual etc etc etc etc<br>al
+                    aceptar la suscripci+on mensual etc etc etc etc. al aceptar la suscripci+on mensual etc etc etc
+                    etc,al aceptar la suscripci+on mensual etc etc etc etc</p>
+                <p> al aceptar la suscripci+on mensual etc etc etc etc<br>al aceptar la suscripci+on mensual etc etc
+                    etc etc. al aceptar la suscripci+on mensual etc etc etc etc,al aceptar la suscripci+on mensual
+                    etc etc etc etc al aceptar la suscripci+on mensual etc etc etc etc<br>al aceptar la suscripci+on
+                    mensual etc etc etc etc. al aceptar la suscripci+on mensual etc etc etc etc,al aceptar la
+                    suscripci+on mensual etc etc etc etc al aceptar la suscripci+on mensual etc etc etc etc<br>al
+                    aceptar la suscripci+on mensual etc etc etc etc. al aceptar la suscripci+on mensual etc etc etc
+                    etc,al aceptar la suscripci+on mensual etc etc etc etc al aceptar la suscripci+on mensual etc
+                    etc etc etc<br>al aceptar la suscripci+on mensual etc etc etc etc. al aceptar la suscripci+on
+                    mensual etc etc etc etc,al aceptar la suscripci+on mensual etc etc etc etc al aceptar la
+                    suscripci+on mensual etc etc etc etc<br>al aceptar la suscripci+on mensual etc etc etc etc. al
+                    aceptar la suscripci+on mensual etc etc etc etc,al aceptar la suscripci+on mensual etc etc etc
+                    etc al aceptar la suscripci+on mensual etc etc etc etc<br>al aceptar la suscripci+on mensual etc
+                    etc etc etc. al aceptar la suscripci+on mensual etc etc etc etc,al aceptar la suscripci+on
+                    mensual etc etc etc etc al aceptar la suscripci+on mensual etc etc etc etc<br>al aceptar la
+                    suscripci+on mensual etc etc etc etc. al aceptar la suscripci+on mensual etc etc etc etc,al
+                    aceptar la suscripci+on mensual etc etc etc etc al aceptar la suscripci+on mensual etc etc etc
+                    etc<br>al aceptar la suscripci+on mensual etc etc etc etc. al aceptar la suscripci+on mensual
+                    etc etc etc etc,al aceptar la suscripci+on mensual etc etc etc etc</p>
+
+            </div>
+            {{--<div class="modal-footer">
+                <button class="btn1 btn-azul shadown" data-toggle="modal"
+                    data-target="#exampleModal1">Unirme</button>
+            </div>--}}
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<!--MODAL POLITICAS DE PRIVACIDAD--MODAL POLITICAS DE PRIVACIDAD--MODAL POLITICAS DE PRIVACIDAD-->
+<!--MODAL POLITICAS DE PRIVACIDAD--MODAL POLITICAS DE PRIVACIDAD--MODAL POLITICAS DE PRIVACIDAD-->
+<div class="modal fade" id="politicas_de_privacidad" tabindex="-1" role="dialog" aria-labelledby="politicas_de_privacidadLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content align-items-center negro">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <h5 class="modal-title text-center" id="politicas_de_privacidadLabel">Politicas de privacidad</h5><br>
+            <div class="modal-body">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+                    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!--MODAL POLITICAS DE ENVIO--MODAL POLITICAS DE ENVIO--MODAL POLITICAS DE ENVIO-->
+<!--MODAL POLITICAS DE ENVIO--MODAL POLITICAS DE ENVIO--MODAL POLITICAS DE ENVIO-->
 <div class="modal fade" id="politicas_de_envio" tabindex="-1" role="dialog" aria-labelledby="politicas_de_envioLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content align-items-center negro">
@@ -89,7 +204,7 @@
             </button>
             </div>
             <h5 class="modal-title text-center" id="politicas_de_envioLabel">Politicas
-            de entrega
+            de envio
             </h5><br>
             <div class="modal-body">
             <h4 class="text-center rojo">El envío tiene un costo de $60</h4><br>
@@ -99,6 +214,36 @@
             <p>- Primer y Tercer jueves de cada mes se entrega en Maldonado</p>
             <p>- Se puede retirar en la planta ubicada en La Floresta, Canelones.</p>
             <p>- Puedes consultar los puntos de venta <a href="{{route('puntos_de_venta')}}">aquí</a></p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<!--MODAL VENDER MACANUDO--MODAL VENDER MACANUDO--MODAL VENDER MACANUDO-->
+<!--MODAL VENDER MACANUDO--MODAL VENDER MACANUDO--MODAL VENDER MACANUDO-->
+<div class="modal fade" id="vender_macanudo" tabindex="-1" role="dialog" aria-labelledby="vender_macanudoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content align-items-center negro">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <h5 class="modal-title text-center" id="vender_macanudoLabel">Vender Macanudo</h5><br>
+            <div class="modal-body">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+                    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
             </div>
 
         </div>

@@ -30,7 +30,7 @@ class MiCarritoController extends Controller
 
 
     /**
-     * recalcula los datos del carrito y si los datos de costos son correctos habilita la opcion de realizar pago 
+     * recalcula los datos del carrito y si los datos de costos son correctos redirige a la ruta de realizar pago 
      *
      * @param  \App\Http\Requests\StoreProductoRequest  $request
      * @return \Illuminate\Http\Response
@@ -64,7 +64,7 @@ class MiCarritoController extends Controller
         $pedido = new Pedido();
 
         //$pedido->status =  $request->status;
-        $pedido->status =  'sin definir la forma de pago';
+        $pedido->status =  'verificado';
         $pedido->tipo = $request->tipo;
 
         /*if($request->canasta_id){
@@ -105,7 +105,8 @@ class MiCarritoController extends Controller
             //$cupon->save();
         }
 
-        $pedido->medio_de_pago = $request->medio_de_pago;
+        $pedido->medio_de_pago = 'sin definir';
+        //$pedido->estado_del_pago = 'pendiente';
 
 
         // los datos del request llegan como un array dentro del primer elemento de un array
@@ -129,10 +130,14 @@ class MiCarritoController extends Controller
         $total_de_la_compra = $suma_de_productos_con_descuento + $costo_de_envio;
         //dd($total_de_la_compra);
 
+        //=============================================================
+        // Aca se hace la verificacion final del los datos que llegan
+        //=============================================================
         if($total_de_la_compra != $monto_desde_el_front){
             session()->flash('error', 'La compra fue rechazada por incongruencia de los datos.');
             return redirect() -> route('mi_carrito');
         }
+
 
         $pedido->monto = $total_de_la_compra;
 

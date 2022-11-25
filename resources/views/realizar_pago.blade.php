@@ -46,9 +46,9 @@
     $preference = new MercadoPago\Preference();
     //...
     $preference->back_urls = array(
-        "success" => route('pagos.pay', $pedido),
-        "failure" => "http://www.tu-sitio/failure",
-        "pending" => "http://www.tu-sitio/pending"
+        "success" => route('pagos.mercadopago', $pedido),
+        "failure" => route('pagos.mercadopago', $pedido),
+        "pending" => route('pagos.mercadopago', $pedido)
     );
     $preference->auto_return = "approved";
 
@@ -115,6 +115,7 @@
 
                     <div class="m-3">
                         {{--<input type="checkbox" class="form-check-input" id="mercado_pago" name="medio_de_pago" value="mercado pago" onclick="elegir_medio_de_pago('mercado pago')">--}}
+                        {{-- TODO:  --}} 
                         <div class="cho-container btn-block"></div>
                         {{--<label class="form-check-label" for="mercado_pago">Mercado pago</label>--}}
                         {{--<img src="{{asset('/storage/img/mercadopago.png')}}" class="img-thumbnail" alt="...">--}}

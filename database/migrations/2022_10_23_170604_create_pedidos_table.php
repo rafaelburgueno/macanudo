@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
 
-            $table->string('status', 50); //'pedido', 'preparando/despachando', 'en camino', 'entregado'
+            $table->string('status', 50); //'verificado', 'pedido', 'preparando/despachando', 'en camino', 'entregado'
             $table->string('tipo', 50)->nullable(); // 'pedido normal', 'club del queso'
 
             $table->unsignedBigInteger('canasta_id')->nullable();
@@ -40,7 +40,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cupon_id')->nullable();
             $table->foreign('cupon_id')->references('id')->on('cupons')->onDelete('set null');
             
-            $table->string('medio_de_pago', 50)->nullable();
+            $table->string('medio_de_pago', 50)->nullable();//'sin definir', 'pagar al recibir', 'mercadopago'
             $table->integer('monto');
             $table->boolean('recibir_novedades')->default(true);
             $table->string('tipo_de_cliente', 50)->nullable();

@@ -31,6 +31,34 @@
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <!--input para el medio_de_pago-->
+                        <div class="form-group mb-3">
+                            <label for="medio_de_pago">Medio de pago</label>
+                            <input required type="text" class="form-control" id="medio_de_pago" name="medio_de_pago" placeholder="..." value="{{old('medio_de_pago', $pedido->medio_de_pago)}}">
+                            @error('medio_de_pago')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!--input para el estado_del_pago-->
+                        <div class="form-group mb-3">
+                            <label for="estado_del_pago">Estado del pago</label>
+                            <input required type="text" class="form-control" id="estado_del_pago" name="estado_del_pago" placeholder="..." value="{{old('estado_del_pago', $pedido->estado_del_pago)}}">
+                            @error('estado_del_pago')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!--input para el numero_de_factura-->
+                        <div class="form-group mb-3">
+                            <label for="numero_de_factura">Numero de factura</label>
+                            <input type="number" class="form-control" id="numero_de_factura" name="numero_de_factura" placeholder="..." value="{{old('numero_de_factura', $pedido->numero_de_factura)}}" min="0" style="width: 100%;">
+                            @error('numero_de_factura')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         {{--<div class="form-group mb-3">
                             <label for="status">Status</label>
                             <select class="form-control" id="status" name="status">
@@ -46,7 +74,7 @@
 
 
                         <!--input para el tipo-->
-                        <div class="form-group mb-3">
+                        {{--<div class="form-group mb-3">
                             <label for="tipo">tipo</label>
                             <select class="form-control" id="tipo" name="tipo">
                                 <option value="pedido normal" @selected((old('tipo') == "pedido normal") || $pedido->tipo == "pedido normal" )>Pedido normal</option>
@@ -55,7 +83,7 @@
                             @error('tipo')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
                         
                         <!--input para el status-->
@@ -86,8 +114,25 @@
                             @enderror
                         </div>--}}
 
-                        <!--input para el telefono-->
-                        <div class="form-group mb-3">
+                       
+
+                        <!--input para la Pais-->
+                        {{--<div class="form-group mb-3">
+                            <label for="Pais">Pais</label>
+                            <input type="text" class="form-control" id="pais" name="pais" placeholder="..." value="{{old('pais', $pedido->pais)}}">
+                            @error('Pais')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>--}}
+
+
+                    </div>
+                
+                    <div class="col-md-6">
+
+
+                         <!--input para el telefono-->
+                         <div class="form-group mb-3">
                             <label for="telefono">Telefono</label>
                             <input type="number" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono', $pedido->telefono)}}" min="0" style="width: 100%;">
                             @error('telefono')
@@ -124,20 +169,6 @@
                             @enderror
                         </div>
 
-                        <!--input para la Pais-->
-                        {{--<div class="form-group mb-3">
-                            <label for="Pais">Pais</label>
-                            <input type="text" class="form-control" id="pais" name="pais" placeholder="..." value="{{old('pais', $pedido->pais)}}">
-                            @error('Pais')
-                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                            @enderror
-                        </div>--}}
-
-
-                    </div>
-                
-                    <div class="col-md-6">
-
                         <!--input para el monto-->
                         {{--<div class="form-group mb-3">
                             <label for="monto">Monto</label>
@@ -157,22 +188,15 @@
                         </div>--}}
 
                         <!--input para la tipo_de_cliente-->
-                        <div class="form-group mb-3">
+                        {{--<div class="form-group mb-3">
                             <label for="tipo_de_cliente">Tipo de cliente</label>
                             <input type="text" class="form-control" id="tipo_de_cliente" name="tipo_de_cliente" placeholder="..." value="{{old('tipo_de_cliente', $pedido->tipo_de_cliente)}}">
                             @error('tipo_de_cliente')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
-                        <!--input para el numero_de_factura-->
-                        <div class="form-group mb-3">
-                            <label for="numero_de_factura">Numero de factura</label>
-                            <input type="number" class="form-control" id="numero_de_factura" name="numero_de_factura" placeholder="..." value="{{old('numero_de_factura', $pedido->numero_de_factura)}}" min="0" style="width: 100%;">
-                            @error('numero_de_factura')
-                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        
 
 
                         {{--<div class="form-group mb-3 border rounded border-light p-2">

@@ -19,6 +19,7 @@ use App\Http\Controllers\MiCarritoController;
 use App\Http\Controllers\WebhooksController;
 use App\Http\Controllers\ClubMacanudoController;
 use App\Http\Controllers\PagosController;
+use App\Http\Controllers\ComentarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -240,7 +241,7 @@ Route::controller(PostController::class)->group(function () {
 | Esta ruta solo devuelve una vista, por lo tanto no es 
 | necesario utilizar un controlador.
 */
-Route::get('/mi_carrito', MiCarritoController::class)->name('mi_carrito')->middleware('mantenimiento'); 
+Route::get('/mi_carrito', MiCarritoController::class)->name('mi_carrito'); //->middleware('mantenimiento'); 
 /*Route::get('/mi_carrito', function () {
     return view('mi_carrito');
     //return "mi_carrito";
@@ -262,7 +263,10 @@ Route::controller(PedidoController::class)->group(function () {
     /*Route::get('pedidos/create', 'create')->name('pedidos.create');*/
     Route::post('pedidos', 'store')->name('pedidos.store')->middleware('acceso.administrador');
     /*Route::post('pedidos', 'carrito')->name('pedidos.carrito');*/
-    /*Route::get('pedidos/{pedido}', 'show')->name('pedidos.show')->middleware('acceso.administrador');*/
+    
+    // esta ruta se usa para que los cliente vean su pedido
+    //Route::get('pedidos/{pedido}', 'show')->name('pedidos.show');
+
     Route::get('pedidos/{pedido}/edit', 'edit')->name('pedidos.edit')->middleware('acceso.administrador');
     Route::put('pedidos/{pedido}', 'update')->name('pedidos.update')->middleware('acceso.administrador');
     Route::delete('pedidos/{pedido}', 'destroy')->name('pedidos.destroy')->middleware('acceso.administrador');
@@ -279,13 +283,36 @@ Route::controller(PedidoController::class)->group(function () {
 | 
 | 
 */
+//recalcula los datos del carrito y si los datos de costos son correctos redirige a la ruta de realizar pago 
+Route::post('verificar_carrito', [MiCarritoController::class ,'verificar_carrito'])->name('verificar_carrito');
+
+// esta ruta verifica el estatus del pedido y nos lleva a la vista con las opciones de pago
 Route::get('/realizar_pago/{pedido}', [PagosController::class, 'realizarPago'])->name('realizar_pago');
-Route::post('pagos', [MiCarritoController::class ,'verificar_carrito'])->name('pagos.verificar_carrito');
-Route::get('/pagos/{pedido}/pay', [PagosController::class, 'pay'])->name('pagos.pay');
-Route::get('/pagos/{pedido}', [PedidoController::class, 'mostrarPago'])->name('mostrar_pago');
+
+//
+Route::get('/pagos/{pedido}/mercadopago', [PagosController::class, 'mercadopago'])->name('pagos.mercadopago');
+//Route::get('/pagos/{pedido}', [PedidoController::class, 'mostrarPago'])->name('mostrar_pago');
+
+//
 Route::put('pagos/{pedido}', [PagosController::class ,'pagar_al_recibir'])->name('pagos.pagar_al_recibir');
 
+// esta ruta se usa para que los cliente vean su pedido
+Route::get('ver_pedido/{pedido}', [PedidoController::class, 'show'])->name('ver_pedido');
+
+//
 Route::post('webhooks', WebhooksController::class); 
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| CONTACTO 
+|--------------------------------------------------------------------------
+| esta ruta es exclusiva para recivir el formulario de contacto
+| 
+*/
+Route::post('contacto', [ComentarioController::class, 'formulario_de_contacto'])->name('formulario_de_contacto'); 
 
 
 

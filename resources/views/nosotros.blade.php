@@ -17,8 +17,8 @@
         <div class="col-sm-3"></div>
     </div>
 
-    <div class="row ">
-        <div class="col  px-5">
+    <div class="row">
+        <div class="col px-5">
             <h1 class="text-center" style="color: #e1e1e1;   text-shadow: 1.5px 1.5px  var(--lila);">
                 Todo eso pensamos cuando descubrimos nuestras recetas.
             </h1>
@@ -66,7 +66,7 @@
     
     <div class="row">
         <div class="col  px-5">
-            <h3 class="text-center scroll-content fadeTop rojo">
+            <h3 class="text-center scroll-content fadeTop gris">
                 Hoy nuestra misión es poder llevar nuestros productos <br>a todos los rincones del mundo.<br> En Macanudo
                 elaboramos alimentos de forma artesanal<br> para que las personas puedan disfrutar<br> de manera más
                 saludable y nutritiva,<br> priorizando realizar un proceso sustentable para el planeta <br>y
@@ -77,9 +77,9 @@
 
     <div class="row">
         <div class="col  px-5">
-            <h4 class="text-center scroll-content fadeTop lila">Nuestra vision es contribuir a mejorar la salud de las personas,<br> queremos generar conciencia en
+            <h3 class="text-center scroll-content fadeTop gris">Nuestra vision es contribuir a mejorar la salud de las personas,<br> queremos generar conciencia en
                 el consumo de alimentos,<br> alentar a realizar cambios en los hábitos alimenticios, <br>creemos que
-                con pequeños pasos podemos empezar a cambiar el 🌎</h4><br>
+                con pequeños pasos podemos empezar a cambiar el 🌎</h3><br>
             <br>
         </div>
 
@@ -87,11 +87,11 @@
 
     <div class="row">
         <div class="col  px-5">
-            <h5 class="text-center scroll-content fadeTop gris
+            <h3 class="text-center scroll-content fadeTop gris
                 ">En Macanudo respetamos a los humanos, los animales y al planeta.<br> Todos los días
                 trabajamos bajo esa premisa,<br> cuidando la salud, el medioambiente<br> y sin involucrar
                 animales<br> en ninguna parte del proceso.
-            </h5><br><br><br>
+            </h3><br><br><br>
         </div>
 
     </div>

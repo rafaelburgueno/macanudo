@@ -22,7 +22,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{route('nuestros_productos')}}" style=" {{request()->routeIs('nuestros_productos') ? 'color: var(--lila);' : ''}}">PRODUCTOS</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('puntos_de_venta')}}" style=" {{request()->routeIs('puntos_de_venta') ? 'color: var(--lila);' : ''}}">PUNTOS DE VENTA</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('club_macanudo')}}" style=" {{request()->routeIs('club_macanudo') ? 'color: var(--lila);' : ''}}">CLUB MACANUDO</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{route('blog.index')}}" style=" {{request()->routeIs('blog.*') ? 'color: var(--lila);' : ''}}">BLOG</a></li>
+                {{--<li class="nav-item"><a class="nav-link" href="{{route('blog.index')}}" style=" {{request()->routeIs('blog.*') ? 'color: var(--lila);' : ''}}">BLOG</a></li>--}}
 
 
             </ul>
@@ -130,7 +130,7 @@
 
                 </ul>
             @else
-
+            {{-- 
             <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('login')}}" class="ml-5" alt="Iniciar sesión">
@@ -142,7 +142,7 @@
                     </svg></a>
                 </li>
             </ul>
-
+            --}}
             @endif
 
         </div>

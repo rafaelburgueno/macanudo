@@ -30,7 +30,7 @@
 @endphp--}}
 
 
-<div class="text-center text-white my-4">
+<div id="h1" class="text-center text-white my-4">
     <h1 class="text-center pt-2">MI CARRITO</h1>
 </div>
 
@@ -184,21 +184,21 @@
 					<strong>Métodos de envío</strong>
 				</div>
 
-					<ul class="list-group list-group-flush">
-						@foreach ($costos_de_envio as $costo_de_envio)
-							<li class="list-group-item">
-								<input class="recalcularCostoDeEnvio" type="radio" id="costo_de_envio-{{ $costo_de_envio->id }}" value="1" @checked(($costo_de_envio->costo_de_envio == 0))  name="costo_de_envio_id" onchange="recalcularCostoDeEnvio({{ $costo_de_envio->costo_de_envio}},{{ $costo_de_envio->id}})">
-								<label class="form-check-label " for="costo_de_envio-{{ $costo_de_envio->id }}">
-									<small>
-										@if($costo_de_envio->dia_de_entrega){{ $costo_de_envio->dia_de_entrega }} en @endif
-										@if($costo_de_envio->region){{ $costo_de_envio->region }}, @endif
-										@if($costo_de_envio->departamento){{ $costo_de_envio->departamento }}@endif .
-									</small>  {{ $costo_de_envio->costo_de_envio}} $
-								</label>
-								{{--Maldonado primer y tercer jueves de cada mes. $60--}}
-							</li>
-						@endforeach
-					</ul>
+				<ul class="list-group list-group-flush">
+					@foreach ($costos_de_envio as $costo_de_envio)
+						<li class="list-group-item">
+							<input class="recalcularCostoDeEnvio" type="radio" id="costo_de_envio-{{ $costo_de_envio->id }}" value="1" @checked(($costo_de_envio->costo_de_envio == 0))  name="costo_de_envio_id" onchange="recalcularCostoDeEnvio({{ $costo_de_envio->costo_de_envio}},{{ $costo_de_envio->id}})">
+							<label class="form-check-label " for="costo_de_envio-{{ $costo_de_envio->id }}">
+								<small>
+									@if($costo_de_envio->region){{ $costo_de_envio->region }}, @endif
+									@if($costo_de_envio->departamento){{ $costo_de_envio->departamento }}, @endif 
+									@if($costo_de_envio->dia_de_entrega){{ $costo_de_envio->dia_de_entrega }}, @endif 
+								</small>  {{ $costo_de_envio->costo_de_envio}} $
+							</label>
+							{{--Maldonado primer y tercer jueves de cada mes. $60--}}
+						</li>
+					@endforeach
+				</ul>
 				
 			</div>
 
@@ -212,7 +212,7 @@
 			<!-- calculos totales de la compra -->
 			<!-- calculos totales de la compra -->
 			<!-- calculos totales de la compra -->
-			<div class="card bg-danger text-light shadown" style="max-width:240px; margin-top: 30px; margin-left: 75px;">
+			<div class="card bg-danger text-light shadown mx-auto" style="max-width:290px; max-height:400px; margin-top: 30px;">
 				<div class="card-header">
 					<h6><strong>SubTotal: </strong><span id="sub_total_de_la_compra"></span> $ UYU</h6>
 				</div>
@@ -222,8 +222,9 @@
 				</div>
 				<div class="card-footer">
 					<h5>Total: <strong id="total_de_la_compra"></strong> $ UYU</h5>
-					<button class="btn btn-lg shadown bg-light my-2" style="color: #4554a4;" id="btn_confirmar_compra" data-toggle="modal" data-target="#resumen_de_la_compra_y_datos_del_pedido"><strong>Confirmar compra </strong></button>
-
+					<div class="text-center">
+						<button class="btn btn-lg shadown bg-light my-2 mx-auto" style="color: #4554a4;" id="btn_confirmar_compra" data-toggle="modal" data-target="#resumen_de_la_compra_y_datos_del_pedido"><strong>Confirmar compra </strong></button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -231,11 +232,6 @@
 	</div><!-- fin del row-->
 
 
-
-
-
-
-	
 
 
 
@@ -281,9 +277,9 @@
 							<div class="float-right pl-2">
 								<p>SubTotal: <span id="resumen_sub_total_de_la_compra"></span> $ UYU</p>
 								<p>Envío: <span id="resumen_costo_de_envio_final">0</span> $ UYU</p>
-								<p class="porcentage_de_descuento">Descuento: <span id="resumen_porcentage_de_descuento">0</span> %</p>
 								<p class="h5">Total: <span id="resumen_total_de_la_compra"></span> $ UYU</p>
 							</div>
+							<p class="porcentage_de_descuento">Descuento: <span id="resumen_porcentage_de_descuento">0</span> %</p>
 						</div>
 					</div>
 
@@ -446,23 +442,23 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content align-items-center negro">
             <div class="modal-header ">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close text-center" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
             </div>
             <h5 class="modal-title text-center" id="resumen_de_la_compra_y_datos_del_pedidoLabel"></h5>
             <div class="modal-body">
-            	<h4 class="text-center rojo"></h4>	
+            	
 				<!-- Resumen de la compra -->
 				<!-- Resumen de la compra -->
 				<!-- Resumen de la compra -->
-				<div class="cardd p-0 mb-5">
-					<div class="card-headerr">
+				<div class="card p-0 mb-5" id="modal_resumen_de_la_compra">
+					<div class="card-header">
 						<h4 class="text-center">Resumen de la compra</h4>
 					</div>
-					<div class="card-bodyy">
+					<div class="card-body">
 						<div class="row">
-							<div class="col-md-8">
+							<div class="col-sm">
 								<table class="table table-sm">
 									<thead>
 									<tr>
@@ -484,12 +480,21 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="col-md-4">
-								<div class="float-right pl-2">
-									<p>SubTotal: <span id="resumen_sub_total_de_la_compra"></span> $ UYU</p>
-									<p>Envío: <span id="resumen_costo_de_envio_final">0</span> $ UYU</p>
-									<p class="porcentage_de_descuento">Descuento: <span id="resumen_porcentage_de_descuento">0</span> %</p>
-									<p class="h5">Total: <span id="resumen_total_de_la_compra"></span> $ UYU</p>
+						</div>
+						<div class="row">
+							<div class="col-sm card bg-danger text-light shadown mx-auto" style="max-width:290px; max-height:400px; margin-top: 30px;">
+								<div class="card-header">
+									<h6><strong>SubTotal: </strong><span id="sub_total_de_la_compra_modal"></span> $ UYU</h6>
+								</div>
+								<div class="card-body">
+									<p><strong>Envío: </strong><span id="costo_de_envio_final_modal">0</span> $ UYU</p>
+									<p class="porcentage_de_descuento"><strong>Descuento: </strong><span id="porcentage_de_descuento_modal">0</span> %</p>
+								</div>
+								<div class="card-footer">
+									<h5>Total: <strong id="total_de_la_compra_modal"></strong> $ UYU</h5>
+									<div class="text-center">
+										<button class="btn btn-lg shadown bg-light my-2 mx-auto" style="color: #4554a4;" id="btn_confirmar_compra_modal" data-toggle="modal" data-target="#datos_del_pedido"><strong>Confirmar compra </strong></button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -498,19 +503,42 @@
 				<!-- FIN del Resumen de la compra -->
 
 
+				
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<!--MODAL DATOS DEL PEDIDO-->
+<!--MODAL DATOS DEL PEDIDO-->
+<div class="modal fade" id="datos_del_pedido" tabindex="-1" role="dialog" aria-labelledby="datos_del_pedidoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content align-items-center negro">
+            <div class="modal-header ">
+				<button type="button" class="close text-center" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+            </div>
+            <h5 class="modal-title text-center" id="datos_del_pedidoLabel"></h5>
+            <div class="modal-body">
+			
 				<!-- completar los datos del pedido -->
 				<!-- completar los datos del pedido -->
 				<!-- completar los datos del pedido -->
-				<form id="form_crear_pedido" action="{{route('pagos.verificar_carrito')}}" method="POST">
+				<form id="form_crear_pedido" action="{{route('verificar_carrito')}}" method="POST">
 					@csrf
 					@method('POST')
 
-					<div class="cardd" id="panel_completar_datos_del_pedido">
-						<div class="card-headerr">
+					<div class="card" id="modal_completar_datos_del_pedido">
+						<div class="card-header">
 							<h4 class="text-center">Datos de envío</h4>
 						</div>
 
-						<div class="card-bodyy">
+						<div class="card-body">
 							
 							<div class="row">
 								<div class="col-lg-6 ">
@@ -518,7 +546,7 @@
 									<!--input para el nombre-->
 									<div class="form-group mb-3">
 										<label for="nombre">Nombre</label>
-										<input required type="text" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}">
+										<input required type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}">
 										@error('nombre')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
@@ -527,7 +555,7 @@
 									<!--input para el email-->
 									<div class="form-group mb-3">
 										<label for="email">Email</label>
-										<input required type="text" class="form-control" id="email" name="email" placeholder="..." value="{{old('email')}}">
+										<input required type="email" class="form-control" id="email" name="email" placeholder="..." value="{{old('email')}}">
 										@error('email')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
@@ -536,7 +564,7 @@
 									<!--input para el documento_de_identidad-->
 									<div class="form-group mb-3">
 										<label for="documento_de_identidad">Documento de identidad</label>
-										<input style="width: 100%;" type="number" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" min="0">
+										<input required pattern="[0-9]{8,9}" title="Numeros sin puntos ni guiones" style="width: 100%;" type="number" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" min="1000000" max="999999999">
 										@error('documento_de_identidad')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
@@ -545,7 +573,7 @@
 									<!--input para el telefono-->
 									<div class="form-group mb-3">
 										<label for="telefono">Teléfono</label>
-										<input style="width: 100%;" type="number" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" min="0">
+										<input required pattern="[0-9]{7,8}" style="width: 100%;" type="number" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" min="1000000" max="99999999">
 										@error('telefono')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
@@ -567,7 +595,7 @@
 									<!--input para la localidad-->
 									<div class="form-group mb-3">
 										<label for="localidad">Localidad o barrio</label>
-										<input type="text" class="form-control" id="localidad" name="localidad" placeholder="..." value="{{old('localidad')}}">
+										<input required pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{5,100}" type="text" class="form-control" id="localidad" name="localidad" placeholder="..." value="{{old('localidad')}}">
 										@error('localidad')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
@@ -614,39 +642,76 @@
 							</div>
 
 							<div class="d-flex justify-content-center">
-								<button type="submit" class="btn btn-outline-success btn-block btn-lg w-50">Selecciona el medio de pago</button>
+								<button type="submit" class="btn btn-verdeC gris btn-block btn-lg w-50 btn-procesandoo">Selecciona el medio de pago</button>
 							</div>
 
+							<script>
+								$(document).ready(function(){
+									$('.btn-procesando').click(function(){
+										
+										let timerInterval
+										Swal.fire({
+										title: 'Procesando',
+										html: 'Por favor espere.',
+										//timer: 10000,
+										timerProgressBar: true,
+										didOpen: () => {
+											Swal.showLoading()
+											const b = Swal.getHtmlContainer().querySelector('b')
+											timerInterval = setInterval(() => {
+											b.textContent = Swal.getTimerLeft()
+											}, 100)
+										},
+										willClose: () => {
+											clearInterval(timerInterval)
+										}
+										}).then((result) => {
+										/* Read more about handling dismissals below */
+										if (result.dismiss === Swal.DismissReason.timer) {
+											console.log('I was closed by the timer')
+										}
+										})
+								
+									});
+								});
+								
+								</script>
 
 						</div>
 					</div>
 
 				</form>
-            </div>
-
-        </div>
-    </div>
-
+			
+			</div>
+		</div>
+	</div>
 </div>
-
-
 
 
 
 <script>
 
+
+		
+
+
 	$(document).ready(function(){
 
-		/*$("#btn_confirmar_compra").click(function(){
-			$("#panel_resumen_de_la_compra").slideDown("slow");
+		$("#btn_confirmar_compra").click(function(){
+			//$("#panel_resumen_de_la_compra").slideDown("slow");
+			$("#modal_completar_datos_del_pedido").hide();
+			$("#modal_resumen_de_la_compra").show();
 		});
 
 
-		$("#btn_comprar").click(function(){
-			$("#panel_completar_datos_del_pedido").slideDown("slow");
-		});*/
+		$("#btn_confirmar_compra_modal").click(function(){
+			$("#modal_resumen_de_la_compra").hide();
+			$("#modal_completar_datos_del_pedido").show();
+		});
 		
 
+
+		
 
 
 		//=============================================================
@@ -667,6 +732,25 @@
 		$("#input-cupon-desplegable").hide();
 
 	});
+
+
+
+
+		if ( !localStorage.getItem("carrito") ){
+			//alert('el carrito esta null: ' + localStorage.getItem("carrito"));
+
+			//document.getElementsByTagName("h1").innerHTML = "No hay productos en el carrito";
+			document.getElementById("h1").innerHTML = "<h1 class='text-center pt-2'>No hay productos en el carrito</h1> <a class='nav-link' href='" + "{{route('nuestros_productos')}}" + "'> VOLVER A PRODUCTOS</a>";
+
+			var divsToHide = document.getElementsByClassName("container"); //divsToHide is an array
+			for(var i = 0; i < divsToHide.length; i++){
+				divsToHide[i].style.visibility = "hidden"; // or
+				//divsToHide[i].style.display = "none"; // depending on what you're doing
+			}
+
+
+
+		}
 
 
 
@@ -692,7 +776,7 @@
 		mi_carrito_sin_duplicados = mi_carrito.filter((element, index) => {
 			return mi_carrito.indexOf(element) === index;
 		});
-		console.log('carrito sin duplicados: ' + mi_carrito_sin_duplicados);
+		//console.log('carrito sin duplicados: ' + mi_carrito_sin_duplicados);
 
 		for(let i = 0; i < mi_carrito_sin_duplicados.length; i++){
 			$('#producto-'+mi_carrito_sin_duplicados[i]).show();
@@ -710,7 +794,7 @@
 
 			$('#cantidad-'+mi_carrito_sin_duplicados[i]).val(cantidad);
 			//$('#cantidad-'+mi_carrito[i]).val(6);
-			$('#resumen-cantidad-'+mi_carrito_sin_duplicados[i]).html(cantidad + 1);
+			$('#resumen-cantidad-'+mi_carrito_sin_duplicados[i]).html(cantidad);
 			//console.log('muestro el producto: '+mi_carrito[i]);
 		}
 
@@ -740,7 +824,7 @@
 			toast: true,
 			position: 'top-end',
 			showConfirmButton: false,
-			timer: 6000,
+			timer: 4000,
 			timerProgressBar: true,
 			didOpen: (toast) => {
 				toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -794,16 +878,19 @@
 		console.log('el total de la compra es: '+ total_de_la_compra);*/
 
 		// escribe el decuento en el carrito y en el resumen
-		$('#resumen_porcentage_de_descuento').html(cupon_de_descuento);
 		$('#porcentage_de_descuento').html(cupon_de_descuento);
+		$('#porcentage_de_descuento_modal').html(cupon_de_descuento);
+		//$('#resumen_porcentage_de_descuento').html(cupon_de_descuento);
 
 		// escribe el sub total
 		document.getElementById("sub_total_de_la_compra").innerHTML = suma_de_productos;
-		$('#resumen_sub_total_de_la_compra').html(suma_de_productos);
+		document.getElementById("sub_total_de_la_compra_modal").innerHTML = suma_de_productos;
+		//$('#resumen_sub_total_de_la_compra').html(suma_de_productos);
 
 		// escribe el total
 		document.getElementById("total_de_la_compra").innerHTML = total_de_la_compra;
-		$('#resumen_total_de_la_compra').html(total_de_la_compra);
+		document.getElementById("total_de_la_compra_modal").innerHTML = total_de_la_compra;
+		//$('#resumen_total_de_la_compra').html(total_de_la_compra);
 		document.getElementById("monto").value = total_de_la_compra;
 
 		actualizarContadorDelCarrito();
@@ -848,7 +935,7 @@
 	// input hidden que se va a enviar al backend
 	//=============================================================
 	function elegir_medio_de_pago(medio_de_pago){
-		console.log('se ejecuto la funcion elegir_medio_de_pago: '+medio_de_pago);
+		//console.log('se ejecuto la funcion elegir_medio_de_pago: '+medio_de_pago);
 		document.getElementById("medio_de_pago").value = medio_de_pago;
 	}
 
@@ -865,7 +952,7 @@
 			mi_carrito = texto.split(",");
 		}
 
-		console.log('carrito antes de quitar producto'+ mi_carrito);
+		//console.log('carrito antes de quitar producto'+ mi_carrito);
 
 		let nuevo_carrito = mi_carrito.filter(function(elemento){
 			return elemento != id;
@@ -875,7 +962,7 @@
 		$('#producto-'+id).fadeOut();
 		$('#resumen-producto-'+id).hide();
 
-		console.log('carrito antes de quitar producto'+ nuevo_carrito);
+		//console.log('carrito antes de quitar producto'+ nuevo_carrito);
 
 		localStorage.setItem("carrito", nuevo_carrito);
 
@@ -892,6 +979,7 @@
 	function recalcularCostoDeEnvio(costo, id){
 		// escribe el campo costo_de_envio_final
 		document.getElementById("costo_de_envio_final").innerHTML = costo;
+		document.getElementById("costo_de_envio_final_modal").innerHTML = costo;
 		document.getElementById("resumen_costo_de_envio_final").innerHTML = costo;
 
 		// escribe el costo_de_envio_id en el input hidden que se envia al backend

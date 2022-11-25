@@ -13,7 +13,7 @@
 	$(document).ready( function () {
 		$('#tabla_pedidos').DataTable({
 			order: [
-				[0, 'desc']
+				[5, 'desc']
 			]
 		});
 	} );
@@ -33,8 +33,8 @@
                     <th></th>
                     {{--<th>Estatus</th>--}}
                     <th>Dirección</th>
-                    <th>Teléfono</th>
 					<th>Nombre</th>
+                    <th>Teléfono</th>
 					<th>Productos</th>
                     {{--<th>Nombre</th>
 					<th>Monto</th>--}}
@@ -48,38 +48,34 @@
                 {{--entregado-telefono-direccion- lista del pedido- nombre--}}
 			
 				@foreach ($pedidos as $pedido)
-                    @if($pedido->status == 'pago recibido')
+                    @if($pedido->estado_del_pago == 'pagado')
 					<tr style="background-color:#beffbe;">
-                    @elseif($pedido->status == 'pedido sin pagar')
+                    @elseif($pedido->estado_del_pago == 'pendiente')
 					<tr style="background-color:#ffd4db;">
-                        @elseif($pedido->status == 'pagar al retirar')
-					<tr style="background-color:#f8ff92;">
+                    {{--@elseif($pedido->estado_del_pago == 'pagar al retirar')
+					<tr style="background-color:#f8ff92;">--}}
                     @else
                     <tr>
                     @endif
                         {{--<td>
                             <a class="btn btn-outline-success" data-toggle="modal" data-target="#info_del_pedido_{{ $pedido->id }}">Ver</a></td>
                         <td>--}}
-                        @if($pedido->status == 'sin definir la forma de pago')
-                            <td class="rounded p-3">
-                        @elseif($pedido->status == 'pedido sin pagar')
-                            <td class="rounded p-3 btn-rojo">
-                        @elseif($pedido->status == 'pagar al retirar')
-                            <td class="rounded p-3 btn-amarillo">
-                        @elseif($pedido->status == 'pago recibido')
+                        @if($pedido->estado_del_pago == 'pagado')
                             <td class="rounded p-3 btn-verdeC">
+                        @elseif($pedido->estado_del_pago == 'pendiente')
+                            <td class="rounded p-3 btn-rojo">
                         @else
                             <td class="rounded p-3">
                         @endif
                             <a class="btn btn-light" data-toggle="modal" data-target="#info_del_pedido_{{ $pedido->id }}">Ver</a>
                         </td>
                         <td>{{ $pedido->direccion }}
-                        <td>{{ $pedido->telefono }}</td>
-                        <td>{{ $pedido->nombre }}</td>
                             @if($pedido->costo_de_envio)
-                                , {{ $pedido->costo_de_envio->region }}
+                            , {{ $pedido->costo_de_envio->region }}, {{ $pedido->costo_de_envio->departamento }}
                             @endif
                         </td>
+                        <td>{{ $pedido->nombre }}</td>
+                        <td>{{ $pedido->telefono }}</td>
                         <td>
                             <ul>
                                 @foreach($pedido->productos as $producto)
@@ -104,8 +100,8 @@
                     <!--MODAL CON INFORMACION DEL PEDIDO-->
                     <div class="modal fade" id="info_del_pedido_{{ $pedido->id }}" tabindex="-1" role="dialog" aria-labelledby="info_del_pedido_{{ $pedido->id }}Label" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                            <div class="modal-content align-items-center negro">
-                                <div class="modal-header">
+                            <div class="modal-content negro">
+                                <div class="modal-header text-center">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -115,22 +111,25 @@
                                 <h4 class="text-center rojo">{{ $pedido->monto }} $</h4><br>
                                 
                                 <div class="modal-body ">
+                                    <p>Status: {{ $pedido->status }}</p>
+                                    <p>Medio de pago: {{ $pedido->medio_de_pago }}</p>
+                                    <p>Estado del pago: {{ $pedido->estado_del_pago }}</p>
+                                    <p>Factura: {{ $pedido->numero_de_factura }}</p>
+                                    <hr>
                                     <p>Dirección: {{ $pedido->direccion }}</p>
                                     <p>Teléfono: {{ $pedido->telefono }}</p>
+                                    <p>C.I.: {{ $pedido->documento_de_identidad }}</p>
                                     @if($pedido->costo_de_envio)
                                         <p>Localidad: {{ $pedido->costo_de_envio->region }}</p>
                                         <p>Departamento: {{ $pedido->costo_de_envio->departamento}}</p>
                                     @endif
+                                    <hr>
+                                    <h3>Productos:</h3>
                                     <ul>
-                                        <h3>Detalle del pedido:</h3>
                                         @foreach($pedido->productos as $producto)
                                             <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
                                         @endforeach
                                     </ul>
-                                    <p>Estatus: {{ $pedido->status }}</p>
-                                    <p>C.I.: {{ $pedido->documento_de_identidad }}</p>
-                                    <p>Medio de pago: {{ $pedido->medio_de_pago }}</p>
-                                    <p>Factura: {{ $pedido->numero_de_factura }}</p>
                                     
                                     
                                 </div>

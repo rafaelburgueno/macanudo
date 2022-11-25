@@ -127,11 +127,11 @@
 <div class="contenedorr container">
     <div class="row">
         <div class="col" style="overflow: hidden;">
-            <h2 class="mb-3 text-center scroll-content fadeRight rojo">Cuidamos los recursos,</h2>
+            <h2 class="mb-3 text-center scroll-content fadeRight gris">Cuidamos los recursos,</h2>
             <br>
-            <h1 class="mb-3 text-center scroll-content fadeRight amarillo"> utilizamos materiales reutilizables,</h1>
+            <h1 class="mb-3 text-center scroll-content fadeRight gris"> utilizamos materiales reutilizables,</h1>
             <br>
-            <h3 class="mb-3 text-center scroll-content fadeRight lila">minimizamos el packaging,</h3>
+            <h3 class="mb-3 text-center scroll-content fadeRight gris">minimizamos el packaging,</h3>
             <br>
             <h1 class="mb-3 text-center scroll-content fadeRight gris"> y no involucramos animales.</h1><br>
         </div>
@@ -152,10 +152,10 @@
 <div class="contenedor mt-3 mb-5 p-3">
     <div class="row ">
         <div class="col" style="overflow: hidden;">
-            <h2 class="mb-3 text-center scroll-content fadeRight rojo">Detrás de cada producto</h2>
+            <h2 class="mb-3 text-center scroll-content fadeRight gris">Detrás de cada producto</h2>
             <br>
-            <h1 class="mb-3 text-center scroll-content fadeRight amarillo">está la mano de un artesano,</h1><br>
-            <h3 class="mb-3 text-center scroll-content fadeRight lila">que cuida todo el proceso </h3>
+            <h1 class="mb-3 text-center scroll-content fadeRight gris">está la mano de un artesano,</h1><br>
+            <h3 class="mb-3 text-center scroll-content fadeRight gris">que cuida todo el proceso </h3>
             <br>
             <h1 class="mb-3 text-center scroll-content fadeRight gris">desde la
                 castaña<br>hasta que el alimento llega a tu mesa.</h1>
@@ -183,30 +183,45 @@
         <div class="col-sm-6">
             <h4 class="text-center gris mb-3 mt-0">Mapa de los puntos de Venta</h4>
             <div class="video-responsive mb-5">
-                <iframe src="https://www.google.com/maps/d/u/0/embed?mid=13Y16rpsNzvf6A2ybMbV-TEEtXPgdehY&ehbc=2E312F" width="640" height="640"></iframe>
+                <iframe src="https://www.google.com/maps/d/embed?mid=1ycvQhsZ8ift8jHkpa9kqeslwAOlTNis&ehbc=2E312F" width="640" height="640"></iframe>
             </div>
         </div>
+
+
+        <!-- FORMULARIO DE CONTACTO -->
+        <!-- FORMULARIO DE CONTACTO -->
+        <!-- FORMULARIO DE CONTACTO -->
         <div class="col-sm-6 ">
             <h4 class="text-center gris mb-3 mt-0">Déjanos tu comentario</h4>
-            <form class=" border border-light p-3">
+            <form id="form_contacto" class="border border-light p-3" action="{{route('formulario_de_contacto')}}" method="POST">
+                    @csrf
+                    @method('POST')
+
+
                 <div class="form-row">
                     <div class="form-group col-sm">
                         <label for="nombre" class="gris">Nombre: </label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" required>
+                        <input type="text" class="form-control mb-2" id="nombre" name="nombre" placeholder="Ingrese su nombre" value="{{old('nombre')}}" requiredd>
+                        @error('nombre')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                        
                         <label for="email" class="gris">Email: </label>
-                        <input type="email" class="form-control" id="email" placeholder="Ingrese su Email" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su Email" value="{{old('email')}}" required>
+                        @error('email')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-row">
-
                     <div class="form-group col-sm d-flex flex-wrap">
-                        <textarea id="message" class="input form-control" name="message" rows="6" cols="60"
-                            placeholder="Ingrese aquí su mensaje">
-                        </textarea><br>
-
-                        <button class="btn1 btn-azul shadown mt-1">Enviar</button>
+                        <textarea id="texto" class="form-control" name="texto" rows="6" cols="60" placeholder="Ingrese aquí su mensaje">{{old('texto')}}</textarea><br>
+                        @error('texto')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
+                <button type="submit" class="btn1 btn-azul shadown mt-1">Enviar</button>
 
             </form>
         </div>

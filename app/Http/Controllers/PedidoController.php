@@ -25,7 +25,8 @@ class PedidoController extends Controller
     public function index()
     {
         
-        $pedidos = Pedido::get();
+        //$pedidos = Pedido::where('status', '!=', 'entregado')->get();
+        $pedidos = Pedido::where('medio_de_pago', '!=', 'sin definir')->where('status', '!=', 'entregado')->get();
         $canastas = Canasta::where('activo', true)->get();
         $lista_de_productos = Producto::where('activo', true)->get();
         $costos_de_envio = Costo_de_envio::where('activo', true)->get();
@@ -76,7 +77,7 @@ class PedidoController extends Controller
         
         $pedido = new Pedido();
 
-        $pedido->status = 'pedido';
+        $pedido->status = 'verificado';
         $pedido->tipo = $request->tipo;
 
         if($request->canasta_id){
@@ -101,7 +102,7 @@ class PedidoController extends Controller
             $pedido->cupon_id = $request->cupon_id;
         }
 
-        $pedido->medio_de_pago = $request->medio_de_pago;
+        $pedido->medio_de_pago = 'sin definir';
         $pedido->monto = $request->monto;
         
         if($request->recibir_novedades){
@@ -217,7 +218,7 @@ class PedidoController extends Controller
         //return $request->all();
         $request->validate([ 
             'status' => 'nullable|max:50',
-            'tipo' => 'nullable|max:50',
+            //'tipo' => 'nullable|max:50',
             'canasta_id' => 'nullable|numeric',
             //'nombre' => 'required|max:255',
             //'email' => 'required|max:255',
@@ -230,16 +231,17 @@ class PedidoController extends Controller
             //'costo_de_envio_id' => 'nullable|numeric',
             //'cupon_id' => 'nullable|numeric',
             'medio_de_pago' => 'nullable|max:50',
+            'estado_del_pago' => 'nullable|max:50',
             //'monto' => 'numeric',
-            'tipo_de_cliente' => 'nullable|max:50',
+            //'tipo_de_cliente' => 'nullable|max:50',
             'numero_de_factura' => 'nullable|numeric',
             //'productos' => 'required',
             //'cantidades' => 'required',
         ]);
 
         
-        $pedido->status = 'pedido';
-        $pedido->tipo = $request->tipo;
+        $pedido->status = $request->status;
+        //$pedido->tipo = $request->tipo;
 
         if($request->canasta_id){
             $pedido->canasta_id = $request->canasta_id;
@@ -264,6 +266,7 @@ class PedidoController extends Controller
         }*/
 
         $pedido->medio_de_pago = $request->medio_de_pago;
+        $pedido->estado_del_pago = $request->estado_del_pago;
         //$pedido->monto = $request->monto;
         
         if($request->recibir_novedades){
@@ -272,9 +275,9 @@ class PedidoController extends Controller
             $pedido->recibir_novedades = false;
         }
 
-        $pedido->tipo_de_cliente = $request->tipo_de_cliente;
+        //$pedido->tipo_de_cliente = $request->tipo_de_cliente;
         $pedido->numero_de_factura = $request->numero_de_factura;
-        $pedido->recibir_novedades = $request->recibir_novedades;
+        //$pedido->recibir_novedades = $request->recibir_novedades;
 
         $pedido -> save();
         
@@ -378,6 +381,26 @@ class PedidoController extends Controller
 
 
 
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Pedido  $pedido
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request, Pedido $pedido)
+    {
+        
+        if (! $request->hasValidSignature()) {
+            abort(401); // lanza un pantallazo : 401 UNAUTHORIZED
+            /*session()->flash('error', 'Esta intentando acceder a un recurso no autorizado.');
+            return redirect() -> route('home');*/
+        }else{
+
+            return view('mostrar_pedido')->with('pedido', $pedido);
+            //return view('pedidos.edit', compact('pedido'));
+        }
+    }
 
 
 

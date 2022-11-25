@@ -64,9 +64,9 @@
                 <!-- boton de comprar -->
                 <!-- TODO: suma el producto al carrito y nos lleva a la pagina de carrito -->
                 <!-- boton de comprar -->
-                {{--
+                
                     <a onclick="anadirEIeAlCarrito({{$producto->id}})" class="btn1 btn-medio shadown" style="background-color:{{$producto->color}};">Comprar</a>
-                --}}
+                
 
                 
                 <!-- boton de favorito -->

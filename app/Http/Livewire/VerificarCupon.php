@@ -19,10 +19,10 @@ class VerificarCupon extends Component
         $cupon = Cupon::where('activo', true)->where('cantidad', '>', 0)->where('codigo', $this->codigo)->first();
 
         if(isset($cupon)){
-            $this->respuesta = ' <h6 class="mt-3 mb-0 text-success">Se aplicaran los descuentos de tu cupón.</h6>' ;
+            $this->respuesta = ' <h6 class="mt-3 mb-0 verde">Se aplicaran los descuentos de tu cupón.</h6>' ;
             $this->descuento = $cupon->descuento;
         }else{
-            $this->respuesta = '<h6 class="mt-3 mb-0 text-danger">El cupón no existe o esta desactivado.</h6>';
+            $this->respuesta = '<h6 class="mt-3 mb-0 rojo">El cupón no existe o esta desactivado.</h6>';
             $this->descuento = 0;
         }
         $this->dispatchBrowserEvent('calcularCupon');
