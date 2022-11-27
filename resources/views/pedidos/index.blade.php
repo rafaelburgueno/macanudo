@@ -127,8 +127,10 @@
                                     <p>Nombre: <strong>{{ $pedido->nombre }}</strong></p>
                                     <p>Dirección: <strong>{{ $pedido->direccion }}</strong></p>
                                     <p>Teléfono: <strong>{{ $pedido->telefono }}</strong></p>
-                                    <p>C.I.: <strong>{{ $pedido->documento_de_identidad }}</strong></p>
-                                    @if($pedido->costo_de_envio)
+                                    @if(!($pedido->documento_de_identidad == 9999999))
+                                        <p>C.I.: <strong>{{ $pedido->documento_de_identidad }}</strong></p>
+                                    @endif
+                                    @if($pedido->costo_de_envio && $pedido->costo_de_envio->costo_de_envio != 0)
                                         <p>Localidad: <strong>{{ $pedido->costo_de_envio->region }}</strong></p>
                                         <p>Departamento: <strong>{{ $pedido->costo_de_envio->departamento }}</strong></p>
                                     @endif

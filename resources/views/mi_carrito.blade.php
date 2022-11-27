@@ -122,54 +122,7 @@
 	  
 					</div>
 				</div>
-				{{--====================================================================--}}
-				{{--<div class="card mb-3 shadown-gris producto" id="producto-{{$producto->id}}" style="background-color: #e1e1e1; max-width: 540px; max-height: 200px ;">
-					<div class="row g-0">
-						<div class="col-4 card-imgg">
-							<img src="{{$producto->multimedias->last()->url}}" class="img-fluid shadown rounded-3" alt="..." style="max-height: 180px">
-						</div>
-						
-						<div class="col-7">
-							<div class="card-body">
-								<h5 class="card-title">{{$producto->nombre}} | id:{{$producto->id}}</h5>
-
-								<form id="datosEnvio" class="">
-
-									<div class="row">
-										<div class="form-group col-sm-6">
-											<label for="cantidad">Cantidad: </label>
-											<select class="form-control" id="cantidad-{{$producto->id}}" name="cantidad" onclick="cambiarCantidad({{$producto->id}})">
-												<option value="1" selected>1 unidad</option>
-												<option value="2">2 unidades</option>
-												<option value="3">3 unidades</option>
-												<option value="4">4 unidades</option>
-												<option value="5">5 unidades</option>
-												<option value="6">6 unidades</option>
-												<option value="7">7 unidades</option>
-												<option value="8">8 unidades</option>
-												<option value="9">9 unidades</option>
-												<option value="10">10 unidades</option>
-											</select>
-
-											{{--<input  style="width: 100%;" type="number" class="form-control recalcularPrecioo" id="cantidad-{{$producto->id}}" class="cantidad" name="cantidad" value="0" min="0" onclick="cambiarCantidad({{$producto->id}})">--}}
-											{{--<span style="font-size: 16px;"> $ {{$producto->precio}} c/u</span> 
-											<input type="hidden" id="precio-{{$producto->id}}" name="precio" value="{{$producto->precio}}">
-										</div>
-
-										<div class="form-group col-sm-6">
-											<label for="precio">Precio: $</label>
-											<input  style="width: 100%;" type="number" class="form-control" value="{{$producto->precio}}" readonly id="precio_multiplicado-{{$producto->id}}" name="precio_multiplicado">
-										</div>
-									</div>
-								</form>
-
-								<a class="btn btn-quitarDelCarrito mb-2 bg-transparent btn-sm float-right" style="color:var(--rojo);" onclick="quitarDelCarrito({{$producto->id}})">Eliminar</a>
-							</div>
-						</div>
-			
-					</div>
-			
-				</div>--}}
+				
 		
 			@endforeach
 		
@@ -230,205 +183,6 @@
 		</div>
 
 	</div><!-- fin del row-->
-
-
-
-
-
-
-
-
-
-	<!-- Resumen de la compra -->
-	<!-- Resumen de la compra -->
-	<!-- Resumen de la compra -->
-	{{--<div class="" id="panel_resumen_de_la_compra" style="display: none;">
-		<div class="row mb-5 d-flex justify-content-center" >
-
-			<div class="card p-0">
-				<div class="card-header">
-					<h4 class="text-center">Resumen de la compra</h4>
-				</div>
-				<div class="card-body">
-					<div class="row">
-						<div class="col-md-8">
-							<table class="table">
-								<thead>
-								<tr>
-									<th>Producto</th>
-									<th>Precio unitario</th>
-									<th>Cantidad</th>
-									<th>Total</th>
-								</tr>
-								</thead>
-								<tbody>
-									@foreach($productos as $producto)
-										<tr id="resumen-producto-{{$producto->id}}" class="producto">
-											<td>{{$producto->nombre}}</td>
-											<td>{{$producto->precio}} $</td>
-											<td><span id="resumen-cantidad-{{$producto->id}}"></span></td>
-											<td><span id="resumen-precio_multiplicado-{{$producto->id}}"></span> $</td>
-										</tr>
-									@endforeach
-								</tbody>
-							</table>
-						</div>
-						<div class="col-md-4">
-							<div class="float-right pl-2">
-								<p>SubTotal: <span id="resumen_sub_total_de_la_compra"></span> $ UYU</p>
-								<p>Envío: <span id="resumen_costo_de_envio_final">0</span> $ UYU</p>
-								<p class="h5">Total: <span id="resumen_total_de_la_compra"></span> $ UYU</p>
-							</div>
-							<p class="porcentage_de_descuento">Descuento: <span id="resumen_porcentage_de_descuento">0</span> %</p>
-						</div>
-					</div>
-
-					<hr>
-
-					<div class="d-flex justify-content-center">
-						<button class="btn btn-block btn-outline-success w-50" id="btn_comprar">Comprar</button>
-					</div>
-
-				</div>
-				
-			</div>
-			
-
-		</div><!-- FIN del Resumen de la compra -->
-	</div>--}}
-
-
-
-	{{--<livewire:verifica-y-crea-pedido /> --}}
-
-
-
-
-
-	<!-- completar los datos del pedido -->
-	<!-- completar los datos del pedido -->
-	<!-- completar los datos del pedido -->
-	{{--<form id="form_crear_pedido" action="{{route('pedidos.carrito')}}" method="POST">
-		@csrf
-		@method('POST')
-
-		<div class="card" id="panel_completar_datos_del_pedido" style="display: none;">
-			<div class="card-header">
-				<h4 class="text-center">Datos de envío</h4>
-			</div>
-
-			<div class="card-body">
-				
-				<div class="row">
-					<div class="col-lg-6 ">
-
-						<!--input para el nombre-->
-						<div class="form-group mb-3">
-							<label for="nombre">Nombre</label>
-							<input required type="text" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}">
-							@error('nombre')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<!--input para el email-->
-						<div class="form-group mb-3">
-							<label for="email">Email</label>
-							<input required type="text" class="form-control" id="email" name="email" placeholder="..." value="{{old('email')}}">
-							@error('email')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<!--input para el documento_de_identidad-->
-						<div class="form-group mb-3">
-							<label for="documento_de_identidad">Documento de identidad</label>
-							<input style="width: 100%;" type="number" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" min="0">
-							@error('documento_de_identidad')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<!--input para el telefono-->
-						<div class="form-group mb-3">
-							<label for="telefono">Teléfono</label>
-							<input style="width: 100%;" type="number" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" min="0">
-							@error('telefono')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-
-					</div>
-				
-					<div class="col-lg-6">
-						
-						<!--input para la direccion-->
-						<div class="form-group mb-3">
-							<label for="direccion">Dirección</label>
-							<textarea required class="form-control" id="direccion" name="direccion" rows="3">{{old('direccion')}}</textarea>
-							@error('direccion')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<!--input para la localidad-->
-						<div class="form-group mb-3">
-							<label for="localidad">Localidad o barrio</label>
-							<input type="text" class="form-control" id="localidad" name="localidad" placeholder="..." value="{{old('localidad')}}">
-							@error('localidad')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<!--input para checkbox Recibir novedades -->
-						<div class="form-check my-4">
-							<input type="checkbox" class="form-check-input" id="recibir_novedades" name="recibir_novedades" value="1" @checked(old('recibir_novedades'))>
-							<label class="form-check-label" for="recibir_novedades">Recibir novedades</label>
-							@error('recibir_novedades')
-								<div class="alert alert-danger mt-1">{{ $message }}</div>
-							@enderror
-						</div>
-
-					</div>
-
-					<!--input para la departamento-->
-					<!--<input type="hidden" id="departamento" name="departamento" value="">-->
-					<!--input para la Pais-->
-					<!--<input type="hidden" id="pais" name="pais" value="">-->
-					<!--input para el status-->
-					<!--<input type="hidden" id="status" name="status" value="pedido">-->
-					<!--input para el tipo-->
-					<input type="hidden" id="tipo" name="tipo" value="pedido normal">
-					<!--input para la Costo de envio id-->
-					<input type="hidden" id="costo_de_envio_id" name="costo_de_envio_id" value="">
-					<!--input para la Cupon id-->
-					<input type="hidden" id="nombre_del_cupon" name="nombre_del_cupon" value="">
-					<!--input para la medio de pago-->
-					<input type="hidden" id="medio_de_pago" name="medio_de_pago" value="">
-					<!--input para el monto-->
-					<input type="hidden" id="monto" name="monto" value="">
-					<!--input para el tipo_de_cliente-->
-					<input type="hidden" id="tipo_de_cliente" name="tipo_de_cliente" value="cliente del ecommerce">
-					<!--input para el numero_de_factura-->
-					<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="555">
-					<!--input para el productos-->
-					<input type="hidden" id="productos" name="productos[]" value="">
-					<!--input para el cantidades-->
-					<input type="hidden" id="cantidades" name="cantidades[]" value="">
-					<!--input para el numero_de_factura-->
-					<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="001">
-						
-				</div>
-
-				<div class="d-flex justify-content-center">
-					<button type="submit" class="btn btn-outline-success btn-block btn-lg w-50">Selecciona el medio de pago</button>
-				</div>
-
-
-			</div>
-		</div>
-
-	</form>--}}
 
 
 </div>
@@ -553,7 +307,7 @@
 									</div>
 
 									<!--input para el email-->
-									<div class="form-group mb-3">
+									<div class="form-group mb-3 ocultar_al_retirar_en_planta">
 										<label for="email">Email</label>
 										<input required type="email" class="form-control" id="email" name="email" placeholder="..." value="{{old('email')}}">
 										@error('email')
@@ -562,7 +316,7 @@
 									</div>
 
 									<!--input para el documento_de_identidad-->
-									<div class="form-group mb-3">
+									<div class="form-group mb-3 ocultar_al_retirar_en_planta">
 										<label for="documento_de_identidad">Documento de identidad</label>
 										<input required pattern="[0-9]{8,9}" title="Numeros sin puntos ni guiones" style="width: 100%;" type="number" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" min="1000000" max="999999999">
 										@error('documento_de_identidad')
@@ -584,7 +338,7 @@
 								<div class="col-lg-6">
 									
 									<!--input para la direccion-->
-									<div class="form-group mb-3">
+									<div class="form-group mb-3 ocultar_al_retirar_en_planta">
 										<label for="direccion">Dirección</label>
 										<textarea required class="form-control" id="direccion" name="direccion" rows="3">{{old('direccion')}}</textarea>
 										@error('direccion')
@@ -593,7 +347,7 @@
 									</div>
 
 									<!--input para la localidad-->
-									<div class="form-group mb-3">
+									<div class="form-group mb-3 ocultar_al_retirar_en_planta">
 										<label for="localidad">Localidad o barrio</label>
 										<input required pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{5,100}" type="text" class="form-control" id="localidad" name="localidad" placeholder="..." value="{{old('localidad')}}">
 										@error('localidad')
@@ -606,6 +360,15 @@
 										<input type="checkbox" class="form-check-input" id="recibir_novedades" name="recibir_novedades" value="1" @checked(old('recibir_novedades'))>
 										<label class="form-check-label" for="recibir_novedades">Recibir novedades</label>
 										@error('recibir_novedades')
+											<div class="alert alert-danger mt-1">{{ $message }}</div>
+										@enderror
+									</div>
+
+									<!--input para checkbox aceptar terminos y condiciones -->
+									<div class="form-check my-4">
+										<input type="checkbox" class="form-check-input" id="terminos_y_condiciones" name="terminos_y_condiciones" value="1" @checked(old('terminos_y_condiciones'))>
+										<label class="form-check-label" for="terminos_y_condiciones">Aceptas nuestros <a class="" href="#" data-toggle="modal" data-target="#modal_terminos_y_condiciones">terminos y condiciones?</a></label>
+										@error('terminos_y_condiciones')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
 									</div>
@@ -736,21 +499,21 @@
 
 
 
-		if ( !localStorage.getItem("carrito") ){
-			//alert('el carrito esta null: ' + localStorage.getItem("carrito"));
+	if ( !localStorage.getItem("carrito") ){
+		//alert('el carrito esta null: ' + localStorage.getItem("carrito"));
 
-			//document.getElementsByTagName("h1").innerHTML = "No hay productos en el carrito";
-			document.getElementById("h1").innerHTML = "<h1 class='text-center pt-2'>No hay productos en el carrito</h1> <a class='nav-link' href='" + "{{route('nuestros_productos')}}" + "'> VOLVER A PRODUCTOS</a>";
+		//document.getElementsByTagName("h1").innerHTML = "No hay productos en el carrito";
+		document.getElementById("h1").innerHTML = "<h1 class='text-center pt-2'>No hay productos en el carrito</h1> <a class='nav-link' href='" + "{{route('nuestros_productos')}}" + "'> VOLVER A PRODUCTOS</a>";
 
-			var divsToHide = document.getElementsByClassName("container"); //divsToHide is an array
-			for(var i = 0; i < divsToHide.length; i++){
-				divsToHide[i].style.visibility = "hidden"; // or
-				//divsToHide[i].style.display = "none"; // depending on what you're doing
-			}
-
-
-
+		var divsToHide = document.getElementsByClassName("container"); //divsToHide is an array
+		for(var i = 0; i < divsToHide.length; i++){
+			divsToHide[i].style.visibility = "hidden"; // or
+			//divsToHide[i].style.display = "none"; // depending on what you're doing
 		}
+
+
+
+	}
 
 
 
@@ -797,6 +560,14 @@
 			$('#resumen-cantidad-'+mi_carrito_sin_duplicados[i]).html(cantidad);
 			//console.log('muestro el producto: '+mi_carrito[i]);
 		}
+
+		// las siguientes instrucciones son necesarias porque el costo de envio es cero por defecto
+		// entonces se debe desactivar los campos en el formulario
+		document.getElementById("documento_de_identidad").value = 9999999; 
+		document.getElementById("direccion").value = 'el pedido se retira en la planta'; 
+		document.getElementById("localidad").value = 'el pedido se retira en la planta'; 
+		$(".ocultar_al_retirar_en_planta").hide();
+		//========================================
 
 		calcular();
 	}
@@ -980,10 +751,36 @@
 		// escribe el campo costo_de_envio_final
 		document.getElementById("costo_de_envio_final").innerHTML = costo;
 		document.getElementById("costo_de_envio_final_modal").innerHTML = costo;
-		document.getElementById("resumen_costo_de_envio_final").innerHTML = costo;
+		//document.getElementById("resumen_costo_de_envio_final").innerHTML = costo;
 
 		// escribe el costo_de_envio_id en el input hidden que se envia al backend
 		document.getElementById("costo_de_envio_id").value = id;
+		
+
+		//================================================================================
+		// TODO
+		//si el costo de envio es 0, significa que se selecciono la opcion retirar en planta
+		//en ese caso hay que poner los inputs () en hidden y establecer valores por defecto 
+		//para que no disparen un error de validacion
+		if(costo == 0 ){
+			//console.log('el costo de envio es cero');
+			document.getElementById("email").value = 'retirar@enplanta.com'; 
+			document.getElementById("documento_de_identidad").value = 9999999; 
+			document.getElementById("direccion").value = 'el pedido se retira en la planta'; 
+			document.getElementById("localidad").value = 'el pedido se retira en la planta'; 
+
+			$(".ocultar_al_retirar_en_planta").hide();
+		}else{
+			//console.log('el costo de envio NO es cero');
+			document.getElementById("email").value = '';
+			document.getElementById("documento_de_identidad").value = ''; 
+			document.getElementById("direccion").value = ''; 
+			document.getElementById("localidad").value = ''; 
+
+			$(".ocultar_al_retirar_en_planta").show();
+		}
+		//================================================================================
+
 		calcular();
 	}
 
