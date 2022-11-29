@@ -14,8 +14,7 @@ class EditarPedido extends Component
     {
         $this->pedido = $pedido;
     }
-
- 
+    
 
 
     public function entregado()

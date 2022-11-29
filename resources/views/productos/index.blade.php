@@ -213,6 +213,15 @@ Sus valores diarios pueden ser mayores dependiendo de sus necesidades energetica
                             @enderror
                         </div>
 
+                        <!--input para la relevancia-->
+                        <div class="form-group mb-3">
+                            <label for="relevancia">Relevancia</label>
+                            <input type="number" class="form-control" id="relevancia" name="relevancia" placeholder="..." value="{{old('relevancia')}}" min="0" style="width: 100%;">
+                            @error('relevancia')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <!--input para checkbox 'publicar'-->
                         <div class="form-check my-4">
                             <input type="checkbox" class="form-check-input" id="activo" name="activo" value="1" @checked(old('activo'))>

@@ -10,7 +10,7 @@
 <div class="container text-white">
 
     <div class="text-center text-white mt-5">
-        <h2 class="text-center pt-2">EDITAR PEDIDO | id:{{$pedido->id}}</h2>
+        <h2 class="text-center pt-2">EDITAR PEDIDO | {{$pedido->nombre}}, id:{{$pedido->id}}</h2>
     </div>
 
     <div class="row mb-5 mt-2">
@@ -24,31 +24,72 @@
                     <div class="col col-md-6">
 
                         <!--input para el status-->
-                        <div class="form-group mb-3">
+                        {{--<div class="form-group mb-3">
                             <label for="status">status</label>
                             <input required type="text" class="form-control" id="status" name="status" placeholder="..." value="{{old('status', $pedido->status)}}">
                             @error('status')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
+                        </div>--}}
+                        <div class="form-group mb-3">
+                            <label for="status">Status</label>
+                            <select class="form-control" id="status" name="status">
+                                <option value="pedido" @selected((old('status') == "pedido") || $pedido->status == "pedido" )>Pedido</option>
+                                <option value="despachado" @selected((old('status') == "despachado") || $pedido->status == "despachado" )>despachado</option>
+                                <option value="en viaje" @selected((old('status') == "en viaje") || $pedido->status == "en viaje" )>En viaje</option>
+                                <option value="entregado" @selected((old('status') == "entregado") || $pedido->status == "entregado" )>Entregado</option>
+                            </select>
+                            @error('status')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
                         </div>
 
+
+
                         <!--input para el medio_de_pago-->
-                        <div class="form-group mb-3">
+                        {{--<div class="form-group mb-3">
                             <label for="medio_de_pago">Medio de pago</label>
                             <input required type="text" class="form-control" id="medio_de_pago" name="medio_de_pago" placeholder="..." value="{{old('medio_de_pago', $pedido->medio_de_pago)}}">
                             @error('medio_de_pago')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
+                        </div>--}}
+                        <div class="form-group mb-3">
+                            <label for="status">Medio de pago</label>
+                            <select class="form-control" id="medio_de_pago" name="medio_de_pago">
+                                <option value="pagar al recibir" @selected((old('medio_de_pago') == "pagar al recibir") || $pedido->medio_de_pago == "pagar al recibir" )>Pagar al recibir</option>
+                                <option value="mercadopago" @selected((old('medio_de_pago') == "mercadopago") || $pedido->medio_de_pago == "mercadopago" )>Mercadopago</option>
+                                <option value="sin definir" @selected((old('medio_de_pago') == "sin definir") || $pedido->medio_de_pago == "sin definir" )>Sin definir</option>
+                            </select>
+                            @error('medio_de_pago')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
                         </div>
 
+
+
+
                         <!--input para el estado_del_pago-->
-                        <div class="form-group mb-3">
+                        {{--<div class="form-group mb-3">
                             <label for="estado_del_pago">Estado del pago</label>
                             <input required type="text" class="form-control" id="estado_del_pago" name="estado_del_pago" placeholder="..." value="{{old('estado_del_pago', $pedido->estado_del_pago)}}">
                             @error('estado_del_pago')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
+                        </div>--}}
+                        <div class="form-group mb-3">
+                            <label for="estado_del_pago">Estado del pago</label>
+                            <select class="form-control" id="estado_del_pago" name="estado_del_pago">
+                                <option value="pagado" @selected((old('estado_del_pago') == "pagado") || $pedido->estado_del_pago == "pagado" )>Pagado</option>
+                                <option value="pendiente" @selected((old('estado_del_pago') == "pendiente") || $pedido->estado_del_pago == "pendiente" )>Pendiente</option>
+                                {{--<option value="" @selected((old('estado_del_pago') == "") || $pedido->estado_del_pago == "" )>NULL</option>--}}
+                            </select>
+                            @error('estado_del_pago')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
                         </div>
+
+
 
                         <!--input para el numero_de_factura-->
                         <div class="form-group mb-3">

@@ -25,8 +25,8 @@ class PedidoController extends Controller
     public function index()
     {
         
-        //$pedidos = Pedido::where('status', '!=', 'entregado')->get();
-        $pedidos = Pedido::where('medio_de_pago', '!=', 'sin definir')->where('status', '!=', 'entregado')->get();
+        $pedidos = Pedido::get();
+        //$pedidos = Pedido::where('medio_de_pago', '!=', 'sin definir')->where('status', '!=', 'entregado')->get();
         $canastas = Canasta::where('activo', true)->get();
         $lista_de_productos = Producto::where('activo', true)->get();
         $costos_de_envio = Costo_de_envio::where('activo', true)->get();
@@ -39,6 +39,33 @@ class PedidoController extends Controller
             ->with('costos_de_envio', $costos_de_envio)
             ->with('cupones', $cupones);
         //return view('pedidos');
+    }
+
+
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function reparto()
+    {
+        
+        //$pedidos = Pedido::where('status', '!=', 'entregado')->get();
+        $pedidos = Pedido::where('medio_de_pago', '!=', 'sin definir')->where('status', '!=', 'entregado')->get();
+        $canastas = Canasta::where('activo', true)->get();
+        $lista_de_productos = Producto::where('activo', true)->get();
+        $costos_de_envio = Costo_de_envio::where('activo', true)->get();
+        $cupones = Cupon::where('activo', true)->get();
+            
+        return view('pedidos.reparto')
+            ->with('pedidos', $pedidos)
+            ->with('canastas', $canastas)
+            ->with('lista_de_productos', $lista_de_productos)
+            ->with('costos_de_envio', $costos_de_envio)
+            ->with('cupones', $cupones);
+        //return 'pagina de reparto';
     }
 
 

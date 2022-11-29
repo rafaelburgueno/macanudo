@@ -88,6 +88,7 @@
                             <a class="dropdown-item" href="{{route('profile.show')}}">Mi perfil</a>
                             @if( Auth::user()->rol == 'administrador' )
                                 <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{route('reparto')}}">Reparto</a>
                                 <a class="dropdown-item" href="{{route('pedidos.index')}}">Pedidos</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{route('productos.index')}}">Productos</a>

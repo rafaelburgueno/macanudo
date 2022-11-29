@@ -31,7 +31,7 @@ use App\Http\Controllers\ComentarioController;
 | contains the "web" middleware group.
 |
 */
-
+//Auth::routes(['verify' => true]);
 
 
 /*
@@ -272,7 +272,8 @@ Route::controller(PedidoController::class)->group(function () {
     Route::delete('pedidos/{pedido}', 'destroy')->name('pedidos.destroy')->middleware('acceso.administrador');
     //Route::get('realizar_pago/{pedido}', 'realizarPago')->name('realizar_pago');
 });
-
+// esta ruta devuelve la interfase para trabajar el reparto 
+Route::get('reparto', [PedidoController::class ,'reparto'])->name('reparto')->middleware('acceso.administrador');
 
 
 

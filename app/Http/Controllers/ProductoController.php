@@ -51,6 +51,7 @@ class ProductoController extends Controller
             'informacion_nutricional' => 'max:1000|nullable',
             'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'color' => 'nullable|max:20',
+            'relevancia' => 'numeric',
         ]);
         
         $producto = new Producto();
@@ -70,6 +71,12 @@ class ProductoController extends Controller
         }else{
             $producto->activo = false;
         }
+
+        if($request->relevancia){
+            $producto->relevancia = $request->relevancia;
+        }/*else{
+            $producto->relevancia = 1;
+        }*/
 
         if($request->color){
             $producto->color = $request->color;
@@ -148,6 +155,7 @@ class ProductoController extends Controller
             'informacion_nutricional' => 'max:1000|nullable',
             'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'color' => 'nullable|max:20',
+            'relevancia' => 'numeric',
         ]);
 
         //TODO actualizar el campo slug
@@ -167,6 +175,12 @@ class ProductoController extends Controller
         }else{
             $producto->activo = false;
         }
+
+        if($request->relevancia){
+            $producto->relevancia = $request->relevancia;
+        }/*else{
+            $producto->relevancia = 1;
+        }*/
 
         if($request->color){
             $producto->color = $request->color;

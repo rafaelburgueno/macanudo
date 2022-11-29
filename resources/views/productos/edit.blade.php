@@ -117,6 +117,14 @@
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
+
+                            <div class="form-group mb-3">
+                                <label for="relevancia">Relevancia</label>
+                                <input type="number" class="form-control" id="relevancia" name="relevancia" placeholder="..." value="{{old('relevancia', $producto->relevancia)}}" min="0" style="width: 100%;">
+                                @error('relevancia')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
                             
     
                             <div class="form-check my-4">
@@ -130,13 +138,22 @@
                             <div class="form-group mb-3">
                                 <label for="imagen">Imagenes</label>
 
+                                    
+                                <script>
+                                    function borrar(id){
+                                        document.getElementById('contenedor-multimedia-'+id).style = 'display:none';
+                                    }
+                                </script>
+
                                 @if (count($producto->multimedias))
-                                    <div class="card-columns talleres my-2">
-                                        @foreach ($producto->multimedias as $imagen)
-                                            <div class="mb-2">
-                                                <img src="{{$imagen->url}}" style="width: 150px;" class="my-3 img-thumbnail" alt="...">
+                                    <div class="row card-columnss talleres my-2">
+                                        @foreach ($producto->multimedias as $multimedia)
+                                            <div id="contenedor-multimedia-{{$multimedia->id}}" class="col mb-2">
+                                                
+                                                @livewire('eliminar-multimedia', [$multimedia])
                                             </div>
                                         @endforeach
+                                        
                                     </div>
                                 @endif
 
@@ -166,7 +183,7 @@
     
     
     </div>
-    
+
 
 
 

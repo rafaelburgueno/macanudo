@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('pedidos', function (Blueprint $table) {
-            $table->string('estado_del_pago', 50)->nullable(); //'null', 'pendiente', 'pagado'
+        Schema::table('productos', function (Blueprint $table) {
+            $table->smallInteger('relevancia')->default(1);
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('pedidos', function (Blueprint $table) {
-            $table->dropColumn('estado_del_pago');
+        Schema::table('productos', function (Blueprint $table) {
+            $table->dropColumn('relevancia');
         });
     }
 };

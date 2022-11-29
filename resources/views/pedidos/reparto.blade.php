@@ -21,7 +21,7 @@
 
 
 <div class="text-center text-white my-4">
-    <h1 class="text-center pt-2">PEDIDOS</h1>
+    <h1 class="text-center pt-2">REPARTO</h1>
 </div>
 
 <div class="container bg-white text-dark py-2 rounded">
@@ -49,24 +49,24 @@
 			
 				@foreach ($pedidos as $pedido)
                     @if($pedido->estado_del_pago == 'pagado')
-					<tr style="background-color:#beffbe;">
+					<tr id="tr-{{$pedido->id}}" style="background-color:#beffbe;">
                     @elseif($pedido->estado_del_pago == 'pendiente')
-					<tr style="background-color:#ffd4db;">
+					<tr id="tr-{{$pedido->id}}" style="background-color:#ffd4db;">
                     {{--@elseif($pedido->estado_del_pago == 'pagar al retirar')
-					<tr style="background-color:#f8ff92;">--}}
+					<tr id="tr-{{$pedido->id}}" style="background-color:#f8ff92;">--}}
                     @else
-                    <tr>
+                    <tr id="tr-{{$pedido->id}}">
                     @endif
                         {{--<td>
                             <a class="btn btn-outline-success" data-toggle="modal" data-target="#info_del_pedido_{{ $pedido->id }}">Ver</a></td>
                         <td>--}}
-                        @if($pedido->estado_del_pago == 'pagado')
-                            <td class="rounded p-3 btn-verdeC">
+                        {{--@if($pedido->estado_del_pago == 'pagado')
+                            <td id="td-{{$pedido->id}}" class="rounded p-3 btn-verdeC">
                         @elseif($pedido->estado_del_pago == 'pendiente')
-                            <td class="rounded p-3 btn-rojo">
-                        @else
-                            <td class="rounded p-3">
-                        @endif
+                            <td id="td-{{$pedido->id}}" class="rounded p-3 btn-rojo">
+                        @else--}}
+                            <td id="td-{{$pedido->id}}" class="rounded p-3">
+                        {{--@endif--}}
                             <a class="btn btn-light" data-toggle="modal" data-target="#info_del_pedido_{{ $pedido->id }}">Ver</a>
                         </td>
                         <td>{{ $pedido->direccion }}
@@ -102,7 +102,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content negro">
                                 <div class="modal-header text-center">
-                                    <h5 class="modal-title" id="info_del_pedido_{{ $pedido->id }}Label">{{$pedido->created_at}} | {{$pedido->id}}</h5><br>
+                                    <h5 class="modal-title" id="info_del_pedido_{{ $pedido->id }}Label">{{$pedido->created_at}}</h5><br>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -114,11 +114,9 @@
                                     <!-- Botones para editar el pedido -->
                                     <!-- Botones para editar el pedido -->
                                     {{--<livewire:editar-pedido />--}}
-                                    {{--@livewire('editar-pedido', [$pedido])--}}
+                                    @livewire('editar-pedido', [$pedido])
                                     <!-- Botones para editar el pedido -->
                                     <!-- Botones para editar el pedido -->
-                                    <p>Estado del pedido: <strong>{{ $pedido->status }}</strong></p>
-                                    <p>Estado del pago: <strong>{{ $pedido->estado_del_pago }}</strong></p>
                                     <hr>
                                     <p>Monto: <strong>{{ $pedido->monto }} $</strong></p>
                                     {{--<p>Status: <strong>{{ $pedido->status }}</strong></p>--}}

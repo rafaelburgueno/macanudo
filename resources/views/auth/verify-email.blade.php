@@ -29,21 +29,21 @@
                 </div>
             </form>
 
-            <div>
+            {{--<div>
                 <a
                     href="{{ route('profile.show') }}"
                     class="underline text-sm text-gray-600 hover:text-gray-900"
                 >
-                    {{ __('Editar perfil') }}{{--{{ __('Edit Profile') }}--}}</a>
+                    {{ __('Editar perfil') }}</a>
 
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf
 
                     <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 ml-2">
-                        {{ __('Cerrar sesión') }}{{--{{ __('Log Out') }}--}}
+                        {{ __('Cerrar sesión') }}
                     </button>
                 </form>
-            </div>
+            </div>--}}
         </div>
     </x-jet-authentication-card>
 </x-guest-layout>
