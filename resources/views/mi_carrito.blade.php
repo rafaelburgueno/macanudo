@@ -366,7 +366,7 @@
 
 									<!--input para checkbox aceptar terminos y condiciones -->
 									<div class="form-check my-4">
-										<input type="checkbox" class="form-check-input" id="terminos_y_condiciones" name="terminos_y_condiciones" value="1" @checked(old('terminos_y_condiciones'))>
+										<input required type="checkbox" class="form-check-input" id="terminos_y_condiciones" name="terminos_y_condiciones" value="1" @checked(old('terminos_y_condiciones'))>
 										<label class="form-check-label" for="terminos_y_condiciones">Aceptas nuestros <a class="" href="#" data-toggle="modal" data-target="#modal_terminos_y_condiciones">terminos y condiciones?</a></label>
 										@error('terminos_y_condiciones')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -405,36 +405,47 @@
 							</div>
 
 							<div class="d-flex justify-content-center">
-								<button type="submit" class="btn btn-verdeC gris btn-block btn-lg w-50 btn-procesandoo">Selecciona el medio de pago</button>
+								<button type="submit" class="btn btn-verdeC gris btn-block btn-lg w-50 btn-procesando">Selecciona el medio de pago</button>
 							</div>
 
 							<script>
 								$(document).ready(function(){
+
 									$('.btn-procesando').click(function(){
+										if(
+											document.getElementById("nombre").value != '' &&
+											document.getElementById("email").value != '' &&
+											document.getElementById("documento_de_identidad").value >= 1000000 &&  
+											document.getElementById("telefono").value >= 1000000  &&  
+											document.getElementById("direccion").value != '' && 
+											document.getElementById("localidad").value != '' && 
+											document.getElementById("terminos_y_condiciones").checked
+										){
+
 										
-										let timerInterval
-										Swal.fire({
-										title: 'Procesando',
-										html: 'Por favor espere.',
-										//timer: 10000,
-										timerProgressBar: true,
-										didOpen: () => {
-											Swal.showLoading()
-											const b = Swal.getHtmlContainer().querySelector('b')
-											timerInterval = setInterval(() => {
-											b.textContent = Swal.getTimerLeft()
-											}, 100)
-										},
-										willClose: () => {
-											clearInterval(timerInterval)
+											let timerInterval
+											Swal.fire({
+											title: 'Procesando',
+											html: 'Por favor espere.',
+											//timer: 10000,
+											timerProgressBar: true,
+											didOpen: () => {
+												Swal.showLoading()
+												const b = Swal.getHtmlContainer().querySelector('b')
+												timerInterval = setInterval(() => {
+												b.textContent = Swal.getTimerLeft()
+												}, 100)
+											},
+											willClose: () => {
+												clearInterval(timerInterval)
+											}
+											}).then((result) => {
+											/* Read more about handling dismissals below */
+											if (result.dismiss === Swal.DismissReason.timer) {
+												console.log('I was closed by the timer')
+											}
+											})
 										}
-										}).then((result) => {
-										/* Read more about handling dismissals below */
-										if (result.dismiss === Swal.DismissReason.timer) {
-											console.log('I was closed by the timer')
-										}
-										})
-								
 									});
 								});
 								
@@ -563,10 +574,11 @@
 
 		// las siguientes instrucciones son necesarias porque el costo de envio es cero por defecto
 		// entonces se debe desactivar los campos en el formulario
-		document.getElementById("documento_de_identidad").value = 9999999; 
+		$(".ocultar_al_retirar_en_planta").hide();
+		document.getElementById("email").value = 'retirar@enplanta.com';
+		document.getElementById("documento_de_identidad").value = 9999999;  
 		document.getElementById("direccion").value = 'el pedido se retira en la planta'; 
 		document.getElementById("localidad").value = 'el pedido se retira en la planta'; 
-		$(".ocultar_al_retirar_en_planta").hide();
 		//========================================
 
 		calcular();
