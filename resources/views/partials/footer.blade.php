@@ -175,8 +175,9 @@
                 <h6>DATOS PERSONALES</h6>
                 <p>Los datos personales proporcionados en el sitio web serán tratados por MACANUDO según 
                     lo establecido en la Ley Nº 18.331 del 11 de agosto de 2008 y su decreto reglamentario 
-                    Nº 414/2009 del 31 de agosto de 2009. link a la ley de proteccion de datos 
-                    https://www.impo.com.uy/bases/leyes/18331-2008</p>
+                    Nº 414/2009 del 31 de agosto de 2009. <br>
+                    <a href="https://www.impo.com.uy/bases/leyes/18331-2008" target="_blank">Ley de proteccion de datos 
+                    </a>.</p>
 
                 <p>MACANUDO podrá utilizar cookies cuando se utilice el sitio web. No obstante, el usuario 
                     podrá configurar su navegador para ser avisado de la recepción de las cookies e impedir 
@@ -244,12 +245,11 @@
             <div class="modal-body">
                 <p>Los datos personales proporcionados en el sitio web serán tratados por MACANUDO según lo 
                     establecido en la Ley Nº 18.331 del 11 de agosto de 2008 y su decreto reglamentario 
-                    Nº 414/2009 del 31 de agosto de 2009. link a la ley de proteccion de datos 
-                    https://www.impo.com.uy/bases/leyes/18331-2008
+                    Nº 414/2009 del 31 de agosto de 2009. <br>
+                    <a href="https://www.impo.com.uy/bases/leyes/18331-2008" target="_blank">Ley de proteccion de datos</a>. <br>
                     MACANUDO podrá utilizar cookies cuando se utilice el sitio web. No obstante, el usuario 
                     podrá configurar su navegador para ser avisado de la recepción de las cookies e impedir 
                     en caso de considerarlo adecuado.</p>
-
             </div>
 
         </div>

@@ -12,7 +12,7 @@
 <div class="mt-3 mr-0 mb-3 ml-0 contenedor">
     <div class="row m-0 p-0">
         <div class="col m-0 p-0">
-            <img src="{{asset('/storage/img/index.png')}}" class="nav d-block w-100 m-0" alt="...">
+            <img src="{{asset('/storage/img/index.b.jpeg')}}" class="nav d-block w-100 m-0" alt="...">
             <p class="abajo-centrado">
                 <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('nuestros_productos')}}">
                     Ver productos
@@ -43,7 +43,7 @@
 <div class="mt-3 mr-0 mb-3  ml-0 contenedor">
     <div class="row m-0  p-0">
         <div class="col m-0 p-0">
-            <img src="{{asset('/storage/img/index.2.png')}}" class="nav d-block w-100" alt="...">
+            <img src="{{asset('/storage/img/index.2b.jpeg')}}" class="nav d-block w-100" alt="...">
             <p class="abajo-centrado">
                 <a href="{{route('blog.index')}}" class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('blog.index')}}">Ver proceso</a>
             </p>
@@ -114,7 +114,7 @@
 <div class="mt-0 mr-0 mb-3  ml-0 contenedor">
     <div class="row m-0 p-0">
         <div class="col m-0 p-0">
-            <img src="{{asset('/storage/img/index.3.png')}}" class="nav d-block w-100" alt="...">
+            <img src="{{asset('/storage/img/index.3b.jpeg')}}" class="nav d-block w-100" alt="...">
             <p class="abajo-centrado">
                 <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('blog.index')}}">
                     Ver beneficios
@@ -142,7 +142,7 @@
 <div class="mt-0 mr-0 mb-3  ml-0  contenedor">
     <div class="row m-0 p-0">
         <div class="col m-0 p-0">
-            <img src="{{asset('/storage/img/index.4.png')}}" class="nav d-block w-100" alt="...">
+            <img src="{{asset('/storage/img/index.4b.jpeg')}}" class="nav d-block w-100" alt="...">
             <p class="abajo-centrado"><a class="btn1 btn-lg shadown btn-blanco negro" type="button"
                     href="{{route('nuestros_productos')}}">Nosotros</a>
         </div>
@@ -206,7 +206,7 @@
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
                         
-                        <label for="email" class="gris">Email: </label>
+                        <label for="email" class="gris mt-2">Email: </label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su Email" value="{{old('email')}}" required>
                         @error('email')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -215,6 +215,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm d-flex flex-wrap">
+                        <label for="texto" class="gris">Mensaje: </label>
                         <textarea id="texto" class="form-control" name="texto" rows="6" cols="60" placeholder="Ingrese aquí su mensaje">{{old('texto')}}</textarea><br>
                         @error('texto')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PedidosMail;
 use App\Mail\PedidoClienteMail;
+use Exception;
 
 class PagosController extends Controller
 {
@@ -59,8 +60,18 @@ class PagosController extends Controller
             // Envia un email con el pedido
             Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
             ->queue(new PedidosMail($pedido));
-            // Envia un email al cliente con el pedido
-            Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));
+
+            try {
+                // Envia un email al cliente con el pedido // TODO:un try catch por si falla el envio de email
+                Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+                //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
+                session()->flash('error', 'Ha ocurrido un error: '. $error);
+                return redirect() -> route('mi_carrito');
+            }
+
+            
 
 
             session()->flash('pagar_al_recibir', 'Gracias. Debera pagar su pedido al momento de recibirlo.');

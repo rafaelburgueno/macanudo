@@ -126,6 +126,7 @@
 		
 			@endforeach
 		
+			<h5 class="text-center my-0 py-0"><a class="nav-link my-0 py-0" href="{{route('nuestros_productos')}}">Seguir comprando</a></h5>
 		
 		</div>
 
@@ -289,7 +290,7 @@
 
 					<div class="card" id="modal_completar_datos_del_pedido">
 						<div class="card-header">
-							<h4 class="text-center">Datos de envío</h4>
+							<h4 class="text-center">Datos de contacto</h4>
 						</div>
 
 						<div class="card-body">
@@ -307,7 +308,7 @@
 									</div>
 
 									<!--input para el email-->
-									<div class="form-group mb-3 ocultar_al_retirar_en_planta">
+									<div class="form-group mb-3 ocultar_al_retirar_en_plantaa">
 										<label for="email">Email</label>
 										<input required type="email" class="form-control" id="email" name="email" placeholder="..." value="{{old('email')}}">
 										@error('email')
@@ -317,8 +318,8 @@
 
 									<!--input para el documento_de_identidad-->
 									<div class="form-group mb-3 ocultar_al_retirar_en_planta">
-										<label for="documento_de_identidad">Documento de identidad</label>
-										<input required pattern="[0-9]{8,9}" title="Numeros sin puntos ni guiones" style="width: 100%;" type="number" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" min="1000000" max="999999999">
+										<label for="documento_de_identidad">Documento de identidad </label>
+										<input required pattern="[0-9]{7,8}" title="Ingresa los números sin puntos ni guiones" style="width: 100%;" type="text" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" {{--min="1000000" max="999999999"--}}>
 										@error('documento_de_identidad')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
@@ -327,7 +328,7 @@
 									<!--input para el telefono-->
 									<div class="form-group mb-3">
 										<label for="telefono">Teléfono</label>
-										<input required pattern="[0-9]{7,8}" style="width: 100%;" type="number" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" min="1000000" max="99999999">
+										<input required pattern="[0-9]{8,9}" style="width: 100%;" type="text" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" title="Número de teléfono inválido" {{--min="1000000" max="99999999"--}}>
 										@error('telefono')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
@@ -405,7 +406,7 @@
 							</div>
 
 							<div class="d-flex justify-content-center">
-								<button type="submit" class="btn btn-verdeC gris btn-block btn-lg w-50 btn-procesando">Selecciona el medio de pago</button>
+								<button type="submit" class="btn btn-verdeC gris btn-block btn-lg w-50 btn-procesando"><strong>Selecciona el medio de pago</strong></button>
 							</div>
 
 							<script>
@@ -575,7 +576,7 @@
 		// las siguientes instrucciones son necesarias porque el costo de envio es cero por defecto
 		// entonces se debe desactivar los campos en el formulario
 		$(".ocultar_al_retirar_en_planta").hide();
-		document.getElementById("email").value = 'retirar@enplanta.com';
+		//document.getElementById("email").value = 'retirar@enplanta.com';
 		document.getElementById("documento_de_identidad").value = 9999999;  
 		document.getElementById("direccion").value = 'el pedido se retira en la planta'; 
 		document.getElementById("localidad").value = 'el pedido se retira en la planta'; 
@@ -776,7 +777,7 @@
 		//para que no disparen un error de validacion
 		if(costo == 0 ){
 			//console.log('el costo de envio es cero');
-			document.getElementById("email").value = 'retirar@enplanta.com'; 
+			//document.getElementById("email").value = 'retirar@enplanta.com'; 
 			document.getElementById("documento_de_identidad").value = 9999999; 
 			document.getElementById("direccion").value = 'el pedido se retira en la planta'; 
 			document.getElementById("localidad").value = 'el pedido se retira en la planta'; 
@@ -784,7 +785,7 @@
 			$(".ocultar_al_retirar_en_planta").hide();
 		}else{
 			//console.log('el costo de envio NO es cero');
-			document.getElementById("email").value = '';
+			//document.getElementById("email").value = '';
 			document.getElementById("documento_de_identidad").value = ''; 
 			document.getElementById("direccion").value = ''; 
 			document.getElementById("localidad").value = ''; 

@@ -8,9 +8,22 @@
 </head>
 <body>
 
-    <h3>Gracias por su compra.</h3>
+    <h3>Muchas gracias por su compra.</h3>
 
-    <h5>Podes ver tu pedido en este <a href="{{URL::signedRoute('ver_pedido', ['pedido' => $pedido->id])}}" target="_blank">link</a>.</h5>
+    {{--<h5>Podes ver tu pedido en este <a href="{{URL::signedRoute('ver_pedido', ['pedido' => $pedido->id])}}" target="_blank">link</a>.</h5>--}}
+
+    <p></p>
+    <p>Su pedido de 
+    <ul>
+        @foreach($pedido->productos as $producto)
+            <li>{{ $producto->pivot->unidades }} unidades de {{ $producto->nombre }} </li>
+        @endforeach
+    </ul>
+    
+    se realizó correctamente.</p>
+    <hr>
+    <p>Ante cualquier consulta o reclamo comunicarse al email <a href="mailto:contacto@macanudonoqueso.com">contacto@macanudonoqueso.com</a> </p>
+    <p></p>
 
     {{--<table>
         <style>

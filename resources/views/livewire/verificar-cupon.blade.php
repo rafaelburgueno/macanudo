@@ -7,9 +7,9 @@
         <div class="card-body p-3" id="input-cupon-desplegable">
             
             <div class="form-group m-0" >
-                <input type="text" class="form-control" id="cupon" name="cupon" placeholder="Escribilo acá" wire:model.lazy="codigo">
+                <input type="text" class="form-control" id="cupon" name="cupon" placeholder="Escribe acá tu código de descuento" wire:model.lazy="codigo">
                 <input type="hidden" id="cupon_de_descuento" value="{{ $descuento }}">
-                <button class="btn btn-block btn-verdeC gris my-2" wire:click="verificarCupon">Verificar cupon</button>
+                <button class="btn btn-block btn-verdeC gris my-2" wire:click="verificarCupon"><strong>Verificar cupon</strong></button>
                 {!! $respuesta !!}
 
             </div>
