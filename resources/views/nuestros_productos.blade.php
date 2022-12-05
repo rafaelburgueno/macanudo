@@ -172,28 +172,36 @@
 <!-- MODAL INFO  ----MODAL INFO  ----MODAL INFO  ----MODAL INFO  ------>
 <div class="modal fade" id="modal_{{$producto->nombre}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content align-items-center">
+        <div class="modal-content align-items-center negro">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             
-            <h1 class="modal-title text-center " style="color:{{$producto->color}};">{{$producto->nombre}}<br>{{$producto->precio}} $</h1>
+            <h1 class="modal-title text-center negro" {{--style="color:{{$producto->color}};"--}}>{{$producto->nombre}}<br>{{$producto->precio}} $</h1>
             
             <div class="modal-body">
-                <h6 class="" style="color:{{$producto->color}};">{{$producto->descripcion}}
+                <h6 class="" {{--style="color:{{$producto->color}};"--}}>{{$producto->descripcion}}
                 </h6>
                 <br>
-                <p class="" style="color:{{$producto->color}};"> Una vez abierto conservar refrigerado, cubierto 
+                <p class="" {{--style="color:{{$producto->color}};"--}}>
+                     Una vez abierto conservar refrigerado, cubierto 
                     con papel o tela, dentro de un recipiente cerrado. Contiene 
                     microorganismos vivos, esto cambiará el saborlentamente con 
                     el pasar de los días.
                 </p>
                 <br>
-                <img class="img-fluid" src="{{asset('/storage/img/roque-info.png')}}">
+                {{--<p class="" style="color:{{$producto->color}};">{{$producto->informacion_nutricional}}</p>
+                <br>--}}
 
-                <p class="" style="color:{{$producto->color}};">¿Más datos? Consultá la sección de 
+                @if($producto->tipo == 'untable')
+                    <img class="img-fluid" src="{{asset('/storage/img/untable-info.png')}}">
+                @else
+                    <img class="img-fluid" src="{{asset('/storage/img/roque-info.png')}}">
+                @endif
+
+                <p class="" {{--style="color:{{$producto->color}};"--}}>¿Más datos? Consultá la sección de 
                     <a href="#" data-toggle="modal" data-target="#preguntas_frecuentes">Preguntas frecuentes</a>
                 </p>
 
