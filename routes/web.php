@@ -96,7 +96,7 @@ Route::get('/puntos_de_venta', function () {
 
 /*
 |--------------------------------------------------------------------------
-| club_del_noqueso
+| club_macanudo
 |--------------------------------------------------------------------------
 | Esta ruta solo devuelve una vista, por lo tanto no es 
 | necesario utilizar un controlador.
@@ -106,6 +106,19 @@ Route::get('/club_macanudo', ClubMacanudoController::class)->name('club_macanudo
     //return view('club_del_noqueso');
     return "club_del_noqueso";
 })->name('club_del_noqueso');*/
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| FORMULARIO DEL CLUB MACANUDO 
+|--------------------------------------------------------------------------
+| esta ruta es exclusiva para recivir el formulario de contacto
+| 
+*/
+Route::post('formulario_del_club_macanudo', [ClubMacanudoController::class, 'formulario_del_club_macanudo'])->name('formulario_del_club_macanudo'); 
+
 
 
 

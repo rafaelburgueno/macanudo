@@ -372,43 +372,93 @@
 
             </div>
             <h5 class="modal-title text-center" id="exampleModalLabel">Completa tus datos</h5>
-            <div class="modal-body">
-                <form class=" border border-light p-3">
-                    <div class="form-row">
 
+            <form action="{{route('formulario_del_club_macanudo')}}" method="POST">
+                @csrf
+                @method('POST')
+            
+                <div class="modal-body">
+                    <div class="form-row">
                         <div class="form-group col-sm">
                             <label for="nombre" class="negro">Nombre: </label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre"
-                                required>
+                            <input type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control mb-2" name="nombre" id="nombre" placeholder="Ingrese su nombre" required>
+                            @error('nombre')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
 
-                            <label for="email"class="negro">Email: </label>
-                            <input type="email" class="form-control" id="email" placeholder="Ingrese su Email" required>
+                            <label for="email" class="negro mt-2">Email: </label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Ingrese su Email" required>
+                            @error('email')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
 
                         </div>
                         <div class="form-group col-sm">
-                            <label for="nombre" class="negro">Contacto: </label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su contacto"
-                                required>
+                            <label for="telefono" class="negro">Teléfono: </label>
+                            <input type="text" pattern="[0-9]{8,9}" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="Número de teléfono inválido" required>
+                            @error('telefono')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
 
-                            <label for="dirección"class="negro">Dirección: </label>
-                            <input type="dirección" class="form-control" id="dirección" placeholder="Ingrese su dirección" required>
-
+                            <label for="direccion" class="negro mt-3">Dirección: </label>
+                            {{--<input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingrese su dirección" required>--}}
+                            <textarea required class="form-control" id="direccion" name="direccion" rows="3" placeholder="Ingrese su dirección">{{old('direccion')}}</textarea>
+                            @error('direccion')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
-                    
-                    
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn1 btn-azul shadown" data-toggle="modal"
-                    data-target="#exampleModal1">Unirme</button>
-            </div>
+                </div>
+
+                <div class="modal-footer text-center">
+                    <button type="submit" class="btn1 btn-azul shadown btn-procesando">Unirme</button>
+                </div>
+            </form>
 
         </div>
 
 
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function(){
+
+        $('.btn-procesando').click(function(){
+            if(
+                document.getElementById("nombre").value != '' &&
+                document.getElementById("email").value != '' &&
+                document.getElementById("telefono").value != ''  &&  
+                document.getElementById("direccion").value != ''
+            ){
+                let timerInterval
+                Swal.fire({
+                title: 'Procesando',
+                html: 'Por favor espere.',
+                //timer: 10000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                    b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+                }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+                })
+            }
+        });
+    });
+    
+</script>
 
 
 

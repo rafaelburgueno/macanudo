@@ -201,7 +201,7 @@
                 <div class="form-row">
                     <div class="form-group col-sm">
                         <label for="nombre" class="gris">Nombre: </label>
-                        <input type="text" class="form-control mb-2" id="nombre" name="nombre" placeholder="Ingrese su nombre" value="{{old('nombre')}}" requiredd>
+                        <input type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control mb-2" id="nombre" name="nombre" placeholder="Ingrese su nombre" value="{{old('nombre')}}" required>
                         @error('nombre')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
