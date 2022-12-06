@@ -11,6 +11,9 @@
     <h2>Pedido de {{$pedido->nombre}} <small>({{$pedido->email}})</small>.</h2>    
 
     <hr>
+    <h5>Ver <a href="{{URL::signedRoute('ver_pedido', ['pedido' => $pedido->id])}}" target="_blank">pedido</a>.</h5>
+
+    <hr>
 
     <table>
         <style>

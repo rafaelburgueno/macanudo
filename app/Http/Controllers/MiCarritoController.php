@@ -56,7 +56,7 @@ class MiCarritoController extends Controller
             'medio_de_pago' => 'nullable|max:50',
             'monto' => 'numeric',
             'tipo_de_cliente' => 'nullable|max:50',
-            'numero_de_factura' => 'nullable|numeric',
+            //'numero_de_factura' => 'nullable|numeric',
             'productos' => 'required',
             'cantidades' => 'required',
         ]);
@@ -92,6 +92,8 @@ class MiCarritoController extends Controller
 
             $pedido->departamento = $costos_de_envio->departamento;
             $costo_de_envio = $costos_de_envio->costo_de_envio;
+        }else{
+            $pedido->costo_de_envio_id = Costo_de_envio::where('activo', true)->where('costo_de_envio', 0)->first()->id;
         }
 
 
@@ -156,7 +158,7 @@ class MiCarritoController extends Controller
         $pedido->tipo_de_cliente = $request->tipo_de_cliente;
 
         // TODO: el numero de factura debe definirse manualmente al momento de emitir la factura
-        $pedido->numero_de_factura = $request->numero_de_factura;
+        $pedido->numero_de_factura = 555;
 
 
         // ****************************************************************

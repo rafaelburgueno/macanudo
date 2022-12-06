@@ -36,11 +36,31 @@
                 <tr>
                     <td>Productos: </td>
                     <td>
-                        <ul>
+                        {{--<ul>
                             @foreach($pedido->productos as $producto)
                                 <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
                             @endforeach
-                        </ul>
+                        </ul>--}}
+                        Su pedido de 
+                            @foreach($pedido->productos as $producto)
+                                @if($loop->first)
+                                    
+                                @elseif($loop->last)
+                                    y
+                                @else
+                                    ,
+                                @endif
+                                {{ $producto->pivot->unidades }}
+                                @if($producto->pivot->unidades > 1)
+                                    unidades de
+                                @else
+                                    unidad de
+                                @endif
+                                {{ $producto->nombre }} 
+                                    
+                            @endforeach
+                        , se realizó correctamente.
+                        
                     </td>
                 </tr>
                 
@@ -56,6 +76,13 @@
                 
                 {{--<tr><td>Canasta_id: </td><td>{{$pedido->canasta_id}}</td></tr>--}}
                 <tr><td>Costo de envio: </td><td>{{$pedido->costo_de_envio_id}}</td></tr>
+                <tr><td>Costo de envio dia_de_entrega: </td><td>{{$pedido->costo_de_envio->dia_de_entrega}}</td></tr>
+                <tr><td>Costo de envio hora_de_entrega: </td><td>{{$pedido->costo_de_envio->hora_de_entrega}}</td></tr>
+                {{--<tr><td>Costo de envio(): </td><td>{{$pedido->costo_de_envio()}}</td></tr>--}}
+                
+                
+                
+                
                 <tr><td>Cupon id: </td><td>{{$pedido->cupon_id}}</td></tr>
                 
                 <tr><td>Tipo de cliente: </td><td>{{$pedido->tipo_de_cliente}}</td></tr>

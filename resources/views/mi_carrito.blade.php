@@ -394,14 +394,10 @@
 								<input type="hidden" id="monto" name="monto" value="">
 								<!--input para el tipo_de_cliente-->
 								<input type="hidden" id="tipo_de_cliente" name="tipo_de_cliente" value="cliente del ecommerce">
-								<!--input para el numero_de_factura-->
-								<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="555">
 								<!--input para el productos-->
 								<input type="hidden" id="productos" name="productos[]" value="">
 								<!--input para el cantidades-->
 								<input type="hidden" id="cantidades" name="cantidades[]" value="">
-								<!--input para el numero_de_factura-->
-								<input type="hidden" id="numero_de_factura" name="numero_de_factura" value="001">
 									
 							</div>
 
@@ -450,7 +446,7 @@
 									});
 								});
 								
-								</script>
+							</script>
 
 						</div>
 					</div>

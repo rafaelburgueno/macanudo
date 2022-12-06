@@ -10,20 +10,45 @@
 
     <h3>Muchas gracias por su compra.</h3>
 
-    {{--<h5>Podes ver tu pedido en este <a href="{{URL::signedRoute('ver_pedido', ['pedido' => $pedido->id])}}" target="_blank">link</a>.</h5>--}}
+    <h5>Podes ver tu pedido en este <a href="{{URL::signedRoute('ver_pedido', ['pedido' => $pedido->id])}}" target="_blank">link</a>.</h5>
 
-    <p></p>
-    <p>Su pedido de 
-    <ul>
-        @foreach($pedido->productos as $producto)
-            <li>{{ $producto->pivot->unidades }} unidades de {{ $producto->nombre }} </li>
-        @endforeach
-    </ul>
     
-    se realizó correctamente.</p>
-    <hr>
+    <p>
+        Su pedido de 
+        @foreach($pedido->productos as $producto)
+            @if($loop->first)
+                
+            @elseif($loop->last)
+                y
+            @else
+                ,
+            @endif
+            {{ $producto->pivot->unidades }}
+            @if($producto->pivot->unidades > 1)
+                unidades de
+            @else
+                unidad de
+            @endif
+            {{ $producto->nombre }} 
+                
+        @endforeach
+    , se realizó correctamente.
+    </p>
+    
+
+    @if($pedido->direccion == 'el pedido se retira en la planta')
+        <p>
+            Puede retirar su pedido de lunes a viernes {{$pedido->costo_de_envio->hora_de_entrega}}, en nuestra planta ubicada 
+            en calle los Coronillas casi De Los Ombues, La Floresta, Canelones.
+        </p>
+    @else
+        <p>
+            La entrega de pedidos en su zona se realiza {{$pedido->costo_de_envio->dia_de_entrega}}, 
+            en el horario {{$pedido->costo_de_envio->hora_de_entrega}}.
+        </p>
+    @endif
+
     <p>Ante cualquier consulta o reclamo comunicarse al email <a href="mailto:contacto@macanudonoqueso.com">contacto@macanudonoqueso.com</a> </p>
-    <p></p>
 
     {{--<table>
         <style>
