@@ -130,8 +130,8 @@
                     </li>--}}
 
                 </ul>
-            @else
             {{-- 
+            @else
             <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('login')}}" class="ml-5" alt="Iniciar sesión">

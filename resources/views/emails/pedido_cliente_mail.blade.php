@@ -10,7 +10,7 @@
 
     <h3>Muchas gracias por su compra.</h3>
 
-    <h5>Podes ver tu pedido en este <a href="{{URL::signedRoute('ver_pedido', ['pedido' => $pedido->id])}}" target="_blank">link</a>.</h5>
+    {{--<h5>Podes ver tu pedido en este <a href="{{URL::signedRoute('ver_pedido', ['pedido' => $pedido->id])}}" target="_blank">link</a>.</h5>--}}
 
     
     <p>
@@ -96,8 +96,6 @@
         <tr><td>Editado: </td><td>{{$pedido->updated_at}}</td></tr>
         
     </table>--}}
-
-    <hr>
 
     <h2>Macanudonoqueso.com</h2>
     

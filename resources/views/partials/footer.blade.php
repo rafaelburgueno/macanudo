@@ -13,7 +13,7 @@
                     <p><a class="nav-link" href="{{route('club_macanudo')}}">Club Macanudo</a></p>
                     {{--<p><a class="nav-link" href="{{route('blog.index')}}">Blog</a></p>--}}
                     <p><a class="nav-link" href="{{route('mi_carrito')}}">Mi carrito</a></p>
-                    <p><a class="nav-link" href="{{route('profile.show')}}">Mi perfil</a></p>
+                    {{--<p><a class="nav-link" href="{{route('profile.show')}}">Mi perfil</a></p>--}}
 
                 </div>
 
@@ -31,14 +31,17 @@
 
                     <h5 class="text-center">Contacto</h5>
 
-                    <address class="text-center mb-0">
+                    <address class="text-center mb-0 mt-2">
                         <p><span class="oi oi-home footer-address-icon"></span>Montevideo e interior del país.</p>
                         <p></p>
-                        <p><span class="oi oi-phone footer-address-icon"></span> 099 760 201</p>
+                        <p><span class="oi oi-phone footer-address-icon"></span><a class="" href="https://wa.me/59899760201" target="_blank" style="color: var(--blanco);">099 760 201</a></p>
                         <p></p>
-                        <p><span class="oi oi-envelope-closed footer-address-icon"></span>contacto@macanudonoqueso.com</p>
+                        <p><span class="oi oi-envelope-closed footer-address-icon"></span><a href="mailto:contacto@macanudonoqueso.com" style="color: var(--blanco);">contacto@macanudonoqueso.com</a></p>
                     </address><br><br>
                     <img src="{{asset('/storage/img/macanudo_logoNegro.png')}}" width="70%" /><br>
+                    {{--
+                    <img src="{{asset('/storage/img/logo-footer.jpeg')}}" width="70%" /><br>
+                    --}}
 
                     <p class="small text-center"></p><br><br>
                     <p class="text-center sticky-bottom fixed-bottom d-block">
