@@ -95,6 +95,7 @@
                                 <a class="dropdown-item" href="{{route('canastas.index')}}">Canastas</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{route('posts.index')}}">Posts</a>
+                                <a class="dropdown-item" href="{{route('banner.index')}}">Banner</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{route('cupones.index')}}">Cupones</a>
                                 <a class="dropdown-item" href="{{route('costos_de_envio.index')}}">Costos de envio</a>

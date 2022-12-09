@@ -20,6 +20,7 @@ use App\Http\Controllers\WebhooksController;
 use App\Http\Controllers\ClubMacanudoController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\BannerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -327,6 +328,30 @@ Route::post('webhooks', WebhooksController::class);
 | 
 */
 Route::post('contacto', [ComentarioController::class, 'formulario_de_contacto'])->name('formulario_de_contacto'); 
+
+
+
+/*
+|--------------------------------------------------------------------------
+| banner
+|--------------------------------------------------------------------------
+| La ruta banner es administrada por el controlador 
+| BannerController, ya que debe cumplir con la funciones 
+| de CRUD para los elementos del banner de novedades.
+| Utiliza el middleware 'administrador' que permite 
+| que los usuarios con dicho rol creen y editen los elementos
+*/
+//Route::get('/', BannerController::class)->name('banner');
+Route::controller(BannerController::class)->group(function () {
+    Route::get('banner', 'index')->name('banner.index')->middleware('acceso.administrador');
+    //Route::get('banner/create', 'create')->name('banner.create')->middleware('acceso.administrador');
+    Route::post('banner', 'store')->name('banner.store')->middleware('acceso.administrador');
+    //Route::get('banner/{imagen}', 'show')->name('banner.show');
+    //Route::get('banner/{imagen}/edit', 'edit')->name('banner.edit')->middleware('acceso.administrador');
+    Route::put('banner/{imagen}', 'update')->name('banner.update')->middleware('acceso.administrador');
+    Route::delete('banner/{imagen}', 'destroy')->name('banner.destroy')->middleware('acceso.administrador');
+});
+
 
 
 

@@ -7,6 +7,8 @@
 @section('content')
 
 
+<!-- Banner -->
+@include('partials.banner')
 
 
 <div class="mt-3 mr-0 mb-3 ml-0 contenedor">
