@@ -21,6 +21,7 @@ use App\Http\Controllers\ClubMacanudoController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\MiPerfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -362,10 +363,11 @@ Route::controller(BannerController::class)->group(function () {
 | Esta ruta solo devuelve una vista, por lo tanto no es 
 | necesario utilizar un controlador.
 */
-Route::get('/mi_perfil', function () {
+Route::get('/mi_perfil', [MiPerfilController::class, 'mi_perfil'])->name('mi_perfil')->middleware('auth');
+/*Route::get('/mi_perfil', function () {
     return view('mi_perfil');
     //return "mi_perfil";
-})->name('mi_perfil')->middleware('auth');
+})->name('mi_perfil')->middleware('auth');*/
 
 
 

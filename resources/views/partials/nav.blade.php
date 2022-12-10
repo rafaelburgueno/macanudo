@@ -85,7 +85,8 @@
                             </svg>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('profile.show')}}">Mi perfil</a>
+                            {{--<a class="dropdown-item" href="{{route('profile.show')}}">Mi perfil</a>--}}
+                            <a class="dropdown-item" href="{{route('mi_perfil')}}">Mi perfil</a>
                             @if( Auth::user()->rol == 'administrador' )
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{route('reparto')}}">Reparto</a>
