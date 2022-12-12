@@ -39,33 +39,37 @@
                 </h6>
                 <hr>
                 <br><br>
+
+
                 <h6 class="mr-5">
-                    <a class="" data-toggle="modal" data-target="#exampleModal1" style="color: #1e1e1e;"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                            class="bi bi-geo-alt-fill mr-5" viewBox="0 0 16 16">
-                            <path
-                                d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                        </svg></a> <a class="" data-toggle="modal" data-target="#exampleModal1"
-                        style="color: #1e1e1e;"> Direcciones <svg xmlns="http://www.w3.org/2000/svg" width="22"
-                            height="22" fill="currentColor" class="bi bi-arrow-right-circle ml-3"
-                            viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                    <a class="" data-toggle="modal" data-target="#exampleModal1" style="color: #1e1e1e;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-geo-alt-fill mr-5" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                        </svg> 
+                        Direcciones 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-right-circle ml-3" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                         </svg>
-                </h6></a>
+                    </a>
+                </h6>
                 <hr>
                 <br><br>
-                <h6 class="mr-5"> <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                        class="bi bi-bag-heart-fill mr-5" viewBox="0 0 16 16">
-                        <path
-                            d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
-                    </svg>Mis compras <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                        fill="currentColor" class="bi bi-arrow-right-circle ml-3" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-                    </svg></h6>
+
+
+                <h6 class="mr-5"> 
+                    <a class="" data-toggle="modal" data-target="#modal_mis_compras" style="color: #1e1e1e;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-bag-heart-fill mr-5" viewBox="0 0 16 16">
+                            <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
+                        </svg>
+                        Mis compras 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-right-circle ml-3" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                        </svg>
+                    </a>
+                </h6>
                 <hr>
                 <br><br>
+
                 <h6 class="mr-5"><a href="{{route('profile.show')}}" class="link" {{--data-toggle="modal" data-target="#exampleModal"--}} style="color: #1e1e1e;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                         class="bi bi-shield-lock mr-5" viewBox="0 0 16 16">
@@ -98,6 +102,8 @@
     </div>
     <hr>
 </div>
+
+
 
 
 <!-- MODAL MIS DATOS----MODAL MIS DATOS----MODAL MIS DATOS----MODAL MIS DATOS------>
@@ -196,22 +202,22 @@
 </div>
 
 
-<!-- MODAL MIMS DIRECCIONES----MODAL MIMS DIRECCIONES----MODAL MIMS DIRECCIONES----MODAL MIMS DIRECCIONES------>
-<!-- MODAL MIMS DIRECCIONES----MODAL MIMS DIRECCIONES----MODAL MIMS DIRECCIONES----MODAL MIMS DIRECCIONES------>
+
+
+<!-- MODAL MIS DIRECCIONES----MODAL MIS DIRECCIONES----MODAL MIS DIRECCIONES----MODAL MIS DIRECCIONES------>
+<!-- MODAL MIS DIRECCIONES----MODAL MIS DIRECCIONES----MODAL MIS DIRECCIONES----MODAL MIS DIRECCIONES------>
 <div class="modal fade text-dark" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content ">
             <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Mis direcciones</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="borrar()">
                     <span aria-hidden="true">&times;</span>
                 </button>
-
-
-
             </div>
-            <h5 class="modal-title text-center" id="exampleModalLabel">Mis direcciones</h5>
             <div class="modal-body" style="line-height: 10px;">
+
                 @foreach($pedidos as $pedido)
                     <p><strong>Teléfono: </strong>{{$pedido->telefono}}</p>
                     <p><strong>Dirección: </strong>{{$pedido->direccion}}</p>
@@ -221,9 +227,65 @@
                 @endforeach
                 
             </div>
-
         </div>
+    </div>
+</div>
 
+
+
+
+<!-- MODAL MIS COMPRAS----MODAL MIS COMPRAS----MODAL MIS COMPRAS----MODAL MIS COMPRAS------>
+<!-- MODAL MIS COMPRAS----MODAL MIS COMPRAS----MODAL MIS COMPRAS----MODAL MIS COMPRAS------>
+<div class="modal fade text-dark" id="modal_mis_compras" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Mis compras</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="borrar()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="line-height: 10px;">
+
+
+                <div class="accordion" id="accordion-mis-compras">
+
+                    @foreach($pedidos as $pedido)
+                    
+                        <div class="card">
+                        <div class="card-header" id="compra-{{$pedido->id}}">
+                            <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-{{$pedido->id}}" aria-expanded="true" aria-controls="collapse-{{$pedido->id}}">
+                                <strong>{{$pedido->monto}}$</strong> | {{$pedido->created_at->format('d/m/Y')}}
+                            </button>
+                            </h2>
+                        </div>
+                        <div id="collapse-{{$pedido->id}}" class="collapse showw" aria-labelledby="compra-{{$pedido->id}}" data-parent="#accordion-mis-compras">
+                            <div class="card-body">
+                                <p><strong>Estado del pedido: </strong>{{$pedido->status}}</p>
+                                <p><strong>Estado del pago: </strong>{{$pedido->estado_del_pago}}</p>
+                                <p><strong>Medio de pago: </strong>{{$pedido->medio_de_pago}}</p>
+                                <p><strong>Número de factura: </strong>{{$pedido->numero_de_factura}}</p>
+                                
+                                <p><strong>Productos: </strong>    
+                                    <ul class="py-0 mt-0 mb-3">
+                                        @foreach($pedido->productos as $producto)
+                                        <li class="py-1 my-0">{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                        @endforeach
+                                    </ul>
+                                </p>
+
+                            </div>
+                        </div>
+                        </div>
+
+                    @endforeach
+
+                  </div>
+                
+            </div>
+        </div>
     </div>
 </div>
 
