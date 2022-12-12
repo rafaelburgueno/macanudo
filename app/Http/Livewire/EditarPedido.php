@@ -17,7 +17,7 @@ class EditarPedido extends Component
     
 
 
-    public function entregado()
+    /*public function entregado()
     {
         $this->pedido->status = 'entregado';
         $this->pedido->save();
@@ -27,11 +27,11 @@ class EditarPedido extends Component
     {
         $this->pedido->status = 'pedido';
         $this->pedido->save();
-    }
+    }*/
 
 
 
-    public function pagado()
+    /*public function pagado()
     {
         $this->pedido->estado_del_pago = 'pagado';
         $this->pedido->save();
@@ -41,7 +41,25 @@ class EditarPedido extends Component
     {
         $this->pedido->estado_del_pago = 'pendiente';
         $this->pedido->save();
+    }*/
+
+
+
+
+    // metodo que maneja el input type select del status
+    public function cambiarStatus($value)
+    {
+        $this->pedido->status = $value;
+        $this->pedido->save();
     }
+
+    // metodo que maneja el input type select del estado_del_pago
+    public function cambiarEstadoDelPago($value)
+    {
+        $this->pedido->estado_del_pago = $value;
+        $this->pedido->save();
+    }
+
 
 
     /*public function pagarAlRecibir($id)

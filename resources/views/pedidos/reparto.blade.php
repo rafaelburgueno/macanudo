@@ -102,7 +102,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content negro">
                                 <div class="modal-header text-center">
-                                    <h5 class="modal-title" id="info_del_pedido_{{ $pedido->id }}Label">{{$pedido->created_at}}</h5><br>
+                                    <h5 class="modal-title" id="info_del_pedido_{{ $pedido->id }}Label">{{$pedido->created_at}} | id:{{$pedido->id}}</h5><br>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>

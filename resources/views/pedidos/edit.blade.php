@@ -94,7 +94,8 @@
                         <!--input para el numero_de_factura-->
                         <div class="form-group mb-3">
                             <label for="numero_de_factura">Numero de factura</label>
-                            <input type="number" class="form-control" id="numero_de_factura" name="numero_de_factura" placeholder="..." value="{{old('numero_de_factura', $pedido->numero_de_factura)}}" min="0" style="width: 100%;">
+                            <input type="number" class="form-control" id="numero_de_factura" name="numero_de_factura" placeholder="..." 
+                            value="{{old('numero_de_factura', $pedido->numero_de_factura)}}" min="0" style="width: 100%;" {{ ($pedido->medio_de_pago == "mercadopago") ? 'readonly' : ''}}>
                             @error('numero_de_factura')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror

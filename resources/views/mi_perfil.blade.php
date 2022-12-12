@@ -219,11 +219,13 @@
             <div class="modal-body" style="line-height: 10px;">
 
                 @foreach($pedidos as $pedido)
-                    <p><strong>Teléfono: </strong>{{$pedido->telefono}}</p>
-                    <p><strong>Dirección: </strong>{{$pedido->direccion}}</p>
-                    <p><strong>Localidad: </strong>{{$pedido->localidad}}</p>
-                    <p><strong>Departamento: </strong>{{$pedido->Departamento}}</p><br>
-                    <hr>
+                    @if($pedido->direccion != 'el pedido se retira en la planta')
+                        <p><strong>Teléfono: </strong>{{$pedido->telefono}}</p>
+                        <p><strong>Dirección: </strong>{{$pedido->direccion}}</p>
+                        <p><strong>Localidad: </strong>{{$pedido->localidad}}</p>
+                        <p><strong>Departamento: </strong>{{$pedido->departamento}}</p><br>
+                        <hr>
+                    @endif
                 @endforeach
                 
             </div>

@@ -36,7 +36,7 @@
                         <p></p>
                         <p><span class="oi oi-phone footer-address-icon"></span><a class="" href="https://wa.me/59899760201" target="_blank" style="color: var(--blanco);">099 760 201</a></p>
                         <p></p>
-                        <p><span class="oi oi-envelope-closed footer-address-icon"></span><a href="mailto:contacto@macanudonoqueso.com" style="color: var(--blanco);">contacto@macanudonoqueso.com</a></p>
+                        <p><span class="oi oi-envelope-closed footer-address-icon"></span><a href="mailto:{{env('MAIL_FROM_ADDRESS')}}" style="color: var(--blanco);">{{env('MAIL_FROM_ADDRESS')}}</a></p>
                     </address><br><br>
                     <img src="{{asset('/storage/img/macanudo_logoNegro.png')}}" width="70%" /><br>
                     {{--
@@ -66,7 +66,7 @@
 
                     </p>
 
-                    <p class="small text-center">© 2022 Macanudo NoQuesos</p><br><br>
+                    <p class="small text-center">© 2022 {{env('APP_NAME')}}</p><br><br>
 
                 </div>
 

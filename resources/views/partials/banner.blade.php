@@ -1,6 +1,6 @@
 <!--  BANNER AGENDA INICIO-->
-@isset($banner)
-<div class="containerr">
+@if($banner->count())
+<div class="containerr mb-5">
     <div id="carouselExampleFade" class="carousel slide carousel-fade align-items-center" data-ride="carousel">
         <div class="carousel-inner ">
             {{--<div class="carousel-item active">
@@ -50,7 +50,7 @@
 
 
 </div><br>
-@endisset
+@endif
 
 {{--
 

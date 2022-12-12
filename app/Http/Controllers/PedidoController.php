@@ -303,7 +303,9 @@ class PedidoController extends Controller
         }
 
         //$pedido->tipo_de_cliente = $request->tipo_de_cliente;
-        $pedido->numero_de_factura = $request->numero_de_factura;
+        if($pedido->medio_de_pago != 'mercadopago'){
+            $pedido->numero_de_factura = $request->numero_de_factura;
+        }
         //$pedido->recibir_novedades = $request->recibir_novedades;
 
         $pedido -> save();
