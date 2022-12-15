@@ -140,7 +140,7 @@
             <h5 class="modal-title text-center" id="exampleModalLabel">Términos y condiciones</h5>
             <div class="modal-body">
                 <h6>ACEPTACIÓN</h6>
-                <p>El uso de este sitio web, www.macanudonoqueso.com y todas las páginas de este dominio, 
+                <p>El uso de este sitio web, {{env('APP_URL')}} y todas las páginas de este dominio, 
                     constituye la aceptación de los siguientes términos y condiciones. Macanudo se reserva 
                     el derecho de buscar todos los recursos disponibles por ley por cualquier violación 
                     de estos términos de uso, incluida cualquier violación de los derechos del nombre y 
@@ -216,11 +216,11 @@
                 <p>En caso de contenido erróneo, incompleto, desactualizado, que vulnere derechos de 
                     propiedad intelectual o ante cualquier otra situación irregular de hecho o de derecho, 
                     el usuario podrá comunicarse a través del correo electrónico: 
-                    contacto@macanudonoqueso.com</p>
+                    <a href="mailto:{{env('MAIL_FROM_ADDRESS')}}">{{env('MAIL_FROM_ADDRESS')}}</a></p>
 
                 <h6>CONTACTO</h6>
                 <p>Por cualquier queja, sugerencia o propuesta de colaboración, puede comunicarse a 
-                    contacto@macanudonoqueso.com o a cualquier dato de contacto proporcionado en este sitio 
+                    <a href="mailto:{{env('MAIL_FROM_ADDRESS')}}">{{env('MAIL_FROM_ADDRESS')}}</a> o a cualquier dato de contacto proporcionado en este sitio 
                     web.</p>
 
             </div>
@@ -308,9 +308,7 @@
             <h5 class="modal-title text-center" id="vender_macanudoLabel">Vender Macanudo</h5><br>
             <div class="modal-body text-center">
                 <p>Para ser vendedor, distribuidor o trabajar con nosotros comunicate al mail
-                    <a href="mailto:contacto@macanudonoqueso.com">
-                        contacto@macanudonoqueso.com
-                    </a>
+                    <a href="mailto:{{env('MAIL_FROM_ADDRESS')}}">{{env('MAIL_FROM_ADDRESS')}}</a>
                 </p>
                     
 

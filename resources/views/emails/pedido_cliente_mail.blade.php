@@ -48,8 +48,8 @@
         </p>
     @endif
 
-    <p>Ante cualquier consulta o reclamo comunicarse al email <a href="mailto:contacto@macanudonoqueso.com">contacto@macanudonoqueso.com</a> </p>
-
+    {{--<p>Ante cualquier consulta o reclamo comunicarse al email <a href="mailto:contacto@macanudonoqueso.com">contacto@macanudonoqueso.com</a> </p>--}}
+    <p>Ante cualquier consulta o reclamo comunicarse al email <a href="mailto:{{env('MAIL_FROM_ADDRESS')}}">{{env('MAIL_FROM_ADDRESS')}}</a> </p>
     {{--<table>
         <style>
             tr {
