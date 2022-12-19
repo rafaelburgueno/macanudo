@@ -372,18 +372,14 @@ Route::get('/mi_perfil', [MiPerfilController::class, 'mi_perfil'])->name('mi_per
 
 
 
-
-
-
-
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        //return view('dashboard');
+        return redirect('/');
     })->name('dashboard');
 });
 
@@ -399,13 +395,13 @@ Route::middleware([
 | En la consola se veria asi -> php artisan storage:link
 | Puede matenerse desactivada ya que esta resuelto el problema
 */
-Route::get('/storage_link', function () {
+/*Route::get('/storage_link', function () {
     Artisan::call('storage:link');
     dd(Artisan::output());
     // /home/u297868560/domains/macanudonoqueso.com/macanudonoqueso
-    //symlink('/home/u297868560/domains/macanudonoqueso.com/macanudonoqueso/storage/app/public', '/home/u297868560/domains/macanudonoqueso.com/public_html/storage');
+    //symlink('/home/u297868560/domains/alimentosmacanudo.com/macanudonoqueso/storage/app/public', '/home/u297868560/domains/alimentosmacanudo.com/public_html/storage');
     //return view('home');
-});
+});*/
 
 
 
@@ -443,6 +439,8 @@ Route::get('/artisan/{command}', function ($command) {
 })->name('welcome');*/
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | dashboard
@@ -451,7 +449,8 @@ Route::get('/artisan/{command}', function ($command) {
 | necesario utilizar un controlador.
 */
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    //return view('dashboard');
+    return redirect('/');
     //return "dashboard";
 })->name('dashboard')->middleware('acceso.administrador');
 

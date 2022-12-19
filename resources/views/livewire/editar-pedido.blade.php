@@ -14,8 +14,9 @@
         </p>--}}
         
         <div class="form-group mb-3">
-            <label>Estado del pedido:</label>
-            <select class="form-control"  wire:click="cambiarStatus($event.target.value)">
+            <label>Estado del pedido: <strong>{{$pedido->status}}</strong></label>
+            {{--<select class="form-control"  wire:click="cambiarStatus($event.target.value)">--}}
+            <select class="form-control"  wire:model.lazy="cambiarStatus($event.target.value)">
                 <option value="pedido" @selected( $pedido->status == "pedido" )>Pedido</option>
                 <option value="despachado" @selected( $pedido->status == "despachado" )>Despachado</option>
                 <option value="en viaje" @selected( $pedido->status == "en viaje" )>En viaje</option>
@@ -27,7 +28,7 @@
 
     <div>
         <div class="form-group mb-3">
-            <label>Estado del pago:</label>
+            <label>Estado del pago: <strong>{{$pedido->estado_del_pago}}</strong></label>
             <select class="form-control" wire:click="cambiarEstadoDelPago($event.target.value)">
                 <option value="pagado" @selected( $pedido->estado_del_pago == "pagado" )>Pagado</option>
                 <option value="pendiente" @selected( $pedido->estado_del_pago == "pendiente" )>Pendiente</option>

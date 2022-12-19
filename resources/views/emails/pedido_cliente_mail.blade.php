@@ -97,7 +97,7 @@
         
     </table>--}}
 
-    <h2>Macanudonoqueso.com</h2>
+    <h2><a href="{{env('APP_URL')}}" target="_blank">{{env('APP_NAME')}}.com</a></h2>
     
 </body>
 </html>

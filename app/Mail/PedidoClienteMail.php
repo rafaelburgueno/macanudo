@@ -33,7 +33,7 @@ class PedidoClienteMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Su pedido en macanudonoqueso.com',
+            subject: 'Su pedido',
         );
     }
 
