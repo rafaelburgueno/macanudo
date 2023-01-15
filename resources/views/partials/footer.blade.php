@@ -66,7 +66,7 @@
 
                     </p>
 
-                    <p class="small text-center">© 2022 {{env('APP_NAME')}}</p><br><br>
+                    <p class="small text-center">© 2023 {{env('APP_NAME')}}</p><br><br>
 
                 </div>
 

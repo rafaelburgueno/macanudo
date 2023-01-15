@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('title', 'Club Macanudo')
-@section('meta-description', 'metadescripcion para la pagina Club Macanudo')
+@section('meta-description', 'Obtén una canasta de productos cada mes con nuestra suscripción, y disfruta de la comodidad de recibirlos directamente en tu hogar. ¡Únete al Club Macanudo hoy!')
     
     
 @section('content')
@@ -346,8 +346,9 @@
 
             </div>
             <div class="modal-footer">
-                <button class="btn1 btn-azul shadown" data-toggle="modal"
-                    data-target="#exampleModal1">Unirme</button>
+                {{--<button class="btn1 btn-azul shadown" data-toggle="modal"
+                    data-target="#exampleModal1">Unirme</button>--}}
+                <p>La suscripción al Club Macanudo está suspendida por el momento.</p>
             </div>
 
         </div>
@@ -371,6 +372,10 @@
                 </button>
 
             </div>
+            
+            <div class="modal-body"><p>La suscripción al Club Macanudo está suspendida por el momento.</p></div>
+            
+            {{--
             <h5 class="modal-title text-center" id="exampleModalLabel">Completa tus datos</h5>
 
             <form action="{{route('formulario_del_club_macanudo')}}" method="POST">
@@ -401,7 +406,7 @@
                             @enderror
 
                             <label for="direccion" class="negro mt-3">Dirección: </label>
-                            {{--<input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingrese su dirección" required>--}}
+                            {{-<input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingrese su dirección" required>-}}
                             <textarea required class="form-control" id="direccion" name="direccion" rows="3" placeholder="Ingrese su dirección">{{old('direccion')}}</textarea>
                             @error('direccion')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -413,7 +418,7 @@
                 <div class="modal-footer text-center">
                     <button type="submit" class="btn1 btn-azul shadown btn-procesando">Unirme</button>
                 </div>
-            </form>
+            </form>--}}
 
         </div>
 

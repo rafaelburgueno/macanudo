@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('title', 'Home')
-@section('meta-description', 'metadescripcion para la pagina home')
+@section('meta-description', 'Déjate sorprender por los deliciosos alimentos elaborados con castañas de cajú. Nuestros alimentos veganos son perfectos para aquellos que buscan opciones saludables y con un sabor único.')
     
     
 @section('content')
@@ -146,7 +146,7 @@
         <div class="col m-0 p-0">
             <img src="{{asset('/storage/img/index.4b.jpeg')}}" class="nav d-block w-100" alt="...">
             <p class="abajo-centrado"><a class="btn1 btn-lg shadown btn-blanco negro" type="button"
-                    href="{{route('nuestros_productos')}}">Nosotros</a>
+                    href="{{route('nosotros')}}">Nosotros</a>
         </div>
     </div>
 </div>

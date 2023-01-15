@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('title', 'Puntos de venta')
-@section('meta-description', 'metadescripcion para la pagina Puntos de venta')
+@section('meta-description', 'Descubre donde puedes encontrar nuestros productos y experimenta el sabor de los Alimentos Macanudo.')
     
     
 @section('content')

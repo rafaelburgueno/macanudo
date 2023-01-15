@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('title', 'Nosotros')
-@section('meta-description', 'metadescripcion para la pagina Nosotros')
+@section('meta-description', 'Conoce más acerca de nuestro proceso de elaboración de quesos veganos con castañas de cajú. Descubre nuestra historia, valores y objetivos.')
     
     
 @section('content')
