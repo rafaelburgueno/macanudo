@@ -12,7 +12,7 @@
     <div class="row mt-2">
         <div class="col-sm-3"></div>
         <div class="col-sm-6 align-items-center">
-            <img src="{{asset('/storage/img/NOSOTROS1.png')}}" class="nav d-block w-100" alt="...">
+            <img src="{{asset('/storage/img/NOSOTROS1.png')}}" class="nav d-block w-100" alt="Imagen con varios sinónimos de la expresión 'macanudo'">
         </div>
         <div class="col-sm-3"></div>
     </div>

@@ -14,7 +14,7 @@
 <div class="mt-3 mr-0 mb-3 ml-0 contenedor">
     <div class="row m-0 p-0">
         <div class="col m-0 p-0">
-            <img src="{{asset('/storage/img/index.b.jpeg')}}" class="nav d-block w-100 m-0" alt="...">
+            <img src="{{asset('/storage/img/index.b.jpeg')}}" class="nav d-block w-100 m-0" alt="Imagen de diferentes tipos de productos de Macanudo, con el sobreimpreso '¿Querés conocer algo mejor que el queso?'">
             <p class="abajo-centrado">
                 <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('nuestros_productos')}}">
                     Ver productos
@@ -45,7 +45,7 @@
 <div class="mt-3 mr-0 mb-3  ml-0 contenedor">
     <div class="row m-0  p-0">
         <div class="col m-0 p-0">
-            <img src="{{asset('/storage/img/index.2b.jpeg')}}" class="nav d-block w-100" alt="...">
+            <img src="{{asset('/storage/img/index.2b.jpeg')}}" class="nav d-block w-100" alt="Imagen con productos de Macanudo, con el sobreimpreso 'A base de plantas, deliciosos y saludables'">
             <p class="abajo-centrado">
                 <a href="{{route('blog.index')}}" class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('blog.index')}}">Ver proceso</a>
             </p>
@@ -60,52 +60,52 @@
         <div class="slider w-100 m-0 p-0">
             <div class="slide-track">
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="sin gluten" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/singluten.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/singluten.png')}}" height="100" width="250" alt="sin gluten" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sinl.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sinl.png')}}" height="100" width="250" alt="sin lactosa" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sinlactosa.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sinlactosa.png')}}" height="100" width="250" alt="sin lactosa" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sincolesterol.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sincolesterol.png')}}" height="100" width="250" alt="sin colesterol" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sinc.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sinc.png')}}" height="100" width="250" alt="sin colesterol" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/veg.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/veg.png')}}" height="100" width="250" alt="100% veganos" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/vegano.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/vegano.png')}}" height="100" width="250" alt="100% veganos" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="sin gluten" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/singluten.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/singluten.png')}}" height="100" width="250" alt="sin gluten" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sinl.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sinl.png')}}" height="100" width="250" alt="sin lactosa" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sinlactosa.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sinlactosa.png')}}" height="100" width="250" alt="sin lactosa" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sincolesterol.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sincolesterol.png')}}" height="100" width="250" alt="sin colesterol" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sinc.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sinc.png')}}" height="100" width="250" alt="sin colesterol" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/veg.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/veg.png')}}" height="100" width="250" alt="100% veganos" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/vegano.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/vegano.png')}}" height="100" width="250" alt="100% veganos" />
                 </div>
 
             </div>
@@ -116,7 +116,7 @@
 <div class="mt-0 mr-0 mb-3  ml-0 contenedor">
     <div class="row m-0 p-0">
         <div class="col m-0 p-0">
-            <img src="{{asset('/storage/img/index.3b.jpeg')}}" class="nav d-block w-100" alt="...">
+            <img src="{{asset('/storage/img/index.3b.jpeg')}}" class="nav d-block w-100" alt="Imagen con productos de Macanudo, con el sobreimpreso '100% lleno de amor al planeta'">
             <p class="abajo-centrado">
                 <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('blog.index')}}">
                     Ver beneficios
@@ -144,7 +144,7 @@
 <div class="mt-0 mr-0 mb-3  ml-0  contenedor">
     <div class="row m-0 p-0">
         <div class="col m-0 p-0">
-            <img src="{{asset('/storage/img/index.4b.jpeg')}}" class="nav d-block w-100" alt="...">
+            <img src="{{asset('/storage/img/index.4b.jpeg')}}" class="nav d-block w-100" alt="Imagen con productos de Macanudo, con el sobreimpreso 'Elaborados con empatía y artesanalmente'">
             <p class="abajo-centrado"><a class="btn1 btn-lg shadown btn-blanco negro" type="button"
                     href="{{route('nosotros')}}">Nosotros</a>
         </div>
@@ -167,7 +167,7 @@
     </div>
 </div>
 
-<img src="{{asset('/storage/img/club-macanudo.png')}}" class="nav d-block w-100" alt="...">
+<img src="{{asset('/storage/img/club-macanudo.png')}}" class="nav d-block w-100" alt="Imagen con productos de Macanudo, con el sobreimpreso '¿Te encanta Macanudo?'">
 
 
 <div class="mt-2 mr-0 mb-5 ml-0 container-fluid">
@@ -239,52 +239,52 @@
         <div class="slider w-100 m-0 p-0">
             <div class="slide-track">
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="sin gluten" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/singluten.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/singluten.png')}}" height="100" width="250" alt="sin gluten" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sinl.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sinl.png')}}" height="100" width="250" alt="sin lactosa" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sinlactosa.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sinlactosa.png')}}" height="100" width="250" alt="sin lactosa" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sincolesterol.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sincolesterol.png')}}" height="100" width="250" alt="sin colesterol" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sinc.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sinc.png')}}" height="100" width="250" alt="sin colesterol" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/veg.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/veg.png')}}" height="100" width="250" alt="100% veganos" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/vegano.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/vegano.png')}}" height="100" width="250" alt="100% veganos" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sing.png')}}" height="100" width="250" alt="sin gluten" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/singluten.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/singluten.png')}}" height="100" width="250" alt="sin gluten" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sinl.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sinl.png')}}" height="100" width="250" alt="sin lactosa" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sinlactosa.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sinlactosa.png')}}" height="100" width="250" alt="sin lactosa" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sincolesterol.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sincolesterol.png')}}" height="100" width="250" alt="sin colesterol" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/sinc.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/sinc.png')}}" height="100" width="250" alt="sin colesterol" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/veg.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/veg.png')}}" height="100" width="250" alt="100% veganos" />
                 </div>
                 <div class="slide">
-                    <img src="{{asset('/storage/img/vegano.png')}}" height="100" width="250" alt="" />
+                    <img src="{{asset('/storage/img/vegano.png')}}" height="100" width="250" alt="100% veganos" />
                 </div>
             </div>
 

@@ -4,9 +4,9 @@
 
         <a class="navbar-brand navbar-logo" href="{{route('home')}}">
             @if(request()->routeIs('home'))
-                <img src="{{asset('/storage/img/maca.1.png')}}" width="150px"> <!--width="240%"-->
+                <img src="{{asset('/storage/img/maca.1.png')}}" width="150px" alt="logo de Macanudo"> <!--width="240%"-->
             @else
-                <img src="{{asset('/storage/img/castana negro.png')}}" width="60%"> <!--width="60%"-->
+                <img src="{{asset('/storage/img/castana negro.png')}}" width="60%" alt="logo de Macanudo"> <!--width="60%"-->
             @endif
         </a>
 

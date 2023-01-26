@@ -121,10 +121,16 @@ class PagosController extends Controller
 
         $status = $response->status;
 
+        $pedido->estado_del_pago = $status;
+        $pedido->numero_de_factura = $payment_id;
+        $pedido->medio_de_pago = 'mercadopago';
+        $pedido->save();
+
         if($status == 'approved'){
+
             $pedido->status = 'pedido';
-            $pedido->numero_de_factura = $payment_id;
-            $pedido->medio_de_pago = 'mercadopago';
+            //$pedido->numero_de_factura = $payment_id;
+            //$pedido->medio_de_pago = 'mercadopago';
             $pedido->estado_del_pago = 'pagado';
             $pedido->save();
 
@@ -134,13 +140,31 @@ class PagosController extends Controller
             // Envia un email al cliente con el pedido
             Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));
 
-
             session()->flash('pago_aprovado', 'La compra fue realizada con éxito. Te enviamos un email con la información tu pedido.');
             return redirect() -> route('nuestros_productos');
-        }else{
-            $pedido->numero_de_factura = $payment_id;
+
+        }elseif($status == 'pending'){
             $pedido->status = 'pedido';
-            $pedido->medio_de_pago = 'mercadopago';
+            //$pedido->numero_de_factura = $payment_id;
+            //$pedido->medio_de_pago = 'mercadopago';
+            $pedido->estado_del_pago = 'pendiente';
+            $pedido->save();
+
+            // Envia un email con el pedido
+            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
+            ->queue(new PedidosMail($pedido));
+            // Envia un email al cliente con el pedido
+            Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));
+
+            session()->flash('pago_aprovado', 'La compra fue realizada con éxito, solo falta que realices el pago. Te enviamos un email con la información tu pedido.');
+            return redirect() -> route('nuestros_productos');
+        }
+        else{
+            // hay un error por 'valor fuera de rango' para la columna 'numero_de_factura' = 53 978 965 097
+            // TODO aunque el pedido este pendiente deberia enviarse un email
+            //$pedido->numero_de_factura = $payment_id;
+            $pedido->status = 'pedido';
+            //$pedido->medio_de_pago = 'mercadopago';
             $pedido->estado_del_pago = $status;
             $pedido->save();
 

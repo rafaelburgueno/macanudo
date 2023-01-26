@@ -9,7 +9,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <title>Macanudo noQueso - @yield('title')</title>
+    <title>Macanudo - @yield('title')</title>
     <meta name="description" content="@yield('meta-description', 'metadescripción por defecto')">
 
     {{--<link rel="icon" href="{{ asset('/storage/img/castana.t.png') }}">--}}

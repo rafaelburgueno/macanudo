@@ -10,7 +10,7 @@
 <div>
 
     <br>
-    <img src="{{asset('/storage/img/club-macanudo.png')}}" class="nav d-block w-100" alt="...">
+    <img src="{{asset('/storage/img/club-macanudo.png')}}" class="nav d-block w-100" alt="Imagen con productos de Macanudo, con el sobreimpreso '¿Te encanta Macanudo?'">
     <br><br>
 </div>
 
@@ -21,7 +21,7 @@
     <div class="row mt-3  mr-0  ml-0 ">
         <div class="col">
             <h1 class="text-center text-shadow" style="color: var(--gris);">¡Tenemos una canasta especial para ti!
-                <br> <img src="{{asset('/storage/img/canasta.png')}}" width="25%">
+                <br> <img src="{{asset('/storage/img/canasta.png')}}" width="25%" alt="Ilustración de una canasta con productos de Macanudo">
             </h1><br>
 
 
@@ -180,7 +180,7 @@
     <div class="row  mr-0  ml-0 ">
         <div class="col">
             <h1 class="text-center  scroll-content fadeLeft" style=" color: var(--azul) ;">
-                AUMENTAMOS<br>TU<br><img src="{{asset('/storage/img/canasta.png')}}" width="25%"></h1><br><br>
+                AUMENTAMOS<br>TU<br><img src="{{asset('/storage/img/canasta.png')}}" width="25%" alt="Ilustración de una canasta con productos de Macanudo"></h1><br><br>
         </div>
     </div>
 </div>

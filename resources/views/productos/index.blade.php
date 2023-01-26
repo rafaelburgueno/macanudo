@@ -157,7 +157,7 @@
 
                         <!--input para la descripcion-->
                         <div class="form-group mb-3">
-                            <label for="descripcion">Descripción</label>
+                            <label for="descripcion">Descripción <small>(Se usa para completar el texto alternativo a las imagenes)</small></label>
                             <textarea required class="form-control" id="descripcion" name="descripcion" rows="3">{{old('descripcion')}}</textarea>
                             @error('descripcion')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>

@@ -13,7 +13,7 @@
 
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-        <title>Macanudo noQueso - @yield('title')</title>
+        <title>Macanudo - @yield('title')</title>
 
 
         <!-- CSS BOOTSTRAP 4 -->

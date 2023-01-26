@@ -32,7 +32,7 @@
 
             <div class="card shadow text-white border border-5 border-light" style="max-width: 520px; background-color:{{$producto->color}};">
                 @if (count($producto->multimedias))
-                    <img src="{{$producto->multimedias->last()->url}}" class="card-img" alt="..." width="60%">
+                    <img src="{{$producto->multimedias->last()->url}}" class="card-img" alt="{{$producto->descripcion}}" width="60%">
                 @else
                     <div style="height: 520px"></div>
                 @endif
@@ -44,7 +44,7 @@
                         {{Str::of($producto->descripcion)->words(10, '...')}}--}}
                         {{Str::of($producto->descripcion)->words(10, '...')}}
                         <br>
-                        <a class=" link" data-toggle="modal" data-target="#modal_{{$producto->nombre}}" ><strong>Leer mas...</strong></a> </p>
+                        <a class=" link" data-toggle="modal" data-target="#modal_{{$producto->id}}" ><strong>Leer mas...</strong></a> </p>
                     
                         <!-- boton de añadir al carrito -->
                         <!-- boton de añadir al carrito --> 
@@ -169,7 +169,7 @@
 @foreach($productos as $producto)
 <!-- MODAL INFO  ----MODAL INFO  ----MODAL INFO  ----MODAL INFO  ------>
 <!-- MODAL INFO  ----MODAL INFO  ----MODAL INFO  ----MODAL INFO  ------>
-<div class="modal fade" id="modal_{{$producto->nombre}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_{{$producto->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content align-items-center negro">
             <div class="modal-header">
