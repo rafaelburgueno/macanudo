@@ -312,8 +312,12 @@ Route::get('/pagos/{pedido}/mercadopago', [PagosController::class, 'mercadopago'
 //
 Route::put('pagos/{pedido}', [PagosController::class ,'pagar_al_recibir'])->name('pagos.pagar_al_recibir');
 
+// esta ruta se usa para que los cliente cancelen su pedido
+Route::delete('eliminar_mi_pedido/{pedido}', [PagosController::class, 'eliminar_mi_pedido'])->name('eliminar_mi_pedido');
+
 // esta ruta se usa para que los cliente vean su pedido
 Route::get('ver_pedido/{pedido}', [PedidoController::class, 'show'])->name('ver_pedido');
+
 
 //
 Route::post('webhooks', WebhooksController::class); 

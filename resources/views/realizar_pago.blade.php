@@ -191,58 +191,48 @@
                     </script>
 
 
-                    {{-- TODO --}}
+                    {{-- BOTON DE CANCELAR COMPRA --}}
+                    {{--TODO--}}
                     <div class="m-3">
-                        {{--<form id="form_crear_pedido" action="{{route('pedidos.carrito')}}" method="POST">
+                        <form action="{{ route('eliminar_mi_pedido', $pedido) }}" method="POST" class="alerta-antes-de-cancelar-pedido">
                             @csrf
-                            @method('POST')--}}
-                            <input type="hidden" id="pagar_al_recibir" name="medio_de_pago" value="pagar al recibir">
-                            <button class="btn1 btn-rojo gris btn-block" id="btn_cancelar_compra" onclick="btn_cancelar_compra();">Cancelar</button>
-                        {{--</form>--}}
+                            @method('DELETE')
+                            <button type="submit" class="btn1 btn-rojo gris btn-block">Cancelar pedido</button>
+                        </form>
                     </div>
 
                     <script>
-                        
-                        function btn_cancelar_compra(){
-                            //console.log("click!!!");
-                            const swalWithBootstrapButtons = Swal.mixin({
-                                customClass: {
-                                    confirmButton: 'btn btn-success',
-                                    cancelButton: 'btn btn-danger'
-                                },
-                                buttonsStyling: false
-                                })
+                        $(document).ready(function(){
 
-                                swalWithBootstrapButtons.fire({
-                                title: 'Esta seguro?',
-                                text: "Realmente quiere abandonar la compra?",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonText: 'Si, Cancelar.',
-                                cancelButtonText: 'No',
-                                reverseButtons: true
-                                }).then((result) => {
-                                if (result.isConfirmed) {
-                                    /*swalWithBootstrapButtons.fire(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success'
-                                    );*/
-                                    location.replace("{{route('mi_carrito')}}");
-                                } /*else if (
-                                    // Read more about handling dismissals below 
-                                    result.dismiss === Swal.DismissReason.cancel
-                                ) {
-                                    swalWithBootstrapButtons.fire(
-                                    'Cancelled',
-                                    'Your imaginary file is safe :)',
-                                    'error'
-                                    )
-                                }*/
-                            })
-                        }
+                            $('.alerta-antes-de-cancelar-pedido').submit(function(e){
+                                e.preventDefault();
                         
+                                Swal.fire({
+                                    title: 'Esta seguro?',
+                                    text: "Realmente quiere cancelar la compra?",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Sí, cancelar.',
+                                    cancelButtonText: 'No'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                    /*Swal.fire(
+                                        'Deleted!',
+                                        'Your file has been deleted.',
+                                        'success'
+                                    );*/
+                                        this.submit();
+                                    }
+                                })
+                        
+                            });
+                            
+                        });
                     </script>
+
+
 
                     {{--<div class="form-check my-4 text-dark">
                         <input type="checkbox" class="form-check-input" id="paypal" name="medio_de_pago" value="paypal" onclick="elegir_medio_de_pago('paypal')">

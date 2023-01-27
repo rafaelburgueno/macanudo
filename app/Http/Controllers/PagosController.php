@@ -178,6 +178,21 @@ class PagosController extends Controller
     }
 
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Pedido  $pedido
+     * @return \Illuminate\Http\Response
+     */
+    public function eliminar_mi_pedido(Pedido $pedido)
+    {
+        if($pedido->status == 'verificado' and $pedido->medio_de_pago == 'sin definir'){
+            $pedido->delete();
+            session()->flash('exito', 'El pedido fue cancelado.');
+        }
+        
+        return redirect() -> route('mi_carrito');
+    }
 
 
 }
