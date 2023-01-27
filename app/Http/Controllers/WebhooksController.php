@@ -17,7 +17,7 @@ class WebhooksController extends Controller
 
     public function __invoke(Request $request)
     {
-        /*
+        
         // Todo el codigo de este metodo debe ir tambien en el metodo invoke del controlador WebhooksController
         //$payment_id = $request->payment_id;
         $payment_id = $request->get('payment_id');
@@ -33,12 +33,17 @@ class WebhooksController extends Controller
 
         $status = $response->status;
 
-        if($status == 'approved'){
+
+        $pedido = Pedido::firstWhere('numero_de_factura', $payment_id);
+
+        $pedido->medio_de_pago = 'mercadopago webhook';
+        $pedido->estado_del_pago = $status;
+        $pedido->save();
+        return true;
+
+        /*if($status == 'approved'){
             $pedido->status = 'pedido';
             $pedido->numero_de_factura = $payment_id;
-            $pedido->medio_de_pago = 'mercadopago';
-            $pedido->estado_del_pago = 'pagado';
-            $pedido->save();
 
             // Envia un email con el pedido
             Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
@@ -58,12 +63,12 @@ class WebhooksController extends Controller
 
             session()->flash('error', 'Algo salio mal, el pago fue rechazado.');
             return redirect() -> route('mi_carrito');
-        }
+        }*/
 
         //return $request->all();
         //return view('pay')->with('pedido', $pedido);
         //return view('pedidos.edit', compact('pedido'));
-        */
+        
     }
 
 
