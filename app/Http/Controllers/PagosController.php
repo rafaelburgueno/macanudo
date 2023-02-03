@@ -99,7 +99,7 @@ class PagosController extends Controller
 
 
     /**
-     * Show the form for editing the specified resource.
+     * luego del formulario de mercado pago se terminan de completar los datos en nuestra plataforma
      *
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
@@ -151,15 +151,15 @@ class PagosController extends Controller
             $pedido->save();
 
             // Envia un email con el pedido
-            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
+            /*Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
             ->queue(new PedidosMail($pedido));
             // Envia un email al cliente con el pedido
-            Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));
+            Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));*/
 
             session()->flash('pago_aprovado', 'La compra fue realizada con éxito, solo falta que realices el pago. Te enviamos un email con la información tu pedido.');
             return redirect() -> route('nuestros_productos');
-        }
-        else{
+        
+        }else{
             // hay un error por 'valor fuera de rango' para la columna 'numero_de_factura' = 53 978 965 097
             // TODO aunque el pedido este pendiente deberia enviarse un email
             //$pedido->numero_de_factura = $payment_id;
@@ -170,6 +170,7 @@ class PagosController extends Controller
 
             session()->flash('error', 'Algo salio mal, el pago fue rechazado.');
             return redirect() -> route('mi_carrito');
+
         }
 
         //return $request->all();
@@ -178,8 +179,12 @@ class PagosController extends Controller
     }
 
 
+
+
+
+
     /**
-     * Show the form for editing the specified resource.
+     * Accion del usuario que elimina el pedido creado antes de definir el medio de pago.
      *
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response

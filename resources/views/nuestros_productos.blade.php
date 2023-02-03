@@ -39,6 +39,27 @@
                 <div class="card-img-overlay">
                     <h4 class="card-title tituloProducto shadown" style="background-color:{{$producto->color}};">{{$producto->nombre}}</h4>
                     <br>
+
+                    
+                    {{-- ETIQUETA DE PRODUCTO AGOTADO--}}
+                    {{--<div class="etiqueta_de_agotado m-0 p-2 text-center">
+                        <span class="h1 text-white ">AGOTADO</span>
+                    </div>
+                    <style>
+                        .etiqueta_de_agotado{
+                            background-color: crimson;
+                            width: 50%;
+                            position: relative;
+                            /*top: 5%;*/
+                            left: -10%;
+                            /*transform: translate(-50%, -50%);*/
+                            transform: rotate(-45deg);
+                            overflow: hidden;
+                            
+                        }
+                    </style>--}}
+
+
                     <p class="card-text parrafoProd px-1" style="opacity:60%; background-color:{{$producto->color}};">
                         {{--{{Str::of($producto->descripcion)->limit(50)}}
                         {{Str::of($producto->descripcion)->words(10, '...')}}--}}
@@ -169,7 +190,7 @@
 @foreach($productos as $producto)
 <!-- MODAL INFO  ----MODAL INFO  ----MODAL INFO  ----MODAL INFO  ------>
 <!-- MODAL INFO  ----MODAL INFO  ----MODAL INFO  ----MODAL INFO  ------>
-<div class="modal fade" id="modal_{{$producto->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_{{$producto->id}}" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content align-items-center negro">
             <div class="modal-header">

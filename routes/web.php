@@ -320,7 +320,7 @@ Route::get('ver_pedido/{pedido}', [PedidoController::class, 'show'])->name('ver_
 
 
 //
-Route::post('webhooks', WebhooksController::class); 
+Route::post('/webhooks', WebhooksController::class); 
 
 
 

@@ -69,6 +69,7 @@
 
         {{--<tr><td>Tipo de cliente: </td><td>{{$pedido->tipo_de_cliente}}</td></tr>--}}
         <tr><td>Medio de pago: </td><td>{{$pedido->medio_de_pago}}</td></tr>
+        <tr><td>Estado del pago: </td><td>{{$pedido->estado_del_pago}}</td></tr>
         <tr><td>Numero de factura: </td><td>{{$pedido->numero_de_factura}}</td></tr>
         
         <tr><td>Recibir novedades: </td><td>{{$pedido->recibir_novedades}}</td></tr>

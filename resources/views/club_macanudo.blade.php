@@ -216,7 +216,7 @@
 
 <!--MODAL TERMINOS Y CONDICIONES -- MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES-->
 <!--MODAL TERMINOS Y CONDICIONES -- MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES-->
-<div class="modal fade" id="modal_terminos_y_condiciones_del_club" tabindex="-1" role="dialog" aria-labelledby="modal_terminos_y_condiciones_del_clubLabel"
+<div class="modal fade" id="modal_terminos_y_condiciones_del_club" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modal_terminos_y_condiciones_del_clubLabel"
     aria-hidden="true">
     <div class="modal-dialog negro" role="document">
         <div class="modal-content align-items-center">
@@ -326,7 +326,7 @@
 
 <!-- MODAL INFO  ----MODAL INFO  ----MODAL INFO  ----MODAL INFO  ------>
 <!-- MODAL INFO  ----MODAL INFO  ----MODAL INFO  ----MODAL INFO  ------>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog negro" role="document">
         <div class="modal-content align-items-center">
@@ -362,7 +362,7 @@
 
 <!--MODAL DATOS SUSCRIPCIÓN -- MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN-->
 <!--MODAL DATOS SUSCRIPCIÓN -- MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN-->
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog negro" role="document">
         <div class="modal-content align-items-center">

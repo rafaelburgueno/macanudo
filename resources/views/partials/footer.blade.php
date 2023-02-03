@@ -19,11 +19,11 @@
 
                 <div class="col-sm-4 d-flex flex-column align-items-center">
                     <h5 class="text-center mr-4">Institucional</h5>
-                    <p><a class="nav-link" href="#" data-toggle="modal" data-target="#preguntas_frecuentes">Preguntas frecuentes</a> </p>
-                    <p><a class="nav-link" href="#" data-toggle="modal" data-target="#modal_terminos_y_condiciones">Terminos y condiciones</a> </p>
-                    <p><a class="nav-link" href="#" data-toggle="modal" data-target="#politicas_de_privacidad">Politicas de privacidad</a> </p>
-                    <p><a class="nav-link" href="#" class="link" data-toggle="modal" data-target="#politicas_de_envio">Políticas de envío</a></p>
-                    <p><a class="nav-link" href="#" data-toggle="modal" data-target="#vender_macanudo">Vender Macanudo</a></p>
+                    <p><a role="button" class="nav-link" href="#" data-toggle="modal" data-target="#preguntas_frecuentes">Preguntas frecuentes</a> </p>
+                    <p><a role="button" class="nav-link" href="#" data-toggle="modal" data-target="#modal_terminos_y_condiciones">Terminos y condiciones</a> </p>
+                    <p><a role="button" class="nav-link" href="#" data-toggle="modal" data-target="#politicas_de_privacidad">Politicas de privacidad</a> </p>
+                    <p><a role="button" class="nav-link" href="#" class="link" data-toggle="modal" data-target="#politicas_de_envio">Políticas de envío</a></p>
+                    <p><a role="button" class="nav-link" href="#" data-toggle="modal" data-target="#vender_macanudo">Vender Macanudo</a></p>
 
                 </div>
 
@@ -83,7 +83,7 @@
 
 <!--MODAL PREGUNTAS FRECUENTES--MODAL PREGUNTAS FRECUENTES--MODAL PREGUNTAS FRECUENTES-->
 <!--MODAL PREGUNTAS FRECUENTES--MODAL PREGUNTAS FRECUENTES--MODAL PREGUNTAS FRECUENTES-->
-<div class="modal fade" id="preguntas_frecuentes" tabindex="-1" role="dialog" aria-labelledby="preguntas_frecuentesLabel" aria-hidden="true">
+<div class="modal fade" id="preguntas_frecuentes" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="preguntas_frecuentesLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content align-items-center negro">
             <div class="modal-header">
@@ -127,7 +127,7 @@
 
 <!--MODAL TERMINOS Y CONDICIONES -- MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES-->
 <!--MODAL TERMINOS Y CONDICIONES -- MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES--MODAL TERMINOS Y CONDICIONES-->
-<div class="modal fade" id="modal_terminos_y_condiciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="modal_terminos_y_condiciones" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog negro" role="document">
         <div class="modal-content align-items-center">
@@ -236,7 +236,7 @@
 
 <!--MODAL POLITICAS DE PRIVACIDAD--MODAL POLITICAS DE PRIVACIDAD--MODAL POLITICAS DE PRIVACIDAD-->
 <!--MODAL POLITICAS DE PRIVACIDAD--MODAL POLITICAS DE PRIVACIDAD--MODAL POLITICAS DE PRIVACIDAD-->
-<div class="modal fade" id="politicas_de_privacidad" tabindex="-1" role="dialog" aria-labelledby="politicas_de_privacidadLabel" aria-hidden="true">
+<div class="modal fade" id="politicas_de_privacidad" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="politicas_de_privacidadLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content align-items-center negro">
             <div class="modal-header">
@@ -265,7 +265,7 @@
 
 <!--MODAL POLITICAS DE ENVIO--MODAL POLITICAS DE ENVIO--MODAL POLITICAS DE ENVIO-->
 <!--MODAL POLITICAS DE ENVIO--MODAL POLITICAS DE ENVIO--MODAL POLITICAS DE ENVIO-->
-<div class="modal fade" id="politicas_de_envio" tabindex="-1" role="dialog" aria-labelledby="politicas_de_envioLabel" aria-hidden="true">
+<div class="modal fade" id="politicas_de_envio" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="politicas_de_envioLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content align-items-center negro">
             <div class="modal-header">
@@ -297,7 +297,7 @@
 
 <!--MODAL VENDER MACANUDO--MODAL VENDER MACANUDO--MODAL VENDER MACANUDO-->
 <!--MODAL VENDER MACANUDO--MODAL VENDER MACANUDO--MODAL VENDER MACANUDO-->
-<div class="modal fade" id="vender_macanudo" tabindex="-1" role="dialog" aria-labelledby="vender_macanudoLabel" aria-hidden="true">
+<div class="modal fade" id="vender_macanudo" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="vender_macanudoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content align-items-center negro">
             <div class="modal-header">
