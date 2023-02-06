@@ -42,22 +42,11 @@
 
                     
                     {{-- ETIQUETA DE PRODUCTO AGOTADO--}}
-                    {{--<div class="etiqueta_de_agotado m-0 p-2 text-center">
-                        <span class="h1 text-white ">AGOTADO</span>
-                    </div>
-                    <style>
-                        .etiqueta_de_agotado{
-                            background-color: crimson;
-                            width: 50%;
-                            position: relative;
-                            /*top: 5%;*/
-                            left: -10%;
-                            /*transform: translate(-50%, -50%);*/
-                            transform: rotate(-45deg);
-                            overflow: hidden;
-                            
-                        }
-                    </style>--}}
+                    @if ($producto->stock < 1)
+                        <div class="etiqueta_de_agotado m-0 p-2 text-center">
+                            <span class="h1 text-white ">AGOTADO</span>
+                        </div>
+                    @endif
 
 
                     <p class="card-text parrafoProd px-1" style="opacity:60%; background-color:{{$producto->color}};">
@@ -70,12 +59,13 @@
                         <!-- boton de añadir al carrito -->
                         <!-- boton de añadir al carrito --> 
                         <!-- boton de añadir al carrito -->
-                    
-                        <a onclick="anadirAlCarrito({{$producto->id}})" class="btn1 btn-derecho shadown"style="background-color:{{$producto->color}};">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-                            </svg>
-                        </a>
+                        @if ($producto->stock > 0)
+                            <a onclick="anadirAlCarrito({{$producto->id}})" class="btn1 btn-derecho shadown"style="background-color:{{$producto->color}};">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                                </svg>
+                            </a>
+                        @endif
                     </p>
                     <p></p>
                     <br><br>
@@ -84,9 +74,9 @@
                     <!-- boton de comprar -->
                     <!-- TODO: suma el producto al carrito y nos lleva a la pagina de carrito -->
                     <!-- boton de comprar -->
-                
-                    <a onclick="anadirEIeAlCarrito({{$producto->id}})" class="btn1 btn-medio shadown" style="background-color:{{$producto->color}};">Comprar</a>
-                
+                    @if ($producto->stock > 0)
+                        <a onclick="anadirEIeAlCarrito({{$producto->id}})" class="btn1 btn-medio shadown" style="background-color:{{$producto->color}};">Comprar</a>
+                    @endif
 
                 
                     <!-- boton de favorito -->

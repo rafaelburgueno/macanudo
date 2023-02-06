@@ -140,7 +140,7 @@
                         <!--input para el stock-->
                         <div class="form-group mb-3">
                             <label for="stock">Stock</label>
-                            <input type="number" class="form-control" id="stock" name="stock" placeholder="..." value="{{old('stock')}}" min="0" style="width: 100%;">
+                            <input type="number" class="form-control" id="stock" name="stock" placeholder="..." value="{{old('stock')}}" min="0" max="32765" style="width: 100%;">
                             @error('stock')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror

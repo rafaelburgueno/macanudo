@@ -453,3 +453,15 @@ h1 {
   width:60%;
   box-shadow: -5px 1px 3px 2px var(--lila);*/
 }
+
+.etiqueta_de_agotado{
+  background-color: var(--rojo);
+  width: 50%;
+  position: relative;
+  /*top: 5%;*/
+  left: -10%;
+  /*transform: translate(-50%, -50%);*/
+  transform: rotate(-45deg);
+  overflow: hidden;
+  
+}
