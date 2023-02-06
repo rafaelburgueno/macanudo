@@ -70,7 +70,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-outline-secondary btn-block btn-sm btn-spin-giratorio">Actualizar imagen</button>
+                        <button type="submit" class="btn btn-outline-secondary btn-block btn-sm btn_spin_giratorio_actualizar">Actualizar imagen</button>
 
                     </form>
 
@@ -78,7 +78,7 @@
                     <form action="{{ route('banner.destroy', $imagen) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-outline-danger mt-3 float-right btn-sm btn-spin-giratorio">Eliminar imagen</button>
+                        <button type="submit" class="btn btn-outline-danger mt-3 float-right btn-sm btn_spin_giratorio_eliminar">Eliminar imagen</button>
                     </form>
 
 
@@ -108,8 +108,8 @@
                         <div class="col col-md-6">
        
                             <div class="form-group mb-3">
-                                <label for="descripcion">Descripción</label>
-                                <textarea required class="form-control" id="descripcion" name="descripcion" rows="4">{{old('descripcion')}}</textarea>
+                                <label for="descripcion">Descripción <small>(Se usa para completar el texto alternativo a las imagenes)</small></label>
+                                <textarea required class="form-control" id="descripcion" name="descripcion" rows="4" maxlength="255">{{old('descripcion')}}</textarea>
                                 @error('descripcion')
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
@@ -120,7 +120,7 @@
                         <div class="col-md-2">
                             <div class="form-group mb-3">
                                 <label for="relevancia">Relevancia <br><small>(determina el orden en el que aparecen las imagenes)</small></label>
-                                <input type="number" class="form-control" id="relevancia" name="relevancia" placeholder="..." value="{{old('relevancia')}}" min="1" style="width: 100%;">
+                                <input type="number" class="form-control" id="relevancia" name="relevancia" placeholder="..." value="{{old('relevancia')}}" min="1" max="100" style="width: 100%;">
                                 @error('relevancia')
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
@@ -165,9 +165,71 @@
         $(document).ready(function(){
             $('.btn-spin-giratorio').click(function(){
                 
+                if(
+                    document.getElementById("descripcion").value != '' &&
+                    document.getElementById("imagen").value != '' 
+                ){
+                    let timerInterval
+                    Swal.fire({
+                    title: 'Guardando...',
+                    html: 'Por favor espere.',
+                    //timer: 10000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                    }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                    })
+                }
+        
+            });
+
+
+            $('.btn_spin_giratorio_actualizar').click(function(){
+                
+                if(document.getElementById("descripcion").value != ''){
+                    let timerInterval
+                    Swal.fire({
+                    title: 'Guardando...',
+                    html: 'Por favor espere.',
+                    //timer: 10000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                    }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                    })
+                }
+        
+            });
+
+
+            $('.btn_spin_giratorio_eliminar').click(function(){
                 let timerInterval
                 Swal.fire({
-                title: 'Procesando',
+                title: 'Eliminando...',
                 html: 'Por favor espere.',
                 //timer: 10000,
                 timerProgressBar: true,
@@ -187,8 +249,9 @@
                     console.log('I was closed by the timer')
                 }
                 })
-        
             });
+
+
         });
         
         </script>

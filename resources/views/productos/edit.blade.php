@@ -48,7 +48,7 @@
 
                             <div class="form-group mb-3">
                                 <label for="precio">Precio unitario</label>
-                                <input type="number" class="form-control" id="precio" name="precio" placeholder="..." value="{{old('precio', $producto->precio)}}" min="0" style="width: 100%;">
+                                <input required type="number" class="form-control" id="precio" name="precio" placeholder="..." value="{{old('precio', $producto->precio)}}" min="0" style="width: 100%;">
                                 @error('precio')
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
@@ -166,7 +166,7 @@
                         </div>
                     </div>
             
-                    <button type="submit" class="btn btn-outline-secondary btn-block">Actualizar</button>
+                    <button type="submit" class="btn btn-outline-secondary btn-block btn_editar">Actualizar</button>
                 </form>
     
     
@@ -184,6 +184,45 @@
     
     </div>
 
+
+    <script>
+        $(document).ready(function(){
+            $('.btn_editar').click(function(){
+                
+                if(
+                    document.getElementById("nombre").value != '' &&
+                    document.getElementById("tipo").value != '' &&
+                    document.getElementById("descripcion").value != '' &&
+                    document.getElementById("precio").value != ''
+                ){
+    
+                    let timerInterval
+                    Swal.fire({
+                    title: 'Editando',
+                    html: 'Por favor espere.',
+                    //timer: 10000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                    }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                    })
+                }
+            });
+        });
+    
+    </script>
 
 
 

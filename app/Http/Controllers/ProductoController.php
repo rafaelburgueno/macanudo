@@ -51,7 +51,7 @@ class ProductoController extends Controller
             'informacion_nutricional' => 'max:1000|nullable',
             'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'color' => 'nullable|max:20',
-            'relevancia' => 'numeric',
+            'relevancia' => 'numeric|nullable',
         ]);
         
         $producto = new Producto();
@@ -74,9 +74,9 @@ class ProductoController extends Controller
 
         if($request->relevancia){
             $producto->relevancia = $request->relevancia;
-        }/*else{
-            $producto->relevancia = 1;
-        }*/
+        }else{
+            $producto->relevancia = 55;
+        }
 
         if($request->color){
             $producto->color = $request->color;
