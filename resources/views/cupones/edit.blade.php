@@ -39,7 +39,7 @@
                                     <!--input para el cantidad-->
                                     <div class="form-group mb-3">
                                         <label for="cantidad">Cantidad</label>
-                                        <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="..." value="{{old('cantidad', $cupon->cantidad)}}" min="0" style="width: 100%;">
+                                        <input required type="number" class="form-control" id="cantidad" name="cantidad" placeholder="..." value="{{old('cantidad', $cupon->cantidad)}}" min="0" style="width: 100%;">
                                         @error('cantidad')
                                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                                         @enderror
@@ -50,7 +50,7 @@
                                     <!--input para el descuento-->
                                     <div class="form-group mb-3">
                                         <label for="descuento">Descuento (%)</label>
-                                        <input type="number" class="form-control" id="descuento" name="descuento" placeholder="..." value="{{old('descuento', $cupon->descuento)}}" min="0" style="width: 100%;">
+                                        <input required type="number" class="form-control" id="descuento" name="descuento" placeholder="..." value="{{old('descuento', $cupon->descuento)}}" min="0" style="width: 100%;">
                                         @error('descuento')
                                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                                         @enderror
