@@ -83,10 +83,10 @@ class WebhooksController extends Controller
             //return true;
 
             // Envia un email con el pedido
-            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
+            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
             ->queue(new PedidosMail($pedido));
             // Envia un email al cliente con el pedido
-            Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));
+            Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
 
             //responder con un status 200 (OK) o 201 (CREATED)
             return response()->json(['OK' => 'OK'], 200);

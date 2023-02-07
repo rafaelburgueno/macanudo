@@ -95,7 +95,7 @@ class EditarPedido extends Component
 
             $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=".env('MP_ACCESS_TOKEN'));
             $response = json_decode($response);
-            Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($response));
+            //Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($response));
             $status = $response->status;
             
             $this->estado_del_pago = $status;
@@ -114,10 +114,10 @@ class EditarPedido extends Component
                 $this->pedido->save();
     
                 // Envia un email con el pedido
-                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
-                ->queue(new PedidosMail($this->pedido));
+                /*Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
+                ->queue(new PedidosMail($this->pedido));*/
                 // Envia un email al cliente con el pedido
-                Mail::to($this->pedido->email)->queue(new PedidoClienteMail($this->pedido));
+                //Mail::to($this->pedido->email)->queue(new PedidoClienteMail($this->pedido));
     
     
             }

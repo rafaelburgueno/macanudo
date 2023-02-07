@@ -59,12 +59,12 @@ class PagosController extends Controller
 
             
             // Envia un email con el pedido
-            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
+            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
             ->queue(new PedidosMail($pedido));
 
             try {
                 // Envia un email al cliente con el pedido // TODO:un try catch por si falla el envio de email
-                Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));
+                Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
             } catch (Exception $e) {
                 $error = $e->getMessage();
                 //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
@@ -135,10 +135,10 @@ class PagosController extends Controller
             $pedido->save();
 
             // Envia un email con el pedido
-            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
+            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
             ->queue(new PedidosMail($pedido));
             // Envia un email al cliente con el pedido
-            Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));
+            Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
 
             session()->flash('pago_aprovado', 'La compra fue realizada con éxito. Te enviamos un email con la información tu pedido.');
             return redirect() -> route('nuestros_productos');
@@ -156,7 +156,7 @@ class PagosController extends Controller
             // Envia un email al cliente con el pedido
             Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));*/
 
-            session()->flash('pago_aprovado', 'La compra fue realizada con éxito, solo falta que realices el pago. Te enviamos un email con la información tu pedido.');
+            session()->flash('pago_aprovado', 'La compra fue realizada con éxito, solo falta que realices el pago y te enviaremos un email con la información tu pedido.');
             return redirect() -> route('nuestros_productos');
         
         }else{

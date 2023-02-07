@@ -24,7 +24,7 @@ class ComentarioController extends Controller
             'texto' => 'required|max:500|min:3',
         ]);
         
-        Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
+        Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
             ->queue(new FormularioDeContacto($request->all()));
 
 
