@@ -13,7 +13,7 @@
 	$(document).ready( function () {
 		$('#tabla_pedidos').DataTable({
 			order: [
-				[5, 'desc']
+				[0, 'desc']
 			]
 		});
 	} );
@@ -30,14 +30,17 @@
 		<table id="tabla_pedidos" class="display {{--table table-striped table-hover table-sm--}}">
 			<thead>
 				<tr>
+                    <th>Id</th>
                     <th></th>
                     {{--<th>Estatus</th>--}}
-                    <th>Dirección</th>
+                    {{--<th>Dirección</th>--}}
 					<th>Nombre</th>
-                    <th>Teléfono</th>
+                    <th>Email</th>
+                    {{--<th>Teléfono</th>--}}
 					<th>Productos</th>
-                    {{--<th>Nombre</th>
-					<th>Monto</th>--}}
+                    {{--<th>Nombre</th>--}}
+					<th>Monto</th>
+                    <th>Cupón</th>
                     <th>Fecha</th>
 					{{--<th>id</th>--}}
 					<th>Administrar</th>
@@ -57,6 +60,9 @@
                     @else
                     <tr>
                     @endif
+
+                    <td>{{ $pedido->id }}</td>
+
                         {{--<td>
                             <a class="btn btn-outline-success" data-toggle="modal" data-target="#info_del_pedido_{{ $pedido->id }}">Ver</a></td>
                         <td>--}}
@@ -69,13 +75,17 @@
                         @endif
                             <a class="btn btn-light" data-toggle="modal" data-target="#info_del_pedido_{{ $pedido->id }}">Ver</a>
                         </td>
-                        <td>{{ $pedido->direccion }}
-                            @if($pedido->costo_de_envio)
+                        
+                        
+                        
+                        {{--<td>{{ $pedido->direccion }}
+                            @if($pedido->costo_de_envio && $pedido->costo_de_envio->region != "Planta de elaboración")
                             , {{ $pedido->costo_de_envio->region }}, {{ $pedido->costo_de_envio->departamento }}
                             @endif
-                        </td>
+                        </td>--}}
                         <td>{{ $pedido->nombre }}</td>
-                        <td>{{ $pedido->telefono }}</td>
+                        <td>{{ $pedido->email }}</td>
+                        {{--<td>{{ $pedido->telefono }}</td>--}}
                         <td>
                             <ul>
                                 @foreach($pedido->productos as $producto)
@@ -83,8 +93,13 @@
                                 @endforeach
                             </ul>
                         </td>
-                        {{--<td>{{ $pedido->nombre }}</td>
-						<td>{{ $pedido->monto }} $</td>--}}
+                        {{--<td>{{ $pedido->nombre }}</td>--}}
+						<td>{{ $pedido->monto }} $</td>
+                        <td>
+                            @if($pedido->cupon_id)
+                                {{ $pedido->cupon->codigo }}
+                            @endif
+                        </td>
 						<td>{{ $pedido->created_at }}</td>
                         {{--<td>{{ $pedido->created_at->format('d/m/Y') }}</td>--}}
                         {{--<td>{{ $pedido->id }}</td>--}}
@@ -125,6 +140,9 @@
                                     <p>Medio de pago: <strong>{{ $pedido->medio_de_pago }}</strong></p>
                                     {{--<p>Estado del pago: <strong>{{ $pedido->estado_del_pago }}</strong></p>--}}
                                     <p>Factura: <strong>{{ $pedido->numero_de_factura }}</strong></p>
+                                    @if($pedido->cupon_id)
+                                        <p>Cupon usado: "<strong class="">{{ $pedido->cupon->codigo }}</strong>" | id: {{$pedido->cupon_id}}</p>
+                                    @endif
                                     <hr>
                                     <p>Nombre: <strong>{{ $pedido->nombre }}</strong></p>
                                     <p>Dirección: <strong>{{ $pedido->direccion }}</strong></p>

@@ -53,7 +53,7 @@ class PagosController extends Controller
             $pedido->status = 'pedido';
             $pedido->medio_de_pago =  'pagar al recibir';
             $pedido->estado_del_pago =  'pendiente';
-            $pedido->numero_de_factura = rand();
+            $pedido->numero_de_factura = 555; // rand();
             $pedido->save();
             //dd($pedido->status);
 

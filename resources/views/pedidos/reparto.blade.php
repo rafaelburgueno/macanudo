@@ -70,7 +70,7 @@
                             <a class="btn btn-light" data-toggle="modal" data-target="#info_del_pedido_{{ $pedido->id }}">Ver</a>
                         </td>
                         <td>{{ $pedido->direccion }}
-                            @if($pedido->costo_de_envio)
+                            @if($pedido->costo_de_envio && $pedido->costo_de_envio->region != "Planta de elaboración")
                             , {{ $pedido->costo_de_envio->region }}, {{ $pedido->costo_de_envio->departamento }}
                             @endif
                         </td>
@@ -123,6 +123,9 @@
                                     <p>Medio de pago: <strong>{{ $pedido->medio_de_pago }}</strong></p>
                                     {{--<p>Estado del pago: <strong>{{ $pedido->estado_del_pago }}</strong></p>--}}
                                     <p>Factura: <strong>{{ $pedido->numero_de_factura }}</strong></p>
+                                    @if($pedido->cupon_id)
+                                        <p>Cupon usado: "<strong class="">{{ $pedido->cupon->codigo }}</strong>" | id: {{$pedido->cupon_id}}</p>
+                                    @endif
                                     <hr>
                                     <p>Nombre: <strong>{{ $pedido->nombre }}</strong></p>
                                     <p>Dirección: <strong>{{ $pedido->direccion }}</strong></p>

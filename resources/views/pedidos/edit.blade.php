@@ -101,6 +101,12 @@
                             @enderror
                         </div>
 
+                        @if($pedido->cupon_id)
+                            <div class="form-group mb-3 border rounded border-light  p-2">
+                                <span>Cupon usado: "<strong class="">{{ $pedido->cupon->codigo }}</strong>" | id: {{$pedido->cupon_id}}</span>
+                            </div>
+                        @endif
+
                         {{--<div class="form-group mb-3">
                             <label for="status">Status</label>
                             <select class="form-control" id="status" name="status">

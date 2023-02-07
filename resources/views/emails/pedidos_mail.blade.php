@@ -64,7 +64,7 @@
         @endif
         
         @if($pedido->cupon_id)
-            <tr><td>Cupon id: </td><td>{{$pedido->cupon_id}}</td></tr>
+            <tr><td>Cupon usado: </td><td>"<strong class="">{{ $pedido->cupon->codigo }}</strong>" | id: {{$pedido->cupon_id}}</td></tr>
         @endif
 
         {{--<tr><td>Tipo de cliente: </td><td>{{$pedido->tipo_de_cliente}}</td></tr>--}}
