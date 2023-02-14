@@ -11,6 +11,5 @@
 
     <p>{{$mensaje['texto']}}</p>
 
-    <h4>{{$mensaje['nombre']}}, {{$mensaje['email']}}</h4>
 </body>
 </html>

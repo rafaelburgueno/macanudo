@@ -105,7 +105,7 @@ class EditarPedido extends Component
             $this->pedido->save();*/
             
 
-            if($status == 'approved'){
+            /*if($status == 'approved'){
 
                 //$this->pedido->status = 'pedido';
                 //$this->pedido->numero_de_factura = $payment_id;
@@ -114,13 +114,13 @@ class EditarPedido extends Component
                 $this->pedido->save();
     
                 // Envia un email con el pedido
-                /*Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
-                ->queue(new PedidosMail($this->pedido));*/
+                //Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))
+                //->queue(new PedidosMail($this->pedido));
                 // Envia un email al cliente con el pedido
                 //Mail::to($this->pedido->email)->queue(new PedidoClienteMail($this->pedido));
     
     
-            }
+            }*/
 
 
         }

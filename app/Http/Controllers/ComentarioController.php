@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\FormularioDeContacto;
+use App\Models\Comentario;
 
 class ComentarioController extends Controller
 {
@@ -24,14 +25,19 @@ class ComentarioController extends Controller
             'texto' => 'required|max:500|min:3',
         ]);
         
-        Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-            ->queue(new FormularioDeContacto($request->all()));
-
-
-        // TODO: guardar en la base de datos los mensajes
-        // TODO: los mensajes son recibidos por correo pero podria guardarse adicionalmente en la BD
+        
         // TODO: en la base de datos, el campo 'texto' tiene un maximo de 255 caracteres, 
         // llegado el caso va a haber que modificar ese valor maximo
+        $comentario = new Comentario();
+        $comentario->nombre = $request->nombre;
+        $comentario->email = $request->email;
+        $comentario->texto = $request->texto;
+        $comentario->comentarioable_type = 'formulario de contacto';
+        $comentario -> save();
+
+
+        Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+            ->queue(new FormularioDeContacto($request->all()));
 
 
         session()->flash('exito', 'Su mensaje fue recibido');

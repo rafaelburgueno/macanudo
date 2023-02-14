@@ -174,7 +174,7 @@ class PagosController extends Controller
             // Envia un email al cliente con el pedido
             Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));*/
 
-            session()->flash('pago_aprovado', 'La compra fue realizada con éxito, solo falta que realices el pago y te enviaremos un email con la información tu pedido.');
+            session()->flash('pago_aprovado', 'La compra fue realizada con éxito, solo falta que realices el pago y te enviaremos un email con la información de tu pedido.');
             return redirect() -> route('nuestros_productos');
         
         }else{
