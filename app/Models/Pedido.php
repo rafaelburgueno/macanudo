@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EmailDeStock;
 
 class Pedido extends Model
 {
@@ -111,6 +113,62 @@ class Pedido extends Model
         //return $productos_del_pedido;
         return $lista_de_productos;
 
+    }
+
+
+
+
+    /**
+     * Actualiza el stock y los cupones
+     *
+     * @param  \App\Models\Pedido  $pedido
+     * @return \Illuminate\Http\Response
+     */
+    public function actualizarCuponYStock()
+    {
+        
+        // este algoritmo resta una unidad del cupon usado 
+        if($this->cupon_id){
+            //$cupon = Cupon::find($this->cupon_id);
+            $cupon = $this->cupon;
+            $cupon->cantidad = (((int)$cupon->cantidad) -1);
+            $cupon->save();
+        }
+
+        // TODO: hacer mas eficiente el siguiente algoritmo, para que no haga tantas busquedas en la bbdd
+
+        // este algoritmo resta del stock los productos comprados
+        //$productos_comprados = $this->productos();
+        $productos_comprados = DB::table('pedido_producto')->where('pedido_id', $this->id)->get();
+        //dd($productos_comprados);
+
+        foreach($productos_comprados as $producto_comprado){
+
+            //dd($producto_comprado);
+            $producto = Producto::find($producto_comprado->producto_id);
+
+            //$producto->stock = ( ((int)$producto->stock) - ((int)$producto_comprado->unidades) );
+            //$producto_comprado->stock -= $producto_comprado->pivot_unidades;
+            $producto->stock -= $producto_comprado->unidades;
+
+            //$producto_comprado->save();
+            $producto->save();
+
+
+            // TODO: enviar email cuando queda menos de 5 unidades de un producto
+            if($producto->stock <= 5){
+                // Envia un email para avisar que queda poco stock
+                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+                ->queue(new EmailDeStock($producto->nombre.' tiene '. $producto->stock .' unidades en stock.'));
+            }
+
+
+        }
+
+
+        $this->pais = 'MODEL actualizarCuponYStock!';
+        $this->save();
+        
     }
 
 

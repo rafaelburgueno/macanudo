@@ -99,7 +99,7 @@ class MiCarritoController extends Controller
 
         $descuento_por_cupon = 0;
         if($request->nombre_del_cupon){
-            // TODO:hay que restar uno en la cantidad de cupones emitidos
+            // 
             $cupon = Cupon::where('activo', true)->where('cantidad', '>', 0)->where('codigo', $request->nombre_del_cupon)->first();
             $pedido->cupon_id = $cupon->id;
             $descuento_por_cupon = $cupon->descuento;
@@ -116,7 +116,7 @@ class MiCarritoController extends Controller
         $productos = explode(",", $request->productos[0]);
         $cantidades = explode(",", $request->cantidades[0]);
 
-        // TODO: recalcular el monto para asegurarse que no haya un hackeo en el frontend
+        // Recalcula el monto para asegurarse que no haya un hackeo en el frontend
         //$pedido->monto = $request->monto;
         $monto_desde_el_front = $request->monto;
         $suma_de_productos = 0;
@@ -144,10 +144,11 @@ class MiCarritoController extends Controller
         $pedido->monto = $total_de_la_compra;
 
         //restamos una unidad en el cupon utilizado
-        if($request->nombre_del_cupon){
+        // TODO: este algoritmo que resta un cupon debe hcerse despues de determinar el medio de pago
+        /*if($request->nombre_del_cupon){
             $cupon->cantidad = (((int)$cupon->cantidad) -1);
             $cupon->save();
-        }
+        }*/
 
         if($request->recibir_novedades){
             $pedido->recibir_novedades = true;
@@ -157,8 +158,11 @@ class MiCarritoController extends Controller
 
         $pedido->tipo_de_cliente = $request->tipo_de_cliente;
 
-        // TODO: el numero de factura debe definirse manualmente al momento de emitir la factura
-        $pedido->numero_de_factura = 555;
+        // el numero de factura debe definirse manualmente al momento de emitir la factura.
+        // queda determinado que un pedido con numero_de_factura = 5 , es un pedido verificado, 
+        // por lo tanto esta incompleto, queda por definir el medio de pago
+        // numero_de_factura = 55 , es un pedido con medio_de_pago = 'pagar al recibir'
+        $pedido->numero_de_factura = 5;
 
 
         // ****************************************************************
@@ -182,7 +186,6 @@ class MiCarritoController extends Controller
         /*
         * Este es el algoritmo para crear los registros en la tabla pivote 'pedido_producto'
         */
-
         $created_at = now();
 
         foreach($productos as $key => $producto){

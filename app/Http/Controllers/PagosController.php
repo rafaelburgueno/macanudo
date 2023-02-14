@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\PedidosMail;
 use App\Mail\PedidoClienteMail;
 use Exception;
+use App\Models\Cupon;
+use App\Models\Producto;
+use Illuminate\Support\Facades\DB;
+use App\Mail\EmailDeStock;
+
+
 
 class PagosController extends Controller
 {
@@ -53,7 +59,12 @@ class PagosController extends Controller
             $pedido->status = 'pedido';
             $pedido->medio_de_pago =  'pagar al recibir';
             $pedido->estado_del_pago =  'pendiente';
-            $pedido->numero_de_factura = 555; // rand();
+            
+            // el numero de factura debe definirse manualmente al momento de emitir la factura.
+            // queda determinado que un pedido con numero_de_factura = 5 , es un pedido verificado, 
+            // por lo tanto esta incompleto, queda por definir el medio de pago
+            // numero_de_factura = 55 , es un pedido con medio_de_pago = 'pagar al recibir'
+            $pedido->numero_de_factura = 55; // rand();
             $pedido->save();
             //dd($pedido->status);
 
@@ -73,6 +84,9 @@ class PagosController extends Controller
             }
 
             
+            // llamaos al metodo que actualiza el stock
+            //$this->actualizarCuponYStock($pedido);
+            $pedido->actualizarCuponYStock();
 
 
             session()->flash('pagar_al_recibir', 'Gracias. Debera pagar su pedido al momento de recibirlo.');
@@ -140,6 +154,10 @@ class PagosController extends Controller
             // Envia un email al cliente con el pedido
             Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
 
+            // llamaos al metodo que actualiza el stock
+            //$this->actualizarCuponYStock($pedido);
+            $pedido->actualizarCuponYStock();
+
             session()->flash('pago_aprovado', 'La compra fue realizada con éxito. Te enviamos un email con la información tu pedido.');
             return redirect() -> route('nuestros_productos');
 
@@ -198,6 +216,58 @@ class PagosController extends Controller
         
         return redirect() -> route('mi_carrito');
     }
+
+
+
+
+    /**
+     * Actualiza el stock y los cupones
+     * Este algoritmo ahora esta en el modelo de Pedido
+     *
+     * @param  \App\Models\Pedido  $pedido
+     * @return \Illuminate\Http\Response
+     */
+    /*public function actualizarCuponYStock(Pedido $pedido)
+    {
+        
+        // este algoritmo resta una unidad del cupon usado 
+        if($pedido->cupon_id){
+            $cupon = Cupon::find($pedido->cupon_id);
+            $cupon->cantidad = (((int)$cupon->cantidad) -1);
+            $cupon->save();
+        }
+
+
+        // este algoritmo resta del stock los productos comprados
+        $productos_comprados = DB::table('pedido_producto')->where('pedido_id', $pedido->id)->get();
+        //dd($productos_comprados);
+        foreach($productos_comprados as $producto_comprado){
+
+            //dd($producto_comprado);
+            $producto = Producto::find($producto_comprado->producto_id);
+
+            //$producto->stock = ( ((int)$producto->stock) - ((int)$producto_comprado->unidades) );
+            $producto->stock -= $producto_comprado->unidades;
+
+            $producto->save();
+
+
+            // TODO: enviar email cuando queda menos de 5 unidades de un producto
+            if($producto->stock <= 5){
+                // Envia un email para avisar que queda poco stock
+                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+                ->queue(new EmailDeStock($producto->nombre.' tiene bajo stock'));
+            }
+
+
+        }
+
+
+        $pedido->pais = 'metodo actualizarCuponYStock!!!';
+        $pedido->save();
+        
+    }*/
+
 
 
 }

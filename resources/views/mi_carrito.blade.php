@@ -70,7 +70,7 @@
 		<div class="col-lg-6 mb-5">
 		
 			@foreach($productos as $producto)
-
+			@if($producto->stock)
 				<div class="card mb-5 shadown-gris producto" id="producto-{{$producto->id}}" style="background-color: #e1e1e1; max-width: 540px; max-height: 180px ;">
 					<div class="row g-0">
 				  		<div class="col-5 card-img">
@@ -90,16 +90,22 @@
 											<span style="font-size: 14px;"> $ 300 c/u</span>
 											--}}
 											<select class="cantidad py-1" id="cantidad-{{$producto->id}}" name="cantidad" onclick="cambiarCantidad({{$producto->id}})" width="30px">
-												<option value="1" selected>1 u.</option>
-												<option value="2">2 u.</option>
-												<option value="3">3 u.</option>
-												<option value="4">4 u.</option>
-												<option value="5">5 u.</option>
-												<option value="6">6 u.</option>
-												<option value="7">7 u.</option>
-												<option value="8">8 u.</option>
-												<option value="9">9 u.</option>
-												<option value="10">10 u.</option>
+												@if($producto->stock >= 10)
+													<option value="1" selected>1 u.</option>
+													<option value="2">2 u.</option>
+													<option value="3">3 u.</option>
+													<option value="4">4 u.</option>
+													<option value="5">5 u.</option>
+													<option value="6">6 u.</option>
+													<option value="7">7 u.</option>
+													<option value="8">8 u.</option>
+													<option value="9">9 u.</option>
+													<option value="10">10 u.</option>
+												@else
+													@for ($i = 1; $i <= $producto->stock; $i++)
+														<option value="{{$i}}">{{$i}} u.</option>
+													@endfor
+												@endif
 											</select>
 											<br><span style="font-size: 14px;"> $ {{$producto->precio}} c/u</span>
 												
@@ -123,11 +129,22 @@
 					</div>
 				</div>
 				
-		
+			@endif
 			@endforeach
 		
 			<h5 class="text-center my-0 py-0"><a class="nav-link my-0 py-0" href="{{route('nuestros_productos')}}">Seguir comprando</a></h5>
-		
+			<h6 class="text-center mt-3 mb-0 py-0"><a class="nav-link my-0 py-0" onclick="vaciarCarrito();" href="#">Vaciar el carrito</a></h6>
+			<script>
+				//=============================================================
+				//Esta funcion vacia el carrito y recarga la pagina
+				//=============================================================
+				function vaciarCarrito(){
+					localStorage.clear();
+					location.reload();
+				}
+			</script>
+
+
 		</div>
 
 
