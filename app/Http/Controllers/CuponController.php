@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Cupon;
+use App\Models\Pedido;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -23,8 +24,9 @@ class CuponController extends Controller
     {
         
         $cupones = Cupon::get();
+        $pedidos = Pedido::where('cupon_id', '!=', NULL )->get();
             
-        return view('cupones.index')->with('cupones', $cupones);
+        return view('cupones.index')->with('cupones', $cupones)->with('pedidos', $pedidos);
         //return view('cupones');
     }
 

@@ -16,6 +16,12 @@
 				[0, 'asc']
 			]
 		});
+
+        $('#tabla_pedidos').DataTable({
+			order: [
+				[2, 'asc']
+			]
+		});
 	} );
 </script>
 
@@ -175,6 +181,144 @@
 
 
 </div>
+
+
+
+<!-- HISTORIAL DE CUPONES -->
+<!-- HISTORIAL DE CUPONES -->
+<!-- HISTORIAL DE CUPONES -->
+<!-- HISTORIAL DE CUPONES -->
+<div class="text-center text-white my-4">
+    <h1 class="text-center pt-2">Historial de cupones</h1>
+</div>
+
+<div class="container bg-white text-dark py-2 rounded">
+
+	<div class="pb-3" style="overflow-x: scroll;">
+		<table id="tabla_pedidos" class="display {{--table table-striped table-hover table-sm--}}">
+			<thead>
+				<tr>
+                    {{--<th></th>--}}
+                    <th>Estatus</th>
+                    {{--<th>Dirección</th>--}}
+					<th>Nombre</th>
+                    {{--<th>Teléfono</th>--}}
+                    <th>Cupón</th>
+					<th>Productos</th>
+                    {{--<th>Nombre</th>
+					<th>Monto</th>--}}
+                    <th>Fecha</th>
+					{{--<th>id</th>--}}
+					{{--<th>Administrar</th>--}}
+					
+				</tr>
+			</thead>
+			<tbody>
+                {{--entregado-telefono-direccion- lista del pedido- nombre--}}
+			
+				@foreach ($pedidos as $pedido)
+                    
+                    <tr>
+                    
+                        <td>{{ $pedido->status }}</td>
+                        {{--<td>{{ $pedido->direccion }}
+                            @if($pedido->costo_de_envio && $pedido->costo_de_envio->region != "Planta de elaboración")
+                            , {{ $pedido->costo_de_envio->region }}, {{ $pedido->costo_de_envio->departamento }}
+                            @endif
+                        </td>--}}
+                        <td>{{ $pedido->nombre }}</td>
+                        {{--<td>{{ $pedido->telefono }}</td>--}}
+                        <td>
+                            @if($pedido->cupon_id)
+                                <strong>{{ $pedido->cupon->codigo }}</strong>
+                            @endif
+                        </td>
+                        <td>
+                            <ul>
+                                @foreach($pedido->productos as $producto)
+                                    <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        {{--<td>{{ $pedido->nombre }}</td>
+						<td>{{ $pedido->monto }} $</td>--}}
+						<td>{{ $pedido->created_at }}</td>
+                        {{--<td>{{ $pedido->created_at->format('d/m/Y') }}</td>--}}
+                        {{--<td>{{ $pedido->id }}</td>--}}
+                        
+						{{--<td><a href="{{route('pedidos.edit', $pedido)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>--}}
+
+						
+					</tr>
+
+
+                    <!--MODAL CON INFORMACION DEL PEDIDO-->
+                    <!--MODAL CON INFORMACION DEL PEDIDO-->
+                    <!--MODAL CON INFORMACION DEL PEDIDO-->
+                    <div class="modal fade" id="info_del_pedido_{{ $pedido->id }}" tabindex="-1" role="dialog" aria-labelledby="info_del_pedido_{{ $pedido->id }}Label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content negro">
+                                <div class="modal-header text-center">
+                                    <h5 class="modal-title" id="info_del_pedido_{{ $pedido->id }}Label">{{$pedido->created_at}} | id:{{$pedido->id}}</h5><br>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                {{--<h4 class="text-center rojo">{{ $pedido->monto }} $</h4><br>--}}
+                                
+                                <div class="modal-body ">
+                                    <!-- Botones para editar el pedido -->
+                                    <!-- Botones para editar el pedido -->
+                                    {{--<livewire:editar-pedido />--}}
+                                    @livewire('editar-pedido', [$pedido])
+                                    <!-- Botones para editar el pedido -->
+                                    <!-- Botones para editar el pedido -->
+                                    <hr>
+                                    <p>Monto: <strong>{{ $pedido->monto }} $</strong></p>
+                                    {{--<p>Status: <strong>{{ $pedido->status }}</strong></p>--}}
+                                    <p>Medio de pago: <strong>{{ $pedido->medio_de_pago }}</strong></p>
+                                    {{--<p>Estado del pago: <strong>{{ $pedido->estado_del_pago }}</strong></p>--}}
+                                    <p>Factura: <strong>{{ $pedido->numero_de_factura }}</strong></p>
+                                    @if($pedido->cupon_id)
+                                        <p>Cupon usado: "<strong class="">{{ $pedido->cupon->codigo }}</strong>" | id: {{$pedido->cupon_id}}</p>
+                                    @endif
+                                    <hr>
+                                    <p>Nombre: <strong>{{ $pedido->nombre }}</strong></p>
+                                    <p>Dirección: <strong>{{ $pedido->direccion }}</strong></p>
+                                    <p>Teléfono: <strong>{{ $pedido->telefono }}</strong></p>
+                                    @if(!($pedido->documento_de_identidad == 9999999))
+                                        <p>C.I.: <strong>{{ $pedido->documento_de_identidad }}</strong></p>
+                                    @endif
+                                    @if($pedido->costo_de_envio && $pedido->costo_de_envio->costo_de_envio != 0)
+                                        <p>Localidad: <strong>{{ $pedido->costo_de_envio->region }}</strong></p>
+                                        <p>Departamento: <strong>{{ $pedido->costo_de_envio->departamento }}</strong></p>
+                                    @endif
+                                    <hr>
+                                    <h4>Productos:</h4>
+                                    <ul>
+                                        @foreach($pedido->productos as $producto)
+                                            <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                        @endforeach
+                                    </ul>
+                                    
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+				@endforeach
+			</tbody>
+		</table>
+	</div>
+
+
+</div>
+
 
 
 @endsection
