@@ -24,7 +24,8 @@ class CuponController extends Controller
     {
         
         $cupones = Cupon::get();
-        $pedidos = Pedido::where('cupon_id', '!=', NULL )->get();
+        //$pedidos = Pedido::where('cupon_id', '!=', NULL )->get();
+        $pedidos = Pedido::whereNotNull('cupon_id')->get();
             
         return view('cupones.index')->with('cupones', $cupones)->with('pedidos', $pedidos);
         //return view('cupones');
