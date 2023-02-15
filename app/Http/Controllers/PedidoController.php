@@ -220,14 +220,34 @@ class PedidoController extends Controller
         $lista_de_productos = Producto::where('activo', true)->get();
         $costos_de_envio = Costo_de_envio::where('activo', true)->get();
         $cupones = Cupon::where('activo', true)->get();
-            
-        return view('pedidos.edit')
+
+        if($pedido->medio_de_pago == 'mercadopago'){
+
+            $payment_id = $pedido->numero_de_factura;
+
+            $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=".env('MP_ACCESS_TOKEN'));
+            //$response = json_decode($response);
+
+            return view('pedidos.edit')
+            ->with('pedido', $pedido)
+            ->with('canastas', $canastas)
+            ->with('lista_de_productos', $lista_de_productos)
+            ->with('costos_de_envio', $costos_de_envio)
+            ->with('cupones', $cupones)
+            ->with('mercadopago', json_decode($response));
+            //->with('json', $response);
+
+        }else{
+
+            return view('pedidos.edit')
             ->with('pedido', $pedido)
             ->with('canastas', $canastas)
             ->with('lista_de_productos', $lista_de_productos)
             ->with('costos_de_envio', $costos_de_envio)
             ->with('cupones', $cupones);
-        //return view('pedidos.edit', compact('pedido'));
+            //return view('pedidos.edit', compact('pedido'));
+        }
+        
     }
 
 

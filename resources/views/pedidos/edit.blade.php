@@ -270,73 +270,17 @@
                                 @endforeach
                             </ul>
 
-                            {{--@foreach ($lista_de_productos as $key => $producto)
-
-                                <!--input para cada producto-->
-                                <div class="form-check my-4">
-                                    <input type="checkbox" class="rounded p-2 " id="producto{{ $producto->id }}" name="productos[]" value="{{ $producto->id }}" @checked(old('productos')) onclick="masCantidad{{ $producto->id }}()">
-                                    <label class="" for="producto{{ $producto->id }}">{{ $producto->nombre }}</label>
-                                    <!--input para añadir mas unidades-->
-                                    <input type="number" style="display:none" class="cantidades rounded p-2 " id="cantidad{{ $producto->id }}" name="cantidades[]" value="0" min="0">
-                                </div>
-                                <script>
-                                    function masCantidad{{ $producto->id }}() {
-                                        // Get the checkbox
-                                        var checkBox = document.getElementById('producto{{ $producto->id }}');
-                                        // Get the intput cantidad
-                                        var cantidad = document.getElementById('cantidad{{ $producto->id }}');
-
-                                        // If the checkbox is checked, display the output cantidad
-                                        if (checkBox.checked == true){
-                                            cantidad.value = 1;
-                                            cantidad.style.display = "block";
-                                        } else {
-                                            cantidad.style.display = "none";
-                                            cantidad.value = 0;
-                                        }
-                                        //alert('aprete el checkbox!');
-                                    }
-                                </script>
-                            
-                            @endforeach--}}
-                            {{--<input id="cantidadesFinales" name="cantidadesFinales[]" type="hidden">--}}
                         </div>
 
-
-                        {{--<div class="form-group mb-3 border rounded border-light  p-2">
-                            <h4>Costos de envio</h4>
-                            @foreach ($costos_de_envio as $costo_de_envio)
-
-                                <!--input para cada costo_de_envio-->
-                                <div class="form-check my-4">
-                                    <input type="radio" class="form-check-input" id="costo_de_envio_id" name="costo_de_envio_id" value="{{ $costo_de_envio->id }}" @checked(old('costo_de_envio_id', ($costo_de_envio->id == $pedido->costo_de_envio_id) ))>
-                                    <label class="form-check-label" for="costo_de_envio_id">{{ $costo_de_envio->region }} - {{ $costo_de_envio->departamento }}</label>
-                                </div>
-                            
-                            @endforeach
-                        </div>--}}
-                        
-
-                        {{--<div class="form-group mb-3 border rounded border-light  p-2">
-                            <h4>Cupones</h4>
-                            @foreach ($cupones as $cupon)
-
-                                <!--input para cada cupon-->
-                                <div class="form-check my-4">
-                                    <input type="radio" class="form-check-input" id="cupon_id" name="cupon_id" value="{{ $cupon->id }}" @checked(old('cupon_id', ($cupon->id == $pedido->cupon_id) ))>
-                                    <label class="form-check-label" for="cupon_id">{{ $cupon->codigo }} - {{ $cupon->descripcion }}</label>
-                                </div>
-                            
-                            @endforeach
-                        </div>        --}}              
-                       
-
-                        
-
-                        
+                        <div class="form-group mb-3 border rounded border-light p-2">
+                            <p>Creacion del pedido: {{ $producto->created_at }}</p>
+                            <hr>
+                            <p>Última modificación del pedido: {{ $producto->updated_at }}</p>
+                        </div>
                             
                     </div>
                 </div>
+
         
                 <button type="submit" class="btn btn-outline-secondary btn-block">Confirmar</button>
 
@@ -354,6 +298,115 @@
 
 </div>
 
+
+{{-- INFORMACION DE MERCADOPAGO --}}
+{{-- INFORMACION DE MERCADOPAGO --}}
+{{-- INFORMACION DE MERCADOPAGO --}}
+{{-- INFORMACION DE MERCADOPAGO --}}
+@if(isset($mercadopago))
+    <div class="container text-white">
+        <div class="text-center text-white mt-5">
+            <h2 class="text-center pt-2">Estado del pago en mercadopago</h2>
+        </div>
+        <div class="form-group mb-3 border rounded border-light  p-2">
+            
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <th>Propiedad</th>
+                        <th>Valor</th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    <tr>
+                        <td>->status</td>
+                        <td>@if($mercadopago->status){{$mercadopago->status}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->status_detail</td>
+                        <td>@if($mercadopago->status_detail){{$mercadopago->status_detail}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->additional_info->items[0]->title</td>
+                        <td>@if($mercadopago->additional_info->items[0]->title){{$mercadopago->additional_info->items[0]->title}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->additional_info->items[0]->unit_price</td>
+                        <td>$ @if($mercadopago->additional_info->items[0]->unit_price){{$mercadopago->additional_info->items[0]->unit_price}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->card</td>
+                        <td>@if($mercadopago->card){{var_dump($mercadopago->card)}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->currency_id</td>
+                        <td>@if($mercadopago->currency_id){{$mercadopago->currency_id}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->date_approved</td>
+                        <td>@if($mercadopago->date_approved){{$mercadopago->date_approved}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->date_created</td>
+                        <td>@if($mercadopago->date_created){{$mercadopago->date_created}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->date_last_updated</td>
+                        <td>@if($mercadopago->date_last_updated){{$mercadopago->date_last_updated}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->description</td>
+                        <td>@if($mercadopago->description){{$mercadopago->description}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->id</td>
+                        <td>@if($mercadopago->id){{$mercadopago->id}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->operation_type</td>
+                        <td>@if($mercadopago->operation_type){{$mercadopago->operation_type}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->payer</td>
+                        <td>@if($mercadopago->payer){{var_dump($mercadopago->payer)}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->payment_method</td>
+                        <td>@if($mercadopago->payment_method){{var_dump($mercadopago->payment_method)}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->statement_descriptor</td>
+                        <td>@if($mercadopago->statement_descriptor){{$mercadopago->statement_descriptor}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->transaction_details</td>
+                        <td>@if($mercadopago->transaction_details){{var_dump($mercadopago->transaction_details)}}@endif</td>
+                    </tr>
+                    {{--<tr>
+                        <td>->id</td>
+                        <td>@if($mercadopago->id){{var_dump($mercadopago->id)}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->id</td>
+                        <td>@if($mercadopago->id){{var_dump($mercadopago->id)}}@endif</td>
+                    </tr>
+                    <tr>
+                        <td>->id</td>
+                        <td>@if($mercadopago->id){{var_dump($mercadopago->id)}}@endif</td>
+                    </tr>--}}
+                    
+                </tbody>
+            </table>
+
+            {{--<hr class="bg-secondary">
+            {{var_dump($mercadopago->id)}}--}}
+            <h4 class="text-center mt-5">Datos en crudo</h4>
+            <hr class="bg-secondary">
+            {{var_dump($mercadopago)}}
+            
+        </div>
+    </div>
+@endif
 
 @endsection
 
