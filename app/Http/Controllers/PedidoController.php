@@ -282,6 +282,7 @@ class PedidoController extends Controller
             //'monto' => 'numeric',
             //'tipo_de_cliente' => 'nullable|max:50',
             'numero_de_factura' => 'nullable|numeric',
+            'factura_dgi' => 'nullable|numeric|max:4294967294',
             //'productos' => 'required',
             //'cantidades' => 'required',
         ]);
@@ -326,6 +327,11 @@ class PedidoController extends Controller
         if($pedido->medio_de_pago != 'mercadopago'){
             $pedido->numero_de_factura = $request->numero_de_factura;
         }
+
+        //if($request->factura_dgi){
+            $pedido->factura_dgi = $request->factura_dgi;
+        //}
+
         //$pedido->recibir_novedades = $request->recibir_novedades;
 
         $pedido -> save();

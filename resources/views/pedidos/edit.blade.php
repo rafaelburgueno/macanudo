@@ -101,6 +101,18 @@
                             @enderror
                         </div>
 
+
+                        <!--input para la factura de dgi-->
+                        <div class="form-group mb-3">
+                            <label for="factura_dgi">Factura de DGI</label>
+                            <input type="number" class="form-control" id="factura_dgi" name="factura_dgi" placeholder="..." 
+                            value="{{old('factura_dgi', $pedido->factura_dgi)}}" min="0" max="4294967294" style="width: 100%;">
+                            @error('factura_dgi')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
                         @if($pedido->cupon_id)
                             <div class="form-group mb-3 border rounded border-light  p-2">
                                 <span>Cupon usado: "<strong class="">{{ $pedido->cupon->codigo }}</strong>" | id: {{$pedido->cupon_id}}</span>
@@ -304,19 +316,20 @@
 {{-- INFORMACION DE MERCADOPAGO --}}
 {{-- INFORMACION DE MERCADOPAGO --}}
 @if(isset($mercadopago))
+    
     <div class="container text-white">
         <div class="text-center text-white mt-5">
             <h2 class="text-center pt-2">Estado del pago en mercadopago</h2>
         </div>
         <div class="form-group mb-3 border rounded border-light  p-2">
             
-            <table class="table table-hover table-dark">
+            <table id="tabla_mercadopago" class="table table-hover table-dark">
                 <thead>
                     <tr>
                         <th>Propiedad</th>
                         <th>Valor</th>
                     </tr>
-                    </thead>
+                </thead>
                 <tbody>
                     <tr>
                         <td>->status</td>
@@ -368,20 +381,20 @@
                     </tr>
                     <tr>
                         <td>->payer</td>
-                        <td>@if($mercadopago->payer){{var_dump($mercadopago->payer)}}@endif</td>
+                        <td>@if($mercadopago->payer)<p>{{var_dump($mercadopago->payer)}}</p>@endif</td>
                     </tr>
                     <tr>
                         <td>->payment_method</td>
                         <td>@if($mercadopago->payment_method){{var_dump($mercadopago->payment_method)}}@endif</td>
                     </tr>
-                    <tr>
+                    {{--<tr>
                         <td>->statement_descriptor</td>
                         <td>@if($mercadopago->statement_descriptor){{$mercadopago->statement_descriptor}}@endif</td>
                     </tr>
                     <tr>
                         <td>->transaction_details</td>
-                        <td>@if($mercadopago->transaction_details){{var_dump($mercadopago->transaction_details)}}@endif</td>
-                    </tr>
+                        <td>@if($mercadopago->transaction_details)<p>{{var_dump($mercadopago->transaction_details)}}</p>@endif</td>
+                    </tr>--}}
                     {{--<tr>
                         <td>->id</td>
                         <td>@if($mercadopago->id){{var_dump($mercadopago->id)}}@endif</td>

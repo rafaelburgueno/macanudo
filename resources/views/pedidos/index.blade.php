@@ -140,6 +140,7 @@
                                     <p>Medio de pago: <strong>{{ $pedido->medio_de_pago }}</strong></p>
                                     {{--<p>Estado del pago: <strong>{{ $pedido->estado_del_pago }}</strong></p>--}}
                                     <p>Factura: <strong>{{ $pedido->numero_de_factura }}</strong></p>
+                                    <p>Factura de DGI: <strong>{{ $pedido->factura_dgi }}</strong></p>
                                     @if($pedido->cupon_id)
                                         <p>Cupon usado: "<strong class="">{{ $pedido->cupon->codigo }}</strong>" | id: {{$pedido->cupon_id}}</p>
                                     @endif
