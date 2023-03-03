@@ -166,7 +166,7 @@ class Pedido extends Model
         }
 
 
-        $this->pais = 'MODEL actualizarCuponYStock!';
+        //$this->pais = 'MODEL actualizarCuponYStock!';
         $this->save();
         
     }

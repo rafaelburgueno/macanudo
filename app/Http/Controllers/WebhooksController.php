@@ -29,8 +29,24 @@ class WebhooksController extends Controller
             $payment_id = $request->all()['data']['id'];
 
             // el siguiente 'if' responde a las consultas que mercadopago hace a nuestra plataforma con payment_id borrados
-            //https://api.mercadopago.com/v1/payments/53981171870
-            //https://api.mercadopago.com/v1/payments/53826495475
+            // payments_id que no estan en nuestra base de datos:
+            //https://www.mercadopago.com.uy/payments/54139557015 ¿?
+            //https://api.mercadopago.com/v1/payments/54034738410 ¿?
+            //https://api.mercadopago.com/v1/payments/54151005372 ¿?
+            //https://api.mercadopago.com/v1/payments/53978965097 ¿?
+            //https://api.mercadopago.com/v1/payments/53981680090 ¿?
+            //https://api.mercadopago.com/v1/payments/54213487112 ¿?
+            //https://www.mercadopago.com.uy/payments/54189750964 ¿?
+            //https://api.mercadopago.com/v1/payments/53981171870 ¿?
+            //https://api.mercadopago.com/v1/payments/1312460359 PEDIDO EN ENTORNO LOCAL
+            //https://api.mercadopago.com/v1/payments/1312459903 PEDIDO EN ENTORNO LOCAL
+            //https://api.mercadopago.com/v1/payments/1312459945 PEDIDO EN ENTORNO LOCAL
+            //https://api.mercadopago.com/v1/payments/1311657148 PEDIDO EN ENTORNO LOCAL
+            //https://api.mercadopago.com/v1/payments/1312460359 PEDIDO EN ENTORNO LOCAL
+            //https://api.mercadopago.com/v1/payments/53826495475 PEDIDO EN EL SERVIDOR
+            //https://api.mercadopago.com/v1/payments/53740006982 PEDIDO EN EL SERVIDOR
+            //
+
             if($payment_id == '123456789' or $payment_id == '53981171870'){
                 return response()->json(['OK' => 'OK'], 200);
             }
@@ -41,7 +57,7 @@ class WebhooksController extends Controller
 
             $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=".env('MP_ACCESS_TOKEN'));
 
-            Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($response));
+            Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($response));
 
             $response = json_decode($response);
 
