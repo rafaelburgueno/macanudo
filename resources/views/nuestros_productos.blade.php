@@ -44,7 +44,7 @@
                     {{-- ETIQUETA DE PRODUCTO AGOTADO--}}
                     @if ($producto->stock < 1)
                         <div class="etiqueta_de_agotado m-0 p-2 text-center">
-                            <span class="h1 text-white ">AGOTADO</span>
+                            <span class="h4 text-white ">AGOTADO</span>
                         </div>
                     @endif
 

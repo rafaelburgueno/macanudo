@@ -367,7 +367,7 @@ Route::controller(BannerController::class)->group(function () {
 | Esta ruta solo devuelve una vista, por lo tanto no es 
 | necesario utilizar un controlador.
 */
-Route::get('/mi_perfil', [MiPerfilController::class, 'mi_perfil'])->name('mi_perfil')->middleware('auth');
+Route::get('/mi_perfil', [MiPerfilController::class, 'mi_perfil'])->name('mi_perfil')->middleware('auth')->middleware('verified');
 /*Route::get('/mi_perfil', function () {
     return view('mi_perfil');
     //return "mi_perfil";

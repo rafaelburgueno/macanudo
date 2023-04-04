@@ -32,12 +32,13 @@ class WebhooksController extends Controller
             // payments_id que no estan en nuestra base de datos:
             //https://www.mercadopago.com.uy/payments/54139557015 ¿?
             //https://api.mercadopago.com/v1/payments/54034738410 ¿?
-            //https://api.mercadopago.com/v1/payments/54151005372 ¿?
             //https://api.mercadopago.com/v1/payments/53978965097 ¿?
-            //https://api.mercadopago.com/v1/payments/53981680090 ¿?
-            //https://api.mercadopago.com/v1/payments/54213487112 ¿?
-            //https://www.mercadopago.com.uy/payments/54189750964 ¿?
-            //https://api.mercadopago.com/v1/payments/53981171870 ¿?
+            //https://api.mercadopago.com/v1/payments/54952272609 PEDIDO PAGADO, ESTA EN EL SERVIDOR
+            //https://api.mercadopago.com/v1/payments/53981171870 ¿? esta en mercadopago, lo hicimos los debs
+            //https://api.mercadopago.com/v1/payments/54151005372 esta en mercadopago, lo hicimos los debs
+            //https://api.mercadopago.com/v1/payments/53981680090 esta en mercadopago, lo hicimos los debs
+            //https://api.mercadopago.com/v1/payments/54213487112 esta en mercadopago, lo hicimos los debs
+            //https://www.mercadopago.com.uy/payments/54189750964 esta en mercadopago, lo hicimos los debs
             //https://api.mercadopago.com/v1/payments/1312460359 PEDIDO EN ENTORNO LOCAL
             //https://api.mercadopago.com/v1/payments/1312459903 PEDIDO EN ENTORNO LOCAL
             //https://api.mercadopago.com/v1/payments/1312459945 PEDIDO EN ENTORNO LOCAL
@@ -47,7 +48,13 @@ class WebhooksController extends Controller
             //https://api.mercadopago.com/v1/payments/53740006982 PEDIDO EN EL SERVIDOR
             //
 
-            if($payment_id == '123456789' or $payment_id == '53981171870'){
+            if($payment_id == '123456789' 
+                or $payment_id == '53981171870'
+                or $payment_id == '54151005372'
+                or $payment_id == '53981680090'
+                or $payment_id == '54213487112'
+                or $payment_id == '54189750964'
+                or $payment_id == '53981171870'){
                 return response()->json(['OK' => 'OK'], 200);
             }
 
