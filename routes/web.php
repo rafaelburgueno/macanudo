@@ -22,6 +22,7 @@ use App\Http\Controllers\PagosController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\MiPerfilController;
+use App\Http\Controllers\SuscripcionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,6 +121,8 @@ Route::get('/club_macanudo', ClubMacanudoController::class)->name('club_macanudo
 | 
 */
 Route::post('formulario_del_club_macanudo', [ClubMacanudoController::class, 'formulario_del_club_macanudo'])->name('formulario_del_club_macanudo'); 
+
+Route::post('suscribirse', [SuscripcionController::class, 'suscribirse'])->name('suscribirse'); 
 
 
 

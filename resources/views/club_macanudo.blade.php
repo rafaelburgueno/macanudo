@@ -190,7 +190,7 @@
 
         <div class="col text-center">
             <a href="" class=" btn1 btn-club link" data-toggle="modal"
-                data-target="#exampleModal">unirme al club</a>
+                data-target="#suscribirme_al_club">unirme al club</a>
 
             <p>
 
@@ -314,7 +314,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn1 btn-azul shadown" data-toggle="modal"
-                    data-target="#exampleModal1">Unirme</button>
+                    data-target="#suscribirme_al_club">Unirme</button>
             </div>
 
         </div>
