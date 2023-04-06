@@ -56,8 +56,11 @@ class SuscripcionController extends Controller
 
             //asigna el rol de suscriptor al usuario
             $user = User::find(auth()->user()->id);
-            $user->rol = 'suscriptor';
-            //$user->save();
+            //si el usuario tiene el rol de administrador, no se le cambia el rol
+            if ($user->rol != 'administrador') {
+                $user->rol = 'suscriptor';
+            }
+            $user->save();
 
         } else {
             $user = new User();
@@ -65,7 +68,7 @@ class SuscripcionController extends Controller
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->rol = 'suscriptor';
-            //$user->save();
+            $user->save();
 
             //envia el correo de confirmacion de registro
             $user->sendEmailVerificationNotification();
@@ -79,12 +82,12 @@ class SuscripcionController extends Controller
             if (auth()->user()->fecha_de_nacimiento == null) {
                 $user = User::find(auth()->user()->id);
                 $user->fecha_de_nacimiento = $request->fecha_de_nacimiento;
-                //$user->save();
+                $user->save();
             }
         } else {
             $user = User::find($user->id);
             $user->fecha_de_nacimiento = $request->fecha_de_nacimiento;
-            //$user->save();
+            $user->save();
         }
 
         
@@ -120,7 +123,7 @@ class SuscripcionController extends Controller
 
 
         //emite una notificacion flash
-        session()->flash('exito', 'Suscripción realizada con éxito');
+        session()->flash('exito', 'La suscripción se realizó con éxito');
 
         return redirect()->route('club_macanudo');
     }
@@ -149,7 +152,7 @@ class SuscripcionController extends Controller
         $pedido->medio_de_pago = 'pagar al recibir';
         $pedido->estado_del_pago = 'pendiente';
         $pedido->monto = $suscripcion->precio;
-        $pedido->canasta_id = 11; //TODO: resolver como se le asigna la canasta al pedido
+        //$pedido->canasta_id = 11; //TODO: resolver como se le asigna la canasta al pedido
         $pedido->save();
 
         return $pedido;

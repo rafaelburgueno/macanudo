@@ -70,6 +70,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Models\Pedido');
     }
 
+    /**
+     * Devuelve un array con las suscripciones que ese usuario ha realizado
+     * relacion uno(User) a muchos(Suscripciones)
+     */
+    public function suscripciones(){
+        return $this->hasMany('App\Models\Suscripcion');
+    }
 
 
 

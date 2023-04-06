@@ -9,6 +9,7 @@ use App\Models\Canasta;
 use App\Models\Producto;
 use App\Models\Costo_de_envio;
 use App\Models\Cupon;
+use App\Models\Suscripcion;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Http;
@@ -31,13 +32,15 @@ class PedidoController extends Controller
         $lista_de_productos = Producto::where('activo', true)->get();
         $costos_de_envio = Costo_de_envio::where('activo', true)->get();
         $cupones = Cupon::where('activo', true)->get();
+        $suscripciones = Suscripcion::where('activo', true)->get();
             
         return view('pedidos.index')
             ->with('pedidos', $pedidos)
             ->with('canastas', $canastas)
             ->with('lista_de_productos', $lista_de_productos)
             ->with('costos_de_envio', $costos_de_envio)
-            ->with('cupones', $cupones);
+            ->with('cupones', $cupones)
+            ->with('suscripciones', $suscripciones);
         //return view('pedidos');
     }
 

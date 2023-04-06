@@ -17,6 +17,14 @@
 			]
 		});
 	} );
+
+    $(document).ready( function () {
+		$('#tabla_suscripciones').DataTable({
+			order: [
+				[0, 'desc']
+			]
+		});
+	} );
 </script>
 
 
@@ -162,6 +170,88 @@
                                             <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
                                         @endforeach
                                     </ul>
+                                    
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+				@endforeach
+			</tbody>
+		</table>
+	</div>
+
+
+</div>
+
+
+<div class="text-center text-white my-4 mt-5">
+    <h1 class="text-center pt-2">SUSCRIPCIONES</h1>
+</div>
+
+<div class="container bg-white text-dark py-2 rounded">
+
+	<div class="pb-3" style="overflow-x: scroll;">
+		<table id="tabla_suscripciones" class="display {{--table table-striped table-hover table-sm--}}">
+			<thead>
+				<tr>
+                    <th>Id</th>
+                    <th>Tipo</th>
+					<th>Precio</th>
+					<th>Nombre</th>
+                    {{--<th>Teléfono</th>--}}
+                    <th>Dirección de entrega</th>
+                    <th>Canastas restantes</th>
+                    <th>Dia de entrega</th>
+					<th>Ingredientes que no consumo</th>
+                    <th>Fecha de inicio</th>
+					<th>Administrar</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+                {{--entregado-telefono-direccion- lista del pedido- nombre--}}
+			
+				@foreach ($suscripciones as $suscripcion)
+                    
+                    <tr>
+                        <td><a class="btn btn-light" data-toggle="modal" data-target="#info_de_la_suscripcion_{{ $suscripcion->id }}">{{ $suscripcion->id }}</a></td>
+                        <td>{{ $suscripcion->tipo }}</td>
+                        <td>$ {{ $suscripcion->precio }}</td>
+                        <td>{{ $suscripcion->user->name }}</td>
+                        {{--<td>{{ $suscripcion->telefono }}</td>--}}
+                        <td>{{ $suscripcion->direccion_de_entrega }}</td>
+                        <td>{{ $suscripcion->cantidad_de_canastas }}</td>
+                        <td>{{ $suscripcion->dia_de_entrega }}</td>
+                        <td>{{ $suscripcion->user->ingredientes_que_no_consumo }}</td>
+                        <td>{{ $suscripcion->fecha_de_inicio }}</td>
+                        <td></td>
+                        
+						{{--<td><a href="{{route('pedidos.edit', $suscripcion)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>--}}
+
+						
+					</tr>
+
+
+                    <!--MODAL CON INFORMACION DEL PEDIDO-->
+                    <!--MODAL CON INFORMACION DEL PEDIDO-->
+                    <!--MODAL CON INFORMACION DEL PEDIDO-->
+                    <div class="modal fade" id="info_de_la_suscripcion_{{ $suscripcion->id }}" tabindex="-1" role="dialog" aria-labelledby="info_de_la_suscripcion_{{ $suscripcion->id }}Label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content negro">
+                                <div class="modal-header text-center">
+                                    <h5 class="modal-title" id="info_de_la_suscripcion_{{ $suscripcion->id }}Label">{{$suscripcion->created_at}} | id:{{$suscripcion->id}}</h5><br>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="modal-body ">
+                                    
                                     
                                     
                                 </div>

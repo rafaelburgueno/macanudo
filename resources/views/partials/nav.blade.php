@@ -90,7 +90,7 @@
                             @if( Auth::user()->rol == 'administrador' )
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{route('reparto')}}">Reparto</a>
-                                <a class="dropdown-item" href="{{route('pedidos.index')}}">Pedidos</a>
+                                <a class="dropdown-item" href="{{route('pedidos.index')}}">Pedidos y Suscripciones</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{route('productos.index')}}">Productos</a>
                                 <a class="dropdown-item" href="{{route('canastas.index')}}">Canastas</a>
