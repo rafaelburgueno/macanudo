@@ -10,7 +10,6 @@
                 <p><a class="nav-link" href="{{route('nosotros')}}">Nosotros</a></p>
                 <p><a class="nav-link" href="{{route('nuestros_productos')}}">Productos</a></p>
                 <p><a class="nav-link" href="{{route('puntos_de_venta')}}">Puntos de venta</a></p>
-                <p><a class="nav-link" href="#" data-toggle="modal" data-target="#club_form" id="">unirme al Club Macanudo</a></p>
                 <p><a class="nav-link" href="{{route('club_macanudo')}}">Club Macanudo</a></p>
                 {{--<p><a class="nav-link" href="{{route('blog.index')}}">Blog</a></p>--}}
                 <p><a class="nav-link" href="{{route('mi_carrito')}}">Mi carrito</a></p>
@@ -321,8 +320,8 @@
 
 <!--MODAL DATOS SUSCRIPCIÓN -- MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN-->
 <!--MODAL DATOS SUSCRIPCIÓN -- MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN-->
-{{--<div class="modal fade" id="suscribirme_al_club" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">--}}
+<div class="modal fade" id="suscribirme_al_club" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog negro" role="document">
         <div class="modal-content align-items-center">
             <div class="modal-header">
@@ -433,9 +432,9 @@
                             no puedes consumir indícanos cuál es así lo podremos tener en cuenta al armar tu envio. (Ej: No 
                             consumo ajo, no puedo consumir semillas enteras, no me gusta el roquefort) </label>
                             @if( Auth::check() )
-                                <textarea required class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" rows="3" placeholder="...">{{old('ingredientes_que_no_consumo', auth()->user()->ingredientes_que_no_consumo)}}</textarea>
+                                <textarea required class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" rows="2" placeholder="...">{{old('ingredientes_que_no_consumo', auth()->user()->ingredientes_que_no_consumo)}}</textarea>
                             @else
-                                <textarea required class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" rows="3" placeholder="...">{{old('ingredientes_que_no_consumo')}}</textarea>
+                                <textarea required class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" rows="2" placeholder="...">{{old('ingredientes_que_no_consumo')}}</textarea>
                             @endif
                         @error('ingredientes_que_no_consumo')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -488,7 +487,7 @@
 
 
     </div>
-{{--</div>--}}
+</div>
 
 
 <script>

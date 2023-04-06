@@ -33,7 +33,7 @@
     <div class="row">
 
         <div class="col text-center">
-            <a href="" class=" btn1 btn-club " data-toggle="modal" data-target="#exampleModal">Sé parte de nuestro
+            <a href="" class=" btn1 btn-club " data-toggle="modal" data-target="#suscribirme_al_club">Sé parte de nuestro
                 club</a>
 
         </div>
