@@ -38,6 +38,7 @@ class SuscripcionController extends Controller
             //'activo' => 'nullable',
         ]);
 
+        //return $request->all();
         
         $suscripcion = new Suscripcion();
         $suscripcion->tipo = $request->tipo;

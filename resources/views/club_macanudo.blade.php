@@ -427,7 +427,7 @@
 </div>
 
 
-<script>
+{{--<script>
     $(document).ready(function(){
 
         $('.btn-procesando').click(function(){
@@ -463,7 +463,7 @@
         });
     });
     
-</script>
+</script>--}}
 
 
 

@@ -374,7 +374,6 @@
                     
                     @if( !Auth::check() )
                         
-
                         <!-- Nombre -->
                         <div class="form-group mb-4">
                             <label for="nombre" class="negro">Nombre: </label>
@@ -408,7 +407,13 @@
                             @error('password_confirmacion')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
+                            <p id="password_confirmacion_info" class="text-danger" style="display: none">Las contraseñas no coinciden.</p>
                         </div>
+                    @else
+                        <input type="hidden" name="nombre" id="nombre" value="nombre ficticio">
+                        <input type="hidden" name="email" id="email" value="email@ficticio.com">
+                        <input type="hidden" name="password" id="password" value="miPassword">
+                        <input type="hidden" name="password_confirmacion" id="password_confirmacion" value="miPassword">
 
                     @endif
 
@@ -425,7 +430,6 @@
                     </div>
 
 
-
                     <!-- Ingredientes que no consumo -->
                     <div class="form-group mb-4">
                         <label for="ingredientes_que_no_consumo" class="negro">Si hay algún ingrediente que no quieres o 
@@ -440,8 +444,6 @@
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
-
-
 
 
                     <!-- Dirección de entrega -->
@@ -493,18 +495,49 @@
 <script>
     $(document).ready(function(){
 
+        //funcion que valida que los password coincidan, si no coincide pone el borde en rojo, el fondo en rojo e informa que los password no coinciden
+        $('#password_confirmacion').keyup(function(){
+            if( $('#password').val() != $('#password_confirmacion').val() ){
+                $('#password_confirmacion').css('border', '1px solid red');
+                $('#password_confirmacion').css('background', '#f2dede');
+                $('#password_confirmacion').css('color', '#a94442');
+                $('#password_confirmacion').css('font-weight', 'bold');
+                $('#password_confirmacion').css('font-size', '14px');
+                $('#password_confirmacion').css('padding', '5px');
+                $('#password_confirmacion').css('margin-bottom', '5px');
+                $('#password_confirmacion').css('margin-top', '5px');
+                $('#password_confirmacion').css('border-radius', '5px');
+                $('#password_confirmacion_info').show();
+            }else{
+                $('#password_confirmacion').css('border', '1px solid #ccc');
+                $('#password_confirmacion').css('background', '#fff');
+                $('#password_confirmacion').css('color', '#555');
+                $('#password_confirmacion').css('font-weight', 'normal');
+                $('#password_confirmacion').css('font-size', '14px');
+                $('#password_confirmacion').css('padding', '5px');
+                $('#password_confirmacion').css('margin-bottom', '5px');
+                $('#password_confirmacion').css('margin-top', '5px');
+                $('#password_confirmacion').css('border-radius', '5px');
+                $('#password_confirmacion_info').hide();
+            }
+        });
+        
+
+
+
+
         $('.btn-procesando').click(function(){
-            if(
-                document.getElementById("nombre").value != '' &&
-                document.getElementById("email").value != '' &&
-                //document.getElementById("password").value != '' &&
-                //document.getElementById("password").value != document.getElementById("password_confirmacion").value &&
+            if( 
+                //document.getElementById("nombre").value != '' &&
+                //document.getElementById("email").value != '' &&
+                document.getElementById("password").value != '' &&
+                document.getElementById("password").value == document.getElementById("password_confirmacion").value &&
                 document.getElementById("direccion_de_entrega").value != '' &&  
-                document.getElementById("telefono").value >= 10000000 &&
+                document.getElementById("telefono").value != '' && 
                 document.getElementById("fecha_de_nacimiento").value != '' &&  
                 //document.getElementById("ingedientes_que_no_consumo").value != '' &&  
                 document.getElementById("cantidad_de_quesos").value != '' &&  
-                document.getElementById("dia_de_entrega").value != '' &&  
+                document.getElementById("dia_de_entrega").value != '' 
                 //document.getElementById("cantidad_de_canastas").value != '' &&  
                 //document.getElementById("fecha_de_inicio").value != '' &&  
                 //document.getElementById("fecha_de_renovacion").value != ''
