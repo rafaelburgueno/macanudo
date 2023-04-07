@@ -432,9 +432,9 @@
                             no puedes consumir indícanos cuál es así lo podremos tener en cuenta al armar tu envio. (Ej: No 
                             consumo ajo, no puedo consumir semillas enteras, no me gusta el roquefort) </label>
                             @if( Auth::check() )
-                                <textarea required class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" rows="2" placeholder="...">{{old('ingredientes_que_no_consumo', auth()->user()->ingredientes_que_no_consumo)}}</textarea>
+                                <textarea class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" rows="2" placeholder="...">{{old('ingredientes_que_no_consumo', auth()->user()->ingredientes_que_no_consumo)}}</textarea>
                             @else
-                                <textarea required class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" rows="2" placeholder="...">{{old('ingredientes_que_no_consumo')}}</textarea>
+                                <textarea class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" rows="2" placeholder="...">{{old('ingredientes_que_no_consumo')}}</textarea>
                             @endif
                         @error('ingredientes_que_no_consumo')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>

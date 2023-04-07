@@ -34,5 +34,14 @@ class Suscripcion extends Model
     }
 
 
+    /**
+     * Devuelve un array de elementos del modelo Pedido que se vinculan a esta instancia de Suscripcion
+     * relacion uno a muchos
+     * @var array Pedido
+     */
+    public function pedidos(){
+        return $this->hasMany('App\Models\Pedido');
+    }
+
 
 }

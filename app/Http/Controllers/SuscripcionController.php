@@ -93,7 +93,10 @@ class SuscripcionController extends Controller
         
         $suscripcion->direccion_de_entrega = $request->direccion_de_entrega;
         $suscripcion->telefono = $request->telefono;
-        $user->ingredientes_que_no_consumo = $request->ingredientes_que_no_consumo;
+        //si llega un valor de ingredientes_que_no_consumo, se asigna al usuario
+        if ($request->ingredientes_que_no_consumo) {
+            $user->ingredientes_que_no_consumo = $request->ingredientes_que_no_consumo;
+        }
 
         //la cantidad de canastas se define por el tipo de suscripcion
         //$suscripcion->cantidad_de_canastas = 12;  
@@ -143,6 +146,7 @@ class SuscripcionController extends Controller
         $pedido->status = 'pedido';
         $pedido->tipo = 'club del queso';
         $pedido->user_id = $user->id;
+        $pedido->suscripcion_id = $suscripcion->id;
 
         $pedido->nombre = $user->name;
         $pedido->email = $user->email;

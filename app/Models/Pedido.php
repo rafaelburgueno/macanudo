@@ -69,6 +69,17 @@ class Pedido extends Model
 
 
     /**
+     * Devuelve un elemento del modelo Suscripcion que se vinculan a esta instancia de Pedido
+     * relacion uno a muchos (inversa)
+     * @var Suscripcion
+     */
+    public function suscripcion(){
+        return $this->belongsTo('App\Models\Suscripcion');
+    }
+
+
+
+    /**
      * Devuelve un array de elementos del modelo Producto que se vinculan a esta instancia de Pedido
      * relacion muchos a muchos
      * testeado tinker exitoso
@@ -79,7 +90,7 @@ class Pedido extends Model
     }
 
 
-
+    
     /**
      * Devuelve un array de strings con la lista de elementos del modelo Producto que se vinculan a esta instancia de Pedido
      * 

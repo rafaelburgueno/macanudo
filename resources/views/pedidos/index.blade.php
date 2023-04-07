@@ -152,6 +152,9 @@
                                     @if($pedido->cupon_id)
                                         <p>Cupon usado: "<strong class="">{{ $pedido->cupon->codigo }}</strong>" | id: {{$pedido->cupon_id}}</p>
                                     @endif
+                                    @if($pedido->suscripcion_id)
+                                        <p>Suscripcion: <strong class="">id: {{ $pedido->suscripcion_id }} | Tipo: {{ $pedido->suscripcion->tipo }}</strong></p>
+                                    @endif
                                     <hr>
                                     <p>Nombre: <strong>{{ $pedido->nombre }}</strong></p>
                                     <p>Dirección: <strong>{{ $pedido->direccion }}</strong></p>
@@ -188,6 +191,7 @@
 
 </div>
 
+<div id="titulo_suscripciones"><br></div>
 
 <div class="text-center text-white my-4 mt-5">
     <h1 class="text-center pt-2">SUSCRIPCIONES</h1>
