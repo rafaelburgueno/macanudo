@@ -153,7 +153,7 @@
                                         <p>Cupon usado: "<strong class="">{{ $pedido->cupon->codigo }}</strong>" | id: {{$pedido->cupon_id}}</p>
                                     @endif
                                     @if($pedido->suscripcion_id)
-                                        <p>Suscripcion: <strong class="">id: {{ $pedido->suscripcion_id }} | Tipo: {{ $pedido->suscripcion->tipo }}</strong></p>
+                                        <p>Club: id: {{ $pedido->suscripcion_id }} | suscripcion de {{ $pedido->suscripcion->tipo }} | canastas respantes</p>
                                     @endif
                                     <hr>
                                     <p>Nombre: <strong>{{ $pedido->nombre }}</strong></p>
@@ -226,12 +226,20 @@
                         <td><a class="btn btn-light" data-toggle="modal" data-target="#info_de_la_suscripcion_{{ $suscripcion->id }}">{{ $suscripcion->id }}</a></td>
                         <td>{{ $suscripcion->tipo }}</td>
                         <td>$ {{ $suscripcion->precio }}</td>
-                        <td>{{ $suscripcion->user->name }}</td>
+                        <td>
+                            @if($suscripcion->user != null)
+                                {{ $suscripcion->user->name }}
+                            @endif
+                        </td>
                         {{--<td>{{ $suscripcion->telefono }}</td>--}}
                         <td>{{ $suscripcion->direccion_de_entrega }}</td>
                         <td>{{ $suscripcion->cantidad_de_canastas }}</td>
                         <td>{{ $suscripcion->dia_de_entrega }}</td>
-                        <td>{{ $suscripcion->user->ingredientes_que_no_consumo }}</td>
+                        <td>
+                            @if($suscripcion->user != null)
+                                {{ $suscripcion->user->ingredientes_que_no_consumo }}
+                            @endif
+                        </td>
                         <td>{{ $suscripcion->fecha_de_inicio }}</td>
                         <td></td>
                         

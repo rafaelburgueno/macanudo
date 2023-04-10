@@ -42,14 +42,9 @@ class SuscripcionController extends Controller
         
         $suscripcion = new Suscripcion();
         $suscripcion->tipo = $request->tipo;
-
-
-        //si la cantidad de quesos es 3, el precio es 1000, si es 5, el precio es 1500
-        if ($request->cantidad_de_quesos == 3) {
-            $suscripcion->precio = 1000;
-        } elseif ($request->cantidad_de_quesos == 5) {
-            $suscripcion->precio = 1500;
-        }
+        
+        //se calcula el precio de la suscripcion, segun la cantidad de quesos y el tipo de suscripcion
+        $suscripcion->precio = $this->calcularPrecio($request->cantidad_de_quesos, $request->tipo);
 
         //consulta si hay un usuario logueado, si no hay, se crea un usuario
         if (auth()->user()) {
@@ -162,6 +157,37 @@ class SuscripcionController extends Controller
 
         return $pedido;
         
+    }
+
+
+
+    //metodo que calcula el precio de la suscripcion, segun la cantidad de quesos y el tipo de suscripcion. el metodo posee dos variables, una variable define el precio unitario del queso, y otra variable define el descuento que se le hace al precio unitario del queso, segun el tipo de suscripcion
+    public function calcularPrecio($cantidad_de_quesos, $tipo)
+    {
+        $precio_unitario = 380;
+        $descuento_por_tres_quesos = 0.85; // 15% de descuento
+        $descuento_por_cinco_quesos = 0.82; // 18% de descuento
+
+
+        if ($cantidad_de_quesos == 3) {
+            $descuento = $descuento_por_tres_quesos;
+        } elseif ($cantidad_de_quesos == 5) {
+            $descuento = $descuento_por_cinco_quesos;
+        }
+
+        $precio = $cantidad_de_quesos * $precio_unitario * $descuento;
+
+        if ($tipo == 'Un mes') {
+            $precio = $precio * 1;
+        } elseif ($tipo == 'Tres meses') {
+            $precio = $precio * 3;
+        } elseif ($tipo == 'Seis meses') {
+            $precio = $precio * 6;
+        } elseif ($tipo == 'Doce meses') {
+            $precio = $precio * 12;
+        }
+
+        return $precio;
     }
 
 
