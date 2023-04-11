@@ -23,17 +23,24 @@
                 <div class="row">
                     <div class="col col-md-6">
 
-                        <!--input para el status-->
-                        {{--<div class="form-group mb-3">
-                            <label for="status">status</label>
-                            <input required type="text" class="form-control" id="status" name="status" placeholder="..." value="{{old('status', $pedido->status)}}">
-                            @error('status')
+                        
+                        <div class="form-group mb-3">
+                            <label for="status">Tipo: {{$pedido->tipo}}</label>
+                            {{--<select class="form-control" id="tipo" name="tipo">
+                                <option value="club del queso" @selected((old('tipo') == "club del queso") || $pedido->tipo == "club del queso" )>club del queso</option>
+                                <option value="compra particular" @selected((old('tipo') == "compra particular") || $pedido->tipo == "compra particular" )>compra particular</option>
+                                <option value="pedido normal" @selected((old('tipo') == "pedido normal") || $pedido->tipo == "pedido normal" )>pedido normal</option>
+                            </select>
+                            @error('tipo')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
-                            @enderror
-                        </div>--}}
+                            @enderror--}}
+                        </div>
+
+
                         <div class="form-group mb-3">
                             <label for="status">Status</label>
                             <select class="form-control" id="status" name="status">
+                                <option value="{{$pedido->status}}">{{$pedido->status}}</option>
                                 <option value="pedido" @selected((old('status') == "pedido") || $pedido->status == "pedido" )>Pedido</option>
                                 <option value="despachado" @selected((old('status') == "despachado") || $pedido->status == "despachado" )>despachado</option>
                                 <option value="en viaje" @selected((old('status') == "en viaje") || $pedido->status == "en viaje" )>En viaje</option>
@@ -57,9 +64,10 @@
                         <div class="form-group mb-3">
                             <label for="status">Medio de pago</label>
                             <select class="form-control" id="medio_de_pago" name="medio_de_pago">
+                                <option value="{{$pedido->medio_de_pago}}">{{$pedido->medio_de_pago}}</option>
+                                <option value="sin definir" @selected((old('medio_de_pago') == "sin definir") || $pedido->medio_de_pago == "sin definir" )>Sin definir</option>
                                 <option value="pagar al recibir" @selected((old('medio_de_pago') == "pagar al recibir") || $pedido->medio_de_pago == "pagar al recibir" )>Pagar al recibir</option>
                                 <option value="mercadopago" @selected((old('medio_de_pago') == "mercadopago") || $pedido->medio_de_pago == "mercadopago" )>Mercadopago</option>
-                                <option value="sin definir" @selected((old('medio_de_pago') == "sin definir") || $pedido->medio_de_pago == "sin definir" )>Sin definir</option>
                             </select>
                             @error('medio_de_pago')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -80,6 +88,7 @@
                         <div class="form-group mb-3">
                             <label for="estado_del_pago">Estado del pago</label>
                             <select class="form-control" id="estado_del_pago" name="estado_del_pago">
+                                <option value="{{$pedido->estado_del_pago}}">{{$pedido->estado_del_pago}}</option>
                                 <option value="pagado" @selected((old('estado_del_pago') == "pagado") || $pedido->estado_del_pago == "pagado" )>Pagado</option>
                                 <option value="pendiente" @selected((old('estado_del_pago') == "pendiente") || $pedido->estado_del_pago == "pendiente" )>Pendiente</option>
                                 {{--<option value="" @selected((old('estado_del_pago') == "") || $pedido->estado_del_pago == "" )>NULL</option>--}}
@@ -271,8 +280,30 @@
                         </div>--}}
                         
 
-                        <div class="form-group mb-3 border rounded border-light  p-2">
+                        {{--<div class="form-group mb-3 border rounded border-light  p-2">
                             <h4>Productos</h4>
+                            <hr>
+
+                            <ul>
+                                @foreach($pedido->productos as $producto)
+                                    <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                @endforeach
+                            </ul>
+
+                        </div>--}}
+
+                        @if(isset($pedido))
+                        <div class="form-group mb-3 border rounded border-light p-2">
+                            <p>Creacion del pedido: {{ $pedido->created_at }}</p>
+                            <hr>
+                            <p>Última modificación del pedido: {{ $pedido->updated_at }}</p>
+                        </div>
+                        @endif
+
+
+
+                        <div class="form-group mb-3 border rounded border-light  p-2">
+                            <h4>Lista actual de productos</h4>
                             <hr>
 
                             <ul>
@@ -281,14 +312,67 @@
                                     <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
                                 @endforeach
                             </ul>
-
                         </div>
 
-                        <div class="form-group mb-3 border rounded border-light p-2">
-                            <p>Creacion del pedido: {{ $producto->created_at }}</p>
-                            <hr>
-                            <p>Última modificación del pedido: {{ $producto->updated_at }}</p>
-                        </div>
+                        <table class="table table-striped table-dark rounded">
+                            <thead>
+                                <tr>
+                                    <h5 class="">Nueva lista de productos</h5>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($lista_de_productos as $producto)
+                                    <tr>
+                                        <td><p class="m-0 p-0 pt-1">{{ $producto->nombre }}</p></td>
+                                        <td><p class="m-0 p-0 pt-1" id="idicador_cantidad_{{ $producto->id }}">0</p></td><!--cantidad-->
+                                        <td>
+                                            <button type="button" class="m-0 btn btn-sm btn-info" onclick="modificar_cantidad_producto({{ $producto->id }}, true)"><strong>+</strong></button>
+                                            <button type="button" class="m-0 btn btn-sm btn-info" onclick="modificar_cantidad_producto({{ $producto->id }}, false)"><strong>-</strong></button>
+                                        </td>
+                                        <div id="input_producto_{{ $producto->id }}"></div>
+                                        <div id="input_cantidad{{ $producto->id }}"></div>
+                                        {{--
+                                            <input type="hidden" name="productos[]" value="">
+                                            <input type="hidden" name="cantidades[]" value="">
+                                        --}}
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+
+                        <script>
+                            //
+                            function modificar_cantidad_producto(id , operacion){
+
+                                // calcula la cantidad actual 
+                                let cantidad_actual = parseInt(document.getElementById('idicador_cantidad_'+id).innerHTML);
+                                let nueva_cantidad = 0;
+                                if(operacion){
+                                    nueva_cantidad = ++cantidad_actual;
+                                }else{
+                                    if(cantidad_actual > 0){
+                                        nueva_cantidad = --cantidad_actual;
+                                    }
+                                }
+                                // modifica el indicador
+                                document.getElementById('idicador_cantidad_'+id).innerHTML = nueva_cantidad
+
+                                // agrega los input para mandar productos[] y cantidades[]
+                                if(cantidad_actual > 0){
+                                    document.getElementById('input_producto_'+id).innerHTML = '<input type="hidden" name="productos[]" value="'+id+'"><input type="hidden" name="cantidades[]" value="'+nueva_cantidad+'">'
+                                }else{
+                                    document.getElementById('input_producto_'+id).innerHTML = '';
+                                }
+                                
+                            }
+
+                        </script>
+
+
+
+
                             
                     </div>
                 </div>

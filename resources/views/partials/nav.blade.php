@@ -23,8 +23,9 @@
                 <li class="nav-item"><a class="nav-link" href="{{route('puntos_de_venta')}}" style=" {{request()->routeIs('puntos_de_venta') ? 'color: var(--lila);' : ''}}">PUNTOS DE VENTA</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('club_macanudo')}}" style=" {{request()->routeIs('club_macanudo') ? 'color: var(--lila);' : ''}}">CLUB MACANUDO</a></li>
                 {{--<li class="nav-item"><a class="nav-link" href="{{route('blog.index')}}" style=" {{request()->routeIs('blog.*') ? 'color: var(--lila);' : ''}}">BLOG</a></li>--}}
-
-
+                @if( !Auth::check() )
+                <li class="nav-item"><a class="nav-link" href="{{route('login')}}">LOGIN</a></li>
+                @endif
             </ul>
 
             <ul class="navbar-nav flex-row flex-wrap ms-md-auto">

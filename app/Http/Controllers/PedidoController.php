@@ -379,7 +379,32 @@ class PedidoController extends Controller
         }*/
 
 
-        session()->flash('exito', 'El pedido fue editado.');
+        if($request->productos){
+
+            // TODO: borrar los registros previos
+            DB::table('pedido_producto')->where('pedido_id', $pedido->id)->delete();
+
+            $cantidades = $request->cantidades;
+
+            $created_at = now();
+    
+            foreach($request->productos as $key => $producto){
+    
+                $cantidad_del_producto = (int)($cantidades[$key]);
+                //dd($cantidad_del_producto);
+    
+                DB::table('pedido_producto')->insert([
+                    'pedido_id' => $pedido->id,
+                    'producto_id' => $producto,
+                    'unidades' => $cantidad_del_producto,
+                    'created_at' => $created_at
+                ]);
+                
+            } 
+        }
+
+
+        session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente.');
         return redirect() -> route('pedidos.index');
     }
 

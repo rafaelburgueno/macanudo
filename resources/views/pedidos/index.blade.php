@@ -140,6 +140,7 @@
                                     {{--@livewire('editar-pedido', [$pedido])--}}
                                     <!-- Botones para editar el pedido -->
                                     <!-- Botones para editar el pedido -->
+                                    <p>Tipo de pedido: <strong>{{ $pedido->tipo }}</strong></p>
                                     <p>Estado del pedido: <strong>{{ $pedido->status }}</strong></p>
                                     <p>Estado del pago: <strong>{{ $pedido->estado_del_pago }}</strong></p>
                                     <hr>

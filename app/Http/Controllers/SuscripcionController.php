@@ -151,7 +151,11 @@ class SuscripcionController extends Controller
         
         $pedido->medio_de_pago = 'pagar al recibir';
         $pedido->estado_del_pago = 'pendiente';
-        $pedido->monto = $suscripcion->precio;
+        //$pedido->monto = $suscripcion->precio;
+        //el monto del pedido se calcula segun la cantidad de quesos, el precio unitario del queso y el desacuento que se le hace al precio unitario del queso, segun el tipo de suscripcion
+        $pedido->monto = $this->calcularPrecio($suscripcion->cantidad_de_quesos, 'Un mes');
+
+
         //$pedido->canasta_id = 11; //TODO: resolver como se le asigna la canasta al pedido
         $pedido->save();
 
