@@ -18,7 +18,9 @@ class MiPerfilController extends Controller
     public function mi_perfil(Request $request)
     {
         
-        $pedidos = Pedido::where('email', $request->user()->email)->get();
+        // obtener los pedidos del usuario usando el id del usuario
+        $pedidos = Pedido::where('user_id', $request->user()->id)->get();
+        //$pedidos = Pedido::where('email', $request->user()->email)->get();
 
         return view('mi_perfil')->with('pedidos', $pedidos);
     }
