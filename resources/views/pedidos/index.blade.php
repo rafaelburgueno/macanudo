@@ -154,7 +154,7 @@
                                         <p>Cupon usado: "<strong class="">{{ $pedido->cupon->codigo }}</strong>" | id: {{$pedido->cupon_id}}</p>
                                     @endif
                                     @if($pedido->suscripcion_id)
-                                        <p>Club: id: {{ $pedido->suscripcion_id }} | suscripcion de {{ $pedido->suscripcion->tipo }} | canastas respantes</p>
+                                        <p>Club: id: {{ $pedido->suscripcion_id }} | {{ $pedido->suscripcion->tipo }} de suscripcion | {{ $pedido->suscripcion->cantidad_de_canastas }} canastas restantes </p>
                                     @endif
                                     <hr>
                                     <p>Nombre: <strong>{{ $pedido->nombre }}</strong></p>

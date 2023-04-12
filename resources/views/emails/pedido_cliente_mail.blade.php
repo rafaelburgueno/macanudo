@@ -42,10 +42,12 @@
             en calle los Coronillas casi De Los Ombues, La Floresta, Canelones.
         </p>
     @else
+        @if($pedido->costo_de_envio)
         <p>
             La entrega de pedidos en su zona se realiza {{$pedido->costo_de_envio->dia_de_entrega}}, 
             en el horario {{$pedido->costo_de_envio->hora_de_entrega}}.
         </p>
+        @endif
     @endif
 
     {{--<p>Ante cualquier consulta o reclamo comunicarse al email <a href="mailto:contacto@macanudonoqueso.com">contacto@macanudonoqueso.com</a> </p>--}}

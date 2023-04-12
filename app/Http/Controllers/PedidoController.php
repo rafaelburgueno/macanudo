@@ -11,6 +11,10 @@ use App\Models\Costo_de_envio;
 use App\Models\Cupon;
 use App\Models\Suscripcion;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PedidosMail;
+use App\Mail\PedidoClienteMail;
+use Exception;
 
 use Illuminate\Support\Facades\Http;
 
@@ -401,6 +405,33 @@ class PedidoController extends Controller
                 ]);
                 
             } 
+
+
+            //TODO: si el pedido es del club del queso, se envia un email al usuario
+            // Envia a pedro o a mi un email con el pedido
+            /**/Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+            ->queue(new PedidosMail($pedido));
+
+            try {
+                // Envia un email al cliente con el pedido // TODO:un try catch por si falla el envio de email
+                Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+                //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
+                session()->flash('error', 'Ha ocurrido un error con el email: '. $error);
+                return redirect() -> route('pedidos.index');
+            }
+
+            
+            // llamaos al metodo que actualiza el stock
+            //$this->actualizarCuponYStock($pedido);
+            $pedido->actualizarCuponYStock();
+
+            session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente. Se envio un email con el detalle del pedido.');
+            return redirect() -> route('pedidos.index');
+
+            /* Ha ocurrido un error con el email: Attempt to read property "dia_de_entrega" on null (View: /home/vagrant/code/macanudonoqueso/resources/views/emails/pedido_cliente_mail.blade.php) */
+
         }
 
 

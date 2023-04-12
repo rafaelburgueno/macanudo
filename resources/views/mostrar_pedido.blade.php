@@ -80,8 +80,10 @@
                 
                 {{--<tr><td>Canasta_id: </td><td>{{$pedido->canasta_id}}</td></tr>--}}
                 <tr><td>Costo de envio id: </td><td>{{$pedido->costo_de_envio_id}}</td></tr>
+                @if($pedido->costo_de_envio)
                 <tr><td>Dia de entrega: </td><td>{{$pedido->costo_de_envio->dia_de_entrega}}</td></tr>
                 <tr><td>Hora de entrega: </td><td>{{$pedido->costo_de_envio->hora_de_entrega}}</td></tr>
+                @endif
                 {{--<tr><td>Costo de envio(): </td><td>{{$pedido->costo_de_envio()}}</td></tr>--}}
                 
                 <tr><td>Cupon id: </td><td>{{$pedido->cupon_id}}</td></tr>

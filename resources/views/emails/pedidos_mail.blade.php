@@ -46,7 +46,9 @@
             <tr><td>C.I.: </td><td>{{$pedido->documento_de_identidad}}</td></tr>
         @endif
 
+        @if($pedido->costo_de_envio)
         <tr><td>Region del costo de envio: </td><td>{{$pedido->costo_de_envio->region}}</td></tr>
+        @endif
         
         @if($pedido->direccion != 'el pedido se retira en la planta')
             <tr><td>Dirección: </td><td>{{$pedido->direccion}}</td></tr>
