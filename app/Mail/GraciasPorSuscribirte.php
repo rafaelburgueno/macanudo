@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class FormularioDelClubMacanudo extends Mailable
+class GraciasPorSuscribirte extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -33,7 +33,7 @@ class FormularioDelClubMacanudo extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Suscripción al Club Macanudo',
+            subject: 'Gracias por suscribirte al Club Macanudo',
         );
     }
 
@@ -45,7 +45,7 @@ class FormularioDelClubMacanudo extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.formulario_del_club_macanudo',
+            view: 'emails.gracias_por_suscribirte',
         );
     }
 

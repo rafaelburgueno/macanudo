@@ -15,6 +15,7 @@ class EditarSuscripcion extends Component
     public $tipo;
     public $cantidad_de_quesos;
     public $telefono;
+    public $activo;
 
     public $respuesta = '';
 
@@ -27,6 +28,7 @@ class EditarSuscripcion extends Component
         $this->tipo = $suscripcion->tipo;
         $this->cantidad_de_quesos = $suscripcion->cantidad_de_quesos;
         $this->telefono = $suscripcion->telefono;
+        $this->activo = $suscripcion->activo;
 
     }
 
@@ -60,6 +62,56 @@ class EditarSuscripcion extends Component
 
 
     }
+
+
+    //funcion para cancelar la suscripcion
+    public function cancelar_suscripcion()
+    {
+        $this->respuesta = '';
+
+        //se busca la suscripcion en la base de datos
+        $suscripcion_guardada = Suscripcion::find($this->suscripcion->id);
+        $suscripcion_guardada->activo = 0;
+        $suscripcion_guardada->save();
+        $this->activo = $suscripcion_guardada->activo;
+
+        //buscamos los pedidos asociados a la suscripcion y los cancelamos
+        $pedidos = $suscripcion_guardada->pedidos;
+        foreach ($pedidos as $pedido) {
+            if($pedido->status == 'pedido'){
+                $pedido->status = 'cancelado';
+                $pedido->save();
+            }
+        }
+
+        $this->respuesta = '<div class="text-sm text-gray-600 mr-3">Suscripción cancelada.</div>';
+
+    }
+
+    //funcion para reactivar la suscripcion
+    public function activar_suscripcion()
+    {
+        $this->respuesta = '';
+
+        //se busca la suscripcion en la base de datos
+        $suscripcion_guardada = Suscripcion::find($this->suscripcion->id);
+        $suscripcion_guardada->activo = 1;
+        $suscripcion_guardada->save();
+        $this->activo = $suscripcion_guardada->activo;
+
+        //buscamos los pedidos asociados a la suscripcion y los reactivamos
+        $pedidos = $suscripcion_guardada->pedidos;
+        foreach ($pedidos as $pedido) {
+            if($pedido->status == 'cancelado'){
+                $pedido->status = 'pedido';
+                $pedido->save();
+            }
+        }
+
+        $this->respuesta = '<div class="text-sm text-gray-600 mr-3">Suscripción reactivada.</div>';
+
+    }
+
 
     public function render()
     {

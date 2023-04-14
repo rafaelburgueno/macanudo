@@ -7,6 +7,9 @@ use App\Models\Suscripcion;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Pedido;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\GraciasPorSuscribirte;
+use App\Mail\FormularioDelClubMacanudo;
 
 
 class SuscripcionController extends Controller
@@ -118,7 +121,15 @@ class SuscripcionController extends Controller
         //creamos el pedido
         $pedido = $this->crearPedido($suscripcion->id);
 
-        //TODO: enviar un email al cliente y a pedro con el pedido
+
+        //enviar un email al cliente
+        Mail::to($user->email)->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+            ->queue(new GraciasPorSuscribirte($suscripcion));
+
+        //enviar un email a Pedro
+        Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+            ->queue(new FormularioDelClubMacanudo($suscripcion));
+
 
 
         //emite una notificacion flash
@@ -193,6 +204,44 @@ class SuscripcionController extends Controller
 
         return $precio;
     }
+
+
+
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\suscripcion  $suscripcion
+     * @return \Illuminate\Http\Response
+     */
+    public function cancelar_suscripcion(Request $request, Suscripcion $suscripcion)
+    {
+        
+        if (! $request->hasValidSignature()) {
+            abort(401); // lanza un pantallazo : 401 UNAUTHORIZED
+            /*session()->flash('error', 'Esta intentando acceder a un recurso no autorizado.');
+            return redirect() -> route('home');*/
+        }else{
+
+            $suscripcion->activo = 0;
+            $suscripcion->save();
+
+            //cancela los pedidos asociados a la suscripcion
+            $pedidos = $suscripcion->pedidos;
+            foreach ($pedidos as $pedido) {
+                if($pedido->status == 'pedido'){
+                    $pedido->status = 'cancelado';
+                    $pedido->save();
+                }
+            }
+
+            session()->flash('exito', 'La suscripción se canceló con éxito');
+            return redirect() -> route('home');
+            //return view('mostrar_suscripcion')->with('suscripcion', $suscripcion);
+        }
+    }
+
 
 
 }

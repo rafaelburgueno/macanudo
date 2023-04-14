@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mensaje recibido desde el formulario del club macanudo contacto</title>
+    <title>Se recibió una suscripción al club</title>
 </head>
 <body>
-    <h2>{{$mensaje['nombre']}} hizo una solicitud para inscribirse al Club Macanudo.</h2>    
+    <h2>{{$suscripcion->user->name}} se inscribio al Club Macanudo.</h2>    
 
-    <p>Email: <strong>{{$mensaje['email']}}</strong></p>
-    <p>Teléfono: <strong>{{$mensaje['telefono']}}</strong></p>
-    <p>Dirección: <strong>{{$mensaje['direccion']}}</strong></p>
+    <p>Email: <strong>{{$suscripcion->user->email}}</strong></p>
+    <p>Teléfono: <strong>{{$suscripcion['telefono']}}</strong></p>
+    <p>Dirección: <strong>{{$suscripcion['direccion_de_entrega']}}</strong></p>
 </body>
 </html>

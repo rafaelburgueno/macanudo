@@ -64,7 +64,7 @@
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
-        <!-- Email -->
+        {{--<!-- Email -->
         <div class="col-span-6 sm:col-span-4 text-dark">
             <x-jet-label for="email" value="{{ __('Email') }}" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
@@ -73,21 +73,21 @@
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2">
                     {{ __('Su dirección de correo electrónico no está verificada.') }}
-                    {{--{{ __('Your email address is unverified.') }}--}}
+                    
                     <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900" wire:click.prevent="sendEmailVerification">
                         {{ __('Haga clic aquí para volver a enviar el correo electrónico de verificación.') }}
-                        {{--{{ __('Click here to re-send the verification email.') }}--}}
+                        
                     </button>
                 </p>
 
                 @if ($this->verificationLinkSent)
                     <p v-show="verificationLinkSent" class="mt-2 font-medium text-sm text-green-600">
                         {{ __('Se ha enviado un nuevo enlace de verificación a su dirección de email.') }}
-                        {{--{{ __('A new verification link has been sent to your email address.') }}--}}
+                        
                     </p>
                 @endif
             @endif
-        </div>
+        </div>--}}
     </x-slot>
 
     <x-slot name="actions">

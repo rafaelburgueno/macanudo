@@ -104,11 +104,10 @@ Route::get('/puntos_de_venta', function () {
 | Esta ruta solo devuelve una vista, por lo tanto no es 
 | necesario utilizar un controlador.
 */
-Route::get('/club_macanudo', ClubMacanudoController::class)->name('club_macanudo');
-/*Route::get('/club_del_noqueso', function () {
-    //return view('club_del_noqueso');
-    return "club_del_noqueso";
-})->name('club_del_noqueso');*/
+//Route::get('/club_macanudo', ClubMacanudoController::class)->name('club_macanudo');
+Route::get('/club_macanudo', function () {
+    return view('club_macanudo');
+})->name('club_macanudo');
 
 
 
@@ -120,10 +119,11 @@ Route::get('/club_macanudo', ClubMacanudoController::class)->name('club_macanudo
 | esta ruta es exclusiva para recivir el formulario de contacto
 | 
 */
-Route::post('formulario_del_club_macanudo', [ClubMacanudoController::class, 'formulario_del_club_macanudo'])->name('formulario_del_club_macanudo'); 
+//Route::post('formulario_del_club_macanudo', [ClubMacanudoController::class, 'formulario_del_club_macanudo'])->name('formulario_del_club_macanudo'); 
 
 Route::post('suscribirse', [SuscripcionController::class, 'suscribirse'])->name('suscribirse'); 
-
+// esta ruta se usa para que los cliente vean su pedido
+Route::get('cancelar_suscripcion/{suscripcion}', [SuscripcionController::class, 'cancelar_suscripcion'])->name('cancelar_suscripcion');
 
 
 

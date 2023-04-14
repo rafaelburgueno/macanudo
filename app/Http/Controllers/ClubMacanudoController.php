@@ -21,7 +21,7 @@ class ClubMacanudoController extends Controller
 
 
 
-    /*
+    /* CREO QUE YA ESTA EN DSUSO ESTE METODO ¿?
     |--------------------------------------------------------------------------
     | Este metodo procesa el formulario_del_club_macanudo
     |--------------------------------------------------------------------------

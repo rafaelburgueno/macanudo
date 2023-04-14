@@ -6,8 +6,15 @@
         <p class="mt-1 text-sm text-gray-600">
             Duración {{$suscripcion->tipo}}. Precio: ${{$suscripcion->precio}}<br>
             Restan {{$suscripcion->cantidad_de_canastas}} canastas. Fecha de inicio {{$suscripcion->fecha_de_inicio}}
+            
         </p>
-        
+        @if($activo)
+            <p class="mt-1 text-sm text-gray-600">Suscripción activa.</p>
+        @else
+            <p class="mt-1 text-sm text-gray-600">Suscripción cancelada.</p>
+        @endif
+
+
     </div>
     
     <div class="grid grid-cols-6 gap-6 mt-5">
@@ -81,9 +88,15 @@
 
     <!-- activo -->
     <div class="flex items-center justify-end px-4 py-1 mb-3 text-right sm:px-6  sm:rounded-bl-md sm:rounded-br-md">
-        <button type="button" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition ">
+        @if($activo)
+        <button wire:click="cancelar_suscripcion" type="button" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition ">
             Suspender la suscripción
         </button>
+        @else
+        <button wire:click="activar_suscripcion" type="button" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 active:bg-gray-700 disabled:opacity-25 transition ">
+            Activar la suscripción
+        </button>
+        @endif
     </div>
 
 
