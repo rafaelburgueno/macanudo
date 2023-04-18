@@ -9,6 +9,7 @@
   --blanco: #e1e1e1;
   --negro: #1e1e1e;
   --gris: #e5e6e1;
+  --gris-oscuro: #5c5c5c;
 }
 
 input[type=number] {

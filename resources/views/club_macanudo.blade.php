@@ -8,7 +8,6 @@
 
 
 <div>
-
     <br>
     <img src="{{asset('/storage/img/club-macanudo.png')}}" class="nav d-block w-100" alt="Imagen con productos de Macanudo, con el sobreimpreso '¿Te encanta Macanudo?'">
     <br><br>
@@ -17,30 +16,32 @@
 
 
 <div class="container-fluid">
-
     <div class="row mt-3  mr-0  ml-0 ">
         <div class="col">
-            <h1 class="text-center text-shadow" style="color: var(--gris);">¡Tenemos una canasta especial para ti!
-                <br> <img src="{{asset('/storage/img/canasta.png')}}" width="25%" alt="Ilustración de una canasta con productos de Macanudo">
-            </h1><br>
-
-
+            <h1 class="text-center text-shadow" style="color: var(--gris);">
+                ¡Tenemos una canasta especial para ti!
+                <br> 
+                <img src="{{asset('/storage/img/canasta.png')}}" width="25%" alt="Ilustración de una canasta con productos de Macanudo">
+            </h1>
+            <br>
         </div>
     </div>
 </div>
+
+
 
 <div class="mt-5 mr-0 mb-5 ml-0 container-fluid">
     <div class="row">
-
         <div class="col text-center">
-            <a href="" class=" btn1 btn-club " data-toggle="modal" data-target="#suscribirme_al_club">Sé parte de nuestro
-                club</a>
-
+            <a href="" class=" btn1 btn-club " data-toggle="modal" data-target="#suscribirme_al_club">
+                Sé parte de nuestro club
+            </a>
         </div>
     </div>
-</div><br>
-
 </div>
+<br>
+
+</div>{{--TODO: creo que este div esta perdido --}}
 
 <div class="container-fluid">
 
@@ -180,11 +181,92 @@
     <div class="row  mr-0  ml-0 ">
         <div class="col">
             <h1 class="text-center  scroll-content fadeLeft" style=" color: var(--azul) ;">
-                AUMENTAMOS<br>TU<br><img src="{{asset('/storage/img/canasta.png')}}" width="25%" alt="Ilustración de una canasta con productos de Macanudo"></h1><br><br>
+                AUMENTAMOS<br>TU CANASTA</h1><br><br>
         </div>
     </div>
 </div>
 
+
+
+
+
+
+<div class="container-fluid ">
+
+    <div class="row text-center">
+        <div class="col-sm-2 mt-3"></div><br>
+        <div class="col-sm-4  mt-3 border-bottom border-light text-light">
+            <h1 class="text-center  scroll-content fadeLeft" style=" color: var(--rojo) ;">
+                Canasta<br>3 quesos</h1>
+            <img src="{{asset('/storage/img/canasta.png')}}" width="60%">
+            <p>aca va una caracteristica </p>
+            <p>aca va otra</p>
+            <p>aca va otra</p>
+            <h4 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
+                con 15% de descuento</h4>
+            <h1 class="text-center" style=" color: var(--rojo) ;">
+                $969 x mes</h1><span class="border-bottom"></span>
+
+        </div><br>
+        <div class="col-sm-4  mt-3 border-bottom border-light text-light">
+            <h1 class="text-center  scroll-content fadeLeft" style=" color: var(--lila) ;">
+                Canasta<br> 5 quesos</h1>
+            <img src="{{asset('/storage/img/canasta.png')}}" width="60%">
+            <p>aca va una caracteristica </p>
+            <p>aca va otra</p>
+            <p>aca va otra</p>
+            <h4 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
+                con 18% de descuento</h4>
+            <h1 class="text-center" style=" color: var(--lila) ;">
+                $1558 x mes</h1><span class=""></span>
+
+        </div><br>
+        <div class="col-sm-2 mt-3"></div><br>
+
+    </div><br><br><br>
+</div>
+
+<div class="container-fluid">
+
+    <div class="row text-center">
+        <div class="col-sm-2 mt-3"></div><br>
+        <div class="col-sm-4  mt-3  mr-1 text-light  border border-2 border-light">
+            <h1 class="text-center  scroll-content fadeLeft" style=" color: var(--rojo) ;">
+                Canasta<br>3 quesos</h1><br>
+            <img src="{{asset('/storage/img/tabla_con_quesos.jpeg')}}" width="60%">
+            <p>un queso roque</p>
+            <p>aca va otra</p>
+            <p>aca va otra</p>
+            <h4 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
+                con 15% de descuento</h4>
+            <h1 class="text-center" style=" color: var(--rojo) ;">
+                $969</h1>
+        </div><br>
+        <div class="col-sm-4  mt-3 mr-1 text-light  border border-2 border-lila">
+            <h1 class="text-center  scroll-content fadeLeft" style=" color: var(--lila) ;">
+                Canasta<br> 5 quesos</h1><br>
+            <img src="{{asset('/storage/img/tabla_con_quesos.jpeg')}}" width="60%">
+            <p>aca va una caracteristica </p>
+            <p>aca va otra</p>
+            <p>aca va otra</p>
+            <h4 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
+                con 18% de descuento</h4>
+            <h1 class="text-center" style=" color: var(--lila) ;">
+                $1558 x mes</h1>
+        </div><br>
+        <div class="col-sm-2 mt-3"></div><br>
+
+    </div>
+</div>
+<br><br>
+
+
+
+
+
+
+
+<!--boton unirme-->
 <div class="mt-3 mr-0 mb-3 ml-0 container-fluid">
     <div class="row">
 
@@ -198,6 +280,48 @@
         </div>
     </div>
 </div>
+
+
+
+<!--METODO DE PAGOS METODO DE PAGOS METODO DE PAGOS METODO DE PAGOS-->
+<div class="ml-0 mt-0 mr-0 mb-0 container-fluid">
+    <h3 class="text-center btn-blanco negro">
+        <a class="" data-toggle="modal" data-target="#politicas_envio">
+            MÉTODOS DE PAGO
+        </a>
+    </h3><br>
+</div>
+<div class="container-fluid">
+
+    <div class="row text-center">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-2  text-center">
+            <img src="{{asset('/storage/img/mercadopago-icon.png')}}" max-width="60%">
+        </div>
+        <div class="col-sm-2 text-center">
+            <img src="{{asset('/storage/img/transf.png')}}" max-width="60%">
+        </div>
+
+        <div class="col-sm-2 text-center">
+            <img src="{{asset('/storage/img/efect (1).png')}}" max-width="60%">
+        </div>
+        <div class="col-sm-3"></div>
+
+    </div>
+</div><br><br>
+
+
+
+<!--cancelar cancelar cancelar cancelar-->
+<div class="ml-0 mt-0 mr-0 mb-0 container-fluid">
+    <h3 class="text-center btn-blanco negro">
+        <a class="" data-toggle="modal" data-target="#politicas_envio">
+            la suscripción podrá cancelarse siempre en los 5 primeros días del mes
+        </a>
+    </h3><br>
+</div>
+
+
 
 <!--terminos y condiciones-->
 <div class="mt-1 mr-0 mb-5 ml-0 container-fluid">
@@ -281,9 +405,11 @@
             
             {{--<h5 class="modal-title text-center" id="exampleModalLabel">Completa tus datos</h5>--}}
 
-            <p class="mx-3">EL club Macanudo te entrega en tu casa todos los meses una variedad de productos, 
+            <p class="mx-3 mt-3">EL club Macanudo te entrega en tu casa todos los meses una variedad de productos, 
                 entre los que encontraras productos clásicos y todos los meses un producto especial 
                 de edición limitada que solo se elaborara para el club. 
+                <br>
+                Para crear tu suscripción debes llenar el siguiente formulario.
             </p>
 
 
@@ -299,7 +425,7 @@
                         
                         <!-- Nombre -->
                         <div class="form-group mb-4">
-                            <label for="nombre" class="negro">Nombre: </label>
+                            <label for="nombre" class="negro">Nombre <small>(El campo es obligatorio y debe contener al menos 6 caracteres)</small>: </label>
                             <input value="{{old('nombre')}}" type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" required>
                             @error('nombre')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -308,30 +434,14 @@
                         
                         <!-- Email -->
                         <div class="form-group mb-4">
-                            <label for="email" class="negro">Email: </label>
+                            <label for="email" class="negro">Email <small>(Obligatorio)</small>: </label>
                             <input value="{{old('email')}}" type="email" class="form-control" name="email" id="email" placeholder="Ingrese su email" required>
                             @error('email')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <!-- Contraseña -->
-                        <div class="form-group mb-4">
-                            <label for="password" class="negro">Necesitamos que definas una contraseña para acceder a tu usuario de Macanudo: </label>
-                            <input value="{{old('password')}}" type="password" class="form-control" name="password" id="password" placeholder="..." required>
-                            @error('password')
-                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <label for="password_confirmacion" class="negro">Confirmación de contraseña: </label>
-                            <input value="{{old('password_confirmacion')}}" type="password" class="form-control" name="password_confirmacion" id="password_confirmacion" placeholder="..." required>
-                            @error('password_confirmacion')
-                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                            @enderror
-                            <p id="password_confirmacion_info" class="text-danger" style="display: none">Las contraseñas no coinciden.</p>
-                        </div>
+                        
                     @else
                         <input type="hidden" name="nombre" id="nombre" value="nombre ficticio">
                         <input type="hidden" name="email" id="email" value="email@ficticio.com">
@@ -340,21 +450,10 @@
 
                     @endif
 
-                    <!-- Fecha de Nacimiento -->
-                    <div class="form-group mb-4">
-                        <label for="fecha_de_nacimiento" class="negro">Ademas el mes de tu cumpleaños te agrandamos la caja para 
-                            que puedas compartirnos con tus invitados. Valido para socios que permanezcan por lo menos 6 meses 
-                            al año dentro del club. Cuando cumples años? </label>
-                        <input value="{{old('fecha_de_nacimiento')}}" type="date" class="form-control" name="fecha_de_nacimiento" id="fecha_de_nacimiento" title="Número de teléfono inválido" required>
-                        @error('fecha_de_nacimiento')
-                            <div class="alert alert-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-
 
                     <!-- Teléfono -->
                     <div class="form-group mb-4">    
-                        <label for="telefono" class="negro">Teléfono: </label>
+                        <label for="telefono" class="negro">Teléfono <small>(Obligatorio)</small>: </label>
                         <input value="{{old('telefono')}}" type="text" {{--pattern="[0-9]{8,9}"--}} class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="Número de teléfono inválido" required>
                         @error('telefono')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -363,7 +462,7 @@
 
                     <!-- Dirección de entrega -->
                     <div class="form-group mb-4">
-                        <label for="direccion_de_entrega" class="negro">Dirección de entrega: </label>
+                        <label for="direccion_de_entrega" class="negro">Dirección de entrega <small>(Obligatorio)</small>: </label>
                         {{--<input type="text" class="form-control" id="direccion_de_entrega" name="direccion_de_entrega" placeholder="Ingrese su dirección" required>--}}
                         <textarea required class="form-control" id="direccion_de_entrega" name="direccion_de_entrega" rows="3" placeholder="Ingrese su dirección">{{old('direccion_de_entrega')}}</textarea>
                         @error('direccion_de_entrega')
@@ -371,15 +470,37 @@
                         @enderror
                     </div>
 
+                    <!-- Fecha de Nacimiento -->
+                    <div class="form-group mb-4 mt-4">
+                        <label for="fecha_de_nacimiento" class="negro mb-0">Fecha de nacimiento</label>
+                        <div>
+                            <small>(El mes de tu cumpleaños te agrandamos la caja para 
+                            que puedas compartirnos con tus invitados. Valido para socios 
+                            que permanezcan por lo menos 6 meses al año dentro del club.)
+                            </small>
+                        </div>
+                        <input max="{{ date('Y-m-d') }}" value="{{old('fecha_de_nacimiento')}}" type="date" class="form-control" name="fecha_de_nacimiento" id="fecha_de_nacimiento">
+                        @error('fecha_de_nacimiento')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+                    
+
                     <!-- Ingredientes que no consumo -->
-                    <div class="form-group mb-4">
-                        <label for="ingredientes_que_no_consumo" class="negro">Si hay algún ingrediente que no quieres o 
-                            no puedes consumir indícanos cuál es así lo podremos tener en cuenta al armar tu envio. (Ej: No 
-                            consumo ajo, no puedo consumir semillas enteras, no me gusta el roquefort) </label>
+                    <div class="form-group mb-4 mt-4">
+                        <label for="ingredientes_que_no_consumo" class="negro mb-0">Alergias o ingredientes que prefiero evitar</label>
+                        <div>
+                            <small>
+                                Si hay algún ingrediente que no quieres o no puedes consumir indícanos cuál es así lo 
+                                podremos tener en cuenta al armar tu envio. 
+                            </small>
+                        </div>
                             @if( Auth::check() )
-                                <textarea class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" rows="2" placeholder="...">{{old('ingredientes_que_no_consumo', auth()->user()->ingredientes_que_no_consumo)}}</textarea>
+                                <textarea class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" rows="2" placeholder="Por ejemplo: No consumo ajo, no puedo consumir semillas enteras, no me gusta el roquefort">{{old('ingredientes_que_no_consumo', auth()->user()->ingredientes_que_no_consumo)}}</textarea>
                             @else
-                                <textarea class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" rows="2" placeholder="...">{{old('ingredientes_que_no_consumo')}}</textarea>
+                                <textarea class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" rows="2" placeholder="Por ejemplo: No consumo ajo, no puedo consumir semillas enteras, no me gusta el roquefort">{{old('ingredientes_que_no_consumo')}}</textarea>
                             @endif
                         @error('ingredientes_que_no_consumo')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -400,7 +521,7 @@
 
                     
                     <!--selecciona la cantidad de quesos-->
-                    <div class="form-group mb-4">
+                    {{--<div class="form-group mb-4">
                         <label for="cantidad_de_quesos">Que cantidad de quesos preferís para tu canasta?</label>
                         <select required class="form-control recalcular_precio" id="cantidad_de_quesos" name="cantidad_de_quesos">
                             <option value="3" @selected(old('cantidad_de_quesos') == "3")>3 quesos</option>
@@ -409,11 +530,44 @@
                         @error('cantidad_de_quesos')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
+                    </div>--}}
+                    <!-- radio button para seleccionar la cantidad de quesos -->
+                    <div class="form-group">
+                        <label>¿Qué cantidad de quesos preferís para tu canasta?</label>
+                        <div class="row">
+                            <div class="col-6 text-center">
+                                <label class="p-0 m-0 w-100 recalcular_precio" for="quesos_3">
+                                    <div class="border rounded mr-1 p-3">
+                                        <input required type="radio" id="quesos_3" name="cantidad_de_quesos" value="3" @if(old('cantidad_de_quesos') == "3") checked @endif>
+                                        3 quesos
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-6 text-center">
+                                <label class="p-0 m-0 w-100 recalcular_precio" for="quesos_5">
+                                    <div class="border rounded ml-1 p-3">
+                                        <input required type="radio" id="quesos_5" name="cantidad_de_quesos" value="5" @if(old('cantidad_de_quesos') == "5") checked @endif>
+                                        5 quesos
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        @error('cantidad_de_quesos')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
 
 
+                    <!-- Se muestran los resultados del calculo del precio -->
+                    <div class="text-center mb-5" id="precio_por_mes">
+                        
+                        {{--<p class="m-1 h4 " id="precio_total">Precio total de la suscripción: $969</p>--}}
+                    </div>
+
+
+
                     <!--tipo de suscripcion-->
-                    <div class="form-group mb-3">
+                    {{--<div class="form-group mb-3">
                         <label for="tipo">Duración de la suscripción</label>
                         <select required class="form-control recalcular_precio" id="tipo" name="tipo">
                             <option value="Un mes" @selected(old('tipo') == "Un mes")>Un mes</option>
@@ -424,14 +578,32 @@
                         @error('tipo')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
+                    </div>--}}
 
-                        <!-- Se muestran los resultados del calculo del precio -->
-                        <div class="text-center p-2">
-                            <p class="m-1 h5 " id="precio_por_mes">Precio por mes: $969</p>
-                            <p class="m-1 h4 " id="precio_total">Precio total de la suscripción: $969</p>
+
+                    @if( !Auth::check() )
+                        <!-- Contraseña -->
+                        <div class="form-group mb-3">
+                            <label for="password" class="negro">Necesitamos que definas una contraseña para acceder a tu usuario de Macanudo: </label>
+                            <input value="{{old('password')}}" type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
+                            @error('password')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                    </div>
+                        <div class="form-group mb-4">
+                            {{--<label for="password_confirmacion" class="negro">Confirmación de contraseña: </label>--}}
+                            <input value="{{old('password_confirmacion')}}" type="password" class="form-control" name="password_confirmacion" id="password_confirmacion" placeholder="Confirmación de contraseña" required>
+                            @error('password_confirmacion')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                            <p id="password_confirmacion_info" class="text-danger" style="display: none">Las contraseñas no coinciden.</p>
+                        </div>
+                    @endif
+
+
+                    
+
 
                     <!--Aceptar terminos y condiciones del club macanudo-->
                     <div class="form-group mb-3">
@@ -440,7 +612,6 @@
                     </div>
                     
 
-                    
                 </div>
 
                 <div class="modal-footer text-center">
@@ -457,61 +628,19 @@
 
 <script>
     $(document).ready(function(){
-
-        /*funcion que calcula el precio total de la suscripcion y el precio por mes, 
-        para la opcion de 3 quesos se calcula 969 pesos por mes y para la opcion de 
-        5 quesos se calcula 1500 pesos por mes. los resultados se muestran en un span 
-        con  el id="precio_total" y el id="precio_por_mes". se debe recalcular el precio cada vez que cambia el tipo y la cantidad de quesos. se debe recalcular cada vez se modifica la cantidad de quesos y el tipo*/
-        $('.recalcular_precio').change(function(){
+        
+        $("[name='cantidad_de_quesos']").on("click", function() {
             var precio_unitario = 380;
             var descuento_por_tres_quesos = 0.85;
             var descuento_por_cinco_quesos = 0.82;
-            var tipo = $('#tipo').val();
-            var cantidad_de_quesos = $('#cantidad_de_quesos').val();
-
-            var precio_por_mes = 0;
-            var precio_total = 0;
-
-            if(tipo == 'Un mes'){
-                if(cantidad_de_quesos == '3'){
-                    precio_por_mes = (precio_unitario*3*descuento_por_tres_quesos);
-                    precio_total = (precio_unitario*3*descuento_por_tres_quesos);
-                }else{
-                    precio_por_mes = (precio_unitario*5*descuento_por_cinco_quesos);
-                    precio_total = (precio_unitario*5*descuento_por_cinco_quesos);
-                }
-            }else if(tipo == 'Tres meses'){
-                if(cantidad_de_quesos == '3'){
-                    precio_por_mes = (precio_unitario*3*descuento_por_tres_quesos);
-                    precio_total = (precio_unitario*3*descuento_por_tres_quesos*3);
-                }else{
-                    precio_por_mes = (precio_unitario*5*descuento_por_cinco_quesos);
-                    precio_total = (precio_unitario*5*descuento_por_cinco_quesos*3);
-                }
-            }else if(tipo == 'Seis meses'){
-                if(cantidad_de_quesos == '3'){
-                    precio_por_mes = (precio_unitario*3*descuento_por_tres_quesos);
-                    precio_total = (precio_unitario*3*descuento_por_tres_quesos*6);
-                }else{
-                    precio_por_mes = (precio_unitario*5*descuento_por_cinco_quesos);
-                    precio_total = (precio_unitario*5*descuento_por_cinco_quesos*6);
-                }
-            }else if(tipo == 'Doce meses'){
-                if(cantidad_de_quesos == '3'){
-                    precio_por_mes = (precio_unitario*3*descuento_por_tres_quesos);
-                    precio_total = (precio_unitario*3*descuento_por_tres_quesos*12);
-                }else{
-                    precio_por_mes = (precio_unitario*5*descuento_por_cinco_quesos);
-                    precio_total = (precio_unitario*5*descuento_por_cinco_quesos*12);
-                }
+            // Obtiene el valor del botón de radio seleccionado
+            var cantidad = $(this).val();
+            if(cantidad == 3){
+                $('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + precio_unitario*cantidad*descuento_por_tres_quesos + '</span>');
+            }else{
+                $('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + precio_unitario*cantidad*descuento_por_cinco_quesos + '</span>');
             }
-
-            $('#precio_por_mes').html('Precio por mes: $' + precio_por_mes);
-            $('#precio_total').html('Precio total de la suscripción: $' + precio_total);
-
         });
-        
-        
 
         
         
@@ -557,9 +686,9 @@
                 document.getElementById("password").value == document.getElementById("password_confirmacion").value &&
                 document.getElementById("direccion_de_entrega").value != '' &&  
                 document.getElementById("telefono").value != '' && 
-                document.getElementById("fecha_de_nacimiento").value != '' &&  
+                //document.getElementById("fecha_de_nacimiento").value != '' &&  
                 //document.getElementById("ingedientes_que_no_consumo").value != '' &&  
-                document.getElementById("cantidad_de_quesos").value != '' &&  
+                // TODO: document.getElementById("cantidad_de_quesos").value != '' &&  
                 document.getElementById("dia_de_entrega").value != '' &&
                 //document.getElementById("cantidad_de_canastas").value != '' &&  
                 //document.getElementById("fecha_de_inicio").value != '' &&  

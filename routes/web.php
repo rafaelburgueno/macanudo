@@ -23,6 +23,8 @@ use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\MiPerfilController;
 use App\Http\Controllers\SuscripcionController;
+use App\Models\Suscripcion;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -375,6 +377,25 @@ Route::get('/mi_perfil', [MiPerfilController::class, 'mi_perfil'])->name('mi_per
     return view('mi_perfil');
     //return "mi_perfil";
 })->name('mi_perfil')->middleware('auth');*/
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| nosotros
+|--------------------------------------------------------------------------
+| Esta ruta solo devuelve una vista, por lo tanto no es 
+| necesario utilizar un controlador.
+*/
+Route::get('/email_gracias_por_suscribirte', function () {
+
+    //obtengo la primer suscripcion de la base de datos y la guardo en la variable $suscripcion
+    $suscripcion = Suscripcion::first();
+
+    return view('emails.gracias_por_suscribirte')->with('suscripcion', $suscripcion);
+    //return "nosotros";
+})->name('email');
 
 
 

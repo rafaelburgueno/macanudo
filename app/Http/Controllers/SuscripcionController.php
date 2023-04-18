@@ -22,13 +22,13 @@ class SuscripcionController extends Controller
 
         //validacion de los datos
         $request->validate([
-            'tipo' => 'required',
+            //'tipo' => 'required',
             //'precio' => 'nullable',
             //'user_id' => 'nullable',
-            'nombre' => 'nullable',
+            'nombre' => 'required',
             //'correo' => 'nullable',
-            'email' => 'nullable|email|unique:users',
-            'password' => 'nullable',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
             'direccion_de_entrega' => 'required',
             'telefono' => 'required',
             'fecha_de_nacimiento' => 'nullable',
@@ -44,10 +44,12 @@ class SuscripcionController extends Controller
         //return $request->all();
         
         $suscripcion = new Suscripcion();
-        $suscripcion->tipo = $request->tipo;
+        //$suscripcion->tipo = $request->tipo;
+        $suscripcion->tipo = 'ilimitada';
         
         //se calcula el precio de la suscripcion, segun la cantidad de quesos y el tipo de suscripcion
-        $suscripcion->precio = $this->calcularPrecio($request->cantidad_de_quesos, $request->tipo);
+        //$suscripcion->precio = $this->calcularPrecio($request->cantidad_de_quesos, $request->tipo);
+        $suscripcion->precio = $this->calcularPrecio($request->cantidad_de_quesos, 'Un mes');
 
         //consulta si hay un usuario logueado, si no hay, se crea un usuario
         if (auth()->user()) {
