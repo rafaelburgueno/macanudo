@@ -10,6 +10,7 @@ use App\Models\Pedido;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\GraciasPorSuscribirte;
 use App\Mail\FormularioDelClubMacanudo;
+use App\Notifications\SuscripcionNotification;
 
 
 class SuscripcionController extends Controller
@@ -125,8 +126,14 @@ class SuscripcionController extends Controller
 
 
         //enviar un email al cliente
-        Mail::to($user->email)->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-            ->queue(new GraciasPorSuscribirte($suscripcion));
+        /*Mail::to($user->email)->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+            ->queue(new GraciasPorSuscribirte($suscripcion));*/
+            /*$data = [
+                'user' => $user,
+                'suscripcion' => $suscripcion,
+                'pedido' => $pedido,
+            ];*/
+        $user->notify(new SuscripcionNotification($suscripcion));
 
         //enviar un email a Pedro
         Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
