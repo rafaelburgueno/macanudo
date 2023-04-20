@@ -110,7 +110,7 @@
                         </td>
 						<td>{{ $pedido->created_at }}</td>
                         {{--<td>{{ $pedido->created_at->format('d/m/Y') }}</td>--}}
-                        {{--<td>{{ $pedido->id }}</td>--}}
+                        {{--<td>{{ $pedido->detalleDeProductos() }}</td>--}}
                         
 						<td><a href="{{route('pedidos.edit', $pedido)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>
 
@@ -210,7 +210,7 @@
 					<th>Nombre</th>
                     {{--<th>Teléfono</th>--}}
                     <th>Dirección de entrega</th>
-                    <th>Canastas restantes</th>
+                    {{--<th>Canastas restantes</th>--}}
                     <th>Dia de entrega</th>
 					<th>Ingredientes que no consumo</th>
                     <th>Fecha de inicio</th>
@@ -234,7 +234,7 @@
                         </td>
                         {{--<td>{{ $suscripcion->telefono }}</td>--}}
                         <td>{{ $suscripcion->direccion_de_entrega }}</td>
-                        <td>{{ $suscripcion->cantidad_de_canastas }}</td>
+                        {{--<td>{{ $suscripcion->cantidad_de_canastas }}</td>--}}
                         <td>{{ $suscripcion->dia_de_entrega }}</td>
                         <td>
                             @if($suscripcion->user != null)

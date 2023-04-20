@@ -184,4 +184,51 @@ class Pedido extends Model
 
 
 
+
+    /*metodo que devuelve un string con el detalle de cada producto y las unidades comprada */
+    public function detalleDeProductos(){
+
+        $productos_comprados = DB::table('pedido_producto')->where('pedido_id', $this->id)->get();
+        $detalle = 'El pedido contiene ';
+
+        //dd($productos_comprados->first());
+        foreach($productos_comprados as $producto_comprado){
+
+            $producto = Producto::find($producto_comprado->producto_id);
+            //dd($productos_comprados);
+
+            //si el producto es el primero de la lista
+            if($producto_comprado === $productos_comprados->first()){
+                if($producto_comprado->unidades <= 1 ){
+                    $detalle .= $producto_comprado->unidades . ' pieza de ' . $producto->nombre;
+                }else{
+                    $detalle .= $producto_comprado->unidades . ' piezas de ' . $producto->nombre;
+                }
+            }
+
+            //si el producto es el ultimo de la lista se usa el punto final
+            elseif($producto_comprado === $productos_comprados->last()){
+                if($producto_comprado->unidades <= 1 ){
+                    $detalle .= ' y ' . $producto_comprado->unidades . ' pieza de ' . $producto->nombre . '. ';
+                }else{
+                    $detalle .= ' y ' . $producto_comprado->unidades . ' piezas de ' . $producto->nombre . '. ';
+                }
+            }
+            
+            else{   
+                if($producto_comprado->unidades <= 1 ){
+                    $detalle .= ', ' . $producto_comprado->unidades . ' pieza de ' . $producto->nombre;
+                }else{
+                    $detalle .= ', ' . $producto_comprado->unidades . ' piezas de ' . $producto->nombre;
+                }
+            }
+        }
+
+        return $detalle;
+
+    }
+
+
+
+
 }

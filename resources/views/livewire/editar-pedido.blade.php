@@ -49,11 +49,11 @@
             @endif
         </p>
 
-        @if($pedido->medio_de_pago == 'mercadopago' and $pedido->estado_del_pago != 'pagado')
+        {{--@if($pedido->medio_de_pago == 'mercadopago' and $pedido->estado_del_pago != 'pagado')
             <p>Estado en mercadopago: <strong>{{$estado_del_pago}}</strong> 
                 <button class="btn btn-verdeC gris btn-sm float-right" wire:click="revisarEstadoDelPago()">Consultar en mercadopago</button>
             </p>
-        @endif
+        @endif--}}
 
     </div>
 

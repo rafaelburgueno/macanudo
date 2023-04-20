@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\PedidosMail;
 use App\Mail\PedidoClienteMail;
 use Exception;
+//use Illuminate\Notifications\AnonymousNotifiable;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\PedidoNotificationCliente;
 
 use Illuminate\Support\Facades\Http;
 
@@ -407,19 +410,26 @@ class PedidoController extends Controller
             } 
 
 
-            //TODO: si el pedido es del club del queso, se envia un email al usuario
-            // Envia a pedro o a mi un email con el pedido
-            /**/Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-            ->queue(new PedidosMail($pedido));
+            //TODO: si el status del pedido es distinto a 'entregado', se envia un email al usuario
+            if($pedido->status != 'entregado'){
+                
+                // Envia a pedro o a mi un email con el pedido
+                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+                ->queue(new PedidosMail($pedido));
+                
 
-            try {
-                // Envia un email al cliente con el pedido // TODO:un try catch por si falla el envio de email
-                Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
-            } catch (Exception $e) {
-                $error = $e->getMessage();
-                //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
-                session()->flash('error', 'Ha ocurrido un error con el email: '. $error);
-                return redirect() -> route('pedidos.index');
+                try {
+                    // Envia un email al cliente con el pedido // TODO:un try catch por si falla el envio de email
+                    Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                    //$user->notify(new SuscripcionNotification($suscripcion));
+                    Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
+                
+                } catch (Exception $e) {
+                    $error = $e->getMessage();
+                    //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
+                    session()->flash('error', 'Ha ocurrido un error con el email: '. $error);
+                    return redirect() -> route('pedidos.index');
+                }
             }
 
             
@@ -427,7 +437,11 @@ class PedidoController extends Controller
             //$this->actualizarCuponYStock($pedido);
             $pedido->actualizarCuponYStock();
 
-            session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente. Se envio un email con el detalle del pedido.');
+            if($pedido->status != 'entregado'){
+                session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente. Se envio un email con el detalle del pedido.');
+            }else{
+                session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente.');
+            }
             return redirect() -> route('pedidos.index');
 
             /* Ha ocurrido un error con el email: Attempt to read property "dia_de_entrega" on null (View: /home/vagrant/code/macanudonoqueso/resources/views/emails/pedido_cliente_mail.blade.php) */
@@ -516,6 +530,50 @@ class PedidoController extends Controller
         }
     }
 
+
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Pedido  $pedido
+     * @return \Illuminate\Http\Response
+     */
+    public function cancelar_pedido(Request $request, Pedido $pedido)
+    {
+        
+        if (! $request->hasValidSignature()) {
+            abort(401); // lanza un pantallazo : 401 UNAUTHORIZED
+            /*session()->flash('error', 'Esta intentando acceder a un recurso no autorizado.');
+            return redirect() -> route('home');*/
+        }else{
+
+            // TODO: reestablecer el stock de los productos
+
+            if($pedido->status == 'pedido'){
+                $pedido->status = 'cancelado';
+                $pedido->save();
+
+                session()->flash('exito', 'La pedido se canceló con éxito');
+                return redirect() -> route('home');
+            }
+            elseif($pedido->status == 'entregado'){
+                session()->flash('error', 'No se puede cancelar un pedido que ya fue entregado.');
+                return redirect() -> route('home');
+            }elseif($pedido->status == 'cancelado'){
+                session()->flash('error', 'El pedido ya fue cancelado.');
+                return redirect() -> route('home');
+            }elseif($pedido->status == 'en viaje' || $pedido->status == 'despachado'){
+                session()->flash('error', 'No se puede cancelar un pedido a pocos dias de ser entregado.');
+                return redirect() -> route('home');
+            }
+            
+            
+
+            
+            //return view('mostrar_pedido')->with('pedido', $pedido);
+        }
+    }
 
 
 

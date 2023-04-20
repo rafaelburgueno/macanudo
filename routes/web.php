@@ -124,7 +124,7 @@ Route::get('/club_macanudo', function () {
 //Route::post('formulario_del_club_macanudo', [ClubMacanudoController::class, 'formulario_del_club_macanudo'])->name('formulario_del_club_macanudo'); 
 
 Route::post('suscribirse', [SuscripcionController::class, 'suscribirse'])->name('suscribirse'); 
-// esta ruta se usa para que los cliente vean su pedido
+// esta ruta se usa para que los cliente cancelen su suscripcion
 Route::get('cancelar_suscripcion/{suscripcion}', [SuscripcionController::class, 'cancelar_suscripcion'])->name('cancelar_suscripcion');
 
 
@@ -294,6 +294,8 @@ Route::controller(PedidoController::class)->group(function () {
 });
 // esta ruta devuelve la interfase para trabajar el reparto 
 Route::get('reparto', [PedidoController::class ,'reparto'])->name('reparto')->middleware('acceso.administrador');
+// esta ruta se usa para que los cliente cancelen su pedido
+Route::get('cancelar_pedido/{pedido}', [PedidoController::class, 'cancelar_pedido'])->name('cancelar_pedido');
 
 
 
@@ -388,14 +390,14 @@ Route::get('/mi_perfil', [MiPerfilController::class, 'mi_perfil'])->name('mi_per
 | Esta ruta solo devuelve una vista, por lo tanto no es 
 | necesario utilizar un controlador.
 */
-Route::get('/email_gracias_por_suscribirte', function () {
+/*Route::get('/email_gracias_por_suscribirte', function () {
 
     //obtengo la primer suscripcion de la base de datos y la guardo en la variable $suscripcion
     $suscripcion = Suscripcion::first();
 
     return view('emails.gracias_por_suscribirte')->with('suscripcion', $suscripcion);
     //return "nosotros";
-})->name('email');
+})->name('email');*/
 
 
 
