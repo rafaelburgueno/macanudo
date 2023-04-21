@@ -95,11 +95,22 @@
                         <td>{{ $pedido->email }}</td>
                         {{--<td>{{ $pedido->telefono }}</td>--}}
                         <td>
-                            <ul>
-                                @foreach($pedido->productos as $producto)
-                                    <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
-                                @endforeach
-                            </ul>
+                            @if(isset($pedido->canasta_id))
+                                <small>Canasta:
+                                <ul>
+                                    @foreach($pedido->canasta->productos as $producto)
+                                        <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                    @endforeach
+                                </ul></small>
+                            @else
+                                <small>Pedido:
+                                <ul>
+                                    @foreach($pedido->productos as $producto)
+                                        <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                    @endforeach
+                                </ul></small>
+                            
+                            @endif
                         </td>
                         {{--<td>{{ $pedido->nombre }}</td>--}}
 						<td>{{ $pedido->monto }} $</td>
@@ -111,7 +122,12 @@
 						<td>{{ $pedido->created_at }}</td>
                         {{--<td>{{ $pedido->created_at->format('d/m/Y') }}</td>--}}
                         {{--<td>{{ $pedido->detalleDeProductos() }}</td>--}}
-                        
+                        {{--@if(isset($pedido->canasta))
+                        <td>{{ $pedido->canasta->detalleDeProductos() }}</td>
+                        @else
+                        <td></td>
+                        @endif--}}
+
 						<td><a href="{{route('pedidos.edit', $pedido)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>
 
 						

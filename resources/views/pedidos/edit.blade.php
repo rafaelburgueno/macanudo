@@ -25,15 +25,15 @@
 
                         
                         <div class="form-group mb-3">
-                            <label for="status">Tipo: {{$pedido->tipo}}</label>
-                            {{--<select class="form-control" id="tipo" name="tipo">
+                            <label for="status">Tipo</label>
+                            <select disabled class="form-control" id="tipo" name="tipo">
                                 <option value="club del queso" @selected((old('tipo') == "club del queso") || $pedido->tipo == "club del queso" )>club del queso</option>
                                 <option value="compra particular" @selected((old('tipo') == "compra particular") || $pedido->tipo == "compra particular" )>compra particular</option>
                                 <option value="pedido normal" @selected((old('tipo') == "pedido normal") || $pedido->tipo == "pedido normal" )>pedido normal</option>
                             </select>
                             @error('tipo')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
-                            @enderror--}}
+                            @enderror
                         </div>
 
 
@@ -265,11 +265,22 @@
                             @enderror
                         </div>--}}
 
+
+                        @if(isset($pedido))
+                        <div class="form-group mb-3 border rounded border-light p-2">
+                            <p>Creacion del pedido: {{ $pedido->created_at }}</p>
+                            <hr>
+                            <p>Última modificación del pedido: {{ $pedido->updated_at }}</p>
+                        </div>
+                        @endif
                         
 
 
-                        {{--<div class="form-group mb-3 border rounded border-light p-2">
+                        <div class="form-group mb-3 border rounded border-light p-2">
                             <h4>Canasta</h4>
+                            @if(isset($pedido->canasta_id))
+                                <p>Canasta seleccionada: {{ $pedido->canasta->nombre }}</p>
+                            @endif
                             @foreach ($canastas as $canasta)
                                 <!--input para cada canasta-->
                                 <div class="form-check my-4">
@@ -277,7 +288,7 @@
                                     <label class="form-check-label" for="canasta_id">{{ $canasta->nombre }}</label>
                                 </div>
                             @endforeach
-                        </div>--}}
+                        </div>
                         
 
                         {{--<div class="form-group mb-3 border rounded border-light  p-2">
@@ -292,26 +303,23 @@
 
                         </div>--}}
 
-                        @if(isset($pedido))
-                        <div class="form-group mb-3 border rounded border-light p-2">
-                            <p>Creacion del pedido: {{ $pedido->created_at }}</p>
-                            <hr>
-                            <p>Última modificación del pedido: {{ $pedido->updated_at }}</p>
-                        </div>
-                        @endif
+                        
 
 
 
                         <div class="form-group mb-3 border rounded border-light  p-2">
                             <h4>Lista actual de productos</h4>
-                            <hr>
-
-                            <ul>
-                                @foreach($pedido->productos as $producto)
-                                    {{--<li>{{ $producto->nombre }} x {{ $producto->unidades($pedido->id) }}</li>--}}
-                                    <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
-                                @endforeach
-                            </ul>
+                            <hr class="bg-light">
+                            @if(isset($pedido->productos))
+                                <ul>
+                                    @foreach($pedido->productos as $producto)
+                                        {{--<li>{{ $producto->nombre }} x {{ $producto->unidades($pedido->id) }}</li>--}}
+                                        <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <p>No hay productos en la lista</p>
+                            @endif
                         </div>
 
                         <table class="table table-striped table-dark rounded">
@@ -378,7 +386,7 @@
                 </div>
 
         
-                <button type="submit" class="btn btn-outline-secondary btn-block">Confirmar</button>
+                <button type="submit" class="btn_editar btn btn-outline-secondary btn-block">Confirmar</button>
 
             </form>
 
@@ -504,6 +512,47 @@
         </div>
     </div>
 @endif
+
+
+
+<script>
+    $(document).ready(function(){
+        $('.btn_editar').click(function(){
+            
+            if(
+                document.getElementById("status").value != '' &&
+                document.getElementById("direccion").value != ''
+            ){
+
+                let timerInterval
+                Swal.fire({
+                title: 'Editando',
+                html: 'Por favor espere.',
+                //timer: 10000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                    b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+                }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+                })
+            }
+        });
+    });
+
+</script>
+
+
 
 @endsection
 

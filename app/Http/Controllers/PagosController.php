@@ -14,6 +14,8 @@ use App\Models\Cupon;
 use App\Models\Producto;
 use Illuminate\Support\Facades\DB;
 use App\Mail\EmailDeStock;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\PedidoNotificationCliente;
 
 
 
@@ -75,7 +77,12 @@ class PagosController extends Controller
 
             try {
                 // Envia un email al cliente con el pedido // TODO:un try catch por si falla el envio de email
-                Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                //Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+
+                Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                //$user->notify(new SuscripcionNotification($suscripcion));
+                Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
+
             } catch (Exception $e) {
                 $error = $e->getMessage();
                 //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
@@ -152,7 +159,10 @@ class PagosController extends Controller
             Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
             ->queue(new PedidosMail($pedido));
             // Envia un email al cliente con el pedido
-            Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+            //Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+            Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+            //$user->notify(new SuscripcionNotification($suscripcion));
+            Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
 
             // llamaos al metodo que actualiza el stock
             //$this->actualizarCuponYStock($pedido);

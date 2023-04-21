@@ -30,10 +30,17 @@
         <tr>
             <td>Productos: </td>
             <td>
+                {{--<small>{{ $pedido->detalleDeProductos() }}</small>--}}
                 <ul>
-                    @foreach($pedido->productos as $producto)
-                        <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
-                    @endforeach
+                    @if(isset($pedido->canasta_id))
+                        @foreach($pedido->canasta->productos as $producto)
+                            <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                        @endforeach
+                    @else
+                        @foreach($pedido->productos as $producto)
+                            <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                        @endforeach
+                    @endif
                 </ul>
             </td>
         </tr>
@@ -61,8 +68,8 @@
             <tr><td>User id: </td><td>{{$pedido->user_id}}</td></tr>
         @endif
 
-        @if($pedido->canasta_id)
-        <tr><td>Canasta id: </td><td>{{$pedido->canasta_id}}</td></tr>
+        @if(isset($pedido->canasta_id))
+        <tr><td>Canasta: </td><td>{{$pedido->canasta->nombre}}</td></tr>
         @endif
         
         @if($pedido->cupon_id)

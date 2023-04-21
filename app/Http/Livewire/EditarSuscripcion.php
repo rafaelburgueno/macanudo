@@ -25,7 +25,7 @@ class EditarSuscripcion extends Component
         $this->suscripcion = $suscripcion;
         $this->direccion_de_entrega = $suscripcion->direccion_de_entrega;
         $this->dia_de_entrega = $suscripcion->dia_de_entrega;
-        $this->tipo = $suscripcion->tipo;
+        //$this->tipo = $suscripcion->tipo;
         $this->cantidad_de_quesos = $suscripcion->cantidad_de_quesos;
         $this->telefono = $suscripcion->telefono;
         $this->activo = $suscripcion->activo;
@@ -41,7 +41,7 @@ class EditarSuscripcion extends Component
         $suscripcion_guardada = Suscripcion::find($this->suscripcion->id);
         $suscripcion_guardada->direccion_de_entrega = $this->direccion_de_entrega;
         $suscripcion_guardada->dia_de_entrega = $this->dia_de_entrega;
-        $suscripcion_guardada->tipo = $this->tipo;
+        //$suscripcion_guardada->tipo = $this->tipo;
         $suscripcion_guardada->cantidad_de_quesos = $this->cantidad_de_quesos;
         $suscripcion_guardada->telefono = $this->telefono;
         $suscripcion_guardada->save();

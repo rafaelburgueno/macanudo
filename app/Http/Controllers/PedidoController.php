@@ -301,9 +301,7 @@ class PedidoController extends Controller
         $pedido->status = $request->status;
         //$pedido->tipo = $request->tipo;
 
-        if($request->canasta_id){
-            $pedido->canasta_id = $request->canasta_id;
-        }
+        
 
         //$pedido->user_id =  auth()->id();
         //$pedido->nombre = $request->nombre;
@@ -343,6 +341,38 @@ class PedidoController extends Controller
         //}
 
         //$pedido->recibir_novedades = $request->recibir_novedades;
+
+        // si el pedido es de tipo canasta, se asigna la canasta, se borran los productos y se emite una notificacion al cliente(email)
+        if($request->canasta_id && $pedido->status == 'pedido'){
+            $pedido->canasta_id = $request->canasta_id;
+            // si no vienen productos desde el formulario se borran los productos del pedido
+            if(!$request->productos){
+                $pedido->productos()->detach();
+            }
+            
+            $pedido -> save();
+            
+            // Envia a pedro o a mi un email con el pedido
+            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+            ->queue(new PedidosMail($pedido));
+
+            try {
+                // Envia un email al cliente con el pedido // TODO:un try catch por si falla el envio de email
+                Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                //$user->notify(new SuscripcionNotification($suscripcion));
+                Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
+                session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente. Se envio un email con el detalle del pedido.');
+                return redirect() -> route('pedidos.index');
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+                //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
+                session()->flash('error', 'Ha ocurrido un error con el email: '. $error);
+                return redirect() -> route('pedidos.index');
+            }
+
+        }
+
+
 
         $pedido -> save();
         
@@ -385,7 +415,7 @@ class PedidoController extends Controller
             //dd($productos_totales_del_pedido);
         }*/
 
-
+        // si se editan los productos del pedido, se envian los emails
         if($request->productos){
 
             // TODO: borrar los registros previos

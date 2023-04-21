@@ -40,31 +40,12 @@
                 <tr>
                     <td>Productos: </td>
                     <td>
-                        <ul>
+                        {{--<ul>
                             @foreach($pedido->productos as $producto)
                                 <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
                             @endforeach
-                        </ul>
-                        {{--Su pedido de 
-                            @foreach($pedido->productos as $producto)
-                                @if($loop->first)
-                                    
-                                @elseif($loop->last)
-                                    y
-                                @else
-                                    ,
-                                @endif
-                                {{ $producto->pivot->unidades }}
-                                @if($producto->pivot->unidades > 1)
-                                    unidades de
-                                @else
-                                    unidad de
-                                @endif
-                                {{ $producto->nombre }} 
-                                    
-                            @endforeach
-                        , se realizó correctamente.--}}
-                        
+                        </ul>--}}
+                        <small>{{ $pedido->detalleDeProductos() }}</small>
                     </td>
                 </tr>
                 
@@ -78,7 +59,16 @@
                 {{--<tr><td>Pais: </td><td>{{$pedido->pais}}</td></tr>--}}
                 {{--<tr><td>User_id: </td><td>{{$pedido->user_id}}</td></tr>--}}
                 
-                {{--<tr><td>Canasta_id: </td><td>{{$pedido->canasta_id}}</td></tr>--}}
+                <tr>
+                    <td>Canasta: </td>
+                    <td class="align-left">{{$pedido->canasta->nombre}}
+                        <small>
+                            @foreach($pedido->canasta->productos as $producto)
+                                <p class="m-0 p-0">{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</p>
+                            @endforeach
+                        </small>
+                    </td>
+                </tr>
                 <tr><td>Costo de envio id: </td><td>{{$pedido->costo_de_envio_id}}</td></tr>
                 @if($pedido->costo_de_envio)
                 <tr><td>Dia de entrega: </td><td>{{$pedido->costo_de_envio->dia_de_entrega}}</td></tr>

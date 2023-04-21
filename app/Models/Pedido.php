@@ -188,8 +188,13 @@ class Pedido extends Model
     /*metodo que devuelve un string con el detalle de cada producto y las unidades comprada */
     public function detalleDeProductos(){
 
-        $productos_comprados = DB::table('pedido_producto')->where('pedido_id', $this->id)->get();
-        $detalle = 'El pedido contiene ';
+        if($this->canasta_id){
+            $productos_comprados = DB::table('canasta_producto')->where('canasta_id', $this->canasta_id)->get();
+            $detalle = 'La canasta contiene ';
+        }else{
+            $productos_comprados = DB::table('pedido_producto')->where('pedido_id', $this->id)->get();
+            $detalle = 'El pedido contiene ';
+        }
 
         //dd($productos_comprados->first());
         foreach($productos_comprados as $producto_comprado){

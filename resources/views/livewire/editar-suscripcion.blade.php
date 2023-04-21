@@ -5,7 +5,7 @@
         <h3 class="h6 font-medium text-gray-900">Susripción id: {{$suscripcion->id}}</h3>
         <p class="mt-1 text-sm text-gray-600">
             Duración {{$suscripcion->tipo}}. Precio: ${{$suscripcion->precio}}<br>
-            Restan {{$suscripcion->cantidad_de_canastas}} canastas. Fecha de inicio {{$suscripcion->fecha_de_inicio}}
+            {{--Restan {{$suscripcion->cantidad_de_canastas}} canastas.--}} Fecha de inicio {{$suscripcion->fecha_de_inicio}}
             
         </p>
         @if($activo)
@@ -25,6 +25,12 @@
             <input wire:model="direccion_de_entrega" value="{{$suscripcion->direccion_de_entrega}}" id="direccion_de_entrega_{{$suscripcion->id}}" type="text" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" >
         </div>
 
+        <!-- Teléfono -->
+        <div class="col-span-6 sm:col-span-4 text-dark">
+            <label class="block font-medium text-sm text-gray-700" for="telefono_{{$suscripcion->id}}">Teléfono</label>
+            <input value="{{$suscripcion->telefono}}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" id="telefono_{{$suscripcion->id}}" type="text" >
+        </div>
+
         <!-- dia de entrega -->
         <div class="col-span-6 sm:col-span-4 text-dark">
             <label class="block font-medium text-sm text-gray-700" for="dia_de_entrega">Dia de entrega</label>
@@ -37,10 +43,9 @@
             </select>
         </div>
 
-        <!-- tipo -->
+        {{--<!-- tipo -->
         <div class="col-span-6 sm:col-span-4 text-dark">
             <label class="block font-medium text-sm text-gray-700" for="tipo">Tipo de suscripcion</label>
-            {{--<input value="{{$suscripcion->tipo}}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" id="direccion_de_entrega" type="text">--}}
             <select id="tipo" name="tipo" autocomplete="tipo" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 
                 <option value="Un mes" @selected($suscripcion->tipo == "Un mes")>Un mes</option>
@@ -49,7 +54,7 @@
                 <option value="Doce meses" @selected($suscripcion->tipo == "Doce meses")>Doce meses</option>
                 
             </select>
-        </div>
+        </div>--}}
 
         <!-- cantidad de quesos -->
         <div class="col-span-6 sm:col-span-4 text-dark">
@@ -64,12 +69,7 @@
 
         
 
-        <!-- Teléfono -->
-        <div class="col-span-6 sm:col-span-4 text-dark">
-            <label class="block font-medium text-sm text-gray-700" for="telefono_{{$suscripcion->id}}">Teléfono</label>
-            <input value="{{$suscripcion->telefono}}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" id="telefono_{{$suscripcion->id}}" type="text" >
-            
-        </div>
+        
     </div>
 
 
