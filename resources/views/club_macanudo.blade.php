@@ -218,7 +218,7 @@
             <h4 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
                 con 18% de descuento</h4>
             <h1 class="text-center" style=" color: var(--lila) ;">
-                $1558 x mes</h1><span class=""></span>
+                $1599 x mes</h1><span class=""></span>
 
         </div><br>
         <div class="col-sm-2 mt-3"></div><br>
@@ -252,7 +252,7 @@
             <h4 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
                 con 18% de descuento</h4>
             <h1 class="text-center" style=" color: var(--lila) ;">
-                $1558 x mes</h1>
+                $1599 x mes</h1>
         </div><br>
         <div class="col-sm-2 mt-3"></div><br>
 
@@ -316,7 +316,7 @@
 {{--<div class="ml-0 mt-0 mr-0 mb-0 container-fluid">
     <h3 class="text-center btn-blanco negro">
         <a class="" data-toggle="modal" data-target="#politicas_envio">
-            la suscripción podrá cancelarse siempre en los 5 primeros días del mes
+            la suscripción podrá cancelarse en cualquier momento
         </a>
     </h3><br>
 </div>--}}
@@ -636,9 +636,11 @@
             // Obtiene el valor del botón de radio seleccionado
             var cantidad = $(this).val();
             if(cantidad == 3){
-                $('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + precio_unitario*cantidad*descuento_por_tres_quesos + '</span>');
+                //$('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + precio_unitario*cantidad*descuento_por_tres_quesos + '</span>');
+                $('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + 969 + '</span>');
             }else{
-                $('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + precio_unitario*cantidad*descuento_por_cinco_quesos + '</span>');
+                //$('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + precio_unitario*cantidad*descuento_por_cinco_quesos + '</span>');
+                $('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + 1599 + '</span>');
             }
         });
 

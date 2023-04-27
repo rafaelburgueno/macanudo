@@ -194,14 +194,15 @@ class SuscripcionController extends Controller
 
 
         if ($cantidad_de_quesos == 3) {
-            $descuento = $descuento_por_tres_quesos;
+            //$precio = $cantidad_de_quesos * $precio_unitario * $descuento_por_tres_quesos;
+            $precio = 969;
         } elseif ($cantidad_de_quesos == 5) {
-            $descuento = $descuento_por_cinco_quesos;
+            //$precio = $cantidad_de_quesos * $precio_unitario * $descuento_por_cinco_quesos;
+            $precio = 1599;
         }
 
-        $precio = $cantidad_de_quesos * $precio_unitario * $descuento;
 
-        if ($tipo == 'Un mes') {
+        /*if ($tipo == 'Un mes') {
             $precio = $precio * 1;
         } elseif ($tipo == 'Tres meses') {
             $precio = $precio * 3;
@@ -209,7 +210,7 @@ class SuscripcionController extends Controller
             $precio = $precio * 6;
         } elseif ($tipo == 'Doce meses') {
             $precio = $precio * 12;
-        }
+        }*/
 
         return $precio;
     }
