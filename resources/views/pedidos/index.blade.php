@@ -110,7 +110,7 @@
                                     @endforeach
                                 </ul></small>
                             @else
-                                <div class="alert alert-warning"><small>El pedido no tiene productos.</small></div>
+                                <div class="alert alert-warning m-1 p-1"><small>El pedido no tiene productos.</small></div>
                             @endif
                         </td>
                         {{--<td>{{ $pedido->nombre }}</td>--}}
@@ -222,7 +222,7 @@
 			<thead>
 				<tr>
                     <th>Id</th>
-                    <th>Tipo</th>
+                    <th>Activa</th>
 					<th>Precio</th>
 					<th>Nombre</th>
                     {{--<th>Teléfono</th>--}}
@@ -231,7 +231,7 @@
                     <th>Dia de entrega</th>
 					<th>Ingredientes que no consumo</th>
                     <th>Fecha de inicio</th>
-					<th>Administrar</th>
+					{{--<th>Administrar</th>--}}
 					
 				</tr>
 			</thead>
@@ -242,7 +242,14 @@
                     
                     <tr>
                         <td><a class="btn btn-light" data-toggle="modal" data-target="#info_de_la_suscripcion_{{ $suscripcion->id }}">{{ $suscripcion->id }}</a></td>
-                        <td>{{ $suscripcion->tipo }}</td>
+                        <td>
+                        <!-- si la suscripcion esta activa imprime SI, si no esta activa imprime NO-->
+                            @if($suscripcion->activo == 1)
+                                SI
+                            @else
+                                NO
+                            @endif    
+                        </td>
                         <td>$ {{ $suscripcion->precio }}</td>
                         <td>
                             @if($suscripcion->user != null)
@@ -259,7 +266,7 @@
                             @endif
                         </td>
                         <td>{{ $suscripcion->fecha_de_inicio }}</td>
-                        <td></td>
+                        {{--<td></td>--}}
                         
 						{{--<td><a href="{{route('pedidos.edit', $suscripcion)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>--}}
 
@@ -281,8 +288,24 @@
                                 </div>
                                 
                                 <div class="modal-body ">
+                                    <p>Tipo: {{$suscripcion->tipo}}</p>
+                                    <p>Precio: $ {{$suscripcion->precio}}</p>
+                                    <p>Dia de entrega: {{$suscripcion->dia_de_entrega}}</p>
+                                    @if($suscripcion->user != null)
+                                        <p>Nombre: {{$suscripcion->user->name}}</p>
+                                        <p>Ingredientes que no consumo: {{$suscripcion->user->ingredientes_que_no_consumo}}</p>
+                                    @endif
+
+                                    <p>Direccion de entrega: {{$suscripcion->direccion_de_entrega}}</p>
+                                    <p>Telefono: {{$suscripcion->telefono}}</p>
+                                    <p>Cantidad de canastas: {{$suscripcion->cantidad_de_canastas}}</p>
                                     
-                                    
+                                    <p>Fecha de inicio: {{$suscripcion->fecha_de_inicio}}</p>
+                                    <p>Fecha de renovacion: {{$suscripcion->fecha_de_renovacion}}</p>
+                                    <p>Activo: @if($suscripcion->activo) SI @else NO @endif</p>
+                                    <p>Fecha de creacion: {{$suscripcion->created_at}}</p>
+                                    <p>Fecha de actualizacion: {{$suscripcion->updated_at}}</p>
+
                                     
                                 </div>
 

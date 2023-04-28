@@ -268,26 +268,31 @@
 
                         @if(isset($pedido))
                         <div class="form-group mb-3 border rounded border-light p-2">
-                            <p>Creacion del pedido: {{ $pedido->created_at }}</p>
-                            <hr>
-                            <p>Última modificación del pedido: {{ $pedido->updated_at }}</p>
+                            <p class="my-1">Creacion del pedido: {{ $pedido->created_at }}</p>
+                            <p class="my-1">Última modificación del pedido: {{ $pedido->updated_at }}</p>
                         </div>
                         @endif
                         
 
-
-                        <div class="form-group mb-3 border rounded border-light p-2">
+                        <!-- Canasta -->
+                        <div class="form-group mb-3 border rounded border-light mt-5 p-2">
                             <h4>Canasta</h4>
                             @if(isset($pedido->canasta_id))
                                 <p>Canasta seleccionada: {{ $pedido->canasta->nombre }}</p>
                             @endif
                             @foreach ($canastas as $canasta)
                                 <!--input para cada canasta-->
-                                <div class="form-check my-4">
-                                    <input type="radio" class="form-check-input" id="canasta_id" name="canasta_id" value="{{ $canasta->id }}" @checked(old('canasta_id', ($canasta->id == $pedido->canasta_id) ))>
+                                <div class="form-check my-3">
+                                    <input type="radio" class="form-check-input" id="canasta_id" name="canasta_id" value="{{ $canasta->id }}" @checked(old('canasta_id', ($canasta->id == $pedido->canasta_id) )) style="transform: scale(1.5);">
                                     <label class="form-check-label" for="canasta_id">{{ $canasta->nombre }}</label>
                                 </div>
                             @endforeach
+                            <hr class="bg-light">
+                            <!--input para cada canasta-->
+                            <div class="form-check my-3">
+                                <input type="radio" class="form-check-input" id="canasta_id" name="canasta_id" value="" @checked($pedido->canasta_id === null) style="transform: scale(1.5);">
+                                <label class="form-check-label" for="canasta_id">Ninguna canasta</label>
+                            </div>
                         </div>
                         
 
@@ -307,10 +312,10 @@
 
 
 
-                        <div class="form-group mb-3 border rounded border-light  p-2">
+                        <div class="form-group mb-3 border rounded border-light mt-5 p-2">
+                            @if(count($pedido->productos))
                             <h4>Lista actual de productos</h4>
-                            <hr class="bg-light">
-                            @if(isset($pedido->productos))
+                            
                                 <ul>
                                     @foreach($pedido->productos as $producto)
                                         {{--<li>{{ $producto->nombre }} x {{ $producto->unidades($pedido->id) }}</li>--}}
@@ -318,37 +323,38 @@
                                     @endforeach
                                 </ul>
                             @else
-                                <p>No hay productos en la lista</p>
+                                <h4>El pedido no tiene productos</h4>
                             @endif
-                        </div>
+                            <hr class="bg-light">
 
-                        <table class="table table-striped table-dark rounded">
-                            <thead>
-                                <tr>
-                                    <h5 class="">Nueva lista de productos</h5>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                @foreach ($lista_de_productos as $producto)
+                            <table class="table table-striped table-dark rounded">
+                                <thead>
                                     <tr>
-                                        <td><p class="m-0 p-0 pt-1">{{ $producto->nombre }}</p></td>
-                                        <td><p class="m-0 p-0 pt-1" id="idicador_cantidad_{{ $producto->id }}">0</p></td><!--cantidad-->
-                                        <td>
-                                            <button type="button" class="m-0 btn btn-sm btn-info" onclick="modificar_cantidad_producto({{ $producto->id }}, true)"><strong>+</strong></button>
-                                            <button type="button" class="m-0 btn btn-sm btn-info" onclick="modificar_cantidad_producto({{ $producto->id }}, false)"><strong>-</strong></button>
-                                        </td>
-                                        <div id="input_producto_{{ $producto->id }}"></div>
-                                        <div id="input_cantidad{{ $producto->id }}"></div>
-                                        {{--
-                                            <input type="hidden" name="productos[]" value="">
-                                            <input type="hidden" name="cantidades[]" value="">
-                                        --}}
+                                        <h5 class="">Agregar productos</h5>
                                     </tr>
-                                @endforeach
+                                </thead>
+                                <tbody>
 
-                            </tbody>
-                        </table>
+                                    @foreach ($lista_de_productos as $producto)
+                                        <tr>
+                                            <td><p class="m-0 p-0 pt-1">{{ $producto->nombre }}</p></td>
+                                            <td><p class="m-0 p-0 pt-1" id="idicador_cantidad_{{ $producto->id }}">0</p></td><!--cantidad-->
+                                            <td>
+                                                <button type="button" class="m-0 btn btn-sm btn-info" onclick="modificar_cantidad_producto({{ $producto->id }}, true)"><strong>+</strong></button>
+                                                <button type="button" class="m-0 btn btn-sm btn-info" onclick="modificar_cantidad_producto({{ $producto->id }}, false)"><strong>-</strong></button>
+                                            </td>
+                                            <div id="input_producto_{{ $producto->id }}"></div>
+                                            <div id="input_cantidad{{ $producto->id }}"></div>
+                                            {{--
+                                                <input type="hidden" name="productos[]" value="">
+                                                <input type="hidden" name="cantidades[]" value="">
+                                            --}}
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
 
                         <script>
                             //

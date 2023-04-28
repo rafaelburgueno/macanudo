@@ -35,6 +35,7 @@
                     <th>Dirección</th>
 					<th>Nombre</th>
                     <th>Teléfono</th>
+                    <th>Tipo</th>
 					<th>Productos</th>
                     {{--<th>Nombre</th>
 					<th>Monto</th>--}}
@@ -76,12 +77,25 @@
                         </td>
                         <td>{{ $pedido->nombre }}</td>
                         <td>{{ $pedido->telefono }}</td>
+                        <td><small>{{ $pedido->tipo }}</small></td>
                         <td>
-                            <ul>
-                                @foreach($pedido->productos as $producto)
-                                    <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
-                                @endforeach
-                            </ul>
+                            @if(isset($pedido->canasta_id))
+                                <small>Canasta ({{ $pedido->canasta->nombre }}):
+                                <ul>
+                                    @foreach($pedido->canasta->productos as $producto)
+                                        <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                    @endforeach
+                                </ul></small>
+                            @elseif(count($pedido->productos))
+                                <small>Pedido:
+                                <ul>
+                                    @foreach($pedido->productos as $producto)
+                                        <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                    @endforeach
+                                </ul></small>
+                            @else
+                                <div class="alert alert-warning m-1 p-1"><small>El pedido no tiene productos.</small></div>
+                            @endif
                         </td>
                         {{--<td>{{ $pedido->nombre }}</td>
 						<td>{{ $pedido->monto }} $</td>--}}

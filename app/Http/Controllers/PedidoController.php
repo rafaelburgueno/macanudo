@@ -39,7 +39,7 @@ class PedidoController extends Controller
         $lista_de_productos = Producto::where('activo', true)->get();
         $costos_de_envio = Costo_de_envio::where('activo', true)->get();
         $cupones = Cupon::where('activo', true)->get();
-        $suscripciones = Suscripcion::where('activo', true)->get();
+        $suscripciones = Suscripcion::all();
             
         return view('pedidos.index')
             ->with('pedidos', $pedidos)
@@ -342,6 +342,7 @@ class PedidoController extends Controller
 
         //$pedido->recibir_novedades = $request->recibir_novedades;
 
+        $pedido->canasta_id = $request->canasta_id;
         // si el pedido es de tipo canasta, se asigna la canasta, se borran los productos y se emite una notificacion al cliente(email)
         if($request->canasta_id && $pedido->status == 'pedido'){
             $pedido->canasta_id = $request->canasta_id;
