@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Macanudonoqueso'),
+    'name' => env('APP_NAME2', 'Alimentos Macanudo'),
+    //'name' => env('APP_NAME', 'Macanudonoqueso'),
 
     /*
     |--------------------------------------------------------------------------

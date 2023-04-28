@@ -47,7 +47,7 @@ class SuscripcionNotification extends Notification
         //dd($this->suscripcion->user->name);
         $suscripcion = $this->suscripcion;
 
-        $descripcion_de_la_suscripcion = 'Mientras la suscripción este activa recibirás una canasta con ' . $suscripcion->cantidad_de_quesos . ' quesos cada ' . Str::lower($suscripcion->dia_de_entrega). '. La dirección definida para recibir el pedido es ' . $suscripcion->direccion_de_entrega . '.';
+        $descripcion_de_la_suscripcion = 'Mientras la suscripción esté activa, recibirás una canasta con ' . $suscripcion->cantidad_de_quesos . ' quesos cada ' . Str::lower($suscripcion->dia_de_entrega). '. La dirección definida para recibir el pedido es ' . $suscripcion->direccion_de_entrega . '.';
 
         $descripcion_del_pago = 'El costo de la suscripción es de $' . $suscripcion->precio . ', y deberás pagar con Mercado Pago, transferencia o efectivo, al recibir los productos.';
 
@@ -56,14 +56,14 @@ class SuscripcionNotification extends Notification
 
 
         return (new MailMessage)
-                    ->subject('Club Macanudo')
-                    ->greeting('Tu suscripción se realizó correctamente!')
+                    ->subject('Confirmación de suscripción')
+                    ->greeting('¡Tu suscripción se realizó correctamente!')
                     ->line($descripcion_de_la_suscripcion)
                     ->line($descripcion_del_pago)
-                    ->line('Ante cualquier consulta, recomendación o reclamo, por favor, no dudes en contactarnos.')
+                    ->line('Ante cualquier consulta, recomendación o reclamo, por favor, no dudes en contactarnos respondiendo este correo o al 099 760 201.')
                     //->line('Si no deseas continuar con la suscripción, podés cancelarla haciendo click <a target="_blank" href="'. url(URL::signedRoute('cancelar_suscripcion', ['suscripcion' => $suscripcion->id])).'">aquí</a>.')
-                    ->action('Si no deseas continuar con la suscripción, podés cancelarla haciendo click acá', url(URL::signedRoute('cancelar_suscripcion', ['suscripcion' => $suscripcion->id])))
-                    ->line('Muchas gracias por unirte al Club!');
+                    ->action('Podés cancelar la suscripción hasta 5 días antes de la entrega, haciendo click acá.', url(URL::signedRoute('cancelar_suscripcion', ['suscripcion' => $suscripcion->id])))
+                    ->salutation('¡Muchas gracias por unirte al Club!');
                     //->salutation('Un afectuoso saludo y nos vemos pronto.');
 
     }

@@ -41,7 +41,7 @@
 </div>
 <br>
 
-</div>{{--TODO: creo que este div esta perdido --}}
+{{--</div>{{--TODO: creo que este div esta perdido --}}
 
 <div class="container-fluid">
 
@@ -405,7 +405,7 @@
             
             {{--<h5 class="modal-title text-center" id="exampleModalLabel">Completa tus datos</h5>--}}
 
-            <p class="mx-3 mt-3">EL club Macanudo te entrega en tu casa todos los meses una variedad de productos, 
+            <p class="mx-3 mt-3">El Club Del Queso te entrega en tu casa todos los meses una variedad de productos, 
                 entre los que encontraras productos clásicos y todos los meses un producto especial 
                 de edición limitada que solo se elaborara para el club. 
                 <br>

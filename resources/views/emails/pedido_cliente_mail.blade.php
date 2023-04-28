@@ -44,7 +44,7 @@
     @else
         @if($pedido->costo_de_envio)
         <p>
-            La entrega de pedidos en su zona se realiza {{$pedido->costo_de_envio->dia_de_entrega}}, 
+            La entrega de pedidos en tu zona se realiza {{$pedido->costo_de_envio->dia_de_entrega}}, 
             en el horario {{$pedido->costo_de_envio->hora_de_entrega}}.
         </p>
         @endif

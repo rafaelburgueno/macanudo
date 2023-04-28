@@ -43,7 +43,7 @@
                     {{--<th>Estatus</th>--}}
                     {{--<th>Dirección</th>--}}
 					<th>Nombre</th>
-                    <th>Email</th>
+                    <th>Tipo</th>
                     {{--<th>Teléfono</th>--}}
 					<th>Productos</th>
                     {{--<th>Nombre</th>--}}
@@ -92,24 +92,25 @@
                             @endif
                         </td>--}}
                         <td>{{ $pedido->nombre }}</td>
-                        <td>{{ $pedido->email }}</td>
+                        <td>{{ $pedido->tipo }}</td>
                         {{--<td>{{ $pedido->telefono }}</td>--}}
                         <td>
                             @if(isset($pedido->canasta_id))
-                                <small>Canasta:
+                                <small>Canasta ({{ $pedido->canasta->nombre }}):
                                 <ul>
                                     @foreach($pedido->canasta->productos as $producto)
                                         <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
                                     @endforeach
                                 </ul></small>
-                            @else
+                            @elseif(count($pedido->productos))
                                 <small>Pedido:
                                 <ul>
                                     @foreach($pedido->productos as $producto)
                                         <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
                                     @endforeach
                                 </ul></small>
-                            
+                            @else
+                                <div class="alert alert-warning"><small>El pedido no tiene productos.</small></div>
                             @endif
                         </td>
                         {{--<td>{{ $pedido->nombre }}</td>--}}

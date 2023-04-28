@@ -51,12 +51,12 @@ class PedidoNotificationCliente extends Notification
 
 
         if($pedido->direccion == 'el pedido se retira en la planta'){
-            $direccion = 'Podes retirarl de lunes a viernes '. $pedido->costo_de_envio->hora_de_entrega . ', en nuestra planta ubicada en calle los Coronillas casi De Los Ombues, La Floresta, Canelones.';
+            $direccion = 'Podes retirar el pedido de lunes a viernes '. $pedido->costo_de_envio->hora_de_entrega . ', en nuestra planta ubicada en calle los Coronillas casi De Los Ombues, La Floresta, Canelones.';
         }else{
             if($pedido->costo_de_envio){
-                $direccion = 'La entrega en su zona se realiza ' . $pedido->costo_de_envio->dia_de_entrega . ', en el horario '. $pedido->costo_de_envio->hora_de_entrega . '.';
+                $direccion = 'La entrega en tu zona se realiza ' . $pedido->costo_de_envio->dia_de_entrega . ', en el horario '. $pedido->costo_de_envio->hora_de_entrega . '.';
             }if($pedido->suscripcion){
-                $direccion = 'La direccion de entrega es ' . $pedido->direccion . '.';
+                $direccion = 'La dirección de entrega es ' . $pedido->direccion . '.';
 
             }
         }
@@ -75,16 +75,16 @@ class PedidoNotificationCliente extends Notification
 
         return (new MailMessage)
                     ->subject('Tu pedido')
-                    ->greeting('Ya estamos preparando tu pedido!')
+                    ->greeting('¡Ya estamos preparando tu pedido!')
                     ->line($direccion)
                     ->line($lista_de_productos)
                     
-                    ->line('Ante cualquier consulta, recomendación o reclamo, por favor, no dudes en contactarnos.')
+                    ->line('Ante cualquier consulta, recomendación o reclamo, por favor, no dudes en contactarnos respondiendo este correo o al 099 760 201.')
                     
-                    ->action('Si querés cancelar tu pedido, podés hacerlo hasta 5 dias antes de la entrga, haciendo click acá', url(URL::signedRoute('cancelar_pedido', ['pedido' => $pedido->id])))
+                    ->action('Podés cancelar el pedido hasta 5 días antes de la entrega, haciendo click acá.', url(URL::signedRoute('cancelar_pedido', ['pedido' => $pedido->id])))
                     //->action('Si querés cancelar tu pedido, podés hacerlo hasta 5 dias antes de la entrga, haciendo click acá', url('/'))
 
-                    ->line('Muchas gracias por su compra.');
+                    ->line('Muchas gracias por tu compra.');
     }
 
     /**

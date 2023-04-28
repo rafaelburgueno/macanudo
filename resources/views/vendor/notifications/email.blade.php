@@ -37,7 +37,8 @@
 
 {{-- Salutation --}}
 @if (! empty($salutation))
-{{ $salutation }}
+{{ $salutation }},<br>
+{{ config('app.name') }}
 @else
 @lang('Saludos'),<br>
 {{ config('app.name') }}
