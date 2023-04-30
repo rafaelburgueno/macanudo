@@ -284,7 +284,7 @@
 
 
 <!--METODO DE PAGOS METODO DE PAGOS METODO DE PAGOS METODO DE PAGOS-->
-{{--<div class="ml-0 mt-0 mr-0 mb-0 container-fluid">
+<div class="ml-0 mt-0 mr-0 mb-0 container-fluid">
     <h3 class="text-center btn-blanco negro">
         <a class="" data-toggle="modal" data-target="#politicas_envio">
             MÉTODOS DE PAGO
@@ -308,18 +308,18 @@
         <div class="col-sm-3"></div>
 
     </div>
-</div><br><br>--}}
+</div><br><br>
 
 
 
 <!--cancelar cancelar cancelar cancelar-->
-{{--<div class="ml-0 mt-0 mr-0 mb-0 container-fluid">
+<div class="ml-0 mt-0 mr-0 mb-0 container-fluid">
     <h3 class="text-center btn-blanco negro">
         <a class="" data-toggle="modal" data-target="#politicas_envio">
             la suscripción podrá cancelarse en cualquier momento
         </a>
     </h3><br>
-</div>--}}
+</div>
 
 
 

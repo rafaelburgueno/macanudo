@@ -21,6 +21,8 @@ use App\Notifications\PedidoNotificationCliente;
 
 use Illuminate\Support\Facades\Http;
 
+use Carbon\Carbon;
+
 class PedidoController extends Controller
 {
     
@@ -32,8 +34,58 @@ class PedidoController extends Controller
      */
     public function index()
     {
+
+        // el siguiente bloque de codigo es una prueba del algoritmo para generar un nuevo pedido 
+        // automaticamente cuando se cumple un mes de la fecha de creacion del ultimo pedido
         
-        $pedidos = Pedido::get();
+        /* seudo codigo: 
+        paso 1- traer pedidos->tipo == 'club del queso'
+        paso 2- traer traer los pedidos de un mes atras
+        paso 3- consultar la suscripcion de cada pedido y ver si esta activa
+        paso 4- si la suscripcion esta activa, crear un nuevo pedido con los datos del pedido anterior
+        */
+        /*$pedidos = Pedido::where('tipo', 'club del queso')->whereDate('created_at', '=', Carbon::now()->subMonth())
+            ->whereHas('suscripcion', function ($query) {
+                $query->where('activo', 1);
+            })->get();
+
+        foreach ($pedidos as $pedido) {
+            $nuevo_pedido = new Pedido();
+            $nuevo_pedido->status = 'pedido';
+            $nuevo_pedido->tipo = 'club del queso';
+            $nuevo_pedido->user_id = $pedido->suscripcion->user_id;
+            $nuevo_pedido->nombre = $pedido->suscripcion->user->name;
+            $nuevo_pedido->email = $pedido->suscripcion->user->email;
+            $nuevo_pedido->telefono = $pedido->suscripcion->telefono;
+            $nuevo_pedido->direccion = $pedido->suscripcion->direccion_de_entrega;
+            $nuevo_pedido->medio_de_pago = $pedido->medio_de_pago;
+            // el monto se calcula en base al precio de la suscripcion, porque si se cambia el tipo de suscripcion entre pedidos, debe tomar siempre el precio de la suscripcion
+            $nuevo_pedido->monto = $pedido->suscripcion->precio;
+            //$nuevo_pedido->monto = $pedido->monto;
+            $nuevo_pedido->recibir_novedades = $pedido->recibir_novedades;
+
+            $nuevo_pedido->tipo_de_cliente = 'suscripcion renovada automaticamente';
+            // el numero de factura es 66 porque es el numero de factura que se le asigna a los pedidos que se generan automaticamente
+            $nuevo_pedido->numero_de_factura = 66; //rand(1000, 9999);
+             
+            $nuevo_pedido->estado_del_pago = 'pendiente';
+            $nuevo_pedido->suscripcion_id = $pedido->suscripcion_id;
+
+
+            //$nuevo_pedido->canasta_id = $pedido->canasta_id;
+            //$nuevo_pedido->costo_de_envio_id = $pedido->costo_de_envio_id;
+            //$nuevo_pedido->cupon_id = $pedido->cupon_id;
+            $nuevo_pedido->save();
+
+            // Envia a pedro o a mi un email con el pedido
+            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
+            ->queue(new PedidosMail($nuevo_pedido));
+
+        }*/
+        
+        // ********************************
+        $pedidos = Pedido::get(); //esta linea tiene que ser descomentada despues de hacer el algoritmo para traer pedidos de un mes atras
+        // ********************************
         //$pedidos = Pedido::where('medio_de_pago', '!=', 'sin definir')->where('status', '!=', 'entregado')->get();
         $canastas = Canasta::where('activo', true)->get();
         $lista_de_productos = Producto::where('activo', true)->get();

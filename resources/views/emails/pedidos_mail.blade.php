@@ -10,6 +10,11 @@
     
     <h2>Pedido de {{$pedido->nombre}} <small>({{$pedido->email}})</small>.</h2>    
 
+    <!-- si el 'status' del pedido es igual a 'sin productos' se muestra el siguiente mensaje -->
+    @if($pedido->status == 'sin productos')
+        <h3>El pedido no tiene productos.</h3>
+    @endif
+
     <hr>
     <h5>Ver <a href="{{URL::signedRoute('ver_pedido', ['pedido' => $pedido->id])}}" target="_blank">pedido</a>.</h5>
 
@@ -25,6 +30,7 @@
         <tr><td>Id: </td><td>{{$pedido->id}}</td></tr>
         <tr><td>Status: </td><td>{{$pedido->status}}</td></tr>
         <tr><td>Tipo: </td><td>{{$pedido->tipo}}</td></tr>
+        <tr><td>Tipo de cliente: </td><td>{{$pedido->tipo_de_cliente}}</td></tr>
         <tr><td>Monto: </td><td>{{$pedido->monto}} $</td></tr>
 
         <tr>
@@ -71,6 +77,9 @@
         @if(isset($pedido->canasta_id))
         <tr><td>Canasta: </td><td>{{$pedido->canasta->nombre}}</td></tr>
         @endif
+        @if(isset($pedido->suscripcion_id))
+        <tr><td>Suscripcion Id: </td><td>{{$pedido->suscripcion_id}}</td></tr>
+        @endif
         
         @if($pedido->cupon_id)
             <tr><td>Cupon usado: </td><td>"<strong class="">{{ $pedido->cupon->codigo }}</strong>" | id: {{$pedido->cupon_id}}</td></tr>
@@ -86,6 +95,11 @@
         <tr><td>Editado: </td><td>{{$pedido->updated_at}}</td></tr>
         
     </table>
+
+    <hr>
+
+    <h5>Ver <a href="{{URL::signedRoute('ver_pedido', ['pedido' => $pedido->id])}}" target="_blank">pedido</a>.</h5>
+    <br>
 
     
 </body>

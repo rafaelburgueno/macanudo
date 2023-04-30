@@ -36,7 +36,7 @@ class ClubMacanudoController extends Controller
             'direccion' => 'required|max:100',
         ]);
         
-        Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+        Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
             ->queue(new FormularioDelClubMacanudo($request->all()));
 
 

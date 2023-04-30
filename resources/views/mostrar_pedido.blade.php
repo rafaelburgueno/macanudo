@@ -30,6 +30,7 @@
                 </style>
                 <tr><td>Id: </td><td>{{$pedido->id}}</td></tr>
                 <tr><td>Status: </td><td>{{$pedido->status}}</td></tr>
+                <tr><td>Tipo_de_cliente: </td><td>{{$pedido->tipo_de_cliente}}</td></tr>
                 <tr><td>Medio de pago: </td><td>{{$pedido->medio_de_pago}}</td></tr>
                 <tr><td>Estado del pago: </td><td>{{$pedido->estado_del_pago}}</td></tr>
                 {{--<tr><td>Tipo: </td><td>{{$pedido->tipo}}</td></tr>--}}
@@ -61,12 +62,17 @@
                 
                 <tr>
                     <td>Canasta: </td>
-                    <td class="align-left">{{$pedido->canasta->nombre}}
+                    <td class="align-left">
+                        @if(isset($pedido->canasta))
+                        {{$pedido->canasta->nombre}}
                         <small>
                             @foreach($pedido->canasta->productos as $producto)
                                 <p class="m-0 p-0">{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</p>
                             @endforeach
                         </small>
+                        @else
+                        No
+                        @endif
                     </td>
                 </tr>
                 <tr><td>Costo de envio id: </td><td>{{$pedido->costo_de_envio_id}}</td></tr>
@@ -77,6 +83,7 @@
                 {{--<tr><td>Costo de envio(): </td><td>{{$pedido->costo_de_envio()}}</td></tr>--}}
                 
                 <tr><td>Cupon id: </td><td>{{$pedido->cupon_id}}</td></tr>
+                <tr><td>Suscripcion id: </td><td>{{$pedido->suscripcion_id}}</td></tr>
                 
                 {{--<tr><td>Tipo de cliente: </td><td>{{$pedido->tipo_de_cliente}}</td></tr>--}}
                 
