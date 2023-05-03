@@ -18,8 +18,8 @@
     <h4 class="text-center pt-2">Pedido id: {{$pedido->id}}</h4>
     
     <div class="row mb-5 mt-2">
-        <div class="col-md-4"></div>
-        <div class="col-md-8">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
         
             <table>
                 <style>
@@ -95,7 +95,7 @@
 
 
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
     </div>
 
 

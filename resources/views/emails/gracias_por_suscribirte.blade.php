@@ -209,7 +209,7 @@ h5, .h5 {
         
         <p class="" style="color: #5c5c5c;">
             Podés cancelar tu suscripción haciendo click en este 
-            <a href="{{URL::signedRoute('cancelar_suscripcion', ['suscripcion' => $suscripcion->id])}}" target="_blank">link</a>.
+            <a href="{{URL::signedRoute('confirmar_cancelacion', ['suscripcion' => $suscripcion->id])}}" target="_blank">link</a>.
         </p>
         <br><br>
         <p class="" style="color: #5c5c5c;" style="">Saludos cordiales.</p>

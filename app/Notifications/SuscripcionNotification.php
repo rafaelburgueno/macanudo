@@ -62,7 +62,8 @@ class SuscripcionNotification extends Notification
                     ->line($descripcion_del_pago)
                     ->line('Ante cualquier consulta, recomendación o reclamo, por favor, no dudes en contactarnos respondiendo este correo o al 099 760 201.')
                     //->line('Si no deseas continuar con la suscripción, podés cancelarla haciendo click <a target="_blank" href="'. url(URL::signedRoute('cancelar_suscripcion', ['suscripcion' => $suscripcion->id])).'">aquí</a>.')
-                    ->action('Podés cancelar la suscripción hasta 5 días antes de la entrega, haciendo click acá.', url(URL::signedRoute('cancelar_suscripcion', ['suscripcion' => $suscripcion->id])))
+                    ->action('Podés cancelar la suscripción hasta 5 días antes de la entrega, haciendo click acá.', url(URL::signedRoute('confirmar_cancelacion_de_suscripcion', ['suscripcion' => $suscripcion->id])))
+                    ->line('Unos días antes de la fecha de entrega, te enviaremos un correo electrónico con la descripción detallada del pedido que recibirás.')
                     ->salutation('¡Muchas gracias por unirte al Club!');
                     //->salutation('Un afectuoso saludo y nos vemos pronto.');
 

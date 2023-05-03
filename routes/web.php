@@ -125,6 +125,7 @@ Route::get('/club_macanudo', function () {
 
 Route::post('suscribirse', [SuscripcionController::class, 'suscribirse'])->name('suscribirse'); 
 // esta ruta se usa para que los cliente cancelen su suscripcion
+Route::get('confirmar_cancelacion_de_suscripcion/{suscripcion}', [SuscripcionController::class, 'confirmar_cancelacion_de_suscripcion'])->name('confirmar_cancelacion_de_suscripcion');
 Route::get('cancelar_suscripcion/{suscripcion}', [SuscripcionController::class, 'cancelar_suscripcion'])->name('cancelar_suscripcion');
 
 

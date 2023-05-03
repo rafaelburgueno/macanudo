@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\GraciasPorSuscribirte;
 use App\Mail\FormularioDelClubMacanudo;
 use App\Notifications\SuscripcionNotification;
+use App\Mail\EmailDeControl;
 
 
 class SuscripcionController extends Controller
@@ -20,6 +21,8 @@ class SuscripcionController extends Controller
     {
 
         //return $request->all();
+        //envia un email al administrador con los datos del formulario
+        Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($request->except(['_token', 'password'])));
 
         //validacion de los datos
         $request->validate([
@@ -42,6 +45,7 @@ class SuscripcionController extends Controller
             //'activo' => 'nullable',
         ]);
 
+        Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($request->except(['_token', 'password'])));
         //return $request->all();
         
         $suscripcion = new Suscripcion();
@@ -219,6 +223,29 @@ class SuscripcionController extends Controller
 
 
 
+/**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\suscripcion  $suscripcion
+     * @return \Illuminate\Http\Response
+     */
+    public function confirmar_cancelacion_de_suscripcion(Request $request, Suscripcion $suscripcion)
+    {
+        
+        if (! $request->hasValidSignature()) {
+            abort(401); // lanza un pantallazo : 401 UNAUTHORIZED
+            /*session()->flash('error', 'Esta intentando acceder a un recurso no autorizado.');
+            return redirect() -> route('home');*/
+        }else{
+            
+            return view('confirmar_cancelacion')->with('suscripcion', $suscripcion);
+        }
+    }
+
+
+
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -248,7 +275,8 @@ class SuscripcionController extends Controller
 
             session()->flash('exito', 'La suscripción se canceló con éxito');
             return redirect() -> route('home');
-            //return view('mostrar_suscripcion')->with('suscripcion', $suscripcion);
+            
+            //return view('confirmar_cancelacion')->with('suscripcion', $suscripcion);
         }
     }
 

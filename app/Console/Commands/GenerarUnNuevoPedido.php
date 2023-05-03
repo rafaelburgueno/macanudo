@@ -42,7 +42,10 @@ class GenerarUnNuevoPedido extends Command
         paso 3- consultar la suscripcion de cada pedido y ver si esta activa
         paso 4- si la suscripcion esta activa, crear un nuevo pedido con los datos del pedido anterior
         */
-        $pedidos = Pedido::where('tipo', 'club del queso')->whereDate('created_at', '=', Carbon::now()->subMonth())
+        $pedidos = Pedido::where('tipo', 'club del queso')
+            //->whereDate('created_at', '>', Carbon::now()->subMonth())
+            ->whereDate('created_at', '=', Carbon::now()->subDays(30))
+            //->where('tipo_de_cliente', '=', 'suscripción - último pedido')
             ->whereHas('suscripcion', function ($query) {
                 $query->where('activo', 1);
             })->get();
@@ -62,7 +65,10 @@ class GenerarUnNuevoPedido extends Command
             //$nuevo_pedido->monto = $pedido->monto;
             $nuevo_pedido->recibir_novedades = $pedido->recibir_novedades;
 
-            $nuevo_pedido->tipo_de_cliente = 'suscripcion renovada automaticamente';
+            $nuevo_pedido->tipo_de_cliente = 'suscriptor - último pedido';
+            $pedido->tipo_de_cliente = 'suscriptor';
+            $pedido->save();
+
             // el numero de factura es 66 porque es el numero de factura que se le asigna a los pedidos que se generan automaticamente
             $nuevo_pedido->numero_de_factura = 66; //rand(1000, 9999);
              
@@ -70,9 +76,9 @@ class GenerarUnNuevoPedido extends Command
             $nuevo_pedido->suscripcion_id = $pedido->suscripcion_id;
 
 
-            /*$nuevo_pedido->canasta_id = $pedido->canasta_id;
-            $nuevo_pedido->costo_de_envio_id = $pedido->costo_de_envio_id;
-            $nuevo_pedido->cupon_id = $pedido->cupon_id;*/
+            //$nuevo_pedido->canasta_id = $pedido->canasta_id;
+            //$nuevo_pedido->costo_de_envio_id = $pedido->costo_de_envio_id;
+            //$nuevo_pedido->cupon_id = $pedido->cupon_id;
             $nuevo_pedido->save();
 
             // en la suscripcion relativa al nuevo pedido, se actualiza el campo 'fecha_de_renovacion' con un date
@@ -81,10 +87,10 @@ class GenerarUnNuevoPedido extends Command
             $suscripcion->save();
 
             // Envia a pedro o a mi un email con el pedido
-            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
+            //Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
+            //->queue(new PedidosMail($nuevo_pedido));
+            Mail::to(env('MAIL_DESARROLLADOR', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
             ->queue(new PedidosMail($nuevo_pedido));
-            /*Mail::to(env('MAIL_DESARROLLADOR', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
-            ->queue(new PedidosMail($nuevo_pedido));*/
 
         }
 
