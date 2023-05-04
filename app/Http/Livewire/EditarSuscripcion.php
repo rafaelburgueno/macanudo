@@ -12,12 +12,13 @@ class EditarSuscripcion extends Component
 
     public $direccion_de_entrega;
     public $dia_de_entrega;
-    public $tipo;
+    //public $tipo;
     public $cantidad_de_quesos;
     public $telefono;
     public $activo;
 
     public $respuesta = '';
+    public $precio;
 
 
     public function mount($suscripcion)
@@ -29,6 +30,7 @@ class EditarSuscripcion extends Component
         $this->cantidad_de_quesos = $suscripcion->cantidad_de_quesos;
         $this->telefono = $suscripcion->telefono;
         $this->activo = $suscripcion->activo;
+        $this->precio = $suscripcion->precio;
 
     }
 
@@ -40,9 +42,20 @@ class EditarSuscripcion extends Component
         //se busca la suscripcion en la base de datos
         $suscripcion_guardada = Suscripcion::find($this->suscripcion->id);
         $suscripcion_guardada->direccion_de_entrega = $this->direccion_de_entrega;
+
         $suscripcion_guardada->dia_de_entrega = $this->dia_de_entrega;
         //$suscripcion_guardada->tipo = $this->tipo;
+        
         $suscripcion_guardada->cantidad_de_quesos = $this->cantidad_de_quesos;
+        //si la cantidad de quesos es 3 el precio de pa suscripcion es 969, si es 5 el precio es 1599
+        if($this->cantidad_de_quesos == 3){
+            $suscripcion_guardada->precio = 969;
+        }else{
+            $suscripcion_guardada->precio = 1599;
+        }
+
+        $this->precio = $suscripcion_guardada->precio;
+
         $suscripcion_guardada->telefono = $this->telefono;
         $suscripcion_guardada->save();
         //$this->suscripcion->save();

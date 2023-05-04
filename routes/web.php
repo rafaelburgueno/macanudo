@@ -295,6 +295,7 @@ Route::controller(PedidoController::class)->group(function () {
 });
 // esta ruta devuelve la interfase para trabajar el reparto 
 Route::get('reparto', [PedidoController::class ,'reparto'])->name('reparto')->middleware('acceso.administrador');
+Route::get('confirmar_cancelacion_de_pedido/{pedido}', [PedidoController::class, 'confirmar_cancelacion_de_pedido'])->name('confirmar_cancelacion_de_pedido');
 // esta ruta se usa para que los cliente cancelen su pedido
 Route::get('cancelar_pedido/{pedido}', [PedidoController::class, 'cancelar_pedido'])->name('cancelar_pedido');
 

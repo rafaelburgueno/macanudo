@@ -27,6 +27,9 @@ class PedidoController extends Controller
 {
     
 
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -118,6 +121,13 @@ class PedidoController extends Controller
             ->with('suscripciones', $suscripciones);
         //return view('pedidos');
     }
+    // ******************************************************************************************************************
+
+
+
+
+    
+
 
 
 
@@ -145,6 +155,14 @@ class PedidoController extends Controller
             ->with('cupones', $cupones);
         //return 'pagina de reparto';
     }
+    // ***************************************************************************************************************************
+
+
+
+
+
+
+
 
 
 
@@ -282,6 +300,15 @@ class PedidoController extends Controller
         session()->flash('exito', 'El pedido fue creado.');
         return redirect() -> route('pedidos.index');
     }
+    // **********************************************************************************************************************
+
+
+
+
+
+
+
+
 
 
 
@@ -295,7 +322,9 @@ class PedidoController extends Controller
     public function edit(Pedido $pedido)
     {
         $canastas = Canasta::where('activo', true)->get();
-        $lista_de_productos = Producto::where('activo', true)->get();
+        //$canastas = Canasta::get();
+        //$lista_de_productos = Producto::where('activo', true)->get();
+        $lista_de_productos = Producto::get();
         $costos_de_envio = Costo_de_envio::where('activo', true)->get();
         $cupones = Cupon::where('activo', true)->get();
 
@@ -327,6 +356,13 @@ class PedidoController extends Controller
         }
         
     }
+    // **********************************************************************************************************************
+
+
+
+
+
+
 
 
 
@@ -551,6 +587,14 @@ class PedidoController extends Controller
         session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente.');
         return redirect() -> route('pedidos.index');
     }
+    // ************************************************************************************************************
+
+
+
+
+
+
+
 
 
 
@@ -590,7 +634,15 @@ class PedidoController extends Controller
 
         return redirect() -> route('pedidos.index');
     }
-        
+    // ************************************************************************************************************
+    
+
+
+
+
+
+
+
 
 
 
@@ -628,6 +680,47 @@ class PedidoController extends Controller
             //return view('pedidos.edit', compact('pedido'));
         }
     }
+    // ************************************************************************************************************
+
+
+
+
+
+
+
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\suscripcion  $suscripcion
+     * @return \Illuminate\Http\Response
+     */
+    public function confirmar_cancelacion_de_pedido(Request $request, pedido $pedido)
+    {
+        
+        if (! $request->hasValidSignature()) {
+            abort(401); // lanza un pantallazo : 401 UNAUTHORIZED
+            /*session()->flash('error', 'Esta intentando acceder a un recurso no autorizado.');
+            return redirect() -> route('home');*/
+        }else{
+            if($pedido->status == 'cancelado'){
+                session()->flash('error', 'El pedido ya fue cancelado previamente.');
+                return redirect() -> route('home');
+            }else{
+
+                return view('confirmar_cancelacion')->with('pedido', $pedido);
+            }
+            
+        }
+    }
+    // *********************************************************************************************************************
+
+
+
+
+
+
 
 
 

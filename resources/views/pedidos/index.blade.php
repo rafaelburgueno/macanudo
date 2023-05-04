@@ -13,7 +13,7 @@
 	$(document).ready( function () {
 		$('#tabla_pedidos').DataTable({
 			order: [
-				[0, 'desc']
+				[8, 'desc']
 			]
 		});
 	} );
@@ -21,7 +21,7 @@
     $(document).ready( function () {
 		$('#tabla_suscripciones').DataTable({
 			order: [
-				[0, 'desc']
+				[7, 'desc']
 			]
 		});
 	} );
@@ -38,7 +38,6 @@
 		<table id="tabla_pedidos" class="display {{--table table-striped table-hover table-sm--}}">
 			<thead>
 				<tr>
-                    <th>Id</th>
                     <th></th>
                     {{--<th>Estatus</th>--}}
                     {{--<th>Dirección</th>--}}
@@ -52,6 +51,7 @@
                     <th>Fecha</th>
 					{{--<th>id</th>--}}
 					<th>Administrar</th>
+                    <th>Id</th>
 					
 				</tr>
 			</thead>
@@ -69,7 +69,7 @@
                     <tr>
                     @endif
 
-                    <td>{{ $pedido->id }}</td>
+                        
 
                         {{--<td>
                             <a class="btn btn-outline-success" data-toggle="modal" data-target="#info_del_pedido_{{ $pedido->id }}">Ver</a></td>
@@ -129,8 +129,8 @@
                         <td></td>
                         @endif--}}
 
-						<td><a href="{{route('pedidos.edit', $pedido)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>
-
+						<td><a href="{{route('pedidos.edit', $pedido)}}" class="btn btn-sm btn-outline-secondary ">Editar</a></td>
+                        <td>{{ $pedido->id }}</td>
 						
 					</tr>
 
@@ -175,6 +175,9 @@
                                     @endif
                                     <hr>
                                     <p>Nombre: <strong>{{ $pedido->nombre }}</strong></p>
+                                    @if($pedido->user_id)
+                                    <p>Email: <strong>{{ $pedido->user->email }}</strong></p>
+                                    @endif
                                     <p>Dirección: <strong>{{ $pedido->direccion }}</strong></p>
                                     <p>Teléfono: <strong>{{ $pedido->telefono }}</strong></p>
                                     @if(!($pedido->documento_de_identidad == 9999999))
@@ -221,16 +224,17 @@
 		<table id="tabla_suscripciones" class="display {{--table table-striped table-hover table-sm--}}">
 			<thead>
 				<tr>
-                    <th>Id</th>
-                    <th>Activa</th>
+                    <th></th>
+                    <th>Dia de entrega</th>
+                    <th>Dirección de entrega</th>
+                    <th>Tipo</th>
 					<th>Precio</th>
 					<th>Nombre</th>
+                    <th>Fecha de nacimiento</th>
                     {{--<th>Teléfono</th>--}}
-                    <th>Dirección de entrega</th>
                     {{--<th>Canastas restantes</th>--}}
-                    <th>Dia de entrega</th>
-					<th>Ingredientes que no consumo</th>
-                    <th>Fecha de inicio</th>
+                    <th>Activa</th>
+					<th>No consumo...</th>
 					{{--<th>Administrar</th>--}}
 					
 				</tr>
@@ -241,7 +245,21 @@
 				@foreach ($suscripciones as $suscripcion)
                     
                     <tr>
-                        <td><a class="btn btn-light" data-toggle="modal" data-target="#info_de_la_suscripcion_{{ $suscripcion->id }}">{{ $suscripcion->id }}</a></td>
+                        <td><a class="btn btn-light" data-toggle="modal" data-target="#info_de_la_suscripcion_{{ $suscripcion->id }}">Ver</a></td>
+                        <td>{{ $suscripcion->dia_de_entrega }}</td>
+                        <td>{{ $suscripcion->direccion_de_entrega }}</td>
+                        <td>{{ $suscripcion->cantidad_de_quesos }} <small>quesos</small></td>
+                        <td>$ {{ $suscripcion->precio }}</td>
+                        <td>
+                            @if($suscripcion->user != null)
+                                {{ $suscripcion->user->name }}
+                            @endif
+                        </td>
+                        <td>
+                            @if($suscripcion->user != null)
+                                {{ $suscripcion->user->fecha_de_nacimiento }}
+                            @endif
+                        </td>
                         <td>
                         <!-- si la suscripcion esta activa imprime SI, si no esta activa imprime NO-->
                             @if($suscripcion->activo == 1)
@@ -250,22 +268,13 @@
                                 NO
                             @endif    
                         </td>
-                        <td>$ {{ $suscripcion->precio }}</td>
-                        <td>
-                            @if($suscripcion->user != null)
-                                {{ $suscripcion->user->name }}
-                            @endif
-                        </td>
                         {{--<td>{{ $suscripcion->telefono }}</td>--}}
-                        <td>{{ $suscripcion->direccion_de_entrega }}</td>
                         {{--<td>{{ $suscripcion->cantidad_de_canastas }}</td>--}}
-                        <td>{{ $suscripcion->dia_de_entrega }}</td>
                         <td>
                             @if($suscripcion->user != null)
                                 {{ $suscripcion->user->ingredientes_que_no_consumo }}
                             @endif
                         </td>
-                        <td>{{ $suscripcion->fecha_de_inicio }}</td>
                         {{--<td></td>--}}
                         
 						{{--<td><a href="{{route('pedidos.edit', $suscripcion)}}" class="btn btn-sm btn-outline-secondary ">Editar ></a></td>--}}
@@ -288,21 +297,27 @@
                                 </div>
                                 
                                 <div class="modal-body ">
-                                    <p>Tipo: {{$suscripcion->tipo}}</p>
-                                    <p>Precio: $ {{$suscripcion->precio}}</p>
+
                                     <p>Dia de entrega: {{$suscripcion->dia_de_entrega}}</p>
+                                    <p>Direccion de entrega: {{$suscripcion->direccion_de_entrega}}</p>
+                                    <p>Telefono: {{$suscripcion->telefono}}</p>
+                                    <p>Tipo: {{$suscripcion->cantidad_de_quesos}} quesos</p>
+                                    <p>Precio: $ {{$suscripcion->precio}}</p>
                                     @if($suscripcion->user != null)
                                         <p>Nombre: {{$suscripcion->user->name}}</p>
+                                        <p>Fecha de nacimiento: {{$suscripcion->user->fecha_de_nacimiento}}</p>
+                                    @endif
+                                    
+                                    <p>Activo: @if($suscripcion->activo) Si @else No @endif</p>
+
+                                    @if($suscripcion->user != null)
                                         <p>Ingredientes que no consumo: {{$suscripcion->user->ingredientes_que_no_consumo}}</p>
                                     @endif
 
-                                    <p>Direccion de entrega: {{$suscripcion->direccion_de_entrega}}</p>
-                                    <p>Telefono: {{$suscripcion->telefono}}</p>
                                     <p>Cantidad de canastas: {{$suscripcion->cantidad_de_canastas}}</p>
                                     
                                     <p>Fecha de inicio: {{$suscripcion->fecha_de_inicio}}</p>
                                     <p>Fecha de renovacion: {{$suscripcion->fecha_de_renovacion}}</p>
-                                    <p>Activo: @if($suscripcion->activo) SI @else NO @endif</p>
                                     <p>Fecha de creacion: {{$suscripcion->created_at}}</p>
                                     <p>Fecha de actualizacion: {{$suscripcion->updated_at}}</p>
 

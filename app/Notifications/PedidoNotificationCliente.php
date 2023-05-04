@@ -81,8 +81,8 @@ class PedidoNotificationCliente extends Notification
                     
                     ->line('Ante cualquier consulta, recomendación o reclamo, por favor, no dudes en contactarnos respondiendo este correo o al 099 760 201.')
                     
-                    ->action('Podés cancelar el pedido hasta 5 días antes de la entrega, haciendo click acá.', url(URL::signedRoute('cancelar_pedido', ['pedido' => $pedido->id])))
-                    //->action('Si querés cancelar tu pedido, podés hacerlo hasta 5 dias antes de la entrga, haciendo click acá', url('/'))
+                    ->action('Podés cancelar el pedido hasta 5 días antes de la entrega, haciendo click acá.', url(URL::signedRoute('confirmar_cancelacion_de_pedido', ['pedido' => $pedido->id])))
+                    //->action('Si querés cancelar tu pedido, podés hacerlo hasta 5 dias antes de la entrega, haciendo click acá', url('/'))
 
                     ->line('Muchas gracias por tu compra.');
     }

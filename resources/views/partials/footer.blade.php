@@ -38,7 +38,7 @@
                     <p></p>
                     <p><span class="oi oi-envelope-closed footer-address-icon"></span><a href="mailto:{{env('MAIL_FROM_ADDRESS')}}" style="color: var(--blanco);">{{env('MAIL_FROM_ADDRESS')}}</a></p>
                 </address><br><br>
-                <img src="{{asset('/storage/img/macanudo_logoNegro.png')}}" width="70%" alt="Logo de Macanudo con la inscripción: 'Queso artesanal de castañas de cajú'" /><br>
+                <img src="{{asset('/storage/img/Logo_Macanudo_diapo.png')}}" width="70%" alt="Logo de Macanudo con la inscripción: 'Queso artesanal de castañas de cajú'" /><br>
                 {{--
                 <img src="{{asset('/storage/img/logo-footer.jpeg')}}" width="70%" alt="Logo de Macanudo con la inscripción: 'Queso artesanal de castañas de cajú'" /><br>
                 --}}

@@ -16,13 +16,19 @@ use App\Mail\EmailDeControl;
 
 class SuscripcionController extends Controller
 {
+    
+    
+    
+    
+    
+    
     //metodo que responde al formulario de suscripcion, donde se recibenlos siguientes datos: 'tipo', 'precio', 'user_id', 'direccion_de_entrega', 'telefono', 'cantidad_de_canastas', 'fecha_de_inicio', 'fecha_de_renovacion', 'cantidad_de_quesos', 'dia_de_entrega', 'activo'.
     public function suscribirse(Request $request)
     {
 
-        //return $request->all();
+        //return $request->all(); // ->merge(['clave' => 'valor']);
         //envia un email al administrador con los datos del formulario
-        Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($request->except(['_token', 'password'])));
+        Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($request->except(['_token', 'password', 'password_confirmacion', '_method', 'terminos_y_condiciones_del_club'])));
 
         //validacion de los datos
         $request->validate([
@@ -45,7 +51,7 @@ class SuscripcionController extends Controller
             //'activo' => 'nullable',
         ]);
 
-        Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($request->except(['_token', 'password'])));
+        Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($request->except(['_token', 'password', 'password_confirmacion', '_method', 'terminos_y_condiciones_del_club'])));
         //return $request->all();
         
         $suscripcion = new Suscripcion();
@@ -150,6 +156,11 @@ class SuscripcionController extends Controller
 
         return redirect()->route('club_macanudo');
     }
+    // *********************************************************************************************************************
+
+
+
+
 
 
 
@@ -186,6 +197,15 @@ class SuscripcionController extends Controller
         return $pedido;
         
     }
+    // *********************************************************************************************************************
+
+
+
+
+
+
+
+
 
 
 
@@ -218,12 +238,19 @@ class SuscripcionController extends Controller
 
         return $precio;
     }
+    // *********************************************************************************************************************
 
 
 
 
 
-/**
+
+
+
+
+
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\suscripcion  $suscripcion
@@ -237,10 +264,20 @@ class SuscripcionController extends Controller
             /*session()->flash('error', 'Esta intentando acceder a un recurso no autorizado.');
             return redirect() -> route('home');*/
         }else{
-            
-            return view('confirmar_cancelacion')->with('suscripcion', $suscripcion);
+            if($suscripcion->activo == 0){
+                session()->flash('error', 'La suscripcion ya fue cancelada previamente.');
+                return redirect() -> route('home');
+            }else{
+                return view('confirmar_cancelacion')->with('suscripcion', $suscripcion);
+            }
         }
     }
+    // *********************************************************************************************************************
+
+
+
+
+
 
 
 
@@ -279,7 +316,7 @@ class SuscripcionController extends Controller
             //return view('confirmar_cancelacion')->with('suscripcion', $suscripcion);
         }
     }
-
+    // *********************************************************************************************************************
 
 
 }
