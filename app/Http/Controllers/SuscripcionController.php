@@ -27,8 +27,11 @@ class SuscripcionController extends Controller
     {
 
         //return $request->all(); // ->merge(['clave' => 'valor']);
+        // se preparan las variables para el email de control
+        $request_para_el_email_de_control = $request->except(['_token', 'password', 'password_confirmacion', '_method', 'terminos_y_condiciones_del_club']);
+        $request_para_el_email_de_control['APP_ENV'] = env('APP_ENV');
         //envia un email al administrador con los datos del formulario
-        Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($request->except(['_token', 'password', 'password_confirmacion', '_method', 'terminos_y_condiciones_del_club'])));
+        Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl(  $request_para_el_email_de_control  ));
 
         //validacion de los datos
         $request->validate([
@@ -51,7 +54,9 @@ class SuscripcionController extends Controller
             //'activo' => 'nullable',
         ]);
 
-        Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($request->except(['_token', 'password', 'password_confirmacion', '_method', 'terminos_y_condiciones_del_club'])));
+        // TODO: validar que el usuario solo tenga una suscripcion activa
+
+        Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($request_para_el_email_de_control));
         //return $request->all();
         
         $suscripcion = new Suscripcion();

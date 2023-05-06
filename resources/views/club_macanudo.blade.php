@@ -443,8 +443,8 @@
 
                         
                     @else
-                        <input type="hidden" name="nombre" id="nombre" value="nombre ficticio">
-                        <input type="hidden" name="email" id="email" value="email@ficticio.com">
+                        <input type="hidden" name="nombre" id="nombre" value="{{Auth::user()->name}}">
+                        <input type="hidden" name="email" id="email" value="{{Auth::user()->email}}">
                         <input type="hidden" name="password" id="password" value="miPassword">
                         <input type="hidden" name="password_confirmacion" id="password_confirmacion" value="miPassword">
 
