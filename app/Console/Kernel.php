@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
     ];
 
     /**
-     * Define the application's command schedule.
+     * Define el cronograma de comandos de la aplicación.
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
@@ -27,7 +27,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('pedido:generar')->everyMinute();
+        //$schedule->command('pedido:generar')->everyMinute();
+        $schedule->command('pedido:generar')->daily();
+
+        // realizar un backup de la base de datos cada dos días
+        $schedule->command('database:backup')->everyTwoDays();
+        //$schedule->command('database:backup')->daily();
 
         // eviar un correo cada 5 minutos a rburg@vivaldi.net con el texto 'tarea programada cada 5 minutos'.
         /*$schedule->call(function () {
