@@ -8,6 +8,7 @@ use App\Models\Costo_de_envio;
 use App\Models\Pedido;
 use App\Models\Cupon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MiCarritoController extends Controller
 {
@@ -71,6 +72,10 @@ class MiCarritoController extends Controller
             $pedido->canasta_id = $request->canasta_id;
         }*/
 
+        // si hay una sesion de usuario, se guarda el id del usuario en el campo 'user_id' de la tabla 'pedidos'
+        if(Auth::check()){
+            $pedido->user_id =  auth()->id();
+        } 
         //$pedido->user_id =  auth()->id();
         $pedido->nombre = $request->nombre;
         $pedido->email = $request->email;

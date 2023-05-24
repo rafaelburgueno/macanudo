@@ -269,6 +269,7 @@
                                 <p><strong>Estado del pago: </strong>{{$pedido->estado_del_pago}}</p>
                                 <p><strong>Medio de pago: </strong>{{$pedido->medio_de_pago}}</p>
                                 <p><strong>Número de factura: </strong>{{$pedido->numero_de_factura}}</p>
+                                <p><strong>Fecha de creación: </strong>{{$pedido->created_at}}</p>
                                 
                                 <p><strong>Productos: </strong>    
                                     <ul class="py-0 mt-0 mb-3">
@@ -284,7 +285,7 @@
 
                     @endforeach
 
-                  </div>
+                </div>
                 
             </div>
         </div>

@@ -107,7 +107,7 @@
     </form>
     
 
-    <hr class="mb-3 text-gray-700">
+    {{--<hr class="mb-3 text-gray-700">--}}
     
 
 </div>

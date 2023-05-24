@@ -67,7 +67,14 @@ class User extends Authenticatable implements MustVerifyEmail
      * 
      */
     public function pedidos(){
-        return $this->hasMany('App\Models\Pedido');
+
+        // obtener los pedidos con 'user_id' igual al id de un usuario y los pedidos con 'email' que el email del usuario
+        return $this->hasMany('App\Models\Pedido')->where('user_id', $this->id)->orWhere('email', $this->email)->orderBy('created_at', 'desc');
+        
+        //return $this->hasMany('App\Models\Pedido')->where('email', $this->email);
+
+        // Original vvvvv
+        //return $this->hasMany('App\Models\Pedido');
     }
 
     /**

@@ -119,6 +119,16 @@ class PagosController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+    
     /**
      * luego del formulario de mercado pago se terminan de completar los datos en nuestra plataforma
      *

@@ -18,6 +18,7 @@ use Exception;
 //use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\PedidoNotificationCliente;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Http;
 
@@ -207,7 +208,12 @@ class PedidoController extends Controller
             $pedido->canasta_id = $request->canasta_id;
         }
 
-        //$pedido->user_id =  auth()->id();
+        // si hay una sesion de usuario, se guarda el id del usuario en el campo 'user_id' de la tabla 'pedidos'
+        if(Auth::check()){
+            $pedido->user_id =  auth()->id();
+        } 
+
+
         $pedido->nombre = $request->nombre;
         $pedido->email = $request->email;
         $pedido->documento_de_identidad = $request->documento_de_identidad;

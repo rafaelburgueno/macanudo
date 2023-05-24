@@ -13,7 +13,7 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1 flex justify-between">
                 <div class="px-4 sm:px-0">
-                    <h3 class="text-lg font-medium text-gray-900">Información de las susripciónes</h3>
+                    <h3 class="text-lg font-medium text-gray-900">Información de la susripción</h3>
             
                     <p class="mt-1 text-sm text-gray-600">
                         Actualice la información de perfil y la dirección de email de su cuenta.
@@ -59,6 +59,116 @@
     </div>
     @endif
 
+
+    @if(count(Auth::user()->pedidos))
+
+    <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+
+
+            <div class="md:col-span-1 flex justify-between">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium text-gray-900">Mis compras</h3>
+            
+                    <p class="mt-1 text-sm text-gray-600">
+                        Listado de pedidos y compras realizadas.
+                    </p>
+                
+                </div>
+        
+                <div class="px-4 sm:px-0">
+                    
+                </div> 
+            </div>
+
+            <div class="mt-5 md:mt-0 md:col-span-2">
+                <div class="p-0 sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+                    <div class="accordion" id="accordion-mis-compras">
+
+                        @foreach(Auth::user()->pedidos as $pedido)
+                        
+                        <div class="card text-gray-600" >
+                                
+                            @if($pedido->tipo == 'club del queso')
+                                <div class="card-header" id="compra-{{$pedido->id}}" style="background-color: rgb(255, 255, 242)">
+                            @else
+                                <div class="card-header" id="compra-{{$pedido->id}}">
+                            @endif
+
+                                    <div class="mb-0 btn btn-linkk btn-block text-left collapsed" data-toggle="collapse" data-target="#collapse-{{$pedido->id}}" aria-expanded="true" aria-controls="collapse-{{$pedido->id}}">
+                                        {{--<div class="float-left">
+                                            {{$pedido->created_at->format('d/m/Y')}}
+                                        </div>
+
+                                        @if($pedido->tipo == 'club del queso')
+                                            <div class="text-center">
+                                                <strong>Club del queso</strong>
+                                            </div>
+                                        @endif
+
+                                        <div class="float-right">
+                                            <strong>{{$pedido->monto}}$</strong>
+                                        </div>--}}
+
+                                        <div class="row">
+                                            <div class="col text-left">
+                                                {{$pedido->created_at->format('d/m/Y')}}
+                                            </div>
+                                            <div class="col text-center">
+                                                @if($pedido->tipo == 'club del queso')
+                                                    <strong>Club del queso</strong>
+                                                @endif
+                                            </div>
+                                            <div class="col text-right">
+                                                <strong>{{$pedido->monto}}$</strong>
+                                            </div>
+                                          </div>
+
+                                    </div>
+                                </div>
+                                <div id="collapse-{{$pedido->id}}" class="collapse showw" aria-labelledby="compra-{{$pedido->id}}" data-parent="#accordion-mis-compras">
+                                    <div class="card-body">
+                                        @if($pedido->tipo == 'club del queso')
+                                        <p><strong>El pedido corresponde a tu suscripción al Club del queso </strong></p>
+                                        @endif
+                                        {{--<p><strong>Tipo de pedido: </strong>{{$pedido->tipo}}</p>--}}
+                                        <p><strong>Estado del pedido: </strong>{{$pedido->status}}</p>
+                                        <p><strong>Estado del pago: </strong>{{$pedido->estado_del_pago}}</p>
+                                        <p><strong>Medio de pago: </strong>{{$pedido->medio_de_pago}}</p>
+                                        <p><strong>Número de factura: </strong>{{$pedido->numero_de_factura}}</p>
+                                        <p><strong>Fecha: </strong>{{$pedido->created_at}}</p>
+                                        
+                                        @if(count($pedido->productos))
+                                        <p><strong>Productos: </strong> </p>   
+                                        <ul class="py-0 mt-0 mb-3 pl-3">
+                                            @foreach($pedido->productos as $producto)
+                                            <li class="py-0 my-0"><small>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</small></li>
+                                            @endforeach
+                                        </ul>
+                                        @else
+                                        <p><strong>Productos: </strong> No hay productos en este pedido</p>
+                                        @endif
+                                        
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="pb-5 px-5">
+        <div class="mx-1 border-t border-gray-200"></div>
+    </div>
+
+    @endif
 
 
 
