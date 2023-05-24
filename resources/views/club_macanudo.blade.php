@@ -387,8 +387,10 @@
             title: 'Oops...',
             text: 'Hay errores en el formulario. Por favor, revisa los campos.'
         })
+
     </script>
 @endif
+
 <div class="modal fade" id="suscribirme_al_club" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog negro" role="document">
@@ -444,7 +446,8 @@
                         
                     @else
                         <input type="hidden" name="nombre" id="nombre" value="{{Auth::user()->name}}">
-                        <input type="hidden" name="email" id="email" value="{{Auth::user()->email}}">
+                        {{--<input type="hidden" name="email" id="email" value="{{Auth::user()->email}}">--}}
+                        <input type="hidden" name="email" id="email" value="email@ficticio.com">
                         <input type="hidden" name="password" id="password" value="miPassword">
                         <input type="hidden" name="password_confirmacion" id="password_confirmacion" value="miPassword">
 
@@ -479,7 +482,7 @@
                             que permanezcan por lo menos 6 meses al año dentro del club.)
                             </small>
                         </div>
-                        <input min="{{ date('Y-m-d', strtotime('-100 years')) }}" max="{{ date('Y-m-d', strtotime('-18 years')) }}" value="{{old('fecha_de_nacimiento')}}" type="date" class="form-control" name="fecha_de_nacimiento" id="fecha_de_nacimiento">
+                        <input min="{{ date('Y-m-d', strtotime('-120 years')) }}" max="{{ date('Y-m-d', strtotime('-18 years')) }}" value="{{old('fecha_de_nacimiento')}}" type="date" class="form-control" name="fecha_de_nacimiento" id="fecha_de_nacimiento">
                         @error('fecha_de_nacimiento')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
