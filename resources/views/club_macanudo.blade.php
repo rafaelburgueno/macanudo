@@ -479,7 +479,7 @@
                             que permanezcan por lo menos 6 meses al año dentro del club.)
                             </small>
                         </div>
-                        <input max="{{ date('Y-m-d') }}" value="{{old('fecha_de_nacimiento')}}" type="date" class="form-control" name="fecha_de_nacimiento" id="fecha_de_nacimiento">
+                        <input min="{{ date('Y-m-d', strtotime('-100 years')) }}" max="{{ date('Y-m-d', strtotime('-18 years')) }}" value="{{old('fecha_de_nacimiento')}}" type="date" class="form-control" name="fecha_de_nacimiento" id="fecha_de_nacimiento">
                         @error('fecha_de_nacimiento')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
