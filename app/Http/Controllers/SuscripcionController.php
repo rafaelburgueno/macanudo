@@ -53,7 +53,7 @@ class SuscripcionController extends Controller
             //'fecha_de_renovacion' => 'nullable',
             //'activo' => 'nullable',
         ], [
-            'email.has_no_subscription' => 'El email suministrado ya tiene una suscripción activa. Solo se permite una suscripción activa por usuario',
+            'email.has_no_subscription' => 'Solo se permite una suscripción activa por usuario. En caso de querer suscribirse a una segunda canasta o de querer comprar puntualmente una canasta adicional, deberá comunicarse al teléfono de contacto.',
         ]);
 
         // TODO: validar que el usuario solo tenga una suscripcion activa
