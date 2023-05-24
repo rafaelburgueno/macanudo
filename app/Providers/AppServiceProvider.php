@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -32,6 +34,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        
+
+        // Agregar la regla de validación has_no_subscription
+        Validator::extend('has_no_subscription', function ($attribute, $value, $parameters, $validator) {
+            // Obtener el usuario con el email especificado
+            $user = User::where('email', $value)->first();
+
+            // Verificar si el usuario ya tiene una suscripción
+            return $user ? !$user->hasSubscription() : true;
+        });
+
     }
 }

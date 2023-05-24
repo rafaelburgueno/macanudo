@@ -380,15 +380,24 @@
 <!--MODAL DATOS SUSCRIPCIÓN -- MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN-->
 <!--MODAL DATOS SUSCRIPCIÓN -- MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN--MODAL DATOS SUSCRIPCIÓN-->
 @if ($errors->any())
-    <script>
-        //sweet alert informando que hay errores en el formulario del club macanudo
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Hay errores en el formulario. Por favor, revisa los campos.'
-        })
+        <script>
+            //sweet alert informando que hay errores en el formulario del club macanudo
+            var errores = @json($errors->all());
+            //console.log(errores);
+            var erroresStr = "";
+            // itero el array de errores y lo agrego a la variable erroresStr
+            errores.forEach(function(elemento, indice, array) {
+                erroresStr += '* ' + elemento + ". ";
+            });
 
-    </script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Hay errores en los datos del formulario.',
+                text: erroresStr
+            })
+
+        </script>
+    
 @endif
 
 <div class="modal fade" id="suscribirme_al_club" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="exampleModalLabel"
@@ -423,12 +432,16 @@
 
                     
                     
-                    @if( !Auth::check() )
+                    
                         
                         <!-- Nombre -->
                         <div class="form-group mb-4">
-                            <label for="nombre" class="negro">Nombre <small>(El campo es obligatorio y debe contener al menos 6 caracteres)</small>: </label>
-                            <input value="{{old('nombre')}}" type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" required>
+                            @if( Auth::check() )
+                                <input type="hidden" name="nombre" id="nombre" value="{{Auth::user()->name}}">
+                            @else
+                                <label for="nombre" class="negro">Nombre <small>(El campo es obligatorio y debe contener al menos 6 caracteres)</small>: </label>
+                                <input value="{{old('nombre')}}" type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" required>
+                            @endif
                             @error('nombre')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
@@ -436,18 +449,28 @@
                         
                         <!-- Email -->
                         <div class="form-group mb-4">
-                            <label for="email" class="negro">Email <small>(Obligatorio)</small>: </label>
-                            <input value="{{old('email')}}" type="email" class="form-control" name="email" id="email" placeholder="Ingrese su email" required>
+                            @if( Auth::check() )
+                                <label for="email" class="negro">Sesion iniciada con el correo: </label>
+                                <p  class="form-control"> {{Auth::user()->email}}</p>
+                                <input type="hidden" class="form-control" name="email" id="email" value="{{Auth::user()->email}}">
+                            @else
+                                <label for="email" class="negro">Email <small>(Obligatorio)</small>: </label>
+                                <input value="{{old('email')}}" type="email" class="form-control" name="email" id="email" placeholder="Ingrese su email" required>
+                            @endif
                             @error('email')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
+                            @if( Auth::check() )
+                            <small>Para cambiar de usuario, primero debes <a href="{{route('cerrar_sesion')}}">cerrar sesión</a>.</small>
+                            @endif
                         </div>
 
                         
-                    @else
-                        <input type="hidden" name="nombre" id="nombre" value="{{Auth::user()->name}}">
-                        {{--<input type="hidden" name="email" id="email" value="{{Auth::user()->email}}">--}}
-                        <input type="hidden" name="email" id="email" value="email@ficticio.com">
+                    @if( Auth::check() )
+
+                        {{--<input type="hidden" name="nombre" id="nombre" value="{{Auth::user()->name}}">
+                        <input type="hidden" name="email" id="email" value="{{Auth::user()->email}}">--}}
+                        {{--<input type="hidden" name="email" id="email" value="email@ficticio.com">--}}
                         <input type="hidden" name="password" id="password" value="miPassword">
                         <input type="hidden" name="password_confirmacion" id="password_confirmacion" value="miPassword">
 

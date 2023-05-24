@@ -40,7 +40,7 @@ class SuscripcionController extends Controller
             //'user_id' => 'nullable',
             'nombre' => 'required',
             //'correo' => 'nullable',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|has_no_subscription',
             'password' => 'required',
             'direccion_de_entrega' => 'required',
             'telefono' => 'required',
@@ -52,6 +52,8 @@ class SuscripcionController extends Controller
             //'fecha_de_inicio' => 'nullable',
             //'fecha_de_renovacion' => 'nullable',
             //'activo' => 'nullable',
+        ], [
+            'email.has_no_subscription' => 'El email suministrado ya tiene una suscripción activa. Solo se permite una suscripción activa por usuario',
         ]);
 
         // TODO: validar que el usuario solo tenga una suscripcion activa

@@ -80,4 +80,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
 
+    // Verificar si el usuario tiene una suscripción activa
+    public function hasSubscription()
+    {
+        return $this->suscripciones()->where('activo', true)->exists();
+    }
+
+
 }
