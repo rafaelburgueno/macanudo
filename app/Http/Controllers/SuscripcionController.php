@@ -12,6 +12,7 @@ use App\Mail\GraciasPorSuscribirte;
 use App\Mail\FormularioDelClubMacanudo;
 use App\Notifications\SuscripcionNotification;
 use App\Mail\EmailDeControl;
+use Illuminate\Support\Facades\Auth;
 
 
 class SuscripcionController extends Controller
@@ -25,13 +26,15 @@ class SuscripcionController extends Controller
     //metodo que responde al formulario de suscripcion, donde se recibenlos siguientes datos: 'tipo', 'precio', 'user_id', 'direccion_de_entrega', 'telefono', 'cantidad_de_canastas', 'fecha_de_inicio', 'fecha_de_renovacion', 'cantidad_de_quesos', 'dia_de_entrega', 'activo'.
     public function suscribirse(Request $request)
     {
-
+        
         //return $request->all(); // ->merge(['clave' => 'valor']);
-        // se preparan las variables para el email de control
-        $request_para_el_email_de_control = $request->except(['_token', 'password', 'password_confirmacion', '_method', 'terminos_y_condiciones_del_club']);
-        $request_para_el_email_de_control['APP_ENV'] = env('APP_ENV');
-        //envia un email al administrador con los datos del formulario
-        Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl(  $request_para_el_email_de_control  ));
+        if (env('APP_ENV') == 'production') {
+            // se preparan las variables para el email de control
+            $request_para_el_email_de_control = $request->except(['_token', 'password', 'password_confirmacion', '_method', 'terminos_y_condiciones_del_club']);
+            $request_para_el_email_de_control['APP_ENV'] = env('APP_ENV');
+            //envia un email al administrador con los datos del formulario
+            Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl(  $request_para_el_email_de_control  ));
+        }
 
         //validacion de los datos
         $request->validate([
@@ -53,14 +56,18 @@ class SuscripcionController extends Controller
             //'fecha_de_renovacion' => 'nullable',
             //'activo' => 'nullable',
         ], [
-            'email.has_no_subscription' => 'Solo se permite una suscripción activa por usuario. En caso de querer suscribirse a una segunda canasta o de querer comprar puntualmente una canasta adicional, deberá comunicarse al teléfono de contacto.',
+            'email.has_no_subscription' => 'Solo se permite una suscripción activa por usuario. En caso de querer suscribirse a una segunda canasta o de querer comprar puntualmente una canasta adicional, deberá comunicarse al teléfono de contacto',
         ]);
 
         // TODO: validar que el usuario solo tenga una suscripcion activa
 
-        Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($request_para_el_email_de_control));
-        //return $request->all();
+        // si el entorno es de produccion, se envia un email al usuario con los datos del formulario
+        if (env('APP_ENV') == 'production') {
+            Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($request_para_el_email_de_control));
+        }
         
+        //return $request->all();
+
         $suscripcion = new Suscripcion();
         //$suscripcion->tipo = $request->tipo;
         $suscripcion->tipo = 'ilimitada';
@@ -82,17 +89,44 @@ class SuscripcionController extends Controller
             $user->save();
 
         } else {
-            $user = new User();
-            $user->name = $request->nombre;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
-            $user->rol = 'suscriptor';
-            $user->save();
 
-            //envia el correo de confirmacion de registro
-            $user->sendEmailVerificationNotification();
+            
+            if(User::where('email', $request->email)->first()){
+                
+                $credentials = $request->only('email', 'password');
+
+                if (Auth::attempt($credentials)) {
+                    // Las credenciales son válidas
+                    // Iniciar sesión y crear una sesión para el usuario
+                    $user = Auth::user();
+                    Auth::login($user);
+                    // Redirigir al usuario a la página deseada
+                } else {
+                    // Las credenciales no son válidas
+                    // Mostrar un mensaje de error
+                    return redirect()->route('club_macanudo')->withErrors('El correo y la contraseña no coinciden')->withInput();
+
+                    //emite una notificacion flash
+                    //session()->flash('error', 'El cooreo y la contraseña no coinciden');
+                    //return redirect()->route('club_macanudo');
+                }
+                
+            }else{
+
+                $user = new User();
+                $user->name = $request->nombre;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+                $user->rol = 'suscriptor';
+                $user->save();
+                
+                //envia el correo de confirmacion de registro
+                $user->sendEmailVerificationNotification();
+                
+            }
 
             $suscripcion->user_id = $user->id;
+
         }
 
 
