@@ -82,14 +82,16 @@
                 <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" style="
-                                {{request()->routeIs('pedidos.*') ? 'color: var(--lila);' : ''}}
-                                {{request()->routeIs('productos.*') ? 'color: var(--lila);' : ''}}
-                                {{request()->routeIs('canastas.*') ? 'color: var(--lila);' : ''}}
-                                {{request()->routeIs('posts.*') ? 'color: var(--lila);' : ''}}
-                                {{request()->routeIs('cupones.*') ? 'color: var(--lila);' : ''}}
-                                {{request()->routeIs('costos_de_envio.*') ? 'color: var(--lila);' : ''}}
-                                {{request()->routeIs('user/*') ? 'color: var(--lila);' : ''}}
-                                " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{request()->routeIs('pedidos*') ? 'color: var(--lila);' : ''}}
+                            {{request()->routeIs('reparto*') ? 'color: var(--lila);' : ''}}
+                            {{request()->routeIs('productos*') ? 'color: var(--lila);' : ''}}
+                            {{request()->routeIs('canastas*') ? 'color: var(--lila);' : ''}}
+                            {{request()->routeIs('posts*') ? 'color: var(--lila);' : ''}}
+                            {{request()->routeIs('banner*') ? 'color: var(--lila);' : ''}}
+                            {{request()->routeIs('cupones*') ? 'color: var(--lila);' : ''}}
+                            {{request()->routeIs('costos_de_envio*') ? 'color: var(--lila);' : ''}}
+                            {{request()->routeIs('profile.show') ? 'color: var(--lila);' : ''}}
+                            " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                                 class="bi bi-person-circle" viewBox="0 0 16 16">
                                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
