@@ -31,8 +31,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('pedido:generar')->daily();
 
         // realizar un backup de la base de datos cada dos días
-        $schedule->command('database:backup')->everyTwoDays();
-        //$schedule->command('database:backup')->daily();
+        //$schedule->command('database:backup')->everyTwoDays();
+        $schedule->command('database:backup')->daily();
 
         // eviar un correo cada 5 minutos a rburg@vivaldi.net con el texto 'tarea programada cada 5 minutos'.
         /*$schedule->call(function () {

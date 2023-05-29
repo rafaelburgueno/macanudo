@@ -719,6 +719,7 @@
                 //document.getElementById("fecha_de_nacimiento").value != '' &&  
                 //document.getElementById("ingedientes_que_no_consumo").value != '' &&  
                 // TODO: document.getElementById("cantidad_de_quesos").value != '' &&  
+                document.querySelector('input[name="cantidad_de_quesos"]').checked != false &&
                 document.getElementById("dia_de_entrega").value != '' &&
                 //document.getElementById("cantidad_de_canastas").value != '' &&  
                 //document.getElementById("fecha_de_inicio").value != '' &&  
