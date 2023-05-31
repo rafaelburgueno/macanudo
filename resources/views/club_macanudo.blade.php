@@ -537,8 +537,8 @@
                     <div class="form-group mb-4">
                         <label for="dia_de_entrega">Cuando nos podes recibir?</label>
                         <select required class="form-control" id="dia_de_entrega" name="dia_de_entrega">
-                            <option value="Primer jueves del mes en la mañana (8 a 12)" @selected(old('dia_de_entrega') == "Primer jueves del mes en la mañana (8 a 12)")>Primer jueves del mes en la mañana (8 a 12)</option>
-                            <option value="Tercer jueves del mes en la tarde (14 a 18)" @selected(old('dia_de_entrega') == "Tercer jueves del mes en la tarde (14 a 18)")>Tercer jueves del mes en la tarde (14 a 18)</option>
+                            <option value="Primer jueves del mes en la mañana (8 a 12hs)" @selected(old('dia_de_entrega') == "Primer jueves del mes en la mañana (8 a 12hs)")>Primer jueves del mes en la mañana (8 a 12hs)</option>
+                            <option value="Tercer jueves del mes en la tarde (14 a 18hs)" @selected(old('dia_de_entrega') == "Tercer jueves del mes en la tarde (14 a 18hs)")>Tercer jueves del mes en la tarde (14 a 18hs)</option>
                         </select>
                         @error('dia_de_entrega')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>

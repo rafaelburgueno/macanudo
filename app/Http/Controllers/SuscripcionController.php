@@ -305,12 +305,32 @@ class SuscripcionController extends Controller
             /*session()->flash('error', 'Esta intentando acceder a un recurso no autorizado.');
             return redirect() -> route('home');*/
         }else{
-            if($suscripcion->activo == 0){
+
+            // verifique si la fecha de hoy esta a mas de 5 dias del primer jueves del mes
+            // si es asi, entonces no se puede cancelar la suscripcion
+            // si no es asi, entonces se puede cancelar la suscripcion
+            $hoy = time();
+
+            $primerDiaDelMes = strtotime(date('Y-m-01'));
+
+            $primerJuevesDelMes = strtotime('first thursday of ' . date('F Y', $primerDiaDelMes));
+            $diasEntreFechas = round(($primerJuevesDelMes - $primerDiaDelMes) / (60 * 60 * 24));
+
+            if ($diasEntreFechas > 5) {
+                // La fecha de hoy está a más de 5 días del primer jueves del mes.
+                session()->flash('error', 'La suscripcion SI puede ser cancelada porque la fecha de hoy está a más de 5 días del primer jueves del mes.');
+            } else {
+                // La fecha de hoy está a menos de 5 días del primer jueves del mes.
+                session()->flash('error', 'La suscripcion NO puede ser cancelada porque la fecha de hoy está a menos de 5 días del primer jueves del mes.');
+            }
+
+
+            /*if($suscripcion->activo == 0){
                 session()->flash('error', 'La suscripcion ya fue cancelada previamente.');
                 return redirect() -> route('home');
             }else{
                 return view('confirmar_cancelacion')->with('suscripcion', $suscripcion);
-            }
+            }*/
         }
     }
     // *********************************************************************************************************************
