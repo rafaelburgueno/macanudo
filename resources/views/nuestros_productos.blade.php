@@ -42,11 +42,11 @@
 
                     
                     {{-- ETIQUETA DE PRODUCTO AGOTADO--}}
-                    @if ($producto->stock < 1)
+                    {{--@if ($producto->stock < 1)
                         <div class="etiqueta_de_agotado m-0 p-2 text-center">
                             <span class="h4 text-white ">AGOTADO</span>
                         </div>
-                    @endif
+                    @endif--}}
 
 
                     <p class="card-text parrafoProd px-1" style="opacity:60%; background-color:{{$producto->color}};">
@@ -76,6 +76,14 @@
                     <!-- boton de comprar -->
                     @if ($producto->stock > 0)
                         <a onclick="anadirEIeAlCarrito({{$producto->id}})" class="btn1 btn-medio shadown" style="background-color:{{$producto->color}};">Comprar</a>
+                    @endif
+
+
+                    {{-- ETIQUETA DE PRODUCTO AGOTADO--}}
+                    @if ($producto->stock < 1)
+                        <div class="etiqueta_de_agotado m-0 p-2 text-center">
+                            <span class="h4 text-white ">AGOTADO</span>
+                        </div>
                     @endif
 
                 

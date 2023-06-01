@@ -457,12 +457,20 @@ h1 {
 
 .etiqueta_de_agotado{
   background-color: var(--rojo);
-  width: 50%;
-  position: relative;
+  /*width: 50%;*/
+  position: absolute;
   /*top: 5%;*/
-  left: -10%;
+  right: 5%;
+  bottom: 5%;
+
   /*transform: translate(-50%, -50%);*/
-  transform: rotate(-45deg);
+  /*transform: rotate(-45deg);*/
   overflow: hidden;
   
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  text-align:center;
+  font-weight: 700;
+  color: #fff;
+  opacity:70% ;
 }
