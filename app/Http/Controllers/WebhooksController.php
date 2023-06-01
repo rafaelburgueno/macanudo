@@ -88,7 +88,10 @@ class WebhooksController extends Controller
                 // Envia un email al cliente con el pedido
                 Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
 
-                
+                // email de confirmacion del pedido
+                Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));                
+
+
                 // llamaos al metodo que actualiza el stock
                 //$pago = new PagosController();
                 //$pago->actualizarCuponYStock($pedido);

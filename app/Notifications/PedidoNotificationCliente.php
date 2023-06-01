@@ -44,6 +44,9 @@ class PedidoNotificationCliente extends Notification
      */
     public function toMail($notifiable)
     {
+        $PENDING_STATUS = 'pending';
+        $APPROVED_STATUS = 'approved';
+        $PENDIENTE_STATUS = 'pendiente';
 
         $pedido = $this->pedido;
         $direccion = "";
@@ -70,8 +73,15 @@ class PedidoNotificationCliente extends Notification
 
         $descripcion_del_pedido = 'Tu pedido se realizó correctamente!';
 
-        $descripcion_del_pago = 'El costo del pedido es de $' . $pedido->precio . ', y deberás pagar con Mercado Pago, transferencia o efectivo, al recibir los productos.';
+        // si el status del pedido es aprobado, entonces se envía el mail de confirmación de pedido
+        if($pedido->status == 'aprobado'){
+            $descripcion_del_pago = 'El costo del pedido es de $' . $pedido->precio . ', y deberás pagar con Mercado Pago, transferencia o efectivo, al recibir los productos.';
+            
+        }elseif($pedido->status == $PENDING_STATUS || $pedido->status == $PENDIENTE_STATUS){
+            $descripcion_del_pago = 'El costo del pedido es de $' . $pedido->precio . ', y todavia se encuentra pendiente de pago.';
+        }
 
+        // TODO: dependiendo del estado del pago se debe enviarun texto diferente para el boton de accion del email
 
         return (new MailMessage)
                     ->subject('Tu pedido')
