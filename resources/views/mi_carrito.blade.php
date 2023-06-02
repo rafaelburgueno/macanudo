@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
-@section('title', 'Mi perfil')
-@section('meta-description', 'metadescripcion para la pagina Mi perfil')
+@section('title', 'Mi carrito')
+@section('meta-description', 'metadescripcion para la pagina Mi carrito')
     
     
 @section('content')
@@ -79,7 +79,8 @@
 				  		
 						<div class="col-7 px-0">
 							<div class="card-body px-0">
-					  			<h5 class="card-title">{{$producto->nombre}}</h5>
+								<!-- TODO: cambiar a font-size : 0.8em cuando el tamaño del titulo es mayor de 16 caracteres -->
+					  			<h5 class="card-title" style="{{ strlen($producto->nombre) > 16 ? 'font-size: 0.8em;' : '' }}">{{$producto->nombre}}</h5>
 	  
 					  			<form id="datosEnvio" class="was-validated">
 									<div class="form row">

@@ -77,6 +77,12 @@ class GenerarUnNuevoPedido extends Command
                 $nuevo_pedido->estado_del_pago = 'pendiente';
                 $nuevo_pedido->suscripcion_id = $pedido->suscripcion_id;
 
+                // TODO: testear estas lineas vvv
+                $fecha = $pedido->created_at->addMonth();
+                // cambia la hora a las 04:00:00
+                $fecha = $fecha->setTime(4, 0, 0);
+                //Carbon::create(2022, 12, 31, 23, 59, 59);
+                $nuevo_pedido->created_at = $fecha;
 
                 //$nuevo_pedido->canasta_id = $pedido->canasta_id;
                 //$nuevo_pedido->costo_de_envio_id = $pedido->costo_de_envio_id;
@@ -89,8 +95,8 @@ class GenerarUnNuevoPedido extends Command
                 $suscripcion->save();
 
                 // Envia a pedro o a mi un email con el pedido
-                //Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
-                //->queue(new PedidosMail($nuevo_pedido));
+                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
+                ->queue(new PedidosMail($nuevo_pedido));
                 Mail::to(env('MAIL_DESARROLLADOR', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
                 ->queue(new PedidosMail($nuevo_pedido));
 
