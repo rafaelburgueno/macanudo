@@ -752,7 +752,7 @@ class PedidoController extends Controller
                 $pedido->status = 'cancelado';
                 $pedido->save();
 
-                session()->flash('exito', 'La pedido se canceló con éxito');
+                session()->flash('exito', 'El pedido se canceló con éxito');
                 return redirect() -> route('home');
             }
             elseif($pedido->status == 'entregado'){
