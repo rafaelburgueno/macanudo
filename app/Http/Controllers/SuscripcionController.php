@@ -44,7 +44,7 @@ class SuscripcionController extends Controller
             'nombre' => 'required',
             //'correo' => 'nullable',
             'email' => 'required|email|has_no_subscription',
-            'password' => 'required',
+            'password' => 'required|same:password_confirmacion',
             'direccion_de_entrega' => 'required',
             'telefono' => 'required',
             'fecha_de_nacimiento' => 'nullable',
@@ -57,6 +57,7 @@ class SuscripcionController extends Controller
             //'activo' => 'nullable',
         ], [
             'email.has_no_subscription' => 'Solo se permite una suscripción activa por usuario. En caso de querer suscribirse a una segunda canasta o de querer comprar puntualmente una canasta adicional, deberá comunicarse al teléfono de contacto',
+            'password.same' => 'El campo contraseña y el campo confirmación de contraseña deben coincidir',
         ]);
 
         // TODO: validar que el usuario solo tenga una suscripcion activa

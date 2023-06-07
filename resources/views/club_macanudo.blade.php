@@ -611,20 +611,23 @@
                         <!-- Contraseña -->
                         <div class="form-group mb-3">
                             <label for="password" class="negro">Necesitamos que definas una contraseña para acceder a tu usuario de Macanudo: </label>
-                            <input value="{{old('password')}}" type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
-                            @error('password')
-                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                            @enderror
+                            <input value="{{old('password')}}" type="password" class="form-control password_confirmacion" name="password" id="password" placeholder="Contraseña" required>
+                            
                         </div>
 
                         <div class="form-group mb-4">
                             {{--<label for="password_confirmacion" class="negro">Confirmación de contraseña: </label>--}}
-                            <input value="{{old('password_confirmacion')}}" type="password" class="form-control" name="password_confirmacion" id="password_confirmacion" placeholder="Confirmación de contraseña" required>
-                            @error('password_confirmacion')
-                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                            @enderror
+                            {{-- TODO: dentro del input, el texto 'Confirmación de contraseña' se ve mas chico que el del input de Contraseña que esta arriba--}}
+                            <input value="{{old('password_confirmacion')}}" type="password" class="form-control password_confirmacion " name="password_confirmacion" id="password_confirmacion" placeholder="Confirmación de contraseña" required>
+                            
                             <p id="password_confirmacion_info" class="text-danger" style="display: none">Las contraseñas no coinciden.</p>
                         </div>
+                        @error('password')
+                                <div class="alert alert-danger mt-1 mb-5">{{ $message }}</div>
+                        @enderror
+                        @error('password_confirmacion')
+                            <div class="alert alert-danger mt-1 mb-5">{{ $message }}</div>
+                        @enderror
                     @endif
 
 
@@ -674,7 +677,7 @@
         
 
         //funcion que valida que los password coincidan, si no coincide pone el borde en rojo, el fondo en rojo e informa que los password no coinciden
-        $('#password_confirmacion').keyup(function(){
+        $('.password_confirmacion').keyup(function(){
             if( $('#password').val() != $('#password_confirmacion').val() ){
                 $('#password_confirmacion').css('border', '1px solid red');
                 $('#password_confirmacion').css('background', '#f2dede');
@@ -711,7 +714,8 @@
                 //el input nombre no puede estar vacio y debe tener mas de 5 caracteres
                 document.getElementById("nombre").value != '' && 
                 document.getElementById("password").value != '' &&
-                document.getElementById("password").value == document.getElementById("password_confirmacion").value &&
+                document.getElementById("password_confirmacion").value != '' &&
+                /*document.getElementById("password").value == document.getElementById("password_confirmacion").value &&*/
                 document.getElementById("direccion_de_entrega").value != '' &&  
                 document.getElementById("telefono").value != '' && 
                 //document.getElementById("fecha_de_nacimiento").value != '' &&  
