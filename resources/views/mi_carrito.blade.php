@@ -319,7 +319,7 @@
 									<!--input para el nombre-->
 									<div class="form-group mb-3">
 										<label for="nombre">Nombre</label>
-										<input required type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}">
+										<input required type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}" min="6" max="100" title="el nombre debe ser mayor a 6 caracteres">
 										@error('nombre')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
@@ -337,7 +337,7 @@
 									<!--input para el documento_de_identidad-->
 									<div class="form-group mb-3 ocultar_al_retirar_en_planta">
 										<label for="documento_de_identidad">Documento de identidad </label>
-										<input required pattern="[0-9]{7,8}" title="Ingresa los números sin puntos ni guiones" style="width: 100%;" type="text" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" {{--min="1000000" max="999999999"--}}>
+										<input required pattern="\d{7,9}" title="Ingresa los números sin puntos ni guiones" style="width: 100%;" type="text" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" {{--min="1000000" {{--max="999999999"--}}>
 										@error('documento_de_identidad')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
@@ -346,7 +346,7 @@
 									<!--input para el telefono-->
 									<div class="form-group mb-3">
 										<label for="telefono">Teléfono</label>
-										<input required pattern="[0-9]{8,9}" style="width: 100%;" type="text" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" title="Número de teléfono inválido" {{--min="1000000" max="99999999"--}}>
+										<input required pattern="\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" style="width: 100%;" type="text" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" title="Número de teléfono inválido" min="8" {{--max="99999999"--}}>
 										@error('telefono')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
@@ -430,8 +430,8 @@
 										if(
 											document.getElementById("nombre").value != '' &&
 											document.getElementById("email").value != '' &&
-											document.getElementById("documento_de_identidad").value >= 1000000 &&  
-											document.getElementById("telefono").value >= 1000000  &&  
+											document.getElementById("documento_de_identidad").value != '' &&  
+											document.getElementById("telefono").value != ''  &&  
 											document.getElementById("direccion").value != '' && 
 											document.getElementById("localidad").value != '' && 
 											document.getElementById("terminos_y_condiciones").checked
