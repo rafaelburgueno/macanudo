@@ -93,6 +93,7 @@ class PedidoNotificationCliente extends Notification
                     
                     ->action('Podés cancelar el pedido hasta 5 días antes de la entrega, haciendo click acá.', url(URL::signedRoute('confirmar_cancelacion_de_pedido', ['pedido' => $pedido->id])))
                     //->action('Si querés cancelar tu pedido, podés hacerlo hasta 5 dias antes de la entrega, haciendo click acá', url('/'))
+                    //->line('Podés cancelar el pedido hasta 5 días antes de la entrega, haciendo click <a target="_blank" href="'. url(URL::signedRoute('confirmar_cancelacion_de_pedido', ['pedido' => $pedido->id])) .'">acá.</a>');
 
                     ->line('Muchas gracias por tu compra.');
     }

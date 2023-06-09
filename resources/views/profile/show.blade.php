@@ -128,28 +128,36 @@
                                 </div>
                                 <div id="collapse-{{$pedido->id}}" class="collapse showw" aria-labelledby="compra-{{$pedido->id}}" data-parent="#accordion-mis-compras">
                                     <div class="card-body">
-                                        @if($pedido->tipo == 'club del queso')
+                                        {{--@if($pedido->tipo == 'club del queso')
                                         <p><strong>El pedido corresponde a tu suscripción al Club del queso </strong></p>
                                         @endif
-                                        {{--<p><strong>Tipo de pedido: </strong>{{$pedido->tipo}}</p>--}}
-                                        <p><strong>Estado del pedido: </strong>{{$pedido->status}}</p>
-                                        <p><strong>Estado del pago: </strong>{{$pedido->estado_del_pago}}</p>
-                                        <p><strong>Medio de pago: </strong>{{$pedido->medio_de_pago}}</p>
-                                        <p><strong>Número de factura: </strong>{{$pedido->numero_de_factura}}</p>
-                                        <p><strong>Fecha: </strong>{{$pedido->created_at}}</p>
-                                        
-                                        @if(count($pedido->productos))
-                                        <p><strong>Productos: </strong> </p>   
-                                        <ul class="py-0 mt-0 mb-3 pl-3">
-                                            @foreach($pedido->productos as $producto)
-                                            <li class="py-0 my-0"><small>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</small></li>
-                                            @endforeach
-                                        </ul>
-                                        @else
-                                        <p><strong>Productos: </strong> No hay productos en este pedido</p>
-                                        @endif
-                                        
 
+                                        <h3 class="h6 font-medium text-gray-900">Pedido id: {{$pedido->id}}</h3>
+                                        <p class="mt-1 text-sm text-gray-600">Monto: $ {{$pedido->monto}}</p>
+                                        <p class="mt-1 text-sm text-gray-600">Estado del pedido: {{$pedido->status}}</p>
+                                        <p class="mt-1 text-sm text-gray-600">Estado del pago: {{$pedido->estado_del_pago}}</p>
+                                        <p class="mt-1 text-sm text-gray-600">Medio de pago: {{$pedido->medio_de_pago}}</p>
+                                        <p class="mt-1 text-sm text-gray-600">Número de factura: {{$pedido->numero_de_factura}}</p>
+                                        <p class="mt-1 text-sm text-gray-600">Fecha: {{$pedido->created_at}}</p>
+
+                                        @if(count($pedido->productos))
+                                            <h4 class="h6 font-medium text-gray-900 mt-3">Productos: </h4>   
+                                            <ul class="py-0 mt-0 mb-3 pl-3">
+                                                @foreach($pedido->productos as $producto)
+                                                <li class="py-0 my-0"><small>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</small></li>
+                                                @endforeach
+                                            </ul>
+                                        @else
+                                            <p class="mt-1 text-sm text-gray-600 mt-3"><strong>Todavia no hay productos en este pedido</strong></p>
+                                        @endif--}}
+
+
+                                        {{-- EDITAR PEDIDO LIVEWIRE --}}
+                                        {{--@if($pedido->status == 'pedido')--}}
+                                            @livewire('mi-perfil-editar-pedido', ['pedido' => $pedido])
+                                        {{--@endif--}}
+                                        
+                                        
                                     </div>
                                     
                                 </div>
