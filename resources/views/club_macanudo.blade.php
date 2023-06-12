@@ -7,11 +7,29 @@
 @section('content')
 
 
+<!--logo-->
+{{--<div class="row d-flex">
+    <div class="col-sm-4 d-flex flex-column"></div>
+    <div class="col-sm-4 d-flex flex-column align-items-center">
+        <a href="#" class="">
+            <img src="{{asset('/storage/img/Logo Club del Queso.png')}}" class="img-fluid"
+                style="display: block;margin-left: auto;margin-right: auto;" width="100%">
+        </a>
+    </div>
+    <div class="col-sm-4 d-flex flex-column align-items-end"></div>
+</div>--}}
+<div class="container-fluid text-center">
+    <img src="{{asset('/storage/img/Logo Club del Queso.png')}}" class="img-fluid mx-auto">
+</div>
+<br>
+{{--
 <div>
     <br>
     <img src="{{asset('/storage/img/club-macanudo.png')}}" class="nav d-block w-100" alt="Imagen con productos de Macanudo, con el sobreimpreso '¿Te encanta Macanudo?'">
     <br><br>
 </div>
+--}}
+
 
 
 
@@ -21,7 +39,7 @@
             <h1 class="text-center text-shadow" style="color: var(--gris);">
                 ¡Tenemos una canasta especial para ti!
                 <br> 
-                <img src="{{asset('/storage/img/canasta.png')}}" width="25%" alt="Ilustración de una canasta con productos de Macanudo">
+                {{--<img src="{{asset('/storage/img/canasta.png')}}" width="25%" alt="Ilustración de una canasta con productos de Macanudo">--}}
             </h1>
             <br>
         </div>
@@ -190,78 +208,50 @@
 
 
 
-{{--
+<!-- tarjetas con precios -->
 <div class="container-fluid ">
 
     <div class="row text-center">
         <div class="col-sm-2 mt-3"></div><br>
-        <div class="col-sm-4  mt-3 border-bottom border-light text-light">
-            <h1 class="text-center  scroll-content fadeLeft" style=" color: var(--rojo) ;">
-                Canasta<br>3 quesos</h1>
-            <img src="{{asset('/storage/img/canasta.png')}}" width="60%">
-            <p>aca va una caracteristica </p>
-            <p>aca va otra</p>
-            <p>aca va otra</p>
-            <h4 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
-                con 15% de descuento</h4>
-            <h1 class="text-center" style=" color: var(--rojo) ;">
-                $969 x mes</h1><span class="border-bottom"></span>
-
-        </div><br>
-        <div class="col-sm-4  mt-3 border-bottom border-light text-light">
-            <h1 class="text-center  scroll-content fadeLeft" style=" color: var(--lila) ;">
-                Canasta<br> 5 quesos</h1>
-            <img src="{{asset('/storage/img/canasta.png')}}" width="60%">
-            <p>aca va una caracteristica </p>
-            <p>aca va otra</p>
-            <p>aca va otra</p>
-            <h4 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
-                con 18% de descuento</h4>
-            <h1 class="text-center" style=" color: var(--lila) ;">
-                $1599 x mes</h1><span class=""></span>
+        <div class="col-sm-4  mt-3 border border-5 border-light text-light d-flex flex-column">
+            <h2 class="scroll-content fadeLeft mt-3">CANASTA 3 QUESOS</h2>
+            <br>
+            <h4>* 1 Untable</h4>
+            <h4>* 1 productos Linea Siempre</h4>
+            <h4>* 1 novedad</h4>
+            
+            <div class="text-center mt-auto">
+                <img src="{{asset('/storage/img/descuento15.png')}}" width="30%" class="">
+                
+                <h3 class="" style=" color: var(--blanco); background-color: transparent;text-shadow: 0.3px 0.3px #e5e6e1 ;  font-size:1.5cm ;">
+                    $969
+                </h3>
+            </div>
+            <span class=""></span>
+        </div>
+        <br>
+        <div class="col-sm-4  mt-3 border border-5 border-light text-light d-flex flex-column">
+            <h2 class="scroll-content fadeLeft mt-3">CANASTA 5 QUESOS</h2>
+            <br>
+            <h4>* 1 Untable</h4>
+            <h4>* 2 productos Linea Siempre</h4>
+            <h4>* 1 producto Linea Premium</h4>
+            <h4>* 1 novedad</h4>
+            
+            <div class="text-center mt-auto">
+                <img src="{{asset('/storage/img/descuento18.png')}}" width="30%" class="">
+                
+                <h3 class="" style="color: var(--blanco); background-color: transparent;text-shadow: 0.3px 0.3px #e5e6e1 ;  font-size:1.5cm ;">
+                    $1599
+                </h3>
+            </div>
+            <span class=""></span>
 
         </div><br>
         <div class="col-sm-2 mt-3"></div><br>
 
     </div><br><br><br>
 </div>
-
-<div class="container-fluid">
-
-    <div class="row text-center">
-        <div class="col-sm-2 mt-3"></div><br>
-        <div class="col-sm-4  mt-3  mr-1 text-light  border border-2 border-light">
-            <h1 class="text-center  scroll-content fadeLeft" style=" color: var(--rojo) ;">
-                Canasta<br>3 quesos</h1><br>
-            <img src="{{asset('/storage/img/tabla_con_quesos.jpeg')}}" width="60%">
-            <p>un queso roque</p>
-            <p>aca va otra</p>
-            <p>aca va otra</p>
-            <h4 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
-                con 15% de descuento</h4>
-            <h1 class="text-center" style=" color: var(--rojo) ;">
-                $969</h1>
-        </div><br>
-        <div class="col-sm-4  mt-3 mr-1 text-light  border border-2 border-lila">
-            <h1 class="text-center  scroll-content fadeLeft" style=" color: var(--lila) ;">
-                Canasta<br> 5 quesos</h1><br>
-            <img src="{{asset('/storage/img/tabla_con_quesos.jpeg')}}" width="60%">
-            <p>aca va una caracteristica </p>
-            <p>aca va otra</p>
-            <p>aca va otra</p>
-            <h4 class="text-center  scroll-content fadeLeft" style="line-height:50px; color: var(--amarillo) ;">
-                con 18% de descuento</h4>
-            <h1 class="text-center" style=" color: var(--lila) ;">
-                $1599 x mes</h1>
-        </div><br>
-        <div class="col-sm-2 mt-3"></div><br>
-
-    </div>
-</div>
-<br><br>--}}
-
-
-
 
 
 
@@ -280,7 +270,7 @@
         </div>
     </div>
 </div>
-
+<br>
 
 
 <!--METODO DE PAGOS METODO DE PAGOS METODO DE PAGOS METODO DE PAGOS-->
@@ -295,15 +285,15 @@
 
     <div class="row text-center">
         <div class="col-sm-3"></div>
-        <div class="col-sm-2  text-center">
+        <div class="col-sm-2 text-center">
             <img src="{{asset('/storage/img/mercadopago-icon.png')}}" max-width="60%">
         </div>
         <div class="col-sm-2 text-center">
-            <img src="{{asset('/storage/img/transf.png')}}" max-width="60%">
+            <img src="{{asset('/storage/img/tranferencia.png')}}" max-width="60%">
         </div>
 
         <div class="col-sm-2 text-center">
-            <img src="{{asset('/storage/img/efect (1).png')}}" max-width="60%">
+            <img src="{{asset('/storage/img/efectivo.png')}}" max-width="60%">
         </div>
         <div class="col-sm-3"></div>
 
@@ -316,9 +306,10 @@
 <div class="ml-0 mt-0 mr-0 mb-0 container-fluid">
     <h3 class="text-center btn-blanco negro">
         <a class="" data-toggle="modal" data-target="#politicas_envio">
-            la suscripción podrá cancelarse en cualquier momento
+        Podés cancelar tu suscripción hasta 5 días antes de tu próximo entrega.
         </a>
-    </h3><br>
+    </h3>
+    <br>
 </div>
 
 
@@ -326,12 +317,13 @@
 <!--terminos y condiciones-->
 <div class="mt-1 mr-0 mb-5 ml-0 container-fluid">
     <div class="row">
-
         <div class="col text-center">
-            <h5><a href="" class="" data-toggle="modal" data-target="#modal_terminos_y_condiciones_del_club">Leer términos y condiciones del
-                    Club Macanudo</a></h5>
+            <h5>
+                <a href="" class="" data-toggle="modal" data-target="#modal_terminos_y_condiciones_del_club">
+                    Leer términos y condiciones del Club del queso
+                </a>
+            </h5>
             <br>
-
         </div>
     </div>
 </div>

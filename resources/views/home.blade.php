@@ -16,7 +16,7 @@
         <div class="col m-0 p-0">
             <img src="{{asset('/storage/img/index.b.jpeg')}}" class="nav d-block w-100 m-0" alt="Imagen de diferentes tipos de productos de Macanudo, con el sobreimpreso '¿Querés conocer algo mejor que el queso?'">
             <p class="abajo-centrado">
-                <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('nuestros_productos')}}">
+                <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('nuestros_productos')}}" style="font-size: 1.28em">
                     Ver productos
                 </a>
         </div>
@@ -47,7 +47,7 @@
         <div class="col m-0 p-0">
             <img src="{{asset('/storage/img/index.2b.jpeg')}}" class="nav d-block w-100" alt="Imagen con productos de Macanudo, con el sobreimpreso 'A base de plantas, deliciosos y saludables'">
             <p class="abajo-centrado">
-                <a href="{{route('blog.index')}}" class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('blog.index')}}">Ver proceso</a>
+                <a href="{{route('blog.index')}}" class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('blog.index')}}" style="font-size: 1.28em">Ver proceso</a>
             </p>
         </div>
     </div>
@@ -113,12 +113,12 @@
     </div><br>
 </div><br>
 
-<div class="mt-0 mr-0 mb-3  ml-0 contenedor">
+<div class="mt-0 mr-0 mb-5 ml-0 contenedor">
     <div class="row m-0 p-0">
         <div class="col m-0 p-0">
             <img src="{{asset('/storage/img/index.3b.jpeg')}}" class="nav d-block w-100" alt="Imagen con productos de Macanudo, con el sobreimpreso '100% lleno de amor al planeta'">
             <p class="abajo-centrado">
-                <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('blog.index')}}">
+                <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('blog.index')}}" style="font-size: 1.28em">
                     Ver beneficios
                 </a>
             </p>
@@ -146,7 +146,7 @@
         <div class="col m-0 p-0">
             <img src="{{asset('/storage/img/index.4b.jpeg')}}" class="nav d-block w-100" alt="Imagen con productos de Macanudo, con el sobreimpreso 'Elaborados con empatía y artesanalmente'">
             <p class="abajo-centrado"><a class="btn1 btn-lg shadown btn-blanco negro" type="button"
-                    href="{{route('nosotros')}}">Nosotros</a>
+                    href="{{route('nosotros')}}" style="font-size: 1.28em">Nosotros</a>
         </div>
     </div>
 </div>
@@ -167,20 +167,21 @@
     </div>
 </div>
 
+<!--AL CLUB MACANUDO-->
 <img src="{{asset('/storage/img/club-macanudo.png')}}" class="nav d-block w-100" alt="Imagen con productos de Macanudo, con el sobreimpreso '¿Te encanta Macanudo?'">
 
-
-<div class="mt-2 mr-0 mb-5 ml-0 container-fluid">
+<div class="mt-5 mr-0 mb-5 ml-0 container-fluid">
     <div class="row">
         <div class="col text-center">
-            <a href="{{route('club_macanudo')}}" class=" btn1 btn-club mt-5">
+            <a href="{{route('club_macanudo')}}" class=" btn1 btn-club ">
                 Sé parte de nuestro club
             </a>
         </div>
     </div>
 </div>
+<br>
 
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-sm-6">
             <h4 class="text-center gris mb-3 mt-0">Mapa de los puntos de Venta</h4>
@@ -232,6 +233,22 @@
 </div>
 <br><br>
 <hr>
+
+
+
+<!--video---video---video---video---video---video---video---video----->
+<div class="container">
+    <div class="row">
+        <div class="col-sm video-responsive">
+            <iframe width="560" height="400"  src="https://www.youtube.com/embed/WjcVMlPjK0E"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</div><br><br>
+
+
 
 <!--slider---slider---slider---slider---slider---slider---slider---slider----->
 <div class="contenedorr mt-3 mb-5 m-0 p-0">
