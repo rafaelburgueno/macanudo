@@ -470,7 +470,9 @@
                     <!-- Teléfono -->
                     <div class="form-group mb-4">    
                         <label for="telefono" class="negro">Teléfono <small>(Obligatorio)</small>: </label>
-                        <input value="{{old('telefono')}}" type="text" pattern="\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="Número de teléfono inválido" required>
+                        {{--<input value="{{old('telefono')}}" type="text" pattern="\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="Número de teléfono inválido" required min="7" max="15">--}}
+                        <input value="{{old('telefono')}}" type="text" pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="Número de teléfono inválido" required>
+
                         @error('telefono')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
@@ -701,20 +703,27 @@
 
         $('.btn-procesando').click(function(){
             if( 
-                //document.getElementById("nombre").value != '' &&
-                //document.getElementById("email").value != '' &&
                 //el input nombre no puede estar vacio y debe tener mas de 5 caracteres
-                document.getElementById("nombre").value != '' && 
-                document.getElementById("password").value != '' &&
-                document.getElementById("password_confirmacion").value != '' &&
+                //document.getElementById("nombre").value != '' && 
+                //document.getElementById("nombre").value.length > 5 &&
+                document.getElementById("nombre").validity.valid && 
+                document.getElementById("email").validity.valid &&
+                document.getElementById("telefono").validity.valid &&
+                document.getElementById("direccion_de_entrega").validity.valid && 
+                document.getElementById("dia_de_entrega").validity.valid &&
+                document.querySelector('input[name="cantidad_de_quesos"]').validity.valid &&
+                document.getElementById("password").validity.valid &&
+                document.getElementById("password_confirmacion").validity.valid &&
+                document.getElementById("password").value == document.getElementById("password_confirmacion").value &&
+
+                //document.getElementById("password").value != '' &&
+                //document.getElementById("password_confirmacion").value != '' &&
                 /*document.getElementById("password").value == document.getElementById("password_confirmacion").value &&*/
-                document.getElementById("direccion_de_entrega").value != '' &&  
-                document.getElementById("telefono").value != '' && 
-                //document.getElementById("fecha_de_nacimiento").value != '' &&  
-                //document.getElementById("ingedientes_que_no_consumo").value != '' &&  
+                //document.getElementById("direccion_de_entrega").value != '' &&  
+                //document.getElementById("telefono").value != '' && 
                 // TODO: document.getElementById("cantidad_de_quesos").value != '' &&  
-                document.querySelector('input[name="cantidad_de_quesos"]').checked != false &&
-                document.getElementById("dia_de_entrega").value != '' &&
+                //document.querySelector('input[name="cantidad_de_quesos"]').checked != false &&
+                //document.getElementById("dia_de_entrega").value != '' &&
                 //document.getElementById("cantidad_de_canastas").value != '' &&  
                 //document.getElementById("fecha_de_inicio").value != '' &&  
                 //document.getElementById("fecha_de_renovacion").value != ''
@@ -725,7 +734,7 @@
                 Swal.fire({
                 title: 'Procesando',
                 html: 'Por favor espere.',
-                //timer: 10000,
+                timer: 18000,
                 timerProgressBar: true,
                 didOpen: () => {
                     Swal.showLoading()

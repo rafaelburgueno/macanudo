@@ -46,7 +46,7 @@ class SuscripcionController extends Controller
             'email' => 'required|email|has_no_subscription',
             'password' => 'required|same:password_confirmacion',
             'direccion_de_entrega' => 'required',
-            'telefono' => 'required',
+            'telefono' => 'required|min:8',
             'fecha_de_nacimiento' => 'nullable',
             'ingredientes_que_no_consumo' => 'nullable',
             'cantidad_de_quesos' => 'required',

@@ -318,7 +318,7 @@
 
 									<!--input para el nombre-->
 									<div class="form-group mb-3">
-										<label for="nombre">Nombre</label>
+										<label for="nombre">Nombre completo</label>
 										<input required type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}" min="6" max="100" title="el nombre debe ser mayor a 6 caracteres">
 										@error('nombre')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
