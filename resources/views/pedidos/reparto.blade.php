@@ -51,10 +51,14 @@
 				@foreach ($pedidos as $pedido)
                     @if($pedido->estado_del_pago == 'pagado')
 					<tr id="tr-{{$pedido->id}}" style="background-color:#beffbe;">
+                    @elseif($pedido->suscripcion_id)
+                    <tr style="background-color: var(--lila);">
                     @elseif($pedido->estado_del_pago == 'pendiente')
 					<tr id="tr-{{$pedido->id}}" style="background-color:#ffd4db;">
                     {{--@elseif($pedido->estado_del_pago == 'pagar al retirar')
 					<tr id="tr-{{$pedido->id}}" style="background-color:#f8ff92;">--}}
+                    {{--TODO: los pedidos del club del queso con otro color --}}
+                    
                     @else
                     <tr id="tr-{{$pedido->id}}">
                     @endif

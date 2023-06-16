@@ -125,15 +125,15 @@
 <!--METODO DE PAGOS - METODO DE PAGOS - METODO DE PAGOS - METODO DE PAGOS-->
 <div class="container-fluid">
     <div class="row text-center">
-        <div class="col-sm-3"></div>
+        <div class="col-sm-3"> </div>
         <div class="col-sm-2 mt-3  mr-1 text-light">
-            <img src="{{asset('/storage/img/mercadopago-icon.png')}}" width="60%">
+            <img src="{{asset('/storage/img/mercadopago-icon.png')}}" max-width="60%">
         </div>
         <div class="col-sm-2 mt-3 mr-1 text-light">
-            <img src="{{asset('/storage/img/tranferencia.png')}}" width="60%">
+            <img src="{{asset('/storage/img/tranferencia.png')}}" max-width="60%">
         </div>
         <div class="col-sm-2 mt-3 mr-1 text-light">
-            <img src="{{asset('/storage/img/efectivo.png')}}" width="60%">
+            <img src="{{asset('/storage/img/efectivo.png')}}" max-width="60%">
         </div>
         <div class="col-sm3"></div>
     </div>

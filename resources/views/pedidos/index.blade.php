@@ -61,7 +61,7 @@
 				@foreach ($pedidos as $pedido)
                     @if($pedido->estado_del_pago == 'pagado')
 					<tr style="background-color:#beffbe;">
-                    @elseif($pedido->status == 'cancelado')
+                    @elseif($pedido->status == 'cancelado' || $pedido->status == 'verificado')
                     <tr style="background-color: var(--gris-oscuro);color: var(--blanco);">
                     @elseif($pedido->estado_del_pago == 'pendiente')
 					<tr style="background-color:#ffd4db;">

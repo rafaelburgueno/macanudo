@@ -286,14 +286,14 @@
     <div class="row text-center">
         <div class="col-sm-3"></div>
         <div class="col-sm-2 text-center">
-            <img src="{{asset('/storage/img/mercadopago-icon.png')}}" max-width="60%">
+            <img src="{{asset('/storage/img/mercadopago-icon.png')}}" max-width="50%">
         </div>
         <div class="col-sm-2 text-center">
-            <img src="{{asset('/storage/img/tranferencia.png')}}" max-width="60%">
+            <img src="{{asset('/storage/img/tranferencia.png')}}" max-width="50%">
         </div>
 
         <div class="col-sm-2 text-center">
-            <img src="{{asset('/storage/img/efectivo.png')}}" max-width="60%">
+            <img src="{{asset('/storage/img/efectivo.png')}}" max-width="50%">
         </div>
         <div class="col-sm-3"></div>
 
