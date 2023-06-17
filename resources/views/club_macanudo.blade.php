@@ -286,14 +286,14 @@
     <div class="row text-center">
         <div class="col-sm-3"></div>
         <div class="col-sm-2 text-center">
-            <img src="{{asset('/storage/img/mercadopago-icon.png')}}" max-width="50%">
+            <img src="{{asset('/storage/img/mercadopago-icon.png')}}" max-width="60%">
         </div>
         <div class="col-sm-2 text-center">
-            <img src="{{asset('/storage/img/tranferencia.png')}}" max-width="50%">
+            <img src="{{asset('/storage/img/tranferencia.png')}}" max-width="60%">
         </div>
 
         <div class="col-sm-2 text-center">
-            <img src="{{asset('/storage/img/efectivo.png')}}" max-width="50%">
+            <img src="{{asset('/storage/img/efectivo.png')}}" max-width="60%">
         </div>
         <div class="col-sm-3"></div>
 
@@ -428,8 +428,8 @@
                         @if( Auth::check() )
                             <input type="hidden" name="nombre" id="nombre" value="{{Auth::user()->name}}">
                         @else
-                            <label for="nombre" class="negro">Nombre <small>(El campo es obligatorio y debe contener al menos 6 caracteres)</small>: </label>
-                            <input value="{{old('nombre')}}" type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" required min="6" max="100" title="Por favor ingresa un nombre con al menos 6 caracteres">
+                            <label for="nombre" class="negro">Nombre y apellido <small>(Obligatorio)</small>: </label>
+                            <input value="{{old('nombre')}}" type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" name="nombre" id="nombre" placeholder="..." required min="6" max="100" title="Por favor ingresa un nombre y apellido, al menos 6 caracteres">
                         @endif
                         @error('nombre')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -445,7 +445,7 @@
                             <input type="hidden" class="form-control" name="email" id="email" value="{{Auth::user()->email}}">
                         @else
                             <label for="email" class="negro">Email <small>(Obligatorio)</small>: </label>
-                            <input value="{{old('email')}}" type="email" class="form-control" name="email" id="email" placeholder="Ingrese su email" required>
+                            <input value="{{old('email')}}" type="email" class="form-control" name="email" id="email" placeholder="..." required>
                         @endif
                         @error('email')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -470,9 +470,7 @@
                     <!-- Teléfono -->
                     <div class="form-group mb-4">    
                         <label for="telefono" class="negro">Teléfono <small>(Obligatorio)</small>: </label>
-                        {{--<input value="{{old('telefono')}}" type="text" pattern="\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="Número de teléfono inválido" required min="7" max="15">--}}
-                        <input value="{{old('telefono')}}" type="text" pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="Número de teléfono inválido" required>
-
+                        <input value="{{old('telefono')}}" type="text" pattern="\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="..." title="Número de teléfono inválido" required>
                         @error('telefono')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
@@ -482,7 +480,7 @@
                     <div class="form-group mb-4">
                         <label for="direccion_de_entrega" class="negro">Dirección de entrega <small>(Obligatorio)</small>: </label>
                         {{--<input type="text" class="form-control" id="direccion_de_entrega" name="direccion_de_entrega" placeholder="Ingrese su dirección" required>--}}
-                        <textarea required class="form-control" id="direccion_de_entrega" name="direccion_de_entrega" rows="3" placeholder="Ingrese su dirección">{{old('direccion_de_entrega')}}</textarea>
+                        <textarea required class="form-control" id="direccion_de_entrega" name="direccion_de_entrega" rows="3" placeholder="...">{{old('direccion_de_entrega')}}</textarea>
                         @error('direccion_de_entrega')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
@@ -703,27 +701,21 @@
 
         $('.btn-procesando').click(function(){
             if( 
+                //document.getElementById("nombre").value != '' &&
+                //document.getElementById("email").value != '' &&
                 //el input nombre no puede estar vacio y debe tener mas de 5 caracteres
-                //document.getElementById("nombre").value != '' && 
-                //document.getElementById("nombre").value.length > 5 &&
-                document.getElementById("nombre").validity.valid && 
-                document.getElementById("email").validity.valid &&
-                document.getElementById("telefono").validity.valid &&
-                document.getElementById("direccion_de_entrega").validity.valid && 
-                document.getElementById("dia_de_entrega").validity.valid &&
-                document.querySelector('input[name="cantidad_de_quesos"]').validity.valid &&
-                document.getElementById("password").validity.valid &&
-                document.getElementById("password_confirmacion").validity.valid &&
-                document.getElementById("password").value == document.getElementById("password_confirmacion").value &&
-
-                //document.getElementById("password").value != '' &&
-                //document.getElementById("password_confirmacion").value != '' &&
+                document.getElementById("nombre").value != '' && 
+                document.getElementById("nombre").value.length > 5 &&
+                document.getElementById("password").value != '' &&
+                document.getElementById("password_confirmacion").value != '' &&
                 /*document.getElementById("password").value == document.getElementById("password_confirmacion").value &&*/
-                //document.getElementById("direccion_de_entrega").value != '' &&  
-                //document.getElementById("telefono").value != '' && 
+                document.getElementById("direccion_de_entrega").value != '' &&  
+                document.getElementById("telefono").value != '' && 
+                //document.getElementById("fecha_de_nacimiento").value != '' &&  
+                //document.getElementById("ingedientes_que_no_consumo").value != '' &&  
                 // TODO: document.getElementById("cantidad_de_quesos").value != '' &&  
-                //document.querySelector('input[name="cantidad_de_quesos"]').checked != false &&
-                //document.getElementById("dia_de_entrega").value != '' &&
+                document.querySelector('input[name="cantidad_de_quesos"]').checked != false &&
+                document.getElementById("dia_de_entrega").value != '' &&
                 //document.getElementById("cantidad_de_canastas").value != '' &&  
                 //document.getElementById("fecha_de_inicio").value != '' &&  
                 //document.getElementById("fecha_de_renovacion").value != ''
@@ -734,7 +726,7 @@
                 Swal.fire({
                 title: 'Procesando',
                 html: 'Por favor espere.',
-                timer: 18000,
+                //timer: 10000,
                 timerProgressBar: true,
                 didOpen: () => {
                     Swal.showLoading()

@@ -236,4 +236,36 @@ class Pedido extends Model
 
 
 
+    /* Metodo que actualiza el monto del pedido, teniendo en cuenta los roductos y las canastas, si el pedido tiene productos y canastas debera sumar el precio de todos para calcular el monto. ademas debera sumar el valor del costo de envio */
+    public function actualizarMonto(){
+
+        $monto = 0;
+
+        $productos_comprados = DB::table('pedido_producto')->where('pedido_id', $this->id)->get();
+        
+        foreach($productos_comprados as $producto_comprado){
+            $producto = Producto::find($producto_comprado->producto_id);
+            $monto += $producto->precio * $producto_comprado->unidades;
+        }
+
+        if($this->canasta_id){
+            $canasta = Canasta::find($this->canasta_id);
+            $monto += $canasta->precio;
+        }
+
+        // el siguiente bloque consulta si hay un costo_de_envio_id, si lo hay, busca el costo de envio y lo suma al monto
+        if($this->costo_de_envio_id){
+            $costo_de_envio = Costo_de_envio::find($this->costo_de_envio_id);
+            $monto += $costo_de_envio->costo_de_envio;
+        }
+
+        $this->monto = $monto;
+        $this->save();
+
+    }
+    
+
+
+
+
 }

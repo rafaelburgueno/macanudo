@@ -31,17 +31,17 @@ class PedidoController extends Controller
 
 
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /************************************
+    * Muestra la tabla de pedidos
+    *
+    * @return \Illuminate\Http\Response
+    ************************************/
     public function index()
     {
 
+
         // el siguiente bloque de codigo es una prueba del algoritmo para generar un nuevo pedido 
         // automaticamente cuando se cumple un mes de la fecha de creacion del ultimo pedido
-        
         //##########################################################
         /* seudo codigo: 
         paso 1- traer pedidos->tipo == 'club del queso'
@@ -100,9 +100,9 @@ class PedidoController extends Controller
             ->queue(new PedidosMail($nuevo_pedido));
 
         }*/
-
         //#########################################################
         
+
         // ********************************
         $pedidos = Pedido::get(); //esta linea tiene que ser descomentada despues de hacer el algoritmo para traer pedidos de un mes atras
         // ********************************
@@ -133,11 +133,11 @@ class PedidoController extends Controller
 
 
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /************************************
+    * Muestra la tabla del reparto
+    *
+    * @return \Illuminate\Http\Response
+    ************************************/
     public function reparto()
     {
         
@@ -168,12 +168,12 @@ class PedidoController extends Controller
 
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreProductoRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+    /*************************************************************
+    * Guarda un nuevo pedido en la base de datos.
+    *
+    * @param  \App\Http\Requests\StoreProductoRequest  $request
+    * @return \Illuminate\Http\Response
+    *************************************************************/
     public function store(Request $request)
     {
         //return $request->all();
@@ -319,12 +319,12 @@ class PedidoController extends Controller
 
 
 
-    /**
-     * Show the form for editing the specified resource.
+    /***********************************************
+     * Muestra el formulario para editar el pedido.
      *
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
-     */
+     **********************************************/
     public function edit(Pedido $pedido)
     {
         $canastas = Canasta::where('activo', true)->get();
@@ -373,13 +373,13 @@ class PedidoController extends Controller
 
 
 
-     /**
-     * Update the specified resource in storage.
-     *
-     * @param  Illuminate\Http\Request  $request
-     * @param  \App\Models\Pedido  $pedido
-     * @return \Illuminate\Http\Response
-     */
+    /*******************************************
+    * Actualiza el pedido en la base de datos
+    *
+    * @param  Illuminate\Http\Request  $request
+    * @param  \App\Models\Pedido  $pedido
+    * @return \Illuminate\Http\Response
+    ********************************************/
     public function update(Request $request, Pedido $pedido)
     {
         //return $request->all();
@@ -399,10 +399,11 @@ class PedidoController extends Controller
             //'cupon_id' => 'nullable|numeric',
             'medio_de_pago' => 'nullable|max:50',
             'estado_del_pago' => 'nullable|max:50',
-            //'monto' => 'numeric',
+            'monto' => 'numeric',
             //'tipo_de_cliente' => 'nullable|max:50',
             'numero_de_factura' => 'nullable|numeric',
             'factura_dgi' => 'nullable|numeric|max:4294967294',
+            'enviar_email_al_usuario' => 'required|boolean',
             //'productos' => 'required',
             //'cantidades' => 'required',
         ]);
@@ -433,7 +434,7 @@ class PedidoController extends Controller
 
         $pedido->medio_de_pago = $request->medio_de_pago;
         $pedido->estado_del_pago = $request->estado_del_pago;
-        //$pedido->monto = $request->monto;
+        $pedido->monto = $request->monto;
         
         if($request->recibir_novedades){
             $pedido->recibir_novedades = true;
@@ -452,84 +453,22 @@ class PedidoController extends Controller
 
         //$pedido->recibir_novedades = $request->recibir_novedades;
 
+        
+        // ACÁ SE ACTUALIZA LA CANASTA DEL PEDIDO
         $pedido->canasta_id = $request->canasta_id;
-        // si el pedido es de tipo canasta, se asigna la canasta, se borran los productos y se emite una notificacion al cliente(email)
-        if($request->canasta_id && $pedido->status == 'pedido'){
-            $pedido->canasta_id = $request->canasta_id;
+        // si el pedido es de tipo canasta, se asigna la canasta, se borran los productos 
+        if($request->canasta_id ){
             // si no vienen productos desde el formulario se borran los productos del pedido
             if(!$request->productos){
                 $pedido->productos()->detach();
             }
-            
-            $pedido -> save();
-            
-            // Envia a pedro o a mi un email con el pedido
-            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-            ->queue(new PedidosMail($pedido));
-
-            try {
-                // Envia un email al cliente con el pedido // TODO:un try catch por si falla el envio de email
-                Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
-                //$user->notify(new SuscripcionNotification($suscripcion));
-                Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
-                session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente. Se envio un email con el detalle del pedido.');
-                return redirect() -> route('pedidos.index');
-            } catch (Exception $e) {
-                $error = $e->getMessage();
-                //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
-                session()->flash('error', 'Ha ocurrido un error con el email: '. $error);
-                return redirect() -> route('pedidos.index');
-            }
-
         }
 
 
-
-        $pedido -> save();
-        
-        //elimina los registros previos en la tabla pivot
-        //DB::table('pedido_producto')->where('pedido_id', $pedido->id)->delete();
-
-
-        /*
-        * Este es el algoritmo para crear los registros en la tabla pivote 'pedido_producto'
-        */
-
-        //$cantidades = $request->cantidades;
-        //elimina los valores que tienen "0"
-        //$cantidades = array_diff($cantidades, ["0"]);
-        
-        //$cant = [];
-        // esta linea corrije el defasaje de los index del array
-        //array_push($cant, array_values($cantidades));
-
-        //$updated_at = now();
-
-        /*foreach($request->productos as $key => $producto){
-
-            $cantidad_del_producto = (int)($cant[0][$key]);
-            //dd($cantidad_del_producto);
-
-            DB::table('pedido_producto')->insert([
-                'pedido_id' => $pedido->id,
-                'producto_id' => $producto,
-                'unidades' => $cantidad_del_producto,
-                'created_at' => $pedido->created_at,
-                'updated_at' => $updated_at,
-            ]);
-            //$article = Article::create(['title' => 'Traveling to Europe']);
-
-
-            //for($i = 1; $i <= $cantidad_del_producto; $i++){
-            //    array_push($productos_totales_del_pedido, $producto);
-            //}
-            //dd($productos_totales_del_pedido);
-        }*/
-
-        // si se editan los productos del pedido, se envian los emails
+        // ACA SE ACTUALIZAN LOS PRODUCTOS DEL PEDIDO
         if($request->productos){
 
-            // TODO: borrar los registros previos
+            // Borra los registros previos en la tabla 'pedido_producto'
             DB::table('pedido_producto')->where('pedido_id', $pedido->id)->delete();
 
             $cantidades = $request->cantidades;
@@ -550,48 +489,50 @@ class PedidoController extends Controller
                 
             } 
 
-
-            //TODO: si el status del pedido es distinto a 'entregado', se envia un email al usuario
-            if($pedido->status != 'entregado'){
-                
-                // Envia a pedro o a mi un email con el pedido
-                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-                ->queue(new PedidosMail($pedido));
-                
-
-                try {
-                    // Envia un email al cliente con el pedido // TODO:un try catch por si falla el envio de email
-                    Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
-                    //$user->notify(new SuscripcionNotification($suscripcion));
-                    Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
-                
-                } catch (Exception $e) {
-                    $error = $e->getMessage();
-                    //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
-                    session()->flash('error', 'Ha ocurrido un error con el email: '. $error);
-                    return redirect() -> route('pedidos.index');
-                }
-            }
-
-            
-            // llamaos al metodo que actualiza el stock
-            //$this->actualizarCuponYStock($pedido);
+            // llamamos al metodo que actualiza el stock
             $pedido->actualizarCuponYStock();
-
-            if($pedido->status != 'entregado'){
-                session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente. Se envio un email con el detalle del pedido.');
-            }else{
-                session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente.');
-            }
-            return redirect() -> route('pedidos.index');
-
-            /* Ha ocurrido un error con el email: Attempt to read property "dia_de_entrega" on null (View: /home/vagrant/code/macanudonoqueso/resources/views/emails/pedido_cliente_mail.blade.php) */
 
         }
 
+        // llama al metodo que actualiza el monto del pedido
+        $pedido->actualizarMonto();
 
-        session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente.');
+        // Finalmente guarda el pedido
+        $pedido -> save();
+
+
+    
+        /***********************************************************************************************/
+        /* este es el codigo que envia emails si se elije esa opcion en el formulario de editar pedido */
+        /***********************************************************************************************/
+        if($request->enviar_email_al_usuario){
+            try {
+
+                // Envia a Pedro o a mi un email con el pedido
+                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+                ->queue(new PedidosMail($pedido));
+                
+                // Envia el mismo email que va al cliente, a nuestra cuenta de registros
+                //Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido)); 
+                Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));
+                
+                // Envia el email al cliente
+                Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
+                session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente. Se enviaron emails con el detalle del pedido al cliente, a Pedro y al registro.');
+            
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+                //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
+                session()->flash('error', 'Ocurrió un error con el email: '. $error);
+                return redirect() -> route('pedidos.index');
+            }
+
+        }else{
+            session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente.');
+        }
+
         return redirect() -> route('pedidos.index');
+
     }
     // ************************************************************************************************************
 

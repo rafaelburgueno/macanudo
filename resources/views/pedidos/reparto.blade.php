@@ -83,20 +83,23 @@
                         <td>{{ $pedido->telefono }}</td>
                         <td><small>{{ $pedido->tipo }}</small></td>
                         <td>
-                            @if(isset($pedido->canasta_id))
-                                <small>Canasta ({{ $pedido->canasta->nombre }}):
-                                <ul>
-                                    @foreach($pedido->canasta->productos as $producto)
-                                        <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
-                                    @endforeach
-                                </ul></small>
-                            @elseif(count($pedido->productos))
-                                <small>Pedido:
-                                <ul>
-                                    @foreach($pedido->productos as $producto)
-                                        <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
-                                    @endforeach
-                                </ul></small>
+                            @if(count($pedido->productos) || isset($pedido->canasta_id))
+                                @if(isset($pedido->canasta_id))
+                                    <small>Canasta ({{ $pedido->canasta->nombre }}):
+                                    <ul>
+                                        @foreach($pedido->canasta->productos as $producto)
+                                            <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                        @endforeach
+                                    </ul></small>
+                                @endif
+                                @if(count($pedido->productos))
+                                    <small>Pedido:
+                                    <ul>
+                                        @foreach($pedido->productos as $producto)
+                                            <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
+                                        @endforeach
+                                    </ul></small>
+                                @endif
                             @else
                                 <div class="alert alert-warning m-1 p-1"><small>El pedido no tiene productos.</small></div>
                             @endif
@@ -136,6 +139,14 @@
                                     <!-- Botones para editar el pedido -->
                                     <!-- Botones para editar el pedido -->
                                     <hr>
+                                    <p>Dia de entrega 
+                                        @if($pedido->costo_de_envio_id)
+                                            <strong>{{ $pedido->costo_de_envio->dia_de_entrega }}</strong>
+                                        @endif
+                                        @if($pedido->suscripcion_id)
+                                            <strong>{{ $pedido->suscripcion->dia_de_entrega }}</strong>
+                                        @endif
+                                    </p>
                                     <p>Monto: <strong>{{ $pedido->monto }} $</strong></p>
                                     {{--<p>Status: <strong>{{ $pedido->status }}</strong></p>--}}
                                     <p>Medio de pago: <strong>{{ $pedido->medio_de_pago }}</strong></p>

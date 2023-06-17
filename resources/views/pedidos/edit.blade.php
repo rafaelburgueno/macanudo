@@ -24,6 +24,7 @@
                     <div class="col col-md-6">
 
                         
+                        
                         <div class="form-group mb-3">
                             <label for="status">Tipo</label>
                             <select disabled class="form-control" id="tipo" name="tipo">
@@ -122,11 +123,22 @@
                         </div>
 
 
+                        <!--input para el monto-->
+                        <div class="form-group mb-3">
+                            <label for="monto">Monto</label>
+                            <input type="number" class="form-control" id="monto" name="monto" placeholder="..." value="{{old('monto', $pedido->monto)}}" min="0" style="width: 100%;">
+                            @error('monto')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
                         @if($pedido->cupon_id)
                             <div class="form-group mb-3 border rounded border-light  p-2">
                                 <span>Cupon usado: "<strong class="">{{ $pedido->cupon->codigo }}</strong>" | id: {{$pedido->cupon_id}}</span>
                             </div>
                         @endif
+                        {{--TODO: deberia explicitar que no hay ningun cupon en este pedido --}}
 
                         {{--<div class="form-group mb-3">
                             <label for="status">Status</label>
@@ -284,7 +296,7 @@
                                 <!--input para cada canasta-->
                                 <div class="form-check my-3">
                                     <input type="radio" class="form-check-input" id="canasta_id" name="canasta_id" value="{{ $canasta->id }}" @checked(old('canasta_id', ($canasta->id == $pedido->canasta_id) )) style="transform: scale(1.5);">
-                                    <label class="form-check-label" for="canasta_id">{{ $canasta->nombre }}</label>
+                                    <label class="form-check-label" for="canasta_id">{{ $canasta->nombre }} <small>($ {{$canasta->precio}})</small></label>
                                 </div>
                             @endforeach
                             <hr class="bg-light">
@@ -337,7 +349,7 @@
 
                                     @foreach ($lista_de_productos as $producto)
                                         <tr>
-                                            <td><p class="m-0 p-0 pt-1">{{ $producto->nombre }}</p></td>
+                                            <td><p class="m-0 p-0 pt-1">{{ $producto->nombre }} <small>($ {{$producto->precio}})</small></p></td>
                                             <td><p class="m-0 p-0 pt-1" id="idicador_cantidad_{{ $producto->id }}">0</p></td><!--cantidad-->
                                             <td>
                                                 <button type="button" class="m-0 btn btn-sm btn-info" onclick="modificar_cantidad_producto({{ $producto->id }}, true)"><strong>+</strong></button>
@@ -384,8 +396,32 @@
 
                         </script>
 
+                        <!-- Checkbox para confirmar si se debe enviar un email al usuario -->
+                        <div class="form-group mb-3 border rounded border-light mt-5 p-2">
+                            <h4>Enviar email al usuario?</h4>
+                            <hr class="bg-light">
+                            <div class="form-check mb-3 mt-4">
+                                <div class="row"> 
+                                    <div class="col-6 text-center"> <!-- SI -->
+                                        <input type="radio" class="form-check-input" id="enviar_email_al_usuario_si" name="enviar_email_al_usuario" value="1" @checked(old('enviar_email_al_usuario')) style="transform: scale(1.5);">
+                                        <label class="form-check-label ml-2" for="enviar_email_al_usuario_si">SI</label>
+                                    </div>
+                                    
+                                    <div class="col-6 text-center"> <!-- NO -->
+                                        <input checked type="radio" class="form-check-input" id="enviar_email_al_usuario_no" name="enviar_email_al_usuario" value="0" @checked(old('enviar_email_al_usuario')) style="transform: scale(1.5);">
+                                        <label class="form-check-label ml-2" for="enviar_email_al_usuario_no">NO</label>
+                                    </div>
 
-
+                                </div>
+                            </div>
+                            {{--<div class="form-check mb-3">
+                                <input type="checkbox" class="form-check-input" id="enviar_email_al_usuario" name="enviar_email_al_usuario" value="1" @checked(old('enviar_email_al_usuario'))>
+                                <label class="form-check-label" for="enviar_email_al_usuario">SI</label>
+                                @error('enviar_email_al_usuario')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>--}}
+                        </div>
 
                             
                     </div>
