@@ -170,7 +170,7 @@ class Pedido extends Model
             if($producto->stock <= 5){
                 // Envia un email para avisar que queda poco stock
                 Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-                ->queue(new EmailDeStock($producto->nombre.' tiene '. $producto->stock .' unidades en stock.'));
+                ->queue(new EmailDeStock($producto->nombre.' tiene '. $producto->stock .' unidades en stock!'));
             }
 
 

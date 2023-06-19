@@ -33,7 +33,8 @@ class EmailDeStock extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Email De Stock',
+            //subject: 'Email De Stock',
+            subject: 'Stock | ' . $this->data,
         );
     }
 
