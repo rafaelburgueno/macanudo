@@ -30,26 +30,43 @@
                 </style>
                 <tr><td>Id: </td><td>{{$pedido->id}}</td></tr>
                 <tr><td>Status: </td><td>{{$pedido->status}}</td></tr>
-                <tr><td>Tipo_de_cliente: </td><td>{{$pedido->tipo_de_cliente}}</td></tr>
+                <tr><td>Tipo de cliente: </td><td>{{$pedido->tipo_de_cliente}}</td></tr>
                 <tr><td>Medio de pago: </td><td>{{$pedido->medio_de_pago}}</td></tr>
                 <tr><td>Estado del pago: </td><td>{{$pedido->estado_del_pago}}</td></tr>
                 {{--<tr><td>Tipo: </td><td>{{$pedido->tipo}}</td></tr>--}}
-                <tr><td>Monto: </td><td>{{$pedido->monto}} $</td></tr>
+                
                 <tr><td>Medio de pago: </td><td>{{$pedido->medio_de_pago}}</td></tr>
                 <tr><td>Numero de factura: </td><td>{{$pedido->numero_de_factura}}</td></tr>
 
                 <tr>
                     <td>Productos: </td>
                     <td>
-                        {{--<ul>
-                            @foreach($pedido->productos as $producto)
-                                <li>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</li>
-                            @endforeach
-                        </ul>--}}
-                        <small>{{ $pedido->detalleDeProductos() }}</small>
+                        {{--<small>{{ $pedido->detalleDeProductos() }}</small>--}}
+                        <small>
+                            <ul>
+                                @php
+                                    $suma_de_productos = 0;
+                                @endphp
+                                @foreach($pedido->productos as $producto)
+                                    @php
+                                        $suma_de_productos += $producto->precio * $producto->pivot->unidades;
+                                    @endphp
+                                    <li>{{ $producto->nombre }} ($ {{$producto->precio}}) x {{ $producto->pivot->unidades }}</li>
+                                @endforeach
+                                 
+                            </ul>
+                        </small>
+
                     </td>
                 </tr>
                 
+                <tr><td>Suma de productos: </td><td>$ {{$suma_de_productos}}</td></tr>
+                <tr><td>Costo de envio: </td><td>id:{{$pedido->costo_de_envio_id}} | zona: {{$pedido->costo_de_envio->region}} | costo: $ {{$pedido->costo_de_envio->costo_de_envio}}</td></tr>
+                <tr><td>Monto total: </td><td>{{$pedido->monto}} $</td></tr>
+                @if($pedido->costo_de_envio)
+                <tr><td>Dia de entrega: </td><td>{{$pedido->costo_de_envio->dia_de_entrega}}</td></tr>
+                <tr><td>Hora de entrega: </td><td>{{$pedido->costo_de_envio->hora_de_entrega}}</td></tr>
+                @endif
                 <tr><td>Nombre: </td><td>{{$pedido->nombre}}</td></tr>
                 <tr><td>Email: </td><td>{{$pedido->email}}</td></tr>
                 <tr><td>C.I.: </td><td>{{$pedido->documento_de_identidad}}</td></tr>
@@ -75,11 +92,7 @@
                         @endif
                     </td>
                 </tr>
-                <tr><td>Costo de envio id: </td><td>{{$pedido->costo_de_envio_id}}</td></tr>
-                @if($pedido->costo_de_envio)
-                <tr><td>Dia de entrega: </td><td>{{$pedido->costo_de_envio->dia_de_entrega}}</td></tr>
-                <tr><td>Hora de entrega: </td><td>{{$pedido->costo_de_envio->hora_de_entrega}}</td></tr>
-                @endif
+                
                 {{--<tr><td>Costo de envio(): </td><td>{{$pedido->costo_de_envio()}}</td></tr>--}}
                 
                 <tr><td>Cupon id: </td><td>{{$pedido->cupon_id}}</td></tr>
