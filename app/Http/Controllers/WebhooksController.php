@@ -30,6 +30,8 @@ class WebhooksController extends Controller
 
             // el siguiente 'if' responde a las consultas que mercadopago hace a nuestra plataforma con payment_id borrados
             // payments_id que no estan en nuestra base de datos:
+            //https://api.mercadopago.com/v1/payments/59328234183 PEDIDO PAGADO, ESTA EN EL SERVIDOR
+            //https://api.mercadopago.com/v1/payments/59572738705 PEDIDO PAGADO, ESTA EN EL SERVIDOR
             //https://www.mercadopago.com.uy/payments/54139557015 ¿?
             //https://api.mercadopago.com/v1/payments/54034738410 ¿?
             //https://api.mercadopago.com/v1/payments/53978965097 ¿?
@@ -54,7 +56,9 @@ class WebhooksController extends Controller
                 or $payment_id == '53981680090'
                 or $payment_id == '54213487112'
                 or $payment_id == '54189750964'
-                or $payment_id == '53981171870'){
+                or $payment_id == '53981171870'
+                or $payment_id == '59572738705'
+                or $payment_id == '59328234183'){
                 return response()->json(['OK' => 'OK'], 200);
             }
 
@@ -85,8 +89,10 @@ class WebhooksController extends Controller
                 // Envia un email con el pedido
                 Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
                 ->queue(new PedidosMail($pedido));
-                // Envia un email al cliente con el pedido
-                Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                
+                // Envia a la cuenta de registros el mismo email que se envia al cliente con el pedido
+                //Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));                
 
                 // email de confirmacion del pedido
                 Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));                

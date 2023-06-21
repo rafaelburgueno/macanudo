@@ -231,7 +231,10 @@ class PagosController extends Controller
     public function eliminar_mi_pedido(Pedido $pedido)
     {
         if($pedido->status == 'verificado' and $pedido->medio_de_pago == 'sin definir'){
-            $pedido->delete();
+            $pedido->status = 'cancelado';
+            $pedido->save();
+
+            //$pedido->delete();
             session()->flash('exito', 'El pedido fue cancelado.');
         }
         
