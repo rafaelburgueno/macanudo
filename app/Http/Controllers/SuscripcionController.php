@@ -13,6 +13,7 @@ use App\Mail\FormularioDelClubMacanudo;
 use App\Notifications\SuscripcionNotification;
 use App\Mail\EmailDeControl;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 
 class SuscripcionController extends Controller
@@ -177,6 +178,13 @@ class SuscripcionController extends Controller
         $pedido = $this->crearPedido($suscripcion->id);
 
 
+        //enviar un email a Pedro
+        Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+            ->queue(new FormularioDelClubMacanudo($suscripcion));
+
+        // envia una a la cuenta de registros una copia del email que se envió al usuario
+        Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new SuscripcionNotification($suscripcion));
+
         //enviar un email al cliente
         /*Mail::to($user->email)->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
             ->queue(new GraciasPorSuscribirte($suscripcion));*/
@@ -186,10 +194,6 @@ class SuscripcionController extends Controller
                 'pedido' => $pedido,
             ];*/
         $user->notify(new SuscripcionNotification($suscripcion));
-
-        //enviar un email a Pedro
-        Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-            ->queue(new FormularioDelClubMacanudo($suscripcion));
 
 
 

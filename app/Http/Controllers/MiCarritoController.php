@@ -61,7 +61,7 @@ class MiCarritoController extends Controller
             'productos' => 'required',
             'cantidades' => 'required',
         ]);
-        
+        //return 'paso la validacion';
         $pedido = new Pedido();
 
         //$pedido->status =  $request->status;

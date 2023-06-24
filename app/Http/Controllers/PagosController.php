@@ -71,15 +71,17 @@ class PagosController extends Controller
             //dd($pedido->status);
 
             
-            // Envia un email con el pedido
-            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-            ->queue(new PedidosMail($pedido));
-
             try {
+                // Envia un email a Pedro con el pedido
+                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+                ->queue(new PedidosMail($pedido));
+
                 // Envia un email al cliente con el pedido // TODO:un try catch por si falla el envio de email
                 //Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
 
-                Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                //Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));
+                
                 //$user->notify(new SuscripcionNotification($suscripcion));
                 Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
 
@@ -170,12 +172,13 @@ class PagosController extends Controller
             ->queue(new PedidosMail($pedido));
             // Envia un email al cliente con el pedido
             //Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
-            Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+            //Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+            Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));
+            
             //$user->notify(new SuscripcionNotification($suscripcion));
             Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
 
             // llamaos al metodo que actualiza el stock
-            //$this->actualizarCuponYStock($pedido);
             $pedido->actualizarCuponYStock();
 
             session()->flash('pago_aprovado', 'La compra fue realizada con éxito. Te enviamos un email con la información tu pedido.');
@@ -243,54 +246,6 @@ class PagosController extends Controller
 
 
 
-
-    /**
-     * Actualiza el stock y los cupones
-     * Este algoritmo ahora esta en el modelo de Pedido
-     *
-     * @param  \App\Models\Pedido  $pedido
-     * @return \Illuminate\Http\Response
-     */
-    /*public function actualizarCuponYStock(Pedido $pedido)
-    {
-        
-        // este algoritmo resta una unidad del cupon usado 
-        if($pedido->cupon_id){
-            $cupon = Cupon::find($pedido->cupon_id);
-            $cupon->cantidad = (((int)$cupon->cantidad) -1);
-            $cupon->save();
-        }
-
-
-        // este algoritmo resta del stock los productos comprados
-        $productos_comprados = DB::table('pedido_producto')->where('pedido_id', $pedido->id)->get();
-        //dd($productos_comprados);
-        foreach($productos_comprados as $producto_comprado){
-
-            //dd($producto_comprado);
-            $producto = Producto::find($producto_comprado->producto_id);
-
-            //$producto->stock = ( ((int)$producto->stock) - ((int)$producto_comprado->unidades) );
-            $producto->stock -= $producto_comprado->unidades;
-
-            $producto->save();
-
-
-            // TODO: enviar email cuando queda menos de 5 unidades de un producto
-            if($producto->stock <= 5){
-                // Envia un email para avisar que queda poco stock
-                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-                ->queue(new EmailDeStock($producto->nombre.' tiene bajo stock'));
-            }
-
-
-        }
-
-
-        $pedido->pais = 'metodo actualizarCuponYStock!!!';
-        $pedido->save();
-        
-    }*/
 
 
 

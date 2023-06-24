@@ -7,7 +7,7 @@
     <title>Se recibió una suscripción al club</title>
 </head>
 <body>
-    <h2>{{$suscripcion->user->name}} se inscribio al Club Macanudo.</h2>    
+    <h2>{{$suscripcion->user->name}} se suscribió al Club Macanudo.</h2>    
 
     <p>Email: <strong>{{$suscripcion->user->email}}</strong></p>
     <p>Teléfono: <strong>{{$suscripcion['telefono']}}</strong></p>

@@ -318,8 +318,12 @@
 
 									<!--input para el nombre-->
 									<div class="form-group mb-3">
-										<label for="nombre">Nombre completo</label>
-										<input required type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}" min="6" max="100" title="el nombre debe ser mayor a 6 caracteres">
+										@if( Auth::check() )
+											<input type="hidden" name="nombre" id="nombre" value="{{Auth::user()->name}}">
+										@else
+											<label for="nombre" class="negro">Nombre y apellido <small>(Obligatorio)</small>: </label>
+											<input value="{{old('nombre')}}" type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" name="nombre" id="nombre" placeholder="..." required min="6" max="100" title="Por favor ingresa nombre y apellido, con al menos 6 caracteres">
+										@endif
 										@error('nombre')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
@@ -327,26 +331,36 @@
 
 									<!--input para el email-->
 									<div class="form-group mb-3 ocultar_al_retirar_en_plantaa">
-										<label for="email">Email</label>
-										<input required type="email" class="form-control" id="email" name="email" placeholder="..." value="{{old('email')}}">
+										@if( Auth::check() )
+											<label for="email" class="negro">Sesion iniciada con el correo: </label>
+											<p  class="form-control"> {{Auth::user()->email}}</p>
+											<input type="hidden" class="form-control" name="email" id="email" value="{{Auth::user()->email}}">
+										@else
+											<label for="email" class="negro">Email <small>(Obligatorio)</small>: </label>
+											<input value="{{old('email')}}" type="email" class="form-control" name="email" id="email" placeholder="..." required title="Un correo electrónico válido debe tener el formato usuario@dominio.com">
+										@endif
 										@error('email')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
+										@if( Auth::check() )
+											<small>Para cambiar de usuario, primero debes <a href="{{route('cerrar_sesion')}}">cerrar sesión</a>.</small>
+										@endif
 									</div>
 
 									<!--input para el documento_de_identidad-->
-									<div class="form-group mb-3 ocultar_al_retirar_en_planta">
+									{{--<div class="form-group mb-3 ocultar_al_retirar_en_planta">
 										<label for="documento_de_identidad">Documento de identidad </label>
-										<input required pattern="\d{7,9}" title="Ingresa los números sin puntos ni guiones" style="width: 100%;" type="text" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}" {{--min="1000000" {{--max="999999999"--}}>
+										<input required pattern="\d{7,9}" title="Ingresa los números sin puntos ni guiones" style="width: 100%;" type="text" class="form-control" id="documento_de_identidad" name="documento_de_identidad" placeholder="..." value="{{old('documento_de_identidad')}}">
 										@error('documento_de_identidad')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
-									</div>
+									</div>--}}
 
 									<!--input para el telefono-->
 									<div class="form-group mb-3">
-										<label for="telefono">Teléfono</label>
-										<input required pattern="\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" style="width: 100%;" type="text" class="form-control" id="telefono" name="telefono" placeholder="..." value="{{old('telefono')}}" title="Número de teléfono inválido" min="8" {{--max="99999999"--}}>
+										<label for="telefono" class="negro">Teléfono <small>(Obligatorio)</small>: </label>
+										{{--<input value="{{old('telefono')}}" type="text" pattern="\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="..." title="Número de teléfono inválido" required>--}}
+										<input value="{{old('telefono')}}" type="text" pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="..." title="El número de teléfono debe contener al menos 8 caracteres" required>
 										@error('telefono')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror
@@ -358,7 +372,7 @@
 									
 									<!--input para la direccion-->
 									<div class="form-group mb-3 ocultar_al_retirar_en_planta">
-										<label for="direccion">Dirección</label>
+										<label for="direccion">Dirección de entrega <small>(Obligatorio)</small>: </label>
 										<textarea required class="form-control" id="direccion" name="direccion" rows="3">{{old('direccion')}}</textarea>
 										@error('direccion')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -367,7 +381,7 @@
 
 									<!--input para la localidad-->
 									<div class="form-group mb-3 ocultar_al_retirar_en_planta">
-										<label for="localidad">Localidad o barrio</label>
+										<label for="localidad">Localidad o barrio <small>(Obligatorio)</small>: </label>
 										<input required pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{5,100}" type="text" class="form-control" id="localidad" name="localidad" placeholder="..." value="{{old('localidad')}}">
 										@error('localidad')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -428,12 +442,17 @@
 
 									$('.btn-procesando').click(function(){
 										if(
-											document.getElementById("nombre").value != '' &&
-											document.getElementById("email").value != '' &&
-											document.getElementById("documento_de_identidad").value != '' &&  
-											document.getElementById("telefono").value != ''  &&  
-											document.getElementById("direccion").value != '' && 
-											document.getElementById("localidad").value != '' && 
+											//document.getElementById("nombre").value != '' &&
+											document.getElementById("nombre").validity.valid && 
+											//document.getElementById("email").value != '' &&
+							                document.getElementById("email").validity.valid &&
+											//document.getElementById("documento_de_identidad").value != '' &&  
+											//document.getElementById("telefono").value != ''  &&  
+											document.getElementById("telefono").validity.valid &&
+											//document.getElementById("direccion").value != '' && 
+											document.getElementById("direccion").validity.valid &&
+											//document.getElementById("localidad").value != '' && 
+											document.getElementById("localidad").validity.valid &&
 											document.getElementById("terminos_y_condiciones").checked
 										){
 
@@ -442,7 +461,7 @@
 											Swal.fire({
 											title: 'Procesando',
 											html: 'Por favor espere.',
-											//timer: 10000,
+											timer: 18000,
 											timerProgressBar: true,
 											didOpen: () => {
 												Swal.showLoading()
@@ -591,7 +610,7 @@
 		// entonces se debe desactivar los campos en el formulario
 		$(".ocultar_al_retirar_en_planta").hide();
 		//document.getElementById("email").value = 'retirar@enplanta.com';
-		document.getElementById("documento_de_identidad").value = 9999999;  
+		//document.getElementById("documento_de_identidad").value = 9999999;  
 		document.getElementById("direccion").value = 'el pedido se retira en la planta'; 
 		document.getElementById("localidad").value = 'el pedido se retira en la planta'; 
 		//========================================
@@ -792,7 +811,7 @@
 		if(costo == 0 ){
 			//console.log('el costo de envio es cero');
 			//document.getElementById("email").value = 'retirar@enplanta.com'; 
-			document.getElementById("documento_de_identidad").value = 9999999; 
+			//document.getElementById("documento_de_identidad").value = 9999999; 
 			document.getElementById("direccion").value = 'el pedido se retira en la planta'; 
 			document.getElementById("localidad").value = 'el pedido se retira en la planta'; 
 
@@ -800,7 +819,7 @@
 		}else{
 			//console.log('el costo de envio NO es cero');
 			//document.getElementById("email").value = '';
-			document.getElementById("documento_de_identidad").value = ''; 
+			//document.getElementById("documento_de_identidad").value = ''; 
 			document.getElementById("direccion").value = ''; 
 			document.getElementById("localidad").value = ''; 
 
