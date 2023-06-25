@@ -4,7 +4,7 @@
     
         <div class="max-w-xl text-sm text-gray-600">
         
-            <h3 class="h6 font-medium text-gray-900">Susripción id: {{$suscripcion->id}}</h3>
+            {{--<h3 class="h6 font-medium text-gray-900">Susripción id: {{$suscripcion->id}}</h3>--}}
             <p class="mt-1 text-sm text-gray-600">
                 {{--Duración {{$suscripcion->tipo}}. <br> --}}
                 {{--Precio: ${{$suscripcion->precio}}<br> --}}
@@ -14,9 +14,9 @@
                 
             </p>
             @if($activo)
-                <p class="mt-1 text-sm text-gray-600">Suscripción activa.</p>
+                <p class="mt-1 text-sm text-green-600">Suscripción activa.</p>
             @else
-                <p class="mt-1 text-sm text-gray-600">Suscripción cancelada.</p>
+                <p class="mt-1 text-sm text-red-600">Suscripción cancelada.</p>
             @endif
 
 
@@ -107,7 +107,7 @@
     </form>
     
 
-    {{--<hr class="mb-3 text-gray-700">--}}
+    <hr class="my-5 text-gray-700">
     
 
 </div>
