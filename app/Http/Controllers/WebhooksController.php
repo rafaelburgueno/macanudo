@@ -50,7 +50,7 @@ class WebhooksController extends Controller
             //https://api.mercadopago.com/v1/payments/53740006982 PEDIDO EN EL SERVIDOR
             //
 
-            if($payment_id == '123456789' 
+            /*if($payment_id == '123456789' 
                 or $payment_id == '53981171870'
                 or $payment_id == '54151005372'
                 or $payment_id == '53981680090'
@@ -60,6 +60,13 @@ class WebhooksController extends Controller
                 or $payment_id == '59572738705'
                 or $payment_id == '59328234183'){
                 return response()->json(['OK' => 'OK'], 200);
+            }*/
+
+            // si el pedido ya esta pagado retornamos un OK
+            $pedido = Pedido::firstWhere('numero_de_factura', $payment_id);
+            // si el pedido tiene un status == 'pagado' retornamos un OK
+            if($pedido->estado_del_pago == 'pagado'){
+                return response()->json(['OK' => 'OK'], 200);
             }
 
             //envio de email para fines de desarrollo y control
@@ -68,7 +75,7 @@ class WebhooksController extends Controller
 
             $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=".env('MP_ACCESS_TOKEN'));
 
-            Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($response));
+            Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($response->merge(['origen' => 'webhooks, linea 78', 'payment_id' => $payment_id, 'pedido' => $pedido])));
 
             $response = json_decode($response);
 
@@ -77,10 +84,10 @@ class WebhooksController extends Controller
             $status = $response->status;
 
 
-            $pedido = Pedido::firstWhere('numero_de_factura', $payment_id);
+            //$pedido = Pedido::firstWhere('numero_de_factura', $payment_id);
             
             
-
+            // TODO: no entiendo por que le modificamos el medio_de_pago si el pedido ya deberia figurar como 'mercadopago'
             $pedido->medio_de_pago = 'mercadopago';
             if($status == "approved"){
                 $pedido->estado_del_pago = 'pagado';
