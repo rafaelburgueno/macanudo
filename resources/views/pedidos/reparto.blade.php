@@ -13,7 +13,7 @@
 	$(document).ready( function () {
 		$('#tabla_pedidos').DataTable({
 			order: [
-				[5, 'desc']
+				[6, 'asc']
 			]
 		});
 	} );

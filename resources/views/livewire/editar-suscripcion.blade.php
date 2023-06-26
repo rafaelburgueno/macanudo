@@ -3,8 +3,9 @@
     <form wire:submit.prevent="guardar_cambios">
     
         <div class="max-w-xl text-sm text-gray-600">
-        
-            {{--<h3 class="h6 font-medium text-gray-900">Susripción id: {{$suscripcion->id}}</h3>--}}
+            @if( Auth::user()->rol == 'administrador' )
+                <h3 class="h6 font-medium text-gray-900">Susripción id: {{$suscripcion->id}}</h3>
+            @endif
             <p class="mt-1 text-sm text-gray-600">
                 {{--Duración {{$suscripcion->tipo}}. <br> --}}
                 {{--Precio: ${{$suscripcion->precio}}<br> --}}

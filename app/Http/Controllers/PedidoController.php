@@ -142,7 +142,7 @@ class PedidoController extends Controller
     {
         
         //$pedidos = Pedido::where('status', '!=', 'entregado')->get();
-        $pedidos = Pedido::where('medio_de_pago', '!=', 'sin definir')->where('status', '!=', 'entregado')->where('direccion', '!=', 'el pedido se retira en la planta')->where('status', '!=', 'cancelado')->get();
+        $pedidos = Pedido::where('medio_de_pago', '!=', 'sin definir')->where('status', '!=', 'entregado')->where('direccion', '!=', 'el pedido se retira en la planta')->where('status', '!=', 'cancelado')->where('estado_del_pago', '!=', 'refunded')->get();
         $canastas = Canasta::where('activo', true)->get();
         $lista_de_productos = Producto::where('activo', true)->get();
         $costos_de_envio = Costo_de_envio::where('activo', true)->get();

@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Se ha recibido un nuevo pedido</title>
+    <style>
+        table {
+          border-collapse: collapse;
+        }
+        table, th, td {
+          border: 1px solid black;
+        }
+        th, td {
+          padding: 5px;
+        }
+      </style>
 </head>
 <body>
     
@@ -21,12 +32,6 @@
     <hr>
 
     <table>
-        <style>
-            tr {
-                border-bottom: 1px solid rgb(112, 112, 112);
-                text-align: right;
-            }
-        </style>
         <tr><td>Id: </td><td>{{$pedido->id}}</td></tr>
         <tr><td>Status: </td><td>{{$pedido->status}}</td></tr>
         <tr><td>Tipo: </td><td>{{$pedido->tipo}}</td></tr>

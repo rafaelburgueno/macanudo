@@ -7,7 +7,9 @@
             <p><strong>El pedido corresponde a tu suscripción al Club del queso </strong></p>
         @endif
 
-        <h3 class="h6 font-medium text-gray-900">Pedido id: {{$pedido->id}}</h3>
+        @if( Auth::user()->rol == 'administrador' )
+            <h3 class="h6 font-medium text-gray-900">Pedido id: {{$pedido->id}}</h3>
+        @endif
         <p class="mt-1 text-sm text-gray-600">Monto: $ {{$pedido->monto}}</p>
         <p class="mt-1 text-sm text-gray-600">Estado del pedido: {{$pedido->status}}</p>
         <p class="mt-1 text-sm text-gray-600">Estado del pago: {{$pedido->estado_del_pago}}</p>
