@@ -14,15 +14,17 @@ class EmailDeStock extends Mailable
     use Queueable, SerializesModels;
 
     public $data;
+    public $productos;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data, $productos)
     {
         $this->data = $data;
+        $this->productos = $productos;
     }
 
     /**

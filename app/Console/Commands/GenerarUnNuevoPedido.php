@@ -97,8 +97,8 @@ class GenerarUnNuevoPedido extends Command
                 // Envia a pedro o a mi un email con el pedido
                 Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
                 ->queue(new PedidosMail($nuevo_pedido));
-                Mail::to(env('MAIL_DESARROLLADOR', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
-                ->queue(new PedidosMail($nuevo_pedido));
+                /*Mail::to(env('MAIL_DESARROLLADOR', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
+                ->queue(new PedidosMail($nuevo_pedido)); */
 
                 $this->info('Se ha generado un nuevo pedido');
             }
