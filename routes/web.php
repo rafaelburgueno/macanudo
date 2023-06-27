@@ -24,6 +24,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\MiPerfilController;
 use App\Http\Controllers\SuscripcionController;
 use App\Models\Suscripcion;
+use App\Http\Controllers\UsuarioController;
 
 
 /*
@@ -298,6 +299,38 @@ Route::get('reparto', [PedidoController::class ,'reparto'])->name('reparto')->mi
 Route::get('confirmar_cancelacion_de_pedido/{pedido}', [PedidoController::class, 'confirmar_cancelacion_de_pedido'])->name('confirmar_cancelacion_de_pedido');
 // esta ruta se usa para que los cliente cancelen su pedido
 Route::get('cancelar_pedido/{pedido}', [PedidoController::class, 'cancelar_pedido'])->name('cancelar_pedido');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| usuarios
+|--------------------------------------------------------------------------
+| La ruta de pedidos es administrada por el controlador 
+| PedidoController, ya que debe cumplir con la funciones 
+| de CRUD para pedidos. 
+*/
+Route::controller(UsuarioController::class)->group(function () {
+    Route::get('usuarios', 'index')->name('usuarios.index')->middleware('acceso.administrador');
+    /*Route::get('usuarios/create', 'create')->name('usuarios.create');*/
+    //Route::post('usuarios', 'store')->name('usuarios.store')->middleware('acceso.administrador');
+    /*Route::post('usuarios', 'carrito')->name('usuarios.carrito');*/
+    
+    // esta ruta se usa para que los cliente vean su usuario
+    //Route::get('usuarios/{usuario}', 'show')->name('usuarios.show');
+
+    Route::get('usuarios/{usuario}/edit', 'edit')->name('usuarios.edit')->middleware('acceso.administrador');
+    //Route::put('usuarios/{usuario}', 'update')->name('usuarios.update')->middleware('acceso.administrador');
+    //Route::delete('usuarios/{usuario}', 'destroy')->name('usuarios.destroy')->middleware('acceso.administrador');
+    //Route::get('realizar_pago/{usuario}', 'realizarPago')->name('realizar_pago');
+});
+// esta ruta devuelve la interfase para trabajar el reparto 
+//Route::get('reparto', [usuarioController::class ,'reparto'])->name('reparto')->middleware('acceso.administrador');
+//Route::get('confirmar_cancelacion_de_usuario/{usuario}', [usuarioController::class, 'confirmar_cancelacion_de_usuario'])->name('confirmar_cancelacion_de_usuario');
+// esta ruta se usa para que los cliente cancelen su usuario
+//Route::get('cancelar_usuario/{usuario}', [usuarioController::class, 'cancelar_usuario'])->name('cancelar_usuario');
+
 
 
 

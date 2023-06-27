@@ -15,27 +15,36 @@
         
         <h5>Podes ver tu pedido en este <a href="{{URL::signedRoute('ver_pedido', ['pedido' => $pedido->id])}}" target="_blank">link</a>.</h5>
     </div>--}}
-    <h4 class="text-center pt-2">Pedido id: {{$pedido->id}}</h4>
+    <h4 class="text-center pt-3">Pedido id: {{$pedido->id}}</h4>
     
     <div class="row mb-5 mt-2">
         <div class="col-md-3"></div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-5">
         
-            <table>
+            <table class="m-auto">
                 <style>
                     tr {
-                        border-bottom: 1px solid #ddd;
                         text-align: right;
                     }
+
+                    table {
+                        border-collapse: collapse;
+                    }
+                    table, th, td {
+                        border: 1px solid #ddd;
+                    }
+                    th, td {
+                        padding: 5px;
+                    }
+
                 </style>
                 <tr><td>Id: </td><td>{{$pedido->id}}</td></tr>
+                <tr><td>Tipo: </td><td>{{$pedido->tipo}}</td></tr>
                 <tr><td>Status: </td><td>{{$pedido->status}}</td></tr>
-                <tr><td>Tipo de cliente: </td><td>{{$pedido->tipo_de_cliente}}</td></tr>
                 <tr><td>Medio de pago: </td><td>{{$pedido->medio_de_pago}}</td></tr>
                 <tr><td>Estado del pago: </td><td>{{$pedido->estado_del_pago}}</td></tr>
                 {{--<tr><td>Tipo: </td><td>{{$pedido->tipo}}</td></tr>--}}
                 
-                <tr><td>Medio de pago: </td><td>{{$pedido->medio_de_pago}}</td></tr>
                 <tr><td>Numero de factura: </td><td>{{$pedido->numero_de_factura}}</td></tr>
 
                 <tr>
@@ -43,16 +52,20 @@
                     <td>
                         {{--<small>{{ $pedido->detalleDeProductos() }}</small>--}}
                         <small>
-                            <ul>
+                            <ul class="my-0 py-0">
                                 @php
                                     $suma_de_productos = 0;
                                 @endphp
-                                @foreach($pedido->productos as $producto)
-                                    @php
-                                        $suma_de_productos += $producto->precio * $producto->pivot->unidades;
-                                    @endphp
-                                    <li>{{ $producto->nombre }} ($ {{$producto->precio}}) x {{ $producto->pivot->unidades }}</li>
-                                @endforeach
+                                @if(count($pedido->productos))
+                                    @foreach($pedido->productos as $producto)
+                                        @php
+                                            $suma_de_productos += $producto->precio * $producto->pivot->unidades;
+                                        @endphp
+                                        <li>{{ $producto->nombre }} ($ {{$producto->precio}}) x {{ $producto->pivot->unidades }}</li>
+                                    @endforeach
+                                @else
+                                    <p>No hay productos</p>
+                                @endif
                                  
                             </ul>
                         </small>
@@ -61,8 +74,23 @@
                 </tr>
                 
                 <tr><td>Suma de productos: </td><td>$ {{$suma_de_productos}}</td></tr>
-                <tr><td>Costo de envio: </td><td>id:{{$pedido->costo_de_envio_id}} | zona: {{$pedido->costo_de_envio->region}} | costo: $ {{$pedido->costo_de_envio->costo_de_envio}}</td></tr>
-                <tr><td>Monto total: </td><td>{{$pedido->monto}} $</td></tr>
+
+                <tr>
+                    <td>Costo de envio: </td>
+                    @if($pedido->costo_de_envio_id)
+                    <td>id:{{$pedido->costo_de_envio_id}}
+                        <br>
+                        Zona: {{$pedido->costo_de_envio->region}}
+                        <br>
+                        Costo: $ {{$pedido->costo_de_envio->costo_de_envio}}
+                    </td>
+                    @else
+                    <td>No</td>
+                    @endif
+                </tr>
+                
+                <tr><td>Monto total: </td><td class="bg-secondary h5"><strong>{{$pedido->monto}} $</strong></td></tr>
+                
                 @if($pedido->costo_de_envio)
                 <tr><td>Dia de entrega: </td><td>{{$pedido->costo_de_envio->dia_de_entrega}}</td></tr>
                 <tr><td>Hora de entrega: </td><td>{{$pedido->costo_de_envio->hora_de_entrega}}</td></tr>
@@ -95,14 +123,29 @@
                 
                 {{--<tr><td>Costo de envio(): </td><td>{{$pedido->costo_de_envio()}}</td></tr>--}}
                 
-                <tr><td>Cupon id: </td><td>{{$pedido->cupon_id}}</td></tr>
+                <tr>
+                    <td>Cupon: </td>
+                    @if($pedido->cupon_id)
+                    <td>
+                        <small>
+                            Id: {{$pedido->cupon_id}} 
+                            <br>
+                            Nombre: {{$pedido->cupon->codigo}}
+                            <br>
+                            Descuento: {{$pedido->cupon->descuento}}
+                        </small>
+                    </td>
+                    @else
+                    <td>No</td>
+                    @endif
+                </tr>
                 <tr><td>Suscripcion id: </td><td>{{$pedido->suscripcion_id}}</td></tr>
                 
                 {{--<tr><td>Tipo de cliente: </td><td>{{$pedido->tipo_de_cliente}}</td></tr>--}}
                 
                 {{--<tr><td>Recibir novedades: </td><td>{{$pedido->recibir_novedades}}</td></tr>--}}
                 <tr><td>Creado: </td><td>{{$pedido->created_at}}</td></tr>
-                {{--<tr><td>Editado: </td><td>{{$pedido->updated_at}}</td></tr>--}}
+                <tr><td>Editado: </td><td>{{$pedido->updated_at}}</td></tr>
                 
             </table>
 
