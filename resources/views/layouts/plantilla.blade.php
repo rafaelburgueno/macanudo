@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 
-    <!-- Google tag (gtag.js) -->
+
+    <!-- Google tag (gtag.js) Sofía-->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9WD6T7QFEF"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -11,6 +12,18 @@
 
         gtag('config', 'G-9WD6T7QFEF');
     </script>
+
+    {{--
+    <!-- Google tag (gtag.js) Gabriel-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-620792546"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-620792546');
+    </script>
+    --}}
 
     <!--<meta charset="UTF-8">-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
