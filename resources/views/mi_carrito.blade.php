@@ -118,7 +118,19 @@
 											{{--<input type="number" value="3000" readonly id="precio" name="precio" width="4em">--}}
 											{{--<input type="number" value="3000" readonly id="precio_multiplicado-{{$producto->id}}" name="precio_multiplicado" width="4em">--}}
 											<span class="h5" id="precio_multiplicado-{{$producto->id}}"></span>
-						  				</div>
+										</div>
+						  				
+										
+										<!-- boton de favorito -->
+										<!-- boton de favorito -->
+										<!-- componente livewire EstablecerFavorito -->
+										{{--@if ($producto->stock > 0)
+											@if(Auth::user())
+												@livewire('establecer-favorito', ['producto' => $producto, 'user_id' => Auth::user()->id])
+											@endif
+										@endif--}}
+										
+										
 									</div>
 					  			</form>
 					  			{{--<a class="mt-2 bg-transparent" style="color:var(--rojo)">Eliminar</a>--}}

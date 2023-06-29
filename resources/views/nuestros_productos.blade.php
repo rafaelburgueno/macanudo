@@ -90,8 +90,10 @@
                     <!-- boton de favorito -->
                     <!-- boton de favorito -->
                     <!-- componente livewire EstablecerFavorito -->
-                    @if(Auth::user())
-                        @livewire('establecer-favorito', ['producto' => $producto, 'user_id' => Auth::user()->id])
+                    @if ($producto->stock > 0)
+                        @if(Auth::user())
+                            @livewire('establecer-favorito', ['producto' => $producto, 'user_id' => Auth::user()->id])
+                        @endif
                     @endif
                     {{--<a class="btn1 btn-izquierdo shadown" style="background-color:{{$producto->color}};">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
