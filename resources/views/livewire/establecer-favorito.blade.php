@@ -17,6 +17,6 @@
         </svg>--}}
     </a>
 
-    <h3>{{$esFavorito . ' ACA!!!'}}</h3>
+    
 
 </div>
