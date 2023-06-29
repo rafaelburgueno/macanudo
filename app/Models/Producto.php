@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\Favorito;
 
 class Producto extends Model
 {
@@ -68,6 +69,22 @@ class Producto extends Model
         return $this->morphToMany('App\Models\Categoria', 'categoriaable');
     }    
 
+    /*
+        este metodo devuelve true o false si el producto es favorito o no
+        recibe como parametro el id del usuario
+    */
+    public function esFavorito($user_id){
+        // verifico si el producto es favorito
+        $favorito = Favorito::where('favoritable_type', 'App\Models\Producto')->where('favoritable_id', $this->id)
+            ->where('user_id', $user_id)
+            ->first();
+
+        if ($favorito) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
      /**
      * Devuelve un int con el campo 'unidades' de la tabla pivote pedido_producto
