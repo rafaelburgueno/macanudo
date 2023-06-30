@@ -94,4 +94,13 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+
+    // Favoritos: devuelve un array con los productos que el usuario ha marcado como favoritos
+    public function favoritos(){
+        //return $this->belongsToMany('App\Models\Producto', 'favoritos', 'user_id', 'producto_id')->withTimestamps();
+        return $this->hasMany('App\Models\Favorito');
+    }
+
+
+
 }

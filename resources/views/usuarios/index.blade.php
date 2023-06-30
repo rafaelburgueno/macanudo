@@ -109,6 +109,7 @@
                                 {{--<h4 class="text-center rojo">{{ $usuario->monto }} $</h4><br>--}}
                                 
                                 <div class="modal-body ">
+                                    <!-- FOTO -->
                                     @if($usuario->profile_photo_url)
                                         <div class="text-center mb-4">
                                             <img class="rounded" src="{{ $usuario->profile_photo_url }}" alt="foto" {{--width="100px"--}}>
@@ -145,21 +146,26 @@
                                     
                                     <hr>
 
-                                    <h4>Suscripciones:</h4>
-                                    <ul class="h6">
-                                        @foreach($usuario->suscripciones as $suscripcion)
-                                            <li>Id: {{ $suscripcion->id }} | creada: {{ $suscripcion->created_at }} 
-                                                | @if($suscripcion->activo == true)
-                                                    Activa
-                                                @else
-                                                    No activa
-                                                @endif
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                                    @if(count($usuario->suscripciones))
+                                        <h4>Suscripciones:</h4>
+                                        <ul class="h6">
+                                            @foreach($usuario->suscripciones as $suscripcion)
+                                                <li>Id: {{ $suscripcion->id }} | creada: {{ $suscripcion->created_at }} 
+                                                    | @if($suscripcion->activo == true)
+                                                        Activa
+                                                    @else
+                                                        No activa
+                                                    @endif
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @else
+                                        <p>No tiene suscripciones.</p>
+                                    @endif
                                     
                                     <hr>
 
+                                    @if(count($usuario->pedidos))
                                     <h4>Pedidos:</h4>
                                     <ul>
                                         @foreach($usuario->pedidos as $pedido)
@@ -171,6 +177,26 @@
                                             </li>
                                         @endforeach
                                     </ul>
+                                    @else
+                                        <p>No tiene pedidos.</p>
+                                    @endif
+
+                                    <hr>
+                                    
+                                    @if(count($usuario->favoritos))
+                                            
+                                        <h4 class="">Favoritos:</h4>
+                                        <ul>
+                                        @foreach($usuario->favoritos as $favorito)
+                                            <li>{{$favorito->favoritable->nombre}}</li>
+                                        @endforeach
+                                        </ul>
+                                            
+                                    @else
+                                        <div>
+                                            <p>No tiene favoritos.</p>
+                                        </div>
+                                    @endif
                                     
                                     
                                 </div>
