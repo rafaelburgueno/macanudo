@@ -33,6 +33,8 @@ class SuscripcionController extends Controller
             // se preparan las variables para el email de control
             $request_para_el_email_de_control = $request->except(['_token', 'password', 'password_confirmacion', '_method', 'terminos_y_condiciones_del_club']);
             $request_para_el_email_de_control['APP_ENV'] = env('APP_ENV');
+            $request_para_el_email_de_control['instancia_del_email'] = 'previo a la validacion de los datos';
+            $request_para_el_email_de_control['coincidencia_de_passwords'] = $request->password == $request->password_confirmacion ? 'si' : 'no';
             //envia un email al administrador con los datos del formulario
             Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl(  $request_para_el_email_de_control  ));
         }
@@ -64,7 +66,8 @@ class SuscripcionController extends Controller
         // TODO: validar que el usuario solo tenga una suscripcion activa
 
         // si el entorno es de produccion, se envia un email al usuario con los datos del formulario
-        if (env('APP_ENV') == 'production') {
+        if (env('APP_ENV') == 'production') { // env('APP_ENV') == 'local'
+            $request_para_el_email_de_control['instancia_del_email'] = 'posterior a la validacion de los datos';
             Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($request_para_el_email_de_control));
         }
         
@@ -155,7 +158,7 @@ class SuscripcionController extends Controller
 
         //la cantidad de canastas se define por el tipo de suscripcion
         //$suscripcion->cantidad_de_canastas = 12;  
-        if ($request->tipo == 'Un mes') {
+        /*if ($request->tipo == 'Un mes') {
             $suscripcion->cantidad_de_canastas = 1;
         } elseif ($request->tipo == 'Tres meses') {
             $suscripcion->cantidad_de_canastas = 3;
@@ -163,7 +166,7 @@ class SuscripcionController extends Controller
             $suscripcion->cantidad_de_canastas = 6;
         } elseif ($request->tipo == 'Doce meses') {
             $suscripcion->cantidad_de_canastas = 12;
-        }
+        }*/
 
         //la fecha de inicio es la fecha actual
         $suscripcion->fecha_de_inicio = now();
