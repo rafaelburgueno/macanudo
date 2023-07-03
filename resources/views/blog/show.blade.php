@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
-@section('title', 'Blog | {{ $post->titulo }}')
-@section('meta-description', '{{ $post->titulo }}')
+@section('title', 'Blog | ' . $post->titulo )
+@section('meta-description', $post->titulo )
 
 
 @section('content')
