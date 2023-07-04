@@ -474,3 +474,7 @@ h1 {
   color: #fff;
   opacity:70% ;
 }
+
+.modal-dialog {
+  color: #1e1e1e;
+}

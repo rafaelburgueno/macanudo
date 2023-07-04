@@ -9,7 +9,7 @@
 
 <div class="container mt-5">
 
-    <div class="text-center text-white mt-4">
+    <div class="text-center text-white mt-4 mb-4">
         <h2 id="in" class="text-center pt-2">EDITAR POST</h2>
     </div>
 
@@ -32,7 +32,7 @@
             @csrf
             @method('PUT')
             
-            <div class="form-group mt-3 mb-2 mx-1">
+            <div class="form-group my-3 mx-1">
                 {{--<label for="titulo">Titulo</label>--}}
                 <input required type="text" class="form-control" id="titulo" name="titulo" placeholder="Título" value="{{old('titulo', $post->titulo)}}">
                 @error('titulo')
@@ -40,7 +40,7 @@
                 @enderror
             </div>
 
-            <div class="form-group mt-3 mb-3 mx-1">
+            <div class="form-group my-3 mx-1">
                 {{--<label for="titulo">Titulo</label>--}}
                 <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" value="{{old('descripcion', $post->descripcion)}}">
                 @error('descripcion')
@@ -68,11 +68,11 @@
             @enderror
 
 
-            <div class="form-group mb-3">
+            <div class="form-group my-5">
                 <label class="text-white" for="imagen">Imagen</label>
                 
                 @if (count($post->multimedias))
-                    <div class="card-columns talleres py-2">
+                    <div class="card-columns talleres py-1">
                         @foreach ($post->multimedias as $imagen)
                             <div class="mb-2">
                                 <img src="{{$imagen->url}}" style="width: 150px;" class="img-thumbnail" alt="...">
@@ -81,7 +81,7 @@
                     </div>
                 @endif
 
-                <input type="file" class="form-control" id="imagen" name="imagen" value="{{old('imagen')}}" accept="image/*">
+                <input type="file" class="form-control p-1" id="imagen" name="imagen" value="{{old('imagen')}}" accept="image/*">
                 @error('imagen')
                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                 @enderror
@@ -95,7 +95,7 @@
                 </div>--}}
             </div>
 
-            <div class="form-check my-3">
+            <div class="form-check my-5">
                 <input type="checkbox" class="form-check-input" id="activo" name="activo" value="1" @checked(old('activo', $post->activo))>
                 <label class="form-check-label text-white" for="activo">Publicar post</label>
             </div>
@@ -107,7 +107,7 @@
         <form action="{{ route('posts.destroy', $post) }}" method="POST" class="alerta-antes-de-eliminar">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-outline-danger my-1">Eliminar Post</button>
+            <button type="submit" class="btn btn-outline-danger my-3">Eliminar Post</button>
         </form>
             
         
