@@ -143,8 +143,8 @@ Route::get('cancelar_suscripcion/{suscripcion}', [SuscripcionController::class, 
 */
 //Route::get('/blog', BlogController::class)->name('blog');
 Route::controller(BlogController::class)->group(function () {
-    Route::get('blog', 'index')->name('blog.index')->middleware('mantenimiento');
-    Route::get('blog/{post}', 'show')->name('blog.show')->middleware('mantenimiento');
+    Route::get('blog', 'index')->name('blog.index');
+    Route::get('blog/{post}', 'show')->name('blog.show');
 
 });
 

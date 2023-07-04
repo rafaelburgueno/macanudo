@@ -11,7 +11,7 @@
                 <p><a class="nav-link" href="{{route('nuestros_productos')}}">Productos</a></p>
                 <p><a class="nav-link" href="{{route('puntos_de_venta')}}">Puntos de venta</a></p>
                 <p><a class="nav-link" href="{{route('club_macanudo')}}">Club Macanudo</a></p>
-                {{--<p><a class="nav-link" href="{{route('blog.index')}}">Blog</a></p>--}}
+                <p><a class="nav-link" href="{{route('blog.index')}}">Blog</a></p>
                 <p><a class="nav-link" href="{{route('mi_carrito')}}">Mi carrito</a></p>
                 {{--<p><a class="nav-link" href="{{route('profile.show')}}">Mi perfil</a></p>--}}
 
