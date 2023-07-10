@@ -29,6 +29,8 @@
 
         <div class="card mt-3">
 
+            <img src="{{$post->multimedias->last()->url}}" class="card-img-top img-post" alt="{{ $post->multimedias->last()->descripcion }}">
+            
             <div class="card-body">
                 {!! $post->texto !!}
             </div>

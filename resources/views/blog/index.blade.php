@@ -16,7 +16,7 @@
         
         
         @foreach ($posts as $post)
-        <div class="px-3 pb-5">
+        <div class="mb-4">
             <div class="card m-0">
                 
                 @if (count($post->multimedias))

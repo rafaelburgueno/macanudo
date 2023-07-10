@@ -478,3 +478,46 @@ h1 {
 .modal-dialog {
   color: #1e1e1e;
 }
+
+
+
+@media (min-width: 576px) { 
+  .card-columns{
+      column-count: 1;
+  }
+}
+@media (min-width: 768px) { 
+  .card-columns{
+      column-count: 2;
+  }
+}
+@media (min-width: 992px) { 
+  .card-columns{
+      column-count: 3;
+  }
+}
+
+
+
+/* Establecer el ancho de la imagen en 100% en pantallas pequeñas */
+.img-post {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Establecer el ancho de la imagen en 50% en pantallas medianas */
+@media (min-width: 768px) {
+  .img-post {
+    margin-top: 1em;
+      width: 50%;
+  }
+}
+
+/* Establecer el ancho de la imagen en 30% en pantallas grandes */
+@media (min-width: 992px) {
+  .img-post {
+    margin-top: 1em;
+      width: 30%;
+  }
+}
