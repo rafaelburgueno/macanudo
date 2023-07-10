@@ -506,11 +506,11 @@ h1 {
   width: 100%;
 }
 
-/* Establecer el ancho de la imagen en 50% en pantallas medianas */
+/* Establecer el ancho de la imagen en 60% en pantallas medianas */
 @media (min-width: 768px) {
   .img-post {
     margin-top: 1em;
-      width: 50%;
+      width: 60%;
   }
 }
 
