@@ -55,7 +55,7 @@ class MiPerfilEditarPedido extends Component
         $pedido_guardado->save();
         $this->pedido = $pedido_guardado;
 
-        $this->respuesta = '<div class="text-sm text-gray-600 mr-3"><strong>Pedido actualizado.</strong></div>';
+        $this->respuesta = '<div class="mr-3 mt-4 text-success"><strong>Pedido actualizado.</strong></div>';
     }
 
 
