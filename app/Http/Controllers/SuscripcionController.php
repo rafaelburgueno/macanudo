@@ -388,4 +388,25 @@ class SuscripcionController extends Controller
     // *********************************************************************************************************************
 
 
+
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Suscripcion  $suscripcion
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Suscripcion $suscripcion)
+    {
+        
+        $suscripcion->delete();
+        session()->flash('exito', 'La suscripcion fue eliminada.');
+
+        return redirect() -> route('pedidos.index');
+    }
+
+
+
+
 }

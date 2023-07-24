@@ -341,6 +341,14 @@
                                     
                                 </div>
 
+                                <div class="modal-footer">
+                                    <form action="{{ route('suscripcion.destroy', $suscripcion) }}" method="POST" class="alerta-antes-de-eliminar">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger mt-2">Eliminar definitivamente</button>
+                                    </form>
+                                </div>
+
                             </div>
                         </div>
 
