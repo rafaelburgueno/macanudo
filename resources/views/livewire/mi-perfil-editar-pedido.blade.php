@@ -83,14 +83,15 @@
             </div>
 
 
-            <div class="">
+            <hr class="w-50 mt-4">
+            <div class="text-center">
                 <div x-show.transition.out.opacity.duration.1500ms="shown" x-transition:leave.opacity.duration.1500ms style="display: none;" class="mr-3">
                     Guardado.
                 </div>
 
                 
 
-                <button type="submit" {{--wire:click="guardar_cambios"--}} class="btn1 btn-azul shadown btn-procesando btn-block">
+                <button type="submit" {{--wire:click="guardar_cambios"--}} class="btn1 btn-azul shadown btn-procesando btn-blockk">
                     Guardar cambios
                 </button>
             </div>

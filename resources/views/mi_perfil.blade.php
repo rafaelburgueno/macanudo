@@ -19,7 +19,16 @@
         <div class="col-md-6 card">
             <div class="card-title text-center pt-2">
                 <img src="{{Auth::user()->profile_photo_url}}" class="card-img-top rounded-circle" style="max-width:350px ; align-self: center;">
-                <h3 class="mt-2">{{Auth::user()->name}}</h3><br>
+                <h3 class="mt-2 nombre_a_actualizar">{{Auth::user()->name}}</h3><br>
+                {{--el siguiente script modifica el nombre de forma dinamica cuando se edita en em formulario del modal mis_datos--}}
+                <script> 
+                    $(document).ready(function(){
+                        $('.actualizar_nombre').click(function(){
+                            var nombre = $('input[name="nombre"]').val();
+                            $('.nombre_a_actualizar').text(nombre);
+                        });
+                    });
+                </script>
             </div>
             <div class="card-body">
 
@@ -129,9 +138,9 @@
 
                 <div class="">
                     <div class="">
-                        <h3 id="modalMisDatosLabel" class="" name="title">Información del perfil</h3>
+                        <h3 id="modalMisDatosLabel" class="">Información del perfil</h3>
                         <p class="">
-                            Actualice la información de perfil y la dirección de email de su cuenta.
+                            Actualice la información de perfil de su cuenta.
                         </p>
                     </div>
             

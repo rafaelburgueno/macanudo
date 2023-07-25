@@ -1,65 +1,100 @@
-<div class="">
+<div>
     
     <div class="">
-        {{--<h3>Actualizar tus datos</h3>
-        <p>auth()->user()->name: {{auth()->user()->name}}</p>
-        <p>nombre: {{$name}}</p>
-        <p>email: {{$email}}</p>--}}
 
-        <div class="form-group mb-4">
-            <label for="name" class="negro">Nombre y apellido <small>(Obligatorio)</small>: </label>
-            <input type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" name="name" wire:model="name">
+        <!-- Nombre -->
+        <div class="form-group mb-3">
+            <label for="nombre" class="negro">Nombre completo: </label>
+            <input type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control" name="nombre" wire:model="nombre" id="nombre" placeholder="Ingrese su nombre completo">
         </div>
 
-        <div class="form-group mb-4">
-            <label for="email" class="negro">Email <small>(Obligatorio)</small>: </label>
-            <input type="email" class="form-control" name="email" wire:model="email">
+        <!-- Email -->
+        <div class="form-group mb-3">
+            <label for="email" class="negro">Email: </label>
+            <input type="email" class="form-control" name="email" wire:model="email" id="email" placeholder="Ingrese su Email">
+            @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+        </div>
+
+
+        <!-- Fecha de Nacimiento -->
+        <div class="form-group mb-3">
+            <label for="fecha_de_nacimiento" class="negro">Fecha de nacimiento:</label>
+            <input type="date" class="form-control" min="{{ date('Y-m-d', strtotime('-120 years')) }}" max="{{ date('Y-m-d', strtotime('-18 years')) }}" name="fecha_de_nacimiento" wire:model="fecha_de_nacimiento" id="fecha_de_nacimiento" placeholder="Ingrese su fecha de nacimiento">
+            @error('fecha_de_nacimiento') <span class="text-danger">{{ $message }}</span> @enderror
+        </div>
+
+        <!-- Ingredientes que no consumo -->
+        <div class="form-group mb-3">
+            <label for="ingredientes_que_no_consumo" class="negro">
+                    Si hay algún ingrediente que no quieres o no puedes consumir indícanos cuál es así lo 
+                    podremos tener en cuenta al armar tus pedidos:
+            </label>
+            <textarea type="text" class="form-control" id="ingredientes_que_no_consumo" name="ingredientes_que_no_consumo" wire:model="ingredientes_que_no_consumo" rows="2" placeholder="Por ejemplo: No consumo ajo, no puedo consumir semillas enteras, no me gusta el roquefort."></textarea>
         </div>
 
 
 
-        
-        <div class="form-group mb-4">
+        {{-- TODO: desarrollar el guardado de estos datos --}}
+        {{--<div class="form-group mb-3">
             <label for="nContacto">Número de contacto: </label>
             <input type="text" class="form-control" id="nContacto"
                 placeholder="Ingrese su número de contacto" required>
         </div>
-        <div class="form-group mb-4">
+        <div class="form-group mb-3">
             <label for="nContactoAlt">Contacto alternativo: </label>
             <input type="text" class="form-control" id="nContactoAlt"
                 placeholder="Ingrese su número de contacto" required>
         </div>
-        <div class="form-group mb-4">
+        <div class="form-group mb-3">
             <label for="nCedula">Número de cédula: </label>
             <input type="text" class="form-control" id="nCedula"
                 placeholder="Ingrese su número de contacto" required>
+        </div>--}}
+
+
+
+
+        <label for="password" class="negro">Contraseña: </label>
+        <div class="form-row ">
+            <div class="col-sm-6 form-group mb-3">
+                <input type="password" class="mx-0 form-control password_confirmacion" name="password" wire:model="password" id="password" placeholder="Contraseña">
+            </div>
+            
+            <div class="col-sm-6 form-group mb-3">
+                <input type="password" class="mx-0 form-control password_confirmacion " wire:model="password_confirmation" placeholder="Confirmar contraseña">
+            </div>
+            @error('password') <span class="text-danger">{{ $message }}</span> @enderror
         </div>
         
+        <hr class="w-50 mt-4">
+
+        <div class="text-center">
+            {{--{!! $respuesta !!}--}}
+            @if (session()->has('exito'))
+                <div class="my-3 alert alert-success">
+                    {{ session('exito') }}
+                </div>
+            @endif
+
+            <button class="btn1 btn-azul shadown btn-procesando actualizar_nombre" wire:click="guardar">Guardar</button>
+        </div>
+
         
 
-
-
-
-
-        <button class="btn1 btn-azul shadown btn-procesando btn-block" wire:click="guardar">Guardar</button>
         
     </div>
 
 
 
-    <div class="my-4">
-        <div class="form-group mb-3">
-            <label for="password" class="negro">Contraseña: </label>
-            <input type="password" class="form-control password_confirmacion" wire:model="password" placeholder="nueva contraseña">
+    {{--
+    <div class="mb-4 mt-5">
+        <hr class="w-50 mt-4">
+
+        <div class="text-center">
+            <button class="btn1 btn-azul  shadown btn-procesando" wire:click="actualizar_contrasena">Actualizar contraseña</button>
         </div>
-
-        <div class="form-group mb-3">
-            <input type="password" class="form-control password_confirmacion " wire:model="password_confirmation" placeholder="confirmar la nueva contraseña">
-        </div>
-
-        <button class="btn1 btn-azul shadown btn-procesando btn-block" wire:click="actualizar_contrasena">actualizar contraseña</button>
-
     </div>
+    --}}
 
 
 
