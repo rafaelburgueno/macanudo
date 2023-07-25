@@ -2,6 +2,27 @@
     
     <div class="">
 
+
+        <!-- Foto -->
+        <div class="form-group mb-3">
+            <label for="photo" class="negro">Foto de perfil: </label>
+            
+            @if ($photo)
+                <div class="text-center mb-2">
+                    <img class="w-25 rounded-circle" id="imagen_de_perfil_temporal" src="{{ $photo->temporaryUrl() }}">
+                </div>
+            @endif
+
+            <input type="file" class="form-control p-1 m-0" wire:model="photo">
+
+            @error('photo') <span class="text-danger">{{ $message }}</span> @enderror
+        </div>
+        
+
+
+
+
+
         <!-- Nombre -->
         <div class="form-group mb-3">
             <label for="nombre" class="negro">Nombre completo: </label>
@@ -55,15 +76,15 @@
 
 
         <label for="password" class="negro">Contraseña: </label>
-        <div class="form-row ">
-            <div class="col-sm-6 form-group mb-3">
+        <div class="form-row mb-3">
+            <div class="col-sm-6 form-group mb-0">
                 <input type="password" class="mx-0 form-control password_confirmacion" name="password" wire:model="password" id="password" placeholder="Contraseña">
             </div>
             
-            <div class="col-sm-6 form-group mb-3">
+            <div class="col-sm-6 form-group mb-0 mt-1">
                 <input type="password" class="mx-0 form-control password_confirmacion " wire:model="password_confirmation" placeholder="Confirmar contraseña">
             </div>
-            @error('password') <span class="text-danger">{{ $message }}</span> @enderror
+            @error('password') <span class="mx-1 text-danger">{{ $message }}</span> @enderror
         </div>
         
         <hr class="w-50 mt-4">

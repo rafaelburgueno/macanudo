@@ -4,14 +4,20 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
+use Livewire\WithFileUploads;
+
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class ActualizarPerfil extends Component
 {
 
+    use WithFileUploads;
+    public $photo;
     
+    public $usuario;
     public $nombre;
     public $email;
     public $password;
@@ -19,6 +25,8 @@ class ActualizarPerfil extends Component
     public $fecha_de_nacimiento;
     public $ingredientes_que_no_consumo;
     public $respuesta = '';
+
+    
 
     protected function rules()
     {
@@ -30,17 +38,21 @@ class ActualizarPerfil extends Component
             ],
             'fecha_de_nacimiento' => 'nullable|date',
             'password' => 'nullable|min:8|confirmed',
+            'photo' => 'nullable|image|max:2048',
         ];
     }
 
     public function mount()
     {
-        $usuario = User::find(auth()->id());
+        //$this->usuario = User::find(auth()->id());
+        $usuario = Auth::user();
 
+        $this->usuario = $usuario;
         $this->nombre = $usuario->name;
         $this->email = $usuario->email;
         $this->fecha_de_nacimiento = $usuario->fecha_de_nacimiento;
         $this->ingredientes_que_no_consumo = $usuario->ingredientes_que_no_consumo;
+        //$this->photo = $usuario->profile_photo_path;
     }
  
 
@@ -52,21 +64,18 @@ class ActualizarPerfil extends Component
     {
         $this->validate();
 
-        $usuario = User::find(auth()->id());
 
-        // revisa si el email ya existe en la base de datos
-        /*$email_existe = User::where('email', $this->email)->first();
-        if($email_existe){
-            if($email_existe->id != $usuario->id){
-                $this->respuesta = '<div class="my-3 text-danger"><strong>El email ya existe en nuestra base de datos.</strong></div>';
-                return;
-            }
-        }*/
+
+        if ($this->photo) {
+            $this->usuario->update([
+                'profile_photo_path' => $this->photo->store('profile-photos', 'public'),
+            ]);
+        }
 
 
         //si el usuario escribe un password, revisa que coincida con la confirmacion
         if($this->password != '' && $this->password == $this->password_confirmation){
-            $usuario->update([
+            $this->usuario->update([
                 'password' => Hash::make($this->password),
             ]);
         }
@@ -81,7 +90,7 @@ class ActualizarPerfil extends Component
 
 
 
-        $usuario->update([
+        $this->usuario->update([
             'name' => $this->nombre,
             'email' => $this->email,
             'fecha_de_nacimiento' => $this->fecha_de_nacimiento,
@@ -94,17 +103,7 @@ class ActualizarPerfil extends Component
         
     }
 
-    
-    /*public function actualizar_contrasena($usuario){
-        //$usuario = User::find(auth()->id());
-        if(($this->password != '') && ($usuario->password == $usuario->password_confirmation)){
-            //$password = Hash::make($request->password);
-            $usuario->update([
-            'password' => Hash::make($this->password),
-            ]);
-        }
-    }*/
-
+       
 
 
 

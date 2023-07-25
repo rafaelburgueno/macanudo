@@ -18,7 +18,7 @@
 
         <div class="col-md-6 card">
             <div class="card-title text-center pt-2">
-                <img src="{{Auth::user()->profile_photo_url}}" class="card-img-top rounded-circle" style="max-width:350px ; align-self: center;">
+                <img src="{{Auth::user()->profile_photo_url}}" id="imagen_de_perfil" class="card-img-top rounded-circle" style="max-width:350px ; align-self: center;">
                 <h3 class="mt-2 nombre_a_actualizar">{{Auth::user()->name}}</h3><br>
                 {{--el siguiente script modifica el nombre de forma dinamica cuando se edita en em formulario del modal mis_datos--}}
                 <script> 
@@ -26,6 +26,8 @@
                         $('.actualizar_nombre').click(function(){
                             var nombre = $('input[name="nombre"]').val();
                             $('.nombre_a_actualizar').text(nombre);
+                            var srcTemporal = $('#imagen_de_perfil_temporal').attr('src');
+                            $('#imagen_de_perfil').attr('src', srcTemporal);
                         });
                     });
                 </script>
@@ -389,19 +391,29 @@
 
             </div>
             <h5 class="modal-title text-center" id="modalSeguridadLabel">Seguridad</h5>
+            
             <div class="modal-body">
 
 
-                {{-- EDICION DE DATOS DEL USUARIO --}}
-                <div>
-                    <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                        @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                            @livewire('profile.update-profile-information-form')
-
-                            <x-jet-section-border />
-                        @endif
+                @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
+                    <div class="mt-10 sm:mt-0">
+                        @livewire('profile.two-factor-authentication-form')
                     </div>
+
+                    <x-jet-section-border />
+                @endif
+
+                <div class="mt-10 sm:mt-0">
+                    @livewire('profile.logout-other-browser-sessions-form')
                 </div>
+
+                @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
+                    <x-jet-section-border />
+
+                    <div class="mt-10 sm:mt-0">
+                        @livewire('profile.delete-user-form')
+                    </div>
+                @endif
                 
 
             </div>
