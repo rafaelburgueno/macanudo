@@ -383,44 +383,24 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content align-items-center">
             <div class="modal-header">
+
+                <h3 class="modal-title text-center" id="modalSeguridadLabel">Seguridad</h3>
+
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="borrar()">
                     <span aria-hidden="true">&times;</span>
                 </button>
 
-
-
             </div>
-            <h5 class="modal-title text-center" id="modalSeguridadLabel">Seguridad</h5>
             
             <div class="modal-body">
 
 
-                @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
-                    <div class="mt-10 sm:mt-0">
-                        @livewire('profile.two-factor-authentication-form')
-                    </div>
-
-                    <x-jet-section-border />
-                @endif
-
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.logout-other-browser-sessions-form')
-                </div>
-
-                @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
-                    <x-jet-section-border />
-
-                    <div class="mt-10 sm:mt-0">
-                        @livewire('profile.delete-user-form')
-                    </div>
-                @endif
+                {{-- BORRAR CUENTA --}}
+                @livewire('borrar-cuenta')
                 
 
             </div>
-            <div class="modal-footer">
-                <button class="btn shadown" style="color:#f04643;">Modificar</button>
-                <button class="btn btn-outline shadown " style="color: #4554a4; ">Guardar</button>
-            </div>
+            
 
         </div>
 
