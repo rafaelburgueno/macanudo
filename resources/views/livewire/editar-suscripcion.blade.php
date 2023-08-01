@@ -2,46 +2,60 @@
 
     <form wire:submit.prevent="guardar_cambios">
     
-        <div class="max-w-xl text-sm text-gray-600">
-            @if( Auth::user()->rol == 'administrador' )
-                <h3 class="h6 font-medium text-gray-900">Susripción id: {{$suscripcion->id}}</h3>
-            @endif
-            <p class="mt-1 text-sm text-gray-600">
-                {{--Duración {{$suscripcion->tipo}}. <br> --}}
-                {{--Precio: ${{$suscripcion->precio}}<br> --}}
-                Precio: $ {!! $precio !!} <br>
-                {{--Restan {{$suscripcion->cantidad_de_canastas}} canastas.--}} 
-                Fecha de inicio {{$suscripcion->fecha_de_inicio}}
-                
-            </p>
-            @if($activo)
-                <p class="mt-1 text-sm text-green-600">Suscripción activa.</p>
-            @else
-                <p class="mt-1 text-sm text-red-600">Suscripción cancelada.</p>
-            @endif
-
-
-        </div>
         
-        <div class="grid grid-cols-6 gap-6 mt-5">
+        @if( Auth::user()->rol == 'administrador' )
+            <h3 class="h6">Susripción id: {{$suscripcion->id}}</h3>
+        @endif
+        {{--<p class="my-0 py-0 small">Duración {{$suscripcion->tipo}}.</p>--}}
+        {{--<p class="my-0 py-0 small">Precio: ${{$suscripcion->precio}}</p>--}}
+        <p class="my-0 py-0 small">Precio: $ {!! $precio !!} </p>
+        {{--<p class="my-0 py-0 small">Restan {{$suscripcion->cantidad_de_canastas}} canastas.</p>--}}
+        <p class="my-0 py-0 small">Fecha de inicio {{$suscripcion->fecha_de_inicio}}</p>
+        
+        <!-- activo -->
+        <div class="row">
+            @if($activo)
+                <div class="col text-left">
+                    <p class="my-0 py-0 small">La suscripción está activa</p>
+                </div>
+                <div class="col text-right">
+                    <button wire:click="cancelar_suscripcion" type="button" class="btn btn-danger shadown btn-sm btn-procesando btn-blockk text-light">
+                        Suspender la suscripción
+                    </button>
+                </div>
+            @else
+                <div class="col text-left">
+                    <p class="my-0 py-0 small">Actualmente la suscripción está suspendida</p>
+                </div>
+                <div class="col text-right">
+                    <button wire:click="activar_suscripcion" type="button" class="btn btn-azul shadown btn-sm btn-procesando btn-blockk text-light">
+                        Activar la suscripción
+                    </button>
+                </div>
+            @endif
+        </div>
+
+
+        <!-- EDICION DE DATOS -->
+        <div class="mt-5">
             
             <!-- Direccion -->
-            <div class="col-span-6 sm:col-span-4 text-dark">
-                <label class="block font-medium text-sm text-gray-700" for="direccion_de_entrega_{{$suscripcion->id}}">Dirección de entrega</label>
-                <input wire:model="direccion_de_entrega" value="{{$suscripcion->direccion_de_entrega}}" id="direccion_de_entrega_{{$suscripcion->id}}" type="text" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" >
+            <div class="form-group mb-3">
+                <label class="" for="direccion_de_entrega_{{$suscripcion->id}}">Dirección de entrega</label>
+                <input class="form-control" wire:model="direccion_de_entrega" value="{{$suscripcion->direccion_de_entrega}}" id="direccion_de_entrega_{{$suscripcion->id}}" type="text" class="form-control" >
             </div>
 
             <!-- Teléfono -->
-            <div class="col-span-6 sm:col-span-4 text-dark">
-                <label class="block font-medium text-sm text-gray-700" for="telefono_{{$suscripcion->id}}">Teléfono</label>
-                <input wire:model="telefono" value="{{$suscripcion->telefono}}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" id="telefono_{{$suscripcion->id}}" type="text" >
+            <div class="form-group mb-3">
+                <label class="" for="telefono_{{$suscripcion->id}}">Teléfono</label>
+                <input wire:model="telefono" value="{{$suscripcion->telefono}}" class="form-control" id="telefono_{{$suscripcion->id}}" type="text" >
             </div>
 
             <!-- dia de entrega -->
-            <div class="col-span-6 sm:col-span-4 text-dark">
-                <label class="block font-medium text-sm text-gray-700" for="dia_de_entrega">Dia de entrega</label>
+            <div class="form-group mb-3">
+                <label class="" for="dia_de_entrega">Dia de entrega</label>
                 {{--<input value="{{$suscripcion->dia_de_entrega}}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" id="direccion_de_entrega" type="text">--}}
-                <select wire:model="dia_de_entrega" id="dia_de_entrega" name="dia_de_entrega" autocomplete="dia_de_entrega" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <select wire:model="dia_de_entrega" id="dia_de_entrega" name="dia_de_entrega" autocomplete="dia_de_entrega" class="form-control">
                     
                     <option value="Primer jueves del mes en la mañana (8 a 12hs)" @selected($suscripcion->dia_de_entrega == "Primer jueves del mes en la mañana (8 a 12hs)")>Primer jueves del mes en la mañana (8 a 12hs)</option>
                     <option value="Tercer jueves del mes en la tarde (14 a 18hs)" @selected($suscripcion->dia_de_entrega == "Tercer jueves del mes en la tarde (14 a 18hs)")>Tercer jueves del mes en la tarde (14 a 18hs)</option>
@@ -50,9 +64,9 @@
             </div>
 
             {{--<!-- tipo -->
-            <div class="col-span-6 sm:col-span-4 text-dark">
-                <label class="block font-medium text-sm text-gray-700" for="tipo">Tipo de suscripcion</label>
-                <select id="tipo" name="tipo" autocomplete="tipo" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <div class="form-group mb-3">
+                <label class="" for="tipo">Tipo de suscripcion</label>
+                <select id="tipo" name="tipo" autocomplete="tipo" class="form-control">
                     
                     <option value="Un mes" @selected($suscripcion->tipo == "Un mes")>Un mes</option>
                     <option value="Tres meses" @selected($suscripcion->tipo == "Tres meses")>Tres meses</option>
@@ -63,9 +77,9 @@
             </div>--}}
 
             <!-- cantidad de quesos -->
-            <div class="col-span-6 sm:col-span-4 text-dark">
-                <label class="block font-medium text-sm text-gray-700" for="cantidad_de_quesos">Cantidad de quesos en la canasta</label>
-                <select wire:model="cantidad_de_quesos" data-te-select-init id="cantidad_de_quesos" name="cantidad_de_quesos" autocomplete="cantidad_de_quesos" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <div class="form-group mb-3">
+                <label class="" for="cantidad_de_quesos">Cantidad de quesos en la canasta</label>
+                <select wire:model="cantidad_de_quesos" data-te-select-init id="cantidad_de_quesos" name="cantidad_de_quesos" autocomplete="cantidad_de_quesos" class="form-control">
                     
                     <option value="3" @selected($suscripcion->cantidad_de_quesos == "3")>3 quesos  ($ 969)</option>
                     <option value="5" @selected($suscripcion->cantidad_de_quesos == "5")>5 quesos  ($ 1599)</option>
@@ -79,36 +93,25 @@
         </div>
 
 
-        <div class="flex items-center justify-end px-4 py-1 mt-5 text-right sm:px-6  sm:rounded-bl-md sm:rounded-br-md">
-            <div x-show.transition.out.opacity.duration.1500ms="shown" x-transition:leave.opacity.duration.1500ms style="display: none;" class="text-sm text-gray-600 mr-3">
+        <div class="text-center">
+            <div x-show.transition.out.opacity.duration.1500ms="shown" x-transition:leave.opacity.duration.1500ms style="display: none;" class="mr-3">
                 Guardado.
             </div>
 
             
             {!! $respuesta !!}
 
-            <button type="submit" {{--wire:click="guardar_cambios"--}} class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+            <button type="submit" {{--wire:click="guardar_cambios"--}} class="btn1 btn-azul shadown btn-procesando btn-blockk">
                 Guardar cambios
             </button>
         </div>
 
-        <!-- activo -->
-        <div class="flex items-center justify-end px-4 py-1 mb-3 text-right sm:px-6  sm:rounded-bl-md sm:rounded-br-md">
-            @if($activo)
-            <button wire:click="cancelar_suscripcion" type="button" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition ">
-                Suspender la suscripción
-            </button>
-            @else
-            <button wire:click="activar_suscripcion" type="button" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 active:bg-gray-700 disabled:opacity-25 transition ">
-                Activar la suscripción
-            </button>
-            @endif
-        </div>
+        
 
     </form>
     
 
-    <hr class="my-5 text-gray-700">
+    <hr class="mt-5 text-gray-700">
     
 
 </div>

@@ -33,11 +33,7 @@
                     <p class="mt-1 text-sm text-gray-600">
                         Actualice la información de perfil y la dirección de email de su cuenta.
                     </p>
-                    {{--<p  class="mt-1 text-sm text-gray-600">Tipo: {{$suscripcion->tipo}}</p>
-                    <p  class="mt-1 text-sm text-gray-600">Precio: ${{$suscripcion->precio}}</p>
-                    <p  class="mt-1 text-sm text-gray-600">Canastas que te quedan por recibir: {{$suscripcion->cantidad_de_canastas}}</p>
-                    <p  class="mt-1 text-sm text-gray-600">Fecha de inicio: {{$suscripcion->fecha_de_inicio}}</p>
-                    {{--<p  class="mt-1 text-sm text-gray-600">{{$suscripcion->}}</p>--}}
+                    
                 </div>
         
                 <div class="px-4 sm:px-0">

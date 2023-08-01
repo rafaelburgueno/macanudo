@@ -21,7 +21,7 @@
         </div>
         {{--<hr class="w-50 mt-4">--}}
         <div class="text-center">
-            <button type="submit" class="btn1 btn-azul shadown btn-borrar-cuenta">Borrar cuenta</button>
+            <button type="submit" class="btn1 btn-danger shadown btn-borrar-cuenta">Borrar cuenta</button>
         </div>
         {!! $respuesta !!}
         

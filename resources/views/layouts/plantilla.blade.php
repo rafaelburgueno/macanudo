@@ -46,6 +46,10 @@
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
+    <!-- ESTILOS DE LOS ICONOS DE BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+
+
     <!-- Estilos de liwire -->
     @livewireStyles
 

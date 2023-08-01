@@ -10,23 +10,25 @@
         @if( Auth::user()->rol == 'administrador' )
             <h3 class="h6 ">Pedido id: {{$pedido->id}}</h3>
         @endif
-        <p class="">Monto: $ {{$pedido->monto}}</p>
-        <p class="">Estado del pedido: {{$pedido->status}}</p>
-        <p class="">Estado del pago: {{$pedido->estado_del_pago}}</p>
+        <p class="my-0 py-0 small">Monto: $ {{$pedido->monto}}</p>
+        <p class="my-0 py-0 small">Estado: {{$pedido->status}}</p>
+        <p class="my-0 py-0 small">Estado del pago: {{$pedido->estado_del_pago}}</p>
         
         @if($pedido->direccion == 'el pedido se retira en la planta' )
-        <p class="">El pedido debe ser retirado en la planta de elaboración</p>
+        <p class="my-0 py-0 small">El pedido debe ser retirado en la planta de elaboración</p>
         @endif
         
-        <p class="">Medio de pago: {{$pedido->medio_de_pago}}</p>
-        <p class="">Número de factura: {{$pedido->numero_de_factura}}</p>
-        <p class="">Fecha: {{$pedido->created_at}}</p>
+        <p class="my-0 py-0 small">Medio de pago: {{$pedido->medio_de_pago}}</p>
+        @if($pedido->numero_de_factura != 55)
+            <p class="my-0 py-0 small">Número de factura: {{$pedido->numero_de_factura}}</p>
+        @endif
+        <p class="my-0 py-0 small">Fecha: {{$pedido->created_at}}</p>
 
         @if(count($pedido->productos))
-            <h5 class="">Productos: </h5>   
-            <ul class="">
+            <h6 class="mt-1 mb-0">Productos: </h6>   
+            <ul class="m-0 p-0">
                 @foreach($pedido->productos as $producto)
-                <li class="p-1"><small>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</small></li>
+                <li class="m-0 ml-4 p-0"><small>{{ $producto->nombre }} x {{ $producto->pivot->unidades }}</small></li>
                 @endforeach
             </ul>
         @else
@@ -37,7 +39,7 @@
         {{-- EDITAR PEDIDO LIVEWIRE --}}
         @if($pedido->status == 'pedido')
 
-            <div class="">
+            <div class="mt-3">
                 
                 <!-- Direccion -->
                 @if($pedido->direccion != 'el pedido se retira en la planta' )
@@ -83,7 +85,7 @@
             </div>
 
 
-            <hr class="w-50 mt-4">
+            {{--<hr class="w-50 mt-4">--}}
             <div class="text-center">
                 <div x-show.transition.out.opacity.duration.1500ms="shown" x-transition:leave.opacity.duration.1500ms style="display: none;" class="mr-3">
                     Guardado.
