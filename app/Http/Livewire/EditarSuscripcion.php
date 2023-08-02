@@ -16,6 +16,7 @@ class EditarSuscripcion extends Component
     public $cantidad_de_quesos;
     public $telefono;
     public $activo;
+    public $btn_confirmar_cancelar;
 
     public $respuesta = '';
     public $precio;
@@ -30,6 +31,7 @@ class EditarSuscripcion extends Component
         $this->cantidad_de_quesos = $suscripcion->cantidad_de_quesos;
         $this->telefono = $suscripcion->telefono;
         $this->activo = $suscripcion->activo;
+        $this->btn_confirmar_cancelar = false;
         $this->precio = $suscripcion->precio;
 
     }
@@ -80,6 +82,19 @@ class EditarSuscripcion extends Component
     //funcion para cancelar la suscripcion
     public function cancelar_suscripcion()
     {
+        $this->btn_confirmar_cancelar = true;
+    }
+    
+    // desactiva el boton para confirmar cancelar la suscripcion
+    public function cancelar_suscripcion_cancelado()
+    {
+        $this->btn_confirmar_cancelar = false;
+    }
+    
+    
+    //funcion para cancelar el suscripcion
+    public function cancelar_suscripcion_confirmado(){
+        $this->btn_confirmar_cancelar = false;
         $this->respuesta = '';
 
         //se busca la suscripcion en la base de datos

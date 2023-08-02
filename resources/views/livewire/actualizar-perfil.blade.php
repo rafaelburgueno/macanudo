@@ -12,6 +12,20 @@
                     <img class="w-25 rounded-circle" id="imagen_de_perfil_temporal" src="{{ $photo->temporaryUrl() }}">
                 </div>
             @endif
+                
+            @if($usuario->profile_photo_path)
+                <div class="mb-2">
+                    <p class="my-0 py-0 small text-danger eliminar_foto" wire:click="eliminar_foto">¿Eliminar tu foto de perfil?</p>
+                </div>                
+            @endif
+
+            @if (session()->has('foto_eliminada'))
+                <div class="text-center">
+                    <div class="my-3 alert alert-success">
+                        {{ session('foto_eliminada') }}
+                    </div>
+                </div>
+            @endif
 
             <input type="file" class="form-control p-1 m-0" wire:model="photo">
 

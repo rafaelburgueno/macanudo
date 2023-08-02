@@ -16,7 +16,7 @@
     
     <form wire:submit.prevent="verificar">
         <div class="form-group mb-3">
-            <input type="password" class="form-control" wire:model="password" placeholder="Contraseña">
+            <input required type="password" class="form-control" wire:model="password" placeholder="Contraseña">
             @error('password') <span class="mx-1 text-danger">{{ $message }}</span> @enderror
         </div>
         {{--<hr class="w-50 mt-4">--}}

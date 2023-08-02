@@ -17,7 +17,7 @@
         <div class="col-md-3"></div>
 
         <div class="col-md-6 card">
-            <div class="card-title text-center pt-2">
+            <div class="card-title text-center pt-3">
                 <img src="{{Auth::user()->profile_photo_url}}" id="imagen_de_perfil" class="card-img-top rounded-circle" style="max-width:350px ; align-self: center;">
                 <h3 class="mt-2 nombre_a_actualizar">{{Auth::user()->name}}</h3><br>
                 {{--el siguiente script modifica el nombre de forma dinamica cuando se edita en em formulario del modal mis_datos--}}
@@ -28,6 +28,15 @@
                             $('.nombre_a_actualizar').text(nombre);
                             var srcTemporal = $('#imagen_de_perfil_temporal').attr('src');
                             $('#imagen_de_perfil').attr('src', srcTemporal);
+                        });
+                        $('.eliminar_foto').click(function(){
+                            // Obtener el elemento canvas generado por Jetstream::gravatar()
+                            //let canvas = document.querySelector('canvas');
+                            // Obtener la URL de datos de la imagen generada por Jetstream::gravatar()
+                            //let dataURL = canvas.toDataURL();
+                            // Actualizar el atributo src del elemento img para mostrar la imagen generada por Jetstream::gravatar()
+                            //$('#imagen_de_perfil').attr('src', dataURL);
+                            $('#imagen_de_perfil').hide();
                         });
                     });
                 </script>
@@ -209,14 +218,14 @@
 
 <!-- MODAL MIS DIRECCIONES----MODAL MIS DIRECCIONES----MODAL MIS DIRECCIONES----MODAL MIS DIRECCIONES------>
 <!-- MODAL MIS DIRECCIONES----MODAL MIS DIRECCIONES----MODAL MIS DIRECCIONES----MODAL MIS DIRECCIONES------>
-<div class="modal fade text-dark" id="modalMisDirecciones" tabindex="-1" role="dialog" aria-labelledby="modalMisDireccionesLabel"
+<div class="modal fade text-darkk" id="modalMisDirecciones" tabindex="-1" role="dialog" aria-labelledby="modalMisDireccionesLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content ">
             <div class="modal-header">
 
                 <div class="px-4">
-                    <h3 class="" id="modalMisDireccionesLabel" class="text-lg">Mis direcciones</h3>
+                    <h3 id="modalMisDireccionesLabel" class="text-lg">Mis direcciones</h3>
                     <p class="mt-1 text-sm">
                         Listado de las direcciones registradas en las compras realizadas.
                     </p>
@@ -443,7 +452,7 @@
 <div class="modal fade" id="modalSeguridad" tabindex="-1" role="dialog" aria-labelledby="modalSeguridadLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content align-items-center">
+        <div class="modal-content">
             <div class="modal-header">
 
                 <div class="px-4">

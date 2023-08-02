@@ -10,6 +10,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+//use Creativeorange\Gravatar\Facades\Gravatar;
+//use Gravatar;
+
 
 class ActualizarPerfil extends Component
 {
@@ -25,6 +28,7 @@ class ActualizarPerfil extends Component
     public $fecha_de_nacimiento;
     public $ingredientes_que_no_consumo;
     public $respuesta = '';
+    //public $gravatar;
 
     
 
@@ -53,6 +57,7 @@ class ActualizarPerfil extends Component
         $this->fecha_de_nacimiento = $usuario->fecha_de_nacimiento;
         $this->ingredientes_que_no_consumo = $usuario->ingredientes_que_no_consumo;
         //$this->photo = $usuario->profile_photo_path;
+        //$this->gravatar = Gravatar::get(Auth::user()->email, ['size' => 100]);
     }
  
 
@@ -103,6 +108,24 @@ class ActualizarPerfil extends Component
         
     }
 
+
+    // metodo para eliminar la foto de perfil
+    public function eliminar_foto()
+    {
+        // elimina la foto de la carpeta storage/app/public/profile-photos
+        \Storage::disk('public')->delete($this->usuario->profile_photo_path);
+        
+
+        $this->usuario->update([
+            'profile_photo_path' => null,
+        ]);
+
+        $usuario = Auth::user();
+        $this->usuario = $usuario;
+
+        $this->photo = null;
+        session()->flash('foto_eliminada', 'La foto de perfil fue aliminada.');
+    }
        
 
 

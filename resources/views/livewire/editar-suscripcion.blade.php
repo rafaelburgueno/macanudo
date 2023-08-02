@@ -11,41 +11,28 @@
         <p class="my-0 py-0 small">Precio: $ {!! $precio !!} </p>
         {{--<p class="my-0 py-0 small">Restan {{$suscripcion->cantidad_de_canastas}} canastas.</p>--}}
         <p class="my-0 py-0 small">Fecha de inicio {{$suscripcion->fecha_de_inicio}}</p>
-        
-        <!-- activo -->
-        <div class="row">
-            @if($activo)
+        @if($activo)
+            <p class="my-0 py-0 small text-success">La suscripción está <strong>activa</strong></p>
+        @else
+            <div class="row">
                 <div class="col text-left">
-                    <p class="my-0 py-0 small">La suscripción está activa</p>
-                </div>
-                <div class="col text-right">
-                    <button wire:click="cancelar_suscripcion" type="button" class="btn btn-danger shadown btn-sm btn-procesando btn-blockk text-light">
-                        Suspender la suscripción
-                    </button>
-                </div>
-            @else
-                <div class="col text-left">
-                    <p class="my-0 py-0 small">Actualmente la suscripción está suspendida</p>
+                    <p class="my-0 py-0 small">La suscripción está suspendida</p>
                 </div>
                 <div class="col text-right">
                     <button wire:click="activar_suscripcion" type="button" class="btn btn-azul shadown btn-sm btn-procesando btn-blockk text-light">
                         Activar la suscripción
                     </button>
                 </div>
-            @endif
-        </div>
-
-        @if (session()->has('cancelada'))
-            <div class="text-center">
-                <div class="my-3 alert alert-success">
-                    {{ session('cancelada') }}
-                </div>
             </div>
+            
+        
         @endif
+
+        
 
 
         <!-- EDICION DE DATOS -->
-        <div class="mt-5">
+        <div class="mt-3">
             
             <!-- Direccion -->
             <div class="form-group mb-3">
@@ -114,12 +101,45 @@
             </button>
         </div>
 
+
+
+        <div class="text-center mt-4">
+            <!-- CANCELAR LA SUSCRIPCIÓN -->
+            @if($activo)
+                @if($btn_confirmar_cancelar)
+                    <p class="my-0 py-0">¿Realmente quiere suspender la suscripción?</p>
+                    <p class="my-0 py-0">Esta acción podrá revertirse en cualquier momento.</p>
+
+                    <button wire:click="cancelar_suscripcion_confirmado" type="button" class="btn btn-danger shadown text-light">
+                        Si, suspender la suscripción
+                    </button>
+                    <button wire:click="cancelar_suscripcion_cancelado" type="button" class="btn btn-azul shadown text-light">
+                        No
+                    </button>
+                @else
+                    <p wire:click="cancelar_suscripcion" class="my-0 py-0 text-danger">
+                        ¿Suspender la suscripción?
+                    </p>
+                @endif
+
+            @endif
+        </div>
+        
+
+        @if (session()->has('cancelada'))
+            <div class="text-center">
+                <div class="my-3 alert alert-success">
+                    {{ session('cancelada') }}
+                </div>
+            </div>
+        @endif
+
         
 
     </form>
     
 
-    <hr class="mt-5 text-gray-700">
+    <hr class="mt-3 text-gray-700">
     
 
 </div>
