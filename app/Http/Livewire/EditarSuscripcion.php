@@ -71,8 +71,8 @@ class EditarSuscripcion extends Component
             }
         }
 
-        $this->respuesta = '<div class="text-sm text-gray-600 mr-3">Suscripción actualizada.</div>';
-
+        //$this->respuesta = '<div class="text-sm text-gray-600 mr-3">Suscripción actualizada.</div>';
+        session()->flash('exito', 'Suscripción actualizada exitosamente.');
 
     }
 
@@ -97,8 +97,8 @@ class EditarSuscripcion extends Component
             }
         }
 
-        $this->respuesta = '<div class="text-sm text-gray-600 mr-3">Suscripción cancelada.</div>';
-
+        //$this->respuesta = '<div class="text-sm text-gray-600 mr-3">Suscripción cancelada.</div>';
+        session()->flash('cancelada', 'La suscripción fue suspendida.');
     }
 
     //funcion para reactivar la suscripcion
@@ -121,8 +121,9 @@ class EditarSuscripcion extends Component
             }
         }
 
-        $this->respuesta = '<div class="text-sm text-gray-600 mr-3">Suscripción reactivada.</div>';
-
+        //$this->respuesta = '<div class="text-sm text-gray-600 mr-3">Suscripción reactivada.</div>';
+        
+        session()->flash('cancelada', 'La suscripción fue reactivada exitosamente.');
     }
 
 

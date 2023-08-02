@@ -14,10 +14,18 @@ class MiPerfilEditarPedido extends Component
     public $direccion; // $direccion_de_entrega;
     public $telefono;
     public $cancelar;
+    public $btn_confirmar_cancelar;
 
     public $respuesta = '';
 
 
+    protected function rules()
+    {
+        return [
+            'direccion' => 'required',
+            'telefono' => 'required|min:8',
+        ];
+    }
 
     public function mount($pedido)
     {
@@ -32,6 +40,8 @@ class MiPerfilEditarPedido extends Component
             $this->cancelar = 'no';
         }
 
+        $this->btn_confirmar_cancelar = false;
+
         
     }
 
@@ -40,6 +50,8 @@ class MiPerfilEditarPedido extends Component
     //metodo para guardar cambios
     public function guardar_cambios()
     {
+        $this->validate();
+
         $this->respuesta = '';
 
         //se busca el pedido en la base de datos
@@ -48,20 +60,35 @@ class MiPerfilEditarPedido extends Component
         //$pedido_guardado->status = $this->status;
         $pedido_guardado->direccion = $this->direccion;
         $pedido_guardado->telefono = $this->telefono;
-        if($this->cancelar == 'si'){
+        /*if($this->cancelar == 'si'){
             $pedido_guardado->status = 'cancelado';
-        }
+        }*/
 
         $pedido_guardado->save();
         $this->pedido = $pedido_guardado;
 
-        $this->respuesta = '<div class="mr-3 mt-4 text-success"><strong>Pedido actualizado.</strong></div>';
+        //$this->respuesta = '<div class="mr-3 mt-4 text-success"><strong>Pedido actualizado.</strong></div>';
+    
+        session()->flash('exito', 'Pedido actualizado exitosamente.');
     }
 
 
-    //funcion para cancelar el pedido
+    // activa el boton para confirmar cancelar el pedido
     public function cancelar_pedido()
     {
+        $this->btn_confirmar_cancelar = true;
+    }
+    
+    // desactiva el boton para confirmar cancelar el pedido
+    public function cancelar_pedido_cancelado()
+    {
+        $this->btn_confirmar_cancelar = false;
+    }
+    
+    
+    //funcion para cancelar el pedido
+    public function cancelar_pedido_confirmado(){
+        $this->btn_confirmar_cancelar = false;
         $this->respuesta = '';
 
         //se busca el pedido en la base de datos
@@ -70,9 +97,11 @@ class MiPerfilEditarPedido extends Component
         $pedido_guardado->save();
         $this->pedido = $pedido_guardado;
 
-        $this->respuesta = '<div class="text-sm text-gray-600 mr-3">Pedido cancelado.</div>';
-
+        //$this->respuesta = '<div class="text-sm text-gray-600 mr-3">Pedido cancelado.</div>';
+        
+        session()->flash('cancelado', 'Pedido cancelado exitosamente.');
     }
+    
 
 
 
