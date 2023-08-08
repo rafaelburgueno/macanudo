@@ -307,13 +307,12 @@ class SuscripcionController extends Controller
      */
     public function confirmar_cancelacion_de_suscripcion(Request $request, Suscripcion $suscripcion)
     {
-        
         if (! $request->hasValidSignature()) {
             abort(401); // lanza un pantallazo : 401 UNAUTHORIZED
             /*session()->flash('error', 'Esta intentando acceder a un recurso no autorizado.');
             return redirect() -> route('home');*/
         }else{
-
+            
             // verifique si la fecha de hoy esta a mas de 5 dias del primer jueves del mes
             // si es asi, entonces no se puede cancelar la suscripcion
             // si no es asi, entonces se puede cancelar la suscripcion
@@ -321,15 +320,32 @@ class SuscripcionController extends Controller
 
             $primerDiaDelMes = strtotime(date('Y-m-01'));
 
-            $primerJuevesDelMes = strtotime('first thursday of ' . date('F Y', $primerDiaDelMes));
-            $diasEntreFechas = round(($primerJuevesDelMes - $primerDiaDelMes) / (60 * 60 * 24));
+            
+            if( str_contains($suscripcion->dia_de_entrega , 'Primer jueves')){
+                // primer jueves del mes
+                $primerJuevesDelMes = strtotime('first thursday of ' . date('F Y', $primerDiaDelMes));
+                $diasEntreFechas = round(($primerJuevesDelMes - $primerDiaDelMes) / (60 * 60 * 24));
+            }elseif( str_contains($suscripcion->dia_de_entrega, 'Tercer jueves')){
+                // tercer jueves del mes
+                $tercerJuevesDelMes = strtotime('third thursday of ' . date('F Y', $primerDiaDelMes));
+                $diasEntreFechas = round(($tercerJuevesDelMes - $primerDiaDelMes) / (60 * 60 * 24));
+            }
 
             if ($diasEntreFechas > 5) {
                 // La fecha de hoy está a más de 5 días del primer jueves del mes.
-                session()->flash('error', 'La suscripcion SI puede ser cancelada porque la fecha de hoy está a más de 5 días del primer jueves del mes.');
+                //session()->flash('error', 'La suscripcion SI puede ser cancelada porque la fecha de hoy está a más de 5 días del primer jueves del mes.');
+                
+                if($suscripcion->activo == 0){
+                    session()->flash('error', 'La suscripcion ya fue cancelada previamente.');
+                    return redirect() -> route('home');
+                }else{
+                    return view('confirmar_cancelacion')->with('suscripcion', $suscripcion);
+                }
+            
             } else {
                 // La fecha de hoy está a menos de 5 días del primer jueves del mes.
-                session()->flash('error', 'La suscripcion NO puede ser cancelada porque la fecha de hoy está a menos de 5 días del primer jueves del mes.');
+                session()->flash('error', 'La suscripción NO puede ser cancelada porque faltan menos de cinco días para la entrega.');
+                return redirect() -> route('home');
             }
 
 
