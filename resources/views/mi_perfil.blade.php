@@ -309,9 +309,9 @@
                         <div class="card">
                                 
                             @if($pedido->tipo == 'club del queso')
-                                <div class="card-header" id="compra-{{$pedido->id}}" style="background-color: rgb(255, 255, 242)">
+                                <div class="card-header" id="compra-{{$pedido->id}}" style="background-color: rgb(255, 255, 242); cursor: pointer;" >
                             @else
-                                <div class="card-header" id="compra-{{$pedido->id}}">
+                                <div class="card-header" id="compra-{{$pedido->id}}" style="cursor: pointer;">
                             @endif
 
                                     <div class="mb-0 btn btn-linkk btn-block text-left collapsed" data-toggle="collapse" data-target="#collapse-{{$pedido->id}}" aria-expanded="true" aria-controls="collapse-{{$pedido->id}}">

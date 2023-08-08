@@ -104,7 +104,7 @@
     <div class="row" id="panel_seleccionar_metodo_de_pago">
         
         <!-- Botones de pago -->
-        <div class="col-lg-6 mb-5">
+        <div class="col-lg-4 mb-5">
             
             <div class="card">
                 <div class="card-header">
@@ -257,15 +257,15 @@
         </div>
 
         <!-- Resumen de la compra -->
-        <div class="col-lg-6">
-            <div class="cardd p-0 mb-5">
-                <div class="card-headerr">
+        <div class="col-lg-8">
+            <div class="card p-0 mb-5 text-dark">
+                <div class="card-header">
                     <h4 class="text-center">Resumen de la compra</h4>
                 </div>
-                <div class="card-bodyy">
+                <div class="card-body">
                     <div class="row">
                         <div class="col-md-8">
-                            <table class="table table-sm table-dark">
+                            <table class="table table-sm table-darkk">
                                 <thead>
                                 <tr>
                                     <th>Producto</th>
@@ -288,9 +288,11 @@
                         </div>
                         <div class="col-md-4">
                             <div class="float-right pl-2">
-                                <p>SubTotal: $ UYU</p>
-                                <p>Envío: 0 $ UYU</p>
-                                <p>Descuento: 0 %</p>
+                                <p id="subTotal">SubTotal: $ UYU</p>
+                                <p>Envío: {{$pedido->costo_de_envio->costo_de_envio}} $ UYU</p>
+                                @if($pedido->cupon)
+                                <p>Descuento: {{$pedido->cupon->descuento}} %</p>
+                                @endif
                                 <p class="h5">Total: {{$pedido->monto}} $ UYU</p>
                             </div>
                         </div>
@@ -310,6 +312,15 @@
         $("#pedidoId").val('{{$pedido->id}}');
         /*$("#pedidoId").val();*/
         
+
+        // calcula el subTotal de la compra, sumando todos los totales de los productos
+        let subTotal = 0;
+        $(".producto").each(function(){
+            subTotal += parseInt($(this).find("td").eq(3).text());
+        });
+        $("#subTotal").text("SubTotal: " + subTotal + " $ UYU");
+
+
     });
     
     
