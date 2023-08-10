@@ -235,32 +235,67 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-bodyy">
 
-                @if(count($pedidos) > 0)
-                    @foreach($pedidos as $pedido)
-                        @if($pedido->direccion != 'el pedido se retira en la planta')
-                            <p class="my-0 py-0"><strong>Pedido relizado el {{$pedido->created_at->format('d/m/Y')}} a las {{$pedido->created_at->format('h:i A')}}</strong></p>
-                            
-                            @if($pedido->telefono)
-                                <p class="my-0 py-0 small">Teléfono: {{$pedido->telefono}}</p>
+                @if(count($direcciones) > 0)
+
+                    <div class="accordion" id="accordion-mis-direcciones">
+                        @foreach($direcciones as $direccion)
+                            @if($direccion->direccion != 'el pedido se retira en la planta')
+                                
+                                <div class="card">
+                                    <div class="card-header" id="direccion-{{$direccion->id}}" style="cursor: pointer;">
+                                        <div class="mb-0 btn btn-block text-left collapsed" data-toggle="collapse" data-target="#collapse-{{$direccion->id}}" aria-expanded="true" aria-controls="collapse-{{$direccion->id}}">
+
+                                            <div class="row">
+                                                <div class="col-sm-8 text-left">
+                                                    @if($direccion->direccion)
+                                                        <p class="my-0 py-0 small">{{$direccion->direccion}}</p>
+                                                    @endif
+                                                </div>
+                                                <div class="col-sm-4 text-right">
+                                                    {{$direccion->created_at->format('d/m/Y')}}
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div id="collapse-{{$direccion->id}}" class="collapse showw" aria-labelledby="direccion-{{$direccion->id}}" data-parent="#accordion-mis-direcciones">
+                                        <div class="card-body">
+                                            
+                                            @if( Auth::user()->rol == 'administrador' )
+                                                <h3 class="h6 ">Pedido id: {{$direccion->id}}</h3>
+                                            @endif
+                                            
+                                            <p class="my-0 py-0"><strong>Pedido relizado el {{$direccion->created_at->format('d/m/Y')}} a las {{$direccion->created_at->format('h:i A')}}</strong></p>
+                                            
+                                            @if($direccion->telefono)
+                                                <p class="my-0 py-0 small">Teléfono: {{$direccion->telefono}}</p>
+                                            @endif
+
+                                            @if($direccion->direccion)
+                                                <p class="my-0 py-0 small">Dirección: {{$direccion->direccion}}</p>
+                                            @endif
+
+                                            @if($direccion->localidad)
+                                                <p class="my-0 py-0 small">Localidad: {{$direccion->localidad}}</p>
+                                            @endif
+
+                                            @if($direccion->departamento)
+                                                <p class="my-0 py-0 small">Departamento: {{$direccion->departamento}}</p>
+                                            @endif
+
+                                            {{--<hr class="mt-4">--}}
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+
+
                             @endif
-
-                            @if($pedido->direccion)
-                                <p class="my-0 py-0 small">Dirección: {{$pedido->direccion}}</p>
-                            @endif
-
-                            @if($pedido->localidad)
-                                <p class="my-0 py-0 small">Localidad: {{$pedido->localidad}}</p>
-                            @endif
-
-                            @if($pedido->departamento)
-                                <p class="my-0 py-0 small">Departamento: {{$pedido->departamento}}</p>
-                            @endif
-
-                            <hr class="mt-4">
-                        @endif
-                    @endforeach
+                        @endforeach
+                    </div>
                 @else
                     <div class="text-center pt-3">
                         <p>No tiene compras.</p>
@@ -425,14 +460,22 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-bodyy">
 
                 @if(count(Auth::user()->suscripciones))
-                    {{-- SUSCRIPCIONES --}}
-                    @foreach(Auth::user()->suscripciones as $suscripcion)
-                        @livewire('editar-suscripcion', ['suscripcion' => $suscripcion])
-                    @endforeach
 
+                    <div class="accordion" id="accordion-suscripciones">
+                        {{-- SUSCRIPCIONES --}}
+                        @foreach(Auth::user()->suscripciones as $suscripcion)
+                            <div class="card">
+                                
+                                {{-- EDITAR SUSCRIPCION LIVEWIRE --}}
+                                @livewire('editar-suscripcion', ['suscripcion' => $suscripcion])
+                        
+                            </div>
+                        
+                        @endforeach
+                    </div>
                 @else
                     <div class="text-center pt-3">
                         <p>No tiene suscripciones.</p>

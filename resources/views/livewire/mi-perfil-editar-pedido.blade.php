@@ -47,6 +47,18 @@
         @if($pedido->status == 'pedido')
 
             <div class="mt-3">
+
+                <!-- Departamento -->
+                <div class="form-group mb-4">
+                    <label class="" for="departamento_{{$pedido->id}}">Departamento</label>
+                    <select wire:model="departamento" id="departamento_{{$pedido->id}}" name="departamento" autocomplete="departamento" class="form-control">
+                        <option value="" @selected($pedido->departamento == "")></option>
+                        <option value="Canelones" @selected($pedido->departamento == "Canelones")>Canelones</option>
+                        <option value="Maldonado" @selected($pedido->departamento == "Maldonado")>Maldonado</option>
+                        <option value="Montevideo" @selected($pedido->departamento == "Montevideo")>Montevideo</option>      
+                    </select>
+                    @error('departamento') <span class="mx-1 text-danger">{{ $message }}</span> @enderror
+                </div>
                 
                 <!-- Direccion -->
                 @if($pedido->direccion != 'el pedido se retira en la planta' )

@@ -48,6 +48,7 @@ class SuscripcionController extends Controller
             //'correo' => 'nullable',
             'email' => 'required|email|has_no_subscription',
             'password' => 'required|same:password_confirmacion',
+            'departamento' => 'required',
             'direccion_de_entrega' => 'required',
             'telefono' => 'required|min:8',
             'fecha_de_nacimiento' => 'nullable',
@@ -179,6 +180,8 @@ class SuscripcionController extends Controller
 
         //creamos el pedido
         $pedido = $this->crearPedido($suscripcion->id);
+        $pedido->departamento = $request->departamento;
+        $pedido->save();
 
 
         //enviar un email a Pedro

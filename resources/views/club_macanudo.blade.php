@@ -477,6 +477,19 @@
                         @enderror
                     </div>
 
+                    <!-- Departamento -->
+                    <div class="form-group mb-4">
+                        <label for="departamento">Departamento <small>(Obligatorio)</small>:</label>
+                        <select required class="form-control" id="departamento" name="departamento">
+                            <option value="Canelones" @selected(old('departamento') == "Canelones")>Canelones</option>
+                            <option value="Maldonado" @selected(old('departamento') == "Maldonado")>Maldonado</option>
+                            <option value="Montevideo" @selected(old('departamento') == "Montevideo")>Montevideo</option>
+                        </select>
+                        @error('departamento')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <!-- Dirección de entrega -->
                     <div class="form-group mb-4">
                         <label for="direccion_de_entrega" class="negro">Dirección de entrega <small>(Obligatorio)</small>: </label>

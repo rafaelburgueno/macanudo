@@ -60,6 +60,7 @@ class GenerarUnNuevoPedido extends Command
                 $nuevo_pedido->nombre = $pedido->suscripcion->user->name;
                 $nuevo_pedido->email = $pedido->suscripcion->user->email;
                 $nuevo_pedido->telefono = $pedido->suscripcion->telefono;
+                $nuevo_pedido->departamento = $pedido->departamento;
                 $nuevo_pedido->direccion = $pedido->suscripcion->direccion_de_entrega;
                 $nuevo_pedido->medio_de_pago = $pedido->medio_de_pago;
                 // el monto se calcula en base al precio de la suscripcion, porque si se cambia el tipo de suscripcion entre pedidos, debe tomar siempre el precio de la suscripcion

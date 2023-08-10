@@ -11,6 +11,7 @@ class MiPerfilEditarPedido extends Component
     public $pedido; // $suscripcion;
 
     public $status;
+    public $departamento;
     public $direccion; // $direccion_de_entrega;
     public $telefono;
     public $cancelar;
@@ -32,6 +33,7 @@ class MiPerfilEditarPedido extends Component
         $this->pedido = $pedido;
         
         $this->status = $pedido->status;
+        $this->departamento = $pedido->departamento;
         $this->direccion = $pedido->direccion;
         $this->telefono = $pedido->telefono;
         if($pedido->status == 'cancelado'){
@@ -58,6 +60,7 @@ class MiPerfilEditarPedido extends Component
         $pedido_guardado = Pedido::find($this->pedido->id);
 
         //$pedido_guardado->status = $this->status;
+        $pedido_guardado->departamento = $this->departamento;
         $pedido_guardado->direccion = $this->direccion;
         $pedido_guardado->telefono = $this->telefono;
         /*if($this->cancelar == 'si'){
