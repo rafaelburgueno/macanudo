@@ -203,7 +203,7 @@
 
                 <div class="form-row">
                     <div class="form-group col-sm">
-                        <label for="nombre" class="gris">Nombre: </label>
+                        <label for="nombre" class="gris">Nombre y apellido: </label>
                         <input type="text" pattern="[A-Za-z0-9 ÁáÉéÍíÓóÚúÜüÑñ]{6,100}" class="form-control mb-2" id="nombre" name="nombre" placeholder="Ingrese su nombre" value="{{old('nombre')}}" required>
                         @error('nombre')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -219,7 +219,7 @@
                 <div class="form-row">
                     <div class="form-group col-sm d-flex flex-wrap">
                         <label for="texto" class="gris">Mensaje: </label>
-                        <textarea id="texto" class="form-control" name="texto" rows="6" cols="60" placeholder="Ingrese aquí su mensaje">{{old('texto')}}</textarea><br>
+                        <textarea id="texto" class="form-control" name="texto" rows="4" cols="60" placeholder="Ingrese aquí su mensaje">{{old('texto')}}</textarea><br>
                         @error('texto')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror

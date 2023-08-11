@@ -18,7 +18,7 @@
 
         <div class="col-md-6 card">
             <div class="card-title text-center pt-3">
-                <img src="{{Auth::user()->profile_photo_url}}" id="imagen_de_perfil" class="card-img-top rounded-circle" style="max-width:350px ; align-self: center;">
+                <img src="{{Auth::user()->profile_photo_url}}" id="imagen_de_perfil" class="card-img-top rounded-circle" style="max-width:200px ; align-self: center;">
                 <h3 class="mt-2 nombre_a_actualizar">{{Auth::user()->name}}</h3><br>
                 {{--el siguiente script modifica el nombre de forma dinamica cuando se edita en em formulario del modal mis_datos--}}
                 <script> 

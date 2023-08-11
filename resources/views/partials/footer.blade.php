@@ -192,7 +192,7 @@
                 <p>El usuario se compromete a:</p>
                 <p>NO incumplir todas las leyes, reglamentos y normas aplicables a nivel local, regional y 
                     nacional; NO dañar, inutilizar o deteriorar los sistemas informáticos que sustentan el 
-                    sitio web www.macanudonoqueso.com y  de otros usuarios o de terceros, ni los contenidos 
+                    sitio web {{env('APP_URL')}} y  de otros usuarios o de terceros, ni los contenidos 
                     incorporados y/o almacenados en estos; NO modificar los sistemas de ninguna manera y no 
                     utilizar versiones de sistemas modificados con el fin de obtener acceso no autorizado a 
                     cualquier contenido y/o servicios del sitio; NO interferir ni interrumpir el acceso y 

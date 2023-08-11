@@ -58,8 +58,8 @@
         })
 
         Toast.fire({
-        icon: 'warning',
-        title: '{{session('no_permitido')}}'
+            icon: 'warning',
+            title: '{{session('no_permitido')}}'
         })
     </script>
 
@@ -69,21 +69,22 @@
 @if(session('error'))
 
     <script>
-        const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 4000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-        })
+        /*const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })*/
 
-        Toast.fire({
-        icon: 'warning',
-        title: '{{session('error')}}'
+        //Toast.fire({
+        Swal.fire({
+            icon: 'warning',
+            title: '{{session('error')}}'
         })
     </script>
 
@@ -93,6 +94,7 @@
 @if(session('pagar_al_recibir'))
 
     <script>
+        /*
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -103,9 +105,10 @@
                 toast.addEventListener('mouseenter', Swal.stopTimer)
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
-        })
+        })*/
 
-        Toast.fire({
+        //Toast.fire({
+        Swal.fire({
         icon: 'success',
         title: '{{session('pagar_al_recibir')}}'
         })
@@ -123,7 +126,7 @@
 @if(session('pago_aprovado'))
 
     <script>
-        const Toast = Swal.mixin({
+        /*const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
@@ -133,11 +136,12 @@
                 toast.addEventListener('mouseenter', Swal.stopTimer)
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
-        })
+        })*/
 
-        Toast.fire({
-        icon: 'success',
-        title: '{{session('pago_aprovado')}}'
+        //Toast.fire({
+        Swal.fire({
+            icon: 'success',
+            title: '{{session('pago_aprovado')}}'
         })
 
         /*TODO hay que borrar los elementos del carrito*/

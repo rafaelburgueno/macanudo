@@ -471,7 +471,8 @@
                     <div class="form-group mb-4">    
                         <label for="telefono" class="negro">Teléfono <small>(Obligatorio)</small>: </label>
                         {{--<input value="{{old('telefono')}}" type="text" pattern="\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="..." title="Número de teléfono inválido" required>--}}
-                        <input value="{{old('telefono')}}" type="text" pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="Número de teléfono inválido" required>
+                        {{--<input value="{{old('telefono')}}" type="text" pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="Número de teléfono inválido" required>--}}
+                        <input value="{{old('telefono')}}" type="text" pattern="^\d{8,9}$" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="El número de teléfono debe tener entre 8 y 9 dígitos" required>
                         @error('telefono')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
@@ -786,7 +787,7 @@
             <h5 class="modal-title text-center" id="modal_terminos_y_condiciones_del_clubLabel">Términos y condiciones de Club Macanudo</h5>
             <div class="modal-body">
                 <h6>ACEPTACIÓN</h6>
-                <p>El uso de este sitio web, www.macanudonoqueso.com y todas las páginas de este dominio, 
+                <p>El uso de este sitio web, {{env('APP_URL')}} y todas las páginas de este dominio, 
                     constituye la aceptación de los siguientes términos y condiciones. Macanudo se reserva 
                     el derecho de buscar todos los recursos disponibles por ley por cualquier violación 
                     de estos términos de uso, incluida cualquier violación de los derechos del nombre y 
@@ -841,7 +842,7 @@
                 <p>El usuario se compromete a:</p>
                 <p>NO incumplir todas las leyes, reglamentos y normas aplicables a nivel local, regional y 
                     nacional; NO dañar, inutilizar o deteriorar los sistemas informáticos que sustentan el 
-                    sitio web www.macanudonoqueso.com y  de otros usuarios o de terceros, ni los contenidos 
+                    sitio web {{env('APP_URL')}} y  de otros usuarios o de terceros, ni los contenidos 
                     incorporados y/o almacenados en estos; NO modificar los sistemas de ninguna manera y no 
                     utilizar versiones de sistemas modificados con el fin de obtener acceso no autorizado a 
                     cualquier contenido y/o servicios del sitio; NO interferir ni interrumpir el acceso y 
@@ -861,11 +862,11 @@
                 <p>En caso de contenido erróneo, incompleto, desactualizado, que vulnere derechos de 
                     propiedad intelectual o ante cualquier otra situación irregular de hecho o de derecho, 
                     el usuario podrá comunicarse a través del correo electrónico: 
-                    contacto@macanudonoqueso.com</p>
+                    <a href="mailto:{{env('MAIL_FROM_ADDRESS')}}">{{env('MAIL_FROM_ADDRESS')}}</a></p>
 
                 <h6>CONTACTO</h6>
                 <p>Por cualquier queja, sugerencia o propuesta de colaboración, puede comunicarse a 
-                    contacto@macanudonoqueso.com o a cualquier dato de contacto proporcionado en este sitio 
+                    <a href="mailto:{{env('MAIL_FROM_ADDRESS')}}">{{env('MAIL_FROM_ADDRESS')}}</a> o a cualquier dato de contacto proporcionado en este sitio 
                     web.</p>
 
             </div>

@@ -99,7 +99,7 @@ class PagosController extends Controller
 
 
             session()->flash('pagar_al_recibir', 'Gracias. Debera pagar su pedido al momento de recibirlo.');
-            return redirect() -> route('nuestros_productos');
+            return redirect() -> route('home');
         
         
         }else{
@@ -182,7 +182,7 @@ class PagosController extends Controller
             $pedido->actualizarCuponYStock();
 
             session()->flash('pago_aprovado', 'La compra fue realizada con éxito. Te enviamos un email con la información tu pedido.');
-            return redirect() -> route('nuestros_productos');
+            return redirect() -> route('home');
 
         }elseif($status == 'pending'){
             $pedido->status = 'pedido';
@@ -199,7 +199,7 @@ class PagosController extends Controller
             //Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
 
             session()->flash('pago_aprovado', 'La compra fue realizada con éxito, solo falta que realices el pago y te enviaremos un email con la información de tu pedido.');
-            return redirect() -> route('nuestros_productos');
+            return redirect() -> route('home');
         
         }else{
             // hay un error por 'valor fuera de rango' para la columna 'numero_de_factura' = 53 978 965 097

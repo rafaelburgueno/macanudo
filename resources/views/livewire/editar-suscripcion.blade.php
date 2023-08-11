@@ -62,7 +62,8 @@
                     <!-- Teléfono -->
                     <div class="form-group mb-3">
                         <label class="" for="telefono_{{$suscripcion->id}}">Teléfono</label>
-                        <input required pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" wire:model="telefono" value="{{$suscripcion->telefono}}" class="form-control" id="telefono_{{$suscripcion->id}}" type="text" >
+                        {{--<input required pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" wire:model="telefono" value="{{$suscripcion->telefono}}" class="form-control" id="telefono_{{$suscripcion->id}}" type="text" >--}}
+                        <input required pattern="^\d{8,9}$" wire:model="telefono" value="{{$suscripcion->telefono}}" class="form-control" id="telefono_{{$suscripcion->id}}" type="text" title="El número de teléfono debe tener entre 8 y 9 dígitos">
                     </div>
 
                     <!-- dia de entrega -->

@@ -225,23 +225,26 @@
 <!--MODAL RESUMEN DE LA COMPRA Y DATOS DEL PEDIDO-->
 <div class="modal fade" id="resumen_de_la_compra_y_datos_del_pedido" tabindex="-1" role="dialog" aria-labelledby="resumen_de_la_compra_y_datos_del_pedidoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content align-items-center negro">
+        <div class="modal-content">
             <div class="modal-header ">
-				<button type="button" class="close text-center" data-dismiss="modal" aria-label="Close">
+				<div class="px-4">
+					<h3 class="modal-title text-center" id="resumen_de_la_compra_y_datos_del_pedidoLabel">
+						Resumen de la compra
+					</h3>
+				
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
             </div>
-            <h5 class="modal-title text-center" id="resumen_de_la_compra_y_datos_del_pedidoLabel"></h5>
             <div class="modal-body">
             	
 				<!-- Resumen de la compra -->
 				<!-- Resumen de la compra -->
 				<!-- Resumen de la compra -->
-				<div class="card p-0 mb-5" id="modal_resumen_de_la_compra">
-					<div class="card-header">
-						<h4 class="text-center">Resumen de la compra</h4>
-					</div>
-					<div class="card-body">
+				<div class="cardd p-0 mb-5" id="modal_resumen_de_la_compra">
+					
+					<div class="card-bodyy">
 						<div class="row">
 							<div class="col-sm">
 								<table class="table table-sm">
@@ -267,7 +270,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-sm card bg-danger text-light shadown mx-auto" style="max-width:290px; max-height:400px; margin-top: 30px;">
+							<div class="col-sm p-0 card bg-danger text-light shadown mx-auto" style="max-width:290px; max-height:400px; margin-top: 30px;">
 								<div class="card-header">
 									<h6><strong>SubTotal: </strong><span id="sub_total_de_la_compra_modal"></span> $ UYU</h6>
 								</div>
@@ -302,8 +305,11 @@
 <!--MODAL DATOS DEL PEDIDO-->
 <div class="modal fade" id="datos_del_pedido" tabindex="-1" role="dialog" aria-labelledby="datos_del_pedidoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content align-items-center negro">
+        <div class="modal-content ">
             <div class="modal-header ">
+				<div class="">
+					<h4 class="">Datos de contacto</h4>
+				</div>
 				<button type="button" class="close text-center" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -319,9 +325,7 @@
 					@method('POST')
 
 					<div class="card" id="modal_completar_datos_del_pedido">
-						<div class="card-header">
-							<h4 class="text-center">Datos de contacto</h4>
-						</div>
+						
 
 						<div class="card-body">
 							
@@ -372,7 +376,8 @@
 									<div class="form-group mb-3">
 										<label for="telefono" class="negro">Teléfono <small>(Obligatorio)</small>: </label>
 										{{--<input value="{{old('telefono')}}" type="text" pattern="\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="..." title="Número de teléfono inválido" required>--}}
-										<input value="{{old('telefono')}}" type="text" pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="..." title="El número de teléfono debe contener al menos 8 caracteres" required>
+										{{--<input value="{{old('telefono')}}" type="text" pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="..." title="El número de teléfono debe contener al menos 8 caracteres" required>--}}
+										<input value="{{old('telefono')}}" type="text" pattern="^\d{8,9}$" class="form-control" name="telefono" id="telefono" placeholder="..." title="El número de teléfono debe tener entre 8 y 9 dígitos" required>
 										@error('telefono')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror

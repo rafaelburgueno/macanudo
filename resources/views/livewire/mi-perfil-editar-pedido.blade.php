@@ -72,7 +72,8 @@
                 <!-- Teléfono -->
                 <div class="form-group mb-4">
                     <label class="negro" for="telefono_{{$pedido->id}}">Teléfono</label>
-                    <input required pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" wire:model="telefono" value="{{$pedido->telefono}}" id="telefono_{{$pedido->id}}" type="text">
+                    {{--<input required pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" wire:model="telefono" value="{{$pedido->telefono}}" id="telefono_{{$pedido->id}}" type="text">--}}
+                    <input required pattern="^\d{8,9}$" class="form-control" wire:model="telefono" value="{{$pedido->telefono}}" id="telefono_{{$pedido->id}}" type="text" title="El número de teléfono debe tener entre 8 y 9 dígitos">
                     @error('telefono') <span class="mx-1 text-danger">{{ $message }}</span> @enderror
                 </div>
 

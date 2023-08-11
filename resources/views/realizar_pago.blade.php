@@ -104,7 +104,7 @@
     <div class="row" id="panel_seleccionar_metodo_de_pago">
         
         <!-- Botones de pago -->
-        <div class="col-lg-4 mb-5">
+        <div class="col-lg-6 mb-5">
             
             <div class="card">
                 <div class="card-header">
@@ -257,15 +257,15 @@
         </div>
 
         <!-- Resumen de la compra -->
-        <div class="col-lg-8">
+        <div class="col-lg-6">
             <div class="card p-0 mb-5 text-dark">
                 <div class="card-header">
                     <h4 class="text-center">Resumen de la compra</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-8">
-                            <table class="table table-sm table-darkk">
+                        <div class="col-sm">
+                            <table class="table table-sm ">
                                 <thead>
                                 <tr>
                                     <th>Producto</th>
@@ -286,13 +286,19 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-4">
-                            <div class="float-right pl-2">
-                                <p id="subTotal">SubTotal: $ UYU</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm p-0 card bg-danger text-light shadown mx-auto" style="max-width:290px; max-height:400px; margin-top: 30px;">
+                            <div class="card-header">
+                                <h6><strong><p id="subTotal">SubTotal: $ UYU</p></strong></h6>
+                            </div>
+                            <div class="card-body">
                                 <p>Envío: {{$pedido->costo_de_envio->costo_de_envio}} $ UYU</p>
                                 @if($pedido->cupon)
                                 <p>Descuento: {{$pedido->cupon->descuento}} %</p>
                                 @endif
+                            </div>
+                            <div class="card-footer">
                                 <p class="h5">Total: {{$pedido->monto}} $ UYU</p>
                             </div>
                         </div>
