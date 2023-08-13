@@ -98,7 +98,7 @@ class PagosController extends Controller
             $pedido->actualizarCuponYStock();
 
 
-            session()->flash('pagar_al_recibir', 'Gracias. Debera pagar su pedido al momento de recibirlo.');
+            session()->flash('pagar_al_recibir', 'Muchas gracias por su compra. El pedido se realizó correctamente.');
             return redirect() -> route('home');
         
         
@@ -181,7 +181,7 @@ class PagosController extends Controller
             // llamaos al metodo que actualiza el stock
             $pedido->actualizarCuponYStock();
 
-            session()->flash('pago_aprovado', 'La compra fue realizada con éxito. Te enviamos un email con la información tu pedido.');
+            session()->flash('pago_aprovado', 'Muchas gracias por su compra. La compra se realizó correctamente.');
             return redirect() -> route('home');
 
         }elseif($status == 'pending'){
@@ -198,7 +198,7 @@ class PagosController extends Controller
             Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));*/
             //Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
 
-            session()->flash('pago_aprovado', 'La compra fue realizada con éxito, solo falta que realices el pago y te enviaremos un email con la información de tu pedido.');
+            //session()->flash('pago_aprovado', 'Muchas gracias por su compra.'); 
             return redirect() -> route('home');
         
         }else{

@@ -63,7 +63,7 @@
                     <div class="form-group mb-3">
                         <label class="" for="telefono_{{$suscripcion->id}}">Teléfono</label>
                         {{--<input required pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" wire:model="telefono" value="{{$suscripcion->telefono}}" class="form-control" id="telefono_{{$suscripcion->id}}" type="text" >--}}
-                        <input required pattern="^\d{8,9}$" wire:model="telefono" value="{{$suscripcion->telefono}}" class="form-control" id="telefono_{{$suscripcion->id}}" type="text" title="El número de teléfono debe tener entre 8 y 9 dígitos">
+                        <input required pattern="^(09\d{7}|[42]\d{7})$" wire:model="telefono" value="{{$suscripcion->telefono}}" class="form-control" id="telefono_{{$suscripcion->id}}" type="text" title="El número de teléfono debe comenzar con '09', '2' o '4' segiodo de 7 numeros.">
                     </div>
 
                     <!-- dia de entrega -->
@@ -126,7 +126,10 @@
                 <div class="text-center mt-4">
                     <!-- CANCELAR LA SUSCRIPCIÓN -->
                     @if($activo)
-                        @if($btn_confirmar_cancelar)
+                        <div class="py-2">
+                            <a {{--target="_blank"--}} href="{{url(URL::signedRoute('confirmar_cancelacion_de_suscripcion', ['suscripcion' => $suscripcion->id]))}}">Suspender la suscripción</a>
+                        </div>
+                            {{--@if($btn_confirmar_cancelar)
                             <p class="my-0 py-0">¿Realmente quiere suspender la suscripción?</p>
                             <p class="my-0 py-0">Esta acción podrá revertirse en cualquier momento.</p>
 
@@ -140,7 +143,7 @@
                             <p wire:click="cancelar_suscripcion" class="my-0 py-0 text-danger">
                                 ¿Suspender la suscripción?
                             </p>
-                        @endif
+                        @endif--}}
 
                     @else
                         <div class="py-2">

@@ -377,7 +377,7 @@
 										<label for="telefono" class="negro">Teléfono <small>(Obligatorio)</small>: </label>
 										{{--<input value="{{old('telefono')}}" type="text" pattern="\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="..." title="Número de teléfono inválido" required>--}}
 										{{--<input value="{{old('telefono')}}" type="text" pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="..." title="El número de teléfono debe contener al menos 8 caracteres" required>--}}
-										<input value="{{old('telefono')}}" type="text" pattern="^\d{8,9}$" class="form-control" name="telefono" id="telefono" placeholder="..." title="El número de teléfono debe tener entre 8 y 9 dígitos" required>
+										<input value="{{old('telefono')}}" type="text" pattern="^(09\d{7}|[42]\d{7})$" class="form-control" name="telefono" id="telefono" placeholder="..." title="El número de teléfono debe comenzar con '09', '2' o '4' segiodo de 7 numeros." required>
 										@error('telefono')
 											<div class="alert alert-danger mt-1">{{ $message }}</div>
 										@enderror

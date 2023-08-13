@@ -18,10 +18,14 @@ class MiPerfilController extends Controller
     public function mi_perfil(Request $request)
     {
         
-        // obtener los pedidos del usuario usando el id del usuario
-        $pedidos = Pedido::where('user_id', $request->user()->id)->get();
-        //$pedidos = Pedido::where('email', $request->user()->email)->get();
-        
+        // obtener los pedidos del usuario usando el id del usuario y que el status del pedido sea diferente de 'cancelado' o 'verificado'
+        $pedidos = Pedido::where('user_id', $request->user()->id)
+            ->where('status', '<>', 'cancelado')
+            ->where('status', '<>', 'verificado')
+            ->orderBy('created_at', 'desc')->get();
+        //$pedidos = null;
+        //$pedidos = Pedido::where('user_id', $request->user()->id)->get();
+        ////$pedidos = Pedido::where('email', $request->user()->email)->get();
         // obtener las direcciones registradas por el usuario
         $direcciones = Pedido::where('user_id', $request->user()->id)->get();
         // elimina las direcciones que repiten el contenido del campo direccion

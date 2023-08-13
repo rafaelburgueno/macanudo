@@ -335,11 +335,11 @@
 
 
                 {{-- PEDIDOS --}}
-                @if(count(Auth::user()->pedidos))
+                @if(count($pedidos))
                             
                     <div class="accordion" id="accordion-mis-compras">
 
-                        @foreach(Auth::user()->pedidos as $pedido)
+                        @foreach($pedidos as $pedido)
                         
                         <div class="card">
                                 

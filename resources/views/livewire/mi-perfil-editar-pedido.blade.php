@@ -73,7 +73,7 @@
                 <div class="form-group mb-4">
                     <label class="negro" for="telefono_{{$pedido->id}}">Teléfono</label>
                     {{--<input required pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" wire:model="telefono" value="{{$pedido->telefono}}" id="telefono_{{$pedido->id}}" type="text">--}}
-                    <input required pattern="^\d{8,9}$" class="form-control" wire:model="telefono" value="{{$pedido->telefono}}" id="telefono_{{$pedido->id}}" type="text" title="El número de teléfono debe tener entre 8 y 9 dígitos">
+                    <input required pattern="^(09\d{7}|[42]\d{7})$" class="form-control" wire:model="telefono" value="{{$pedido->telefono}}" id="telefono_{{$pedido->id}}" type="text" title="El número de teléfono debe comenzar con '09', '2' o '4' segiodo de 7 numeros.">
                     @error('telefono') <span class="mx-1 text-danger">{{ $message }}</span> @enderror
                 </div>
 
@@ -125,10 +125,13 @@
 
 
         <!-- CANCELAR PEDIDO -->
-        @if($pedido->status == 'pedido')
+        {{--@if($pedido->status == 'pedido')
             <div class="text-center mt-4">
             
-                {{--<p class="my-0 py-0 small">El estatus es {{$status}}</p>--}}
+                <div class="py-2">
+                    <a  href="{{url(URL::signedRoute('confirmar_cancelacion_de_pedido', ['pedido' => $pedido->id]))}}">Cancelar el pedido</a>
+                    
+                </div>
             
                 @if($btn_confirmar_cancelar)
                     <p class="my-0 py-0">¿Realmente quiere cancelar el pedido?</p>
@@ -147,7 +150,7 @@
                 @endif
             </div>
         
-        @endif
+        @endif--}}
 
         @if (session()->has('cancelado'))
             <div class="text-center">
