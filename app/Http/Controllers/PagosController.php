@@ -70,26 +70,46 @@ class PagosController extends Controller
             $pedido->save();
             //dd($pedido->status);
 
-            
+            // ##########################################################
+            // Envia un email a Pedro con el pedido
             try {
-                // Envia un email a Pedro con el pedido
                 Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
                 ->queue(new PedidosMail($pedido));
+            } catch (Exception $e) {
+                Log::error('Error al enviar correo electrónico a MAIL_RECEPTOR_DE_NOTIFICACIONES o al MAIL_REGISTROS: ' . $e->getMessage());
+                //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
+                session()->flash('error', 'Ha ocurrido un error: '. $e->getMessage());
+                //return redirect() -> route('mi_carrito');
+            }
 
-                // Envia un email al cliente con el pedido // TODO:un try catch por si falla el envio de email
+            // ##########################################################
+            // Envia un email al cliente con el pedido 
+            try {
                 //Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
-
-                //Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
-                Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));
-                
                 //$user->notify(new SuscripcionNotification($suscripcion));
                 Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
-
+                //Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                //Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));
             } catch (Exception $e) {
-                $error = $e->getMessage();
+                Log::error('Error al enviar correo electrónico a '. $pedido->email .': ' . $e->getMessage());
                 //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
-                session()->flash('error', 'Ha ocurrido un error: '. $error);
-                return redirect() -> route('mi_carrito');
+                session()->flash('error', 'Ha ocurrido un error: '. $e->getMessage());
+                //return redirect() -> route('mi_carrito');
+            }
+
+            // ##########################################################
+            // Envia al registro el mismo email que se envio al cliente
+            try {
+                //Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                //$user->notify(new SuscripcionNotification($suscripcion));
+                //Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
+                //Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));
+            } catch (Exception $e) {
+                Log::error('Error al enviar correo electrónico a MAIL_REGISTROS: ' . $e->getMessage());
+                //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
+                session()->flash('error', 'Ha ocurrido un error: '. $e->getMessage());
+                //return redirect() -> route('mi_carrito');
             }
 
             
@@ -167,16 +187,44 @@ class PagosController extends Controller
             $pedido->estado_del_pago = 'pagado';
             $pedido->save();
 
+            // ##########################################################
             // Envia un email con el pedido
-            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-            ->queue(new PedidosMail($pedido));
+            try{
+                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+                ->queue(new PedidosMail($pedido));
+            } catch (Exception $e) {
+                Log::error('Error al enviar correo electrónico a MAIL_RECEPTOR_DE_NOTIFICACIONES o al MAIL_REGISTROS: ' . $e->getMessage());
+                //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
+                session()->flash('error', 'Ha ocurrido un error: '. $e->getMessage());
+                //return redirect() -> route('mi_carrito');
+            }
+
+            // ##########################################################
             // Envia un email al cliente con el pedido
-            //Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
-            //Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
-            Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));
+            try{
+                //$user->notify(new SuscripcionNotification($suscripcion));
+                Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
+            } catch (Exception $e) {
+                Log::error('Error al enviar correo electrónico a '. $pedido->email .': ' . $e->getMessage());
+                //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
+                session()->flash('error', 'Ha ocurrido un error: '. $e->getMessage());
+                //return redirect() -> route('mi_carrito');
+            }
+
+            // ##########################################################
+            // Envia al registro el mismo email que se envio al cliente
+            try{
+                //Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                //Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));
+            } catch (Exception $e) {
+                Log::error('Error al enviar correo electrónico a MAIL_REGISTROS: ' . $e->getMessage());
+                //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
+                session()->flash('error', 'Ha ocurrido un error: '. $e->getMessage());
+                //return redirect() -> route('mi_carrito');
+            }
+
             
-            //$user->notify(new SuscripcionNotification($suscripcion));
-            Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
 
             // llamaos al metodo que actualiza el stock
             $pedido->actualizarCuponYStock();

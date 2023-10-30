@@ -219,7 +219,7 @@
                 <div class="form-row">
                     <div class="form-group col-sm d-flex flex-wrap">
                         <label for="texto" class="gris">Mensaje: </label>
-                        <textarea id="texto" class="form-control" name="texto" rows="4" cols="60" placeholder="Ingrese aquí su mensaje">{{old('texto')}}</textarea><br>
+                        <textarea maxlength="255" id="texto" class="form-control" name="texto" rows="4" cols="60" placeholder="Ingrese aquí su mensaje">{{old('texto')}}</textarea><br>
                         @error('texto')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror

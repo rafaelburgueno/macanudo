@@ -105,6 +105,15 @@
                 <div class="row">
                     <div class="col col-md-6">
 
+                        <!--input para el nombre-->
+                        <div class="form-group mb-3">
+                            <label for="nombre">Nombre</label>
+                            <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}">
+                            @error('nombre')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <!--input para el tipo-->
                         <div class="form-group mb-3">
                             <label for="tipo">Tipo</label>
@@ -116,20 +125,9 @@
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>
-                        
-                        <!--input para el nombre-->
+
+                        <!--input para el precio-->
                         <div class="form-group mb-3">
-                            <label for="nombre">Nombre</label>
-                            <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="..." value="{{old('nombre')}}">
-                            @error('nombre')
-                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        
-
-                         <!--input para el precio-->
-                         <div class="form-group mb-3">
                             <label for="precio">Precio unitario</label>
                             <input required type="number" class="form-control" id="precio" name="precio" placeholder="..." value="{{old('precio')}}" min="0" style="width: 100%;">
                             @error('precio')
