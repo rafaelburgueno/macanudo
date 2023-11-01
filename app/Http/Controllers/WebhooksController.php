@@ -75,7 +75,11 @@ class WebhooksController extends Controller
 
             $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=".env('MP_ACCESS_TOKEN'));
 
-            Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($response->merge(['origen' => 'webhooks, linea 78', 'payment_id' => $payment_id, 'pedido' => $pedido])));
+            try{
+                Mail::to(env('MAIL_DESARROLLADOR', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new EmailDeControl($response->merge(['origen' => 'webhooks, linea 78', 'payment_id' => $payment_id, 'pedido' => $pedido])));
+            } catch (Exception $e) {
+                Log::error('Error al enviar correo electrónico a MAIL_DESARROLLADOR y MAIL_REGISTROS, desde el controlador WebhooksController.php: ' . $e->getMessage());
+            }
 
             $response = json_decode($response);
 
@@ -93,17 +97,32 @@ class WebhooksController extends Controller
                 $pedido->estado_del_pago = 'pagado';
                 $pedido->save();
             
-                // Envia un email con el pedido
-                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-                ->queue(new PedidosMail($pedido));
-                
-                // Envia a la cuenta de registros el mismo email que se envia al cliente con el pedido
-                //Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
-                Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));                
 
                 // email de confirmacion del pedido
-                Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));                
+                try{
+                    Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
+                } catch (Exception $e) {
+                    Log::error('Error al enviar correo electrónico a '. $pedido->email .', desde el controlador WebhooksController.php: ' . $e->getMessage());
+                }                
 
+
+                // Envia a la cuenta de registros el mismo email que se envia al cliente con el pedido
+                //Mail::to($pedido->email)->bcc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido));
+                try{
+                    Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));                
+                } catch (Exception $e) {
+                    Log::error('Error al enviar correo electrónico a MAIL_REGISTROS, desde el controlador WebhooksController.php: ' . $e->getMessage());
+                }
+
+
+                // Envia un email con el pedido
+                try{
+                    Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+                    ->queue(new PedidosMail($pedido));
+                } catch (Exception $e) {
+                    Log::error('Error al enviar correo electrónico a MAIL_RECEPTOR_DE_NOTIFICACIONES y MAIL_REGISTROS, desde el controlador WebhooksController.php: ' . $e->getMessage());
+                }
+                
 
                 // llamaos al metodo que actualiza el stock
                 //$pago = new PagosController();
@@ -117,9 +136,6 @@ class WebhooksController extends Controller
             }else{
                 $pedido->estado_del_pago = $status;
                 $pedido->save();
-            
-            
-            
             
             }
             //return true;

@@ -110,6 +110,14 @@
             <button type="submit" class="btn btn-outline-danger my-3">Eliminar Post</button>
         </form>
             
+
+
+        {{-- EDITAR CATEGORIAS LIVEWIRE --}}
+        <div class="my-5">
+            @livewire('crear-y-editar-categorias', ['categorias' => $categorias, 'post' => $post])
+
+        </div>
+                        
         
     </div>
     

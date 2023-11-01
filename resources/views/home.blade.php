@@ -219,13 +219,13 @@
                 <div class="form-row">
                     <div class="form-group col-sm d-flex flex-wrap">
                         <label for="texto" class="gris">Mensaje: </label>
-                        <textarea maxlength="255" id="texto" class="form-control" name="texto" rows="4" cols="60" placeholder="Ingrese aquí su mensaje">{{old('texto')}}</textarea><br>
+                        <textarea required max="255" maxlength="255" id="texto" class="form-control" name="texto" rows="4" cols="60" placeholder="Ingrese aquí su mensaje">{{old('texto')}}</textarea><br>
                         @error('texto')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                <button type="submit" class="btn1 btn-azul shadown mt-1">Enviar</button>
+                <button type="submit" class="btn-procesando btn1 btn-azul shadown mt-1">Enviar</button>
 
             </form>
         </div>
@@ -308,6 +308,45 @@
         </div>
     </div>
 </div><br>
+
+
+
+<script>
+    $('.btn-procesando').click(function(){
+            if( 
+                //el input nombre no puede estar vacio y debe tener mas de 5 caracteres
+                //document.getElementById("nombre").value != '' && 
+                //document.getElementById("nombre").value.length > 5 &&
+                document.getElementById("nombre").validity.valid && 
+                document.getElementById("email").validity.valid &&
+                document.getElementById("texto").validity.valid
+
+            ){
+                let timerInterval
+                Swal.fire({
+                title: 'Procesando',
+                html: 'Por favor espere.',
+                timer: 18000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                    b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+                }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+                })
+            }
+        });
+</script>
 
 
 @endsection

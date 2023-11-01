@@ -643,7 +643,7 @@
 
                     <!--Aceptar terminos y condiciones del club macanudo-->
                     <div class="form-group mb-3">
-                        <input @checked(old('terminos_y_condiciones_del_club')) required type="checkbox" class="h1" name="terminos_y_condiciones_del_club" value="1" id="terminos_y_condiciones_del_club" checked>
+                        <input @checked(old('terminos_y_condiciones_del_club')) required type="checkbox" class="h1" name="terminos_y_condiciones_del_club" value="1" id="terminos_y_condiciones_del_club">
                         <label class="" for="terminos_y_condiciones_del_club">Acepto los <a href="#" data-toggle="modal" data-target="#modal_terminos_y_condiciones_del_club">términos y condiciones</a> del Club Macanudo.</label>
                     </div>
                     

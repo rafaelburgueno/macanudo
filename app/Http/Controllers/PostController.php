@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Multimedia;
 use App\Models\Producto;
+use App\Models\Categoria;
 
 class PostController extends Controller
 {
@@ -104,8 +105,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $categorias = Categoria::get();
         //return view('posts.edit', compact('post'));
-        return view('posts.edit')->with('post', $post);
+        return view('posts.edit')->with('post', $post)->with('categorias', $categorias);
     }
 
 

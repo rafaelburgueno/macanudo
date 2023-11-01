@@ -22,7 +22,7 @@ class ComentarioController extends Controller
         $request->validate([ //TODO: revisar las validaciones porque no funcionan
             'nombre' => 'required|max:255',
             'email' => 'required|email|max:255',
-            'texto' => 'required|max:500|min:3',
+            'texto' => 'required|max:255|min:3',
         ]);
         
         
@@ -35,10 +35,12 @@ class ComentarioController extends Controller
         $comentario->comentarioable_type = 'formulario de contacto';
         $comentario -> save();
 
-
-        Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-            ->queue(new FormularioDeContacto($request->all()));
-
+        try{
+            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+                ->queue(new FormularioDeContacto($request->all()));
+        } catch (Exception $e) {
+            Log::error('Error al enviar correo electrónico a MAIL_RECEPTOR_DE_NOTIFICACIONES y MAIL_REGISTROS, desde el controlador ComentarioController.php: ' . $e->getMessage());
+        }
 
         session()->flash('exito', 'Su mensaje fue recibido');
         return redirect() -> route('home');
