@@ -246,9 +246,18 @@ class PagosController extends Controller
             Mail::to($pedido->email)->queue(new PedidoClienteMail($pedido));*/
             //Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
 
-            //session()->flash('pago_aprovado', 'Muchas gracias por su compra.'); 
+            session()->flash('pago_aprovado', 'Muchas gracias por su compra. El pago esta pendiente de aprobación.'); 
             return redirect() -> route('home');
         
+        }elseif($status == 'in_process'){
+            $pedido->status = 'pedido';
+            
+            $pedido->estado_del_pago = $status;
+            $pedido->save();
+
+            session()->flash('pago_aprovado', 'Muchas gracias por su compra. El pago esta en proceso.'); 
+            return redirect() -> route('home');
+
         }else{
             // hay un error por 'valor fuera de rango' para la columna 'numero_de_factura' = 53 978 965 097
             // TODO aunque el pedido este pendiente deberia enviarse un email

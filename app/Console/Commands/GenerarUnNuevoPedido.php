@@ -96,10 +96,14 @@ class GenerarUnNuevoPedido extends Command
                 $suscripcion->save();
 
                 // Envia a pedro o a mi un email con el pedido
-                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
-                ->queue(new PedidosMail($nuevo_pedido));
-                /*Mail::to(env('MAIL_DESARROLLADOR', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
-                ->queue(new PedidosMail($nuevo_pedido)); */
+                try{
+                    Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
+                    ->queue(new PedidosMail($nuevo_pedido));
+                    /*Mail::to(env('MAIL_DESARROLLADOR', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
+                    ->queue(new PedidosMail($nuevo_pedido)); */
+                } catch (Exception $e) {
+                    Log::error('Error al enviar correo electrónico a MAIL_RECEPTOR_DE_NOTIFICACIONES y MAIL_REGISTROS, desde GenerarUnNuevoPedido.php linea 100: ' . $e->getMessage());
+                }
 
                 $this->info('Se ha generado un nuevo pedido');
             }

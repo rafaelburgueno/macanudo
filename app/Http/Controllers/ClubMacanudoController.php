@@ -36,9 +36,12 @@ class ClubMacanudoController extends Controller
             'direccion' => 'required|max:100',
         ]);
         
-        Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
+        try{
+            Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rburg@vivaldi.net'))->cc(env('MAIL_REGISTROS', 'rburg@vivaldi.net'))
             ->queue(new FormularioDelClubMacanudo($request->all()));
-
+        } catch (Exception $e) {
+            Log::error('Error al enviar correo electrónico a MAIL_RECEPTOR_DE_NOTIFICACIONES y MAIL_REGISTROS, desde ClubMacanudoController.php linea 40: ' . $e->getMessage());
+        }
 
         // TODO: guardar en la base de datos los mensajes
         // TODO: los mensajes son recibidos por correo pero podria guardarse adicionalmente en la BD

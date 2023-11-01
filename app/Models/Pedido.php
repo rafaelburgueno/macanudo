@@ -171,8 +171,13 @@ class Pedido extends Model
             // TODO: enviar email cuando queda menos de 5 unidades de un producto
             if($producto->stock <= 5){
                 // Envia un email para avisar que queda poco stock
-                Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
-                ->queue(new EmailDeStock($producto->nombre.' tiene '. $producto->stock .' unidades en stock!', $productos));
+                try{
+                    Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
+                        ->queue(new EmailDeStock($producto->nombre.' tiene '. $producto->stock .' unidades en stock!', $productos));
+                } catch (Exception $e) {
+                    Log::error('Error al enviar correo electrónico a MAIL_RECEPTOR_DE_NOTIFICACIONES y MAIL_REGISTROS, desde el modelo Pedido.php linea 175: ' . $e->getMessage());
+                }
+            
             }
 
 

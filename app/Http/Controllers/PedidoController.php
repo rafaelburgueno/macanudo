@@ -506,26 +506,37 @@ class PedidoController extends Controller
         /* este es el codigo que envia emails si se elije esa opcion en el formulario de editar pedido */
         /***********************************************************************************************/
         if($request->enviar_email_al_usuario){
+            // Envia a Pedro o a mi un email con el pedido
             try {
-
-                // Envia a Pedro o a mi un email con el pedido
                 Mail::to(env('MAIL_RECEPTOR_DE_NOTIFICACIONES', 'rafaelburg@gmail.com'))->cc(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))
                 ->queue(new PedidosMail($pedido));
-                
-                // Envia el mismo email que va al cliente, a nuestra cuenta de registros
-                //Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido)); 
-                Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));
-                
-                // Envia el email al cliente
+            } catch (Exception $e) {
+                Log::error('Error al enviar correo electrónico a MAIL_RECEPTOR_DE_NOTIFICACIONES y MAIL_REGISTROS, desde PedidoCotroller.php linea 511: ' . $e->getMessage());
+            }
+            
+            
+            // Envia el email al cliente
+            try{
                 Notification::route('mail', $pedido->email)->notify(new PedidoNotificationCliente($pedido));
                 session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente. Se enviaron emails con el detalle del pedido al cliente, a Pedro y al registro.');
-            
             } catch (Exception $e) {
                 $error = $e->getMessage();
+                Log::error('Error al enviar correo electrónico a '. $pedido->email .', desde PedidoCotroller.php linea 520: ' . $e->getMessage());
                 //session()->flash('error', 'Ha ocurrido un error con la dirección de email suministrada.');
                 session()->flash('error', 'Ocurrió un error con el email: '. $error);
                 return redirect() -> route('pedidos.index');
             }
+
+
+            // Envia el mismo email que va al cliente, a nuestra cuenta de registros
+            try{
+                //Mail::to(env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->queue(new PedidoClienteMail($pedido)); 
+                Notification::route('mail', env('MAIL_REGISTROS', 'rafaelburg@gmail.com'))->notify(new PedidoNotificationCliente($pedido));
+            } catch (Exception $e) {
+                Log::error('Error al enviar correo electrónico a MAIL_REGISTROS, desde PedidoCotroller.php linea 534: ' . $e->getMessage());
+            }
+
+            
 
         }else{
             session()->flash('exito', 'El pedido con id:'.$pedido->id.' fue editado correctamente.');
