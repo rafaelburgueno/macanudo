@@ -461,7 +461,8 @@ h1 {
   position: absolute;
   /*top: 5%;*/
   right: 5%;
-  bottom: 5%;
+  /*bottom: 5%;*/
+  bottom: 10px;
 
   /*transform: translate(-50%, -50%);*/
   /*transform: rotate(-45deg);*/
@@ -520,4 +521,20 @@ h1 {
     margin-top: 1em;
       width: 30%;
   }
+}
+
+
+
+.precio-prod-sm{ 
+  position: absolute;
+  bottom: 55px;
+  right: 60px;
+  box-shadow: 2px 2px 2px var(--negro);
+}
+
+.precio-prod {
+  position: absolute;
+  bottom: 55px;
+  right: 84px;
+  box-shadow: 2px 2px 2px var(--negro);
 }

@@ -56,6 +56,15 @@
                         <br>
                         <a class=" link" data-toggle="modal" data-target="#modal_{{$producto->id}}" ><strong>Leer mas...</strong></a> </p>
                     
+
+                        {{-- ETIQUETA CON EL PRECIO --}}
+                        @if(Auth::user()) {{-- si hay una sesion iniciada se muestran 3 botones, por eso usamos una clase css distinta --}}
+                            <h4 class="precio-prod shadown">${{$producto->precio}}</h4> 
+                        @else
+                            <h4 class="precio-prod-sm shadown">${{$producto->precio}}</h4>
+                        @endif
+
+
                         <!-- boton de añadir al carrito -->
                         <!-- boton de añadir al carrito --> 
                         <!-- boton de añadir al carrito -->
