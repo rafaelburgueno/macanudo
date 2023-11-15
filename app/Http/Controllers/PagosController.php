@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use App\Mail\EmailDeStock;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\PedidoNotificationCliente;
+use Illuminate\Support\Facades\Log;
 
 
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\FormularioDeContacto;
 use App\Models\Comentario;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 class ComentarioController extends Controller
 {
@@ -17,6 +19,28 @@ class ComentarioController extends Controller
     |--------------------------------------------------------------------------
     */
     public function formulario_de_contacto(Request $request){
+        
+        // VALIDACION DE RECAPTCHA
+        //return $request->all();
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => env('RECAPTCHA_SECRET_KEY'),
+            'response' => $request->input('g-recaptcha-response'),
+        ])->object();
+
+        //return $response;
+
+        if(!$response->success || $response->score < 0.8 ){
+        //if($response->success ){
+            Log::info('Se detecto el uso de bots($response-score: '.$response->score.' ) en el formulario de contacto, ComentarioController.php linea 32. Direccion del atacante: ' . $request->email . '. Texto del atacante: ' . $request->texto . '.');
+            session()->flash('error', 'El formulario no pudo ser enviado, se detecto el uso de bots.');
+            return redirect() -> route('home');
+        }else{
+            // dejo registrado el score en el archivo laravel.log
+            Log::info('El score de la validacion de recaptcha fue de: ' . $response->score . ' en el formulario de contacto, ComentarioController.php linea 39. Direccion del contacto: ' . $request->email . '. Texto del contacto: ' . $request->texto . '.'); 
+        }
+        // FIN DE VALIDACION DE RECAPTCHA
+
+
         //return $request;
         //return $request->get('nombre');
         $request->validate([ //TODO: revisar las validaciones porque no funcionan

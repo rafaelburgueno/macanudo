@@ -9,6 +9,7 @@ use App\Mail\EmailDeStock;
 use App\Models\Pedido;
 use Carbon\Carbon;
 use App\Mail\PedidosMail;
+use Illuminate\Support\Facades\Log;
 
 class GenerarUnNuevoPedido extends Command
 {

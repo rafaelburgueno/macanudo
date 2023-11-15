@@ -14,6 +14,7 @@ use App\Notifications\SuscripcionNotification;
 use App\Mail\EmailDeControl;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Log;
 
 
 class SuscripcionController extends Controller

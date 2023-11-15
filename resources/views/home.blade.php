@@ -225,10 +225,23 @@
                         @enderror
                     </div>
                 </div>
-                <button type="submit" class="btn-procesando btn1 btn-azul shadown mt-1">Enviar</button>
+                <button type="submit" class="g-recaptcha btn-procesando btn1 btn-azul shadown mt-1" data-sitekey="{{env('RECAPTCHA_SITE_KEY')}}" data-callback='onSubmit' data-action='submit'>Enviar</button>
 
             </form>
         </div>
+
+        {{--<script src="https://www.google.com/recaptcha/api.js"></script>--}}
+        <script src="https://www.google.com/recaptcha/api.js?render=invisible"></script>
+        <script>
+            function onSubmit(token) {
+              document.getElementById("form_contacto").submit();
+            }
+        </script>
+        {{--ocultar el badge de recaptcha--}}
+        <style>
+            .grecaptcha-badge{ display: none !important; }
+        </style>
+
     </div>
 </div>
 <br><br>

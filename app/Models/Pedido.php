@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailDeStock;
+use Illuminate\Support\Facades\Log;
 
 class Pedido extends Model
 {

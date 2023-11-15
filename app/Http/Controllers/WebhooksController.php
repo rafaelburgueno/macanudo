@@ -12,6 +12,7 @@ use App\Mail\PedidoClienteMail;
 use App\Mail\EmailDeControl;
 use Exception;
 use App\Http\Controllers\PagosController;
+use Illuminate\Support\Facades\Log;
 
 class WebhooksController extends Controller
 {

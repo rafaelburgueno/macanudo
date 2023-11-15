@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\FormularioDelClubMacanudo;
+use Illuminate\Support\Facades\Log;
 
 class ClubMacanudoController extends Controller
 {
