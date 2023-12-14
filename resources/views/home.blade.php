@@ -234,7 +234,13 @@
         <script src="https://www.google.com/recaptcha/api.js?render=invisible"></script>
         <script>
             function onSubmit(token) {
-              document.getElementById("form_contacto").submit();
+                if(
+                    document.getElementById("nombre").validity.valid && 
+                    document.getElementById("email").validity.valid &&
+                    document.getElementById("texto").validity.valid
+                ){
+                    document.getElementById("form_contacto").submit();
+                }
             }
         </script>
         {{--ocultar el badge de recaptcha--}}

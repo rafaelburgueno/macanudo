@@ -84,7 +84,11 @@
                     <!-- TODO: suma el producto al carrito y nos lleva a la pagina de carrito -->
                     <!-- boton de comprar -->
                     @if ($producto->stock > 0)
-                        <a onclick="anadirEIeAlCarrito({{$producto->id}})" class="btn1 btn-medio shadown" style="background-color:{{$producto->color}};">Comprar</a>
+                        <a href="{{route('mi_carrito')}}" onclick="anadirEIeAlCarrito({{$producto->id}})" class="btn1 btn-medio shadown" style="
+                        background-color:{{$producto->color}};
+                        text-decoration:none;
+                        color: inherit;
+                        cursor: default;">Comprar</a>
                     @endif
 
 
@@ -267,7 +271,7 @@
 @endforeach
 
 
-<script>
+{{--<script>
 
     //let ruta_al_carrito = "{{route('mi_carrito')}}";
     //console.log("el carrito esta en: " + ruta_al_carrito);
@@ -322,7 +326,7 @@
 
     
 
-</script>
+</script>--}}
 
 
 @endsection

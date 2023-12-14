@@ -112,3 +112,66 @@ if (alertTrigger) {
 }
 
 
+
+
+
+// ***************************************
+// scripts para añadirproductos al carrito
+// ***************************************
+	//let ruta_al_carrito = "{{route('mi_carrito')}}";
+    //console.log("el carrito esta en: " + ruta_al_carrito);
+
+    function anadirEIeAlCarrito(id){
+        anadirAlCarrito(id);
+        alert("se agrego al carrito?");
+        //location.replace("{{route('mi_carrito')}}");
+		//location.replace("mi_carrito");
+		// debe redireccionar a la pagina de carrito
+		//window.location.href = "../mi_carrito";
+    }
+
+	function anadirAlCarrito(id){
+		let mi_carrito = [];
+		
+		if ( localStorage.getItem("carrito") ){
+			mi_carrito.push(localStorage.getItem("carrito"));
+		}
+
+		mi_carrito.push(id);
+		
+		localStorage.setItem("carrito", mi_carrito);
+		
+
+		//console.log( typeof mi_carrito );
+		console.log('carrito: ' + mi_carrito );
+
+		/*for(let i = 0; i < mi_carrito.length; i++){
+			console.log(mi_carrito[i]);
+		}*/
+
+
+		//ALERTA 
+		const Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 4000,
+		timerProgressBar: true,
+		didOpen: (toast) => {
+			toast.addEventListener('mouseenter', Swal.stopTimer)
+			toast.addEventListener('mouseleave', Swal.resumeTimer)
+		}
+		})
+
+		Toast.fire({
+		icon: 'success',
+		title: 'Se añadio al carrito'
+		})
+
+		actualizarContadorDelCarrito();
+
+	}
+
+// ***************************************
+// Fin de scripts para añadir productos al carrito
+// ***************************************

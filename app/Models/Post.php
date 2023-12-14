@@ -58,4 +58,21 @@ class Post extends Model
     }    
 
 
+
+    /**
+     * Devuelve una coleccion de elementos del modelo Producto, asociados a esa instancia de Post
+     * se traen las categrias asignadas al post y luego se buscan los productos asociados a esas categorias
+     * se eliminan los duplicados y se devuelve la coleccion
+     */
+    public function productos_asociados(){
+        $categorias = $this->categorias;
+        $productos = collect();
+        foreach ($categorias as $categoria) {
+            $productos = $productos->merge($categoria->productos);
+        }
+        $productos = $productos->unique('id');
+        return $productos;
+    }
+
+
 }
