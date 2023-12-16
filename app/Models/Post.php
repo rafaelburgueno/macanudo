@@ -71,6 +71,8 @@ class Post extends Model
             $productos = $productos->merge($categoria->productos);
         }
         $productos = $productos->unique('id');
+        // TODO: la lista de productos que se manda al front debe contener al menos 3 elementos
+        
         return $productos;
     }
 
