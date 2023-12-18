@@ -114,7 +114,7 @@
 
         {{-- EDITAR CATEGORIAS LIVEWIRE --}}
         <div class="my-5">
-            @livewire('crear-y-editar-categorias', ['categorias' => $categorias, 'post' => $post])
+            @livewire('crear-y-editar-categorias', ['categoriaable_id' => $post->id, 'categoriaable_type' => 'App\Models\Post'])
 
         </div>
                         

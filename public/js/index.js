@@ -175,3 +175,78 @@ if (alertTrigger) {
 // ***************************************
 // Fin de scripts para añadir productos al carrito
 // ***************************************
+
+
+
+
+// ***************************************
+// alertas relativasa las categorias
+// ***************************************
+// Alerta de categoria creada
+Livewire.on('categoriaCreada', (nombreCategoria) => {
+	
+	//console.log('categoria creada con exitooo');
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 4000,
+		timerProgressBar: true,
+		didOpen: (toast) => {
+			toast.addEventListener('mouseenter', Swal.stopTimer)
+			toast.addEventListener('mouseleave', Swal.resumeTimer)
+		}
+	})
+
+	Toast.fire({
+		icon: 'success',
+		title: 'Categoria '+ nombreCategoria +' creada con exito.'
+	})
+	
+})
+
+// Alerta de categoria eliminada
+Livewire.on('categoriaEliminada', (nombreCategoria) => {
+	
+	//console.log('categoria creada con exitooo');
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 4000,
+		timerProgressBar: true,
+		didOpen: (toast) => {
+			toast.addEventListener('mouseenter', Swal.stopTimer)
+			toast.addEventListener('mouseleave', Swal.resumeTimer)
+		}
+	})
+
+	Toast.fire({
+		icon: 'success',
+		title: 'Categoria '+ nombreCategoria +' eliminada con exito.'
+	})
+	
+})
+
+// Alerta de categoria vinculada o desvinculada
+Livewire.on('vincularDesvincular', (mensaje) => {
+	
+	//console.log('categoria creada con exitooo');
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 4000,
+		timerProgressBar: true,
+		didOpen: (toast) => {
+			toast.addEventListener('mouseenter', Swal.stopTimer)
+			toast.addEventListener('mouseleave', Swal.resumeTimer)
+		}
+	})
+
+	Toast.fire({
+		icon: 'success',
+		title: mensaje 
+	})
+	
+})

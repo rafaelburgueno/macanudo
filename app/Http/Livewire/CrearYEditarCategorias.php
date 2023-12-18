@@ -4,13 +4,19 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Categoria;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class CrearYEditarCategorias extends Component
 {
 
     public $nombreCategoria;
+    public $descripcionCategoria;
     public $category_id;
-    public $categorias;
+    public $categorias_collection;
+    public $respuestaCategoria = "";
+    public $categoriaable_id;
+    public $categoriaable_type;
 
     
 
@@ -18,8 +24,25 @@ class CrearYEditarCategorias extends Component
         return view('livewire.crear-y-editar-categorias');
     }
 
-    public function mount($categorias){
-        $this->categorias = $categorias;
+    public function mount($categoriaable_id, $categoriaable_type){
+        //$this->categorias_collection = $categorias_collection;
+        $this->categorias_collection = Categoria::all();
+        $this->categoriaable_id = $categoriaable_id;
+        $this->categoriaable_type = $categoriaable_type;
+    }
+
+
+
+    protected function rules()
+    {
+        return [
+            'nombreCategoria' => [
+                'required',
+                'max:50',
+                Rule::unique('categorias', 'nombre')
+            ],
+            'descripcionCategoria' => 'nullable|max:100',
+        ];
     }
 
 
@@ -29,39 +52,70 @@ class CrearYEditarCategorias extends Component
     // **************************************************
     public function save()
     {
-        /*$this->validate([
-            'nombreCategoria' => 'required',
+        //session()->forget('exitoNuevaCategoria');
+        
+        $this->validate();
+
+        Categoria::create([
+            'nombre' => $this->nombreCategoria,
+            'descripcion' => $this->descripcionCategoria,
         ]);
 
-        if ($this->category_id) {
-            $category = Category::find($this->category_id);
-            $category->update([
-                'nombreCategoria' => $this->nombreCategoria,
-            ]);
-        } else {
-            Category::create([
-                'nombreCategoria' => $this->nombreCategoria,
-            ]);
-        }
-
-        // Reset fields
-        $this->reset(['nombreCategoria', 'category_id']);*/
+        // emite evento para informar a la vista de que se ha creado una nueva categoria
+        $this->emit('categoriaCreada', $this->nombreCategoria);
+        
+        $this->categorias_collection = Categoria::all();
     }
 
 
 
     // **************************************************
-    // Editar
+    // Eliminar
     // **************************************************
-    public function edit($id)
+    public function delete($id)
     {
-        /*$category = Category::find($id);
-        $this->nombreCategoria = $category->nombreCategoria;
-        $this->category_id = $category->id;*/
+        
+        $category = Categoria::find($id);
+        $nombreCategoria = $category->nombre;
+        $category->delete();
+
+        $this->emit('categoriaEliminada', $nombreCategoria);
+
+        $this->categorias_collection = Categoria::all();
     }
 
 
+    // **************************************************
+    // vincular / desvincular
+    // TODO: emitir repetidamente una alerta de exito
+    // **************************************************
+    public function vincularDesvincular($id)
+    {
+        $categoriaable = DB::table('categoriaables')
+            ->where('categoria_id', $id)
+            ->where('categoriaable_id', $this->categoriaable_id)
+            ->where('categoriaable_type', $this->categoriaable_type)
+            ->first();
 
+
+
+
+        if($categoriaable){
+            DB::table('categoriaables')->where('id', $categoriaable->id)->delete();
+            
+            $this->emit('vincularDesvincular', 'Desvinculado correctamente.');
+
+        }else{
+            DB::table('categoriaables')->insert([
+                'categoria_id' => $id,
+                'categoriaable_id' => $this->categoriaable_id,
+                'categoriaable_type' => $this->categoriaable_type,
+            ]);
+
+            $this->emit('vincularDesvincular', 'Vinculado correctamente.');
+            
+        }
+    }
 
 
 }

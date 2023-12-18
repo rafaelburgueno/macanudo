@@ -9,6 +9,10 @@ class Categoria extends Model
 {
     use HasFactory;
 
+    protected $table = 'categorias';
+
+    protected $fillable = ['nombre', 'descripcion'];
+
 
     /**
      * Devuelve un array de elementos del modelo Canasta, asociados a esa instancia de categoria

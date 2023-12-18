@@ -219,6 +219,13 @@
                     <button type="submit" class="btn btn-outline-danger mt-2">Eliminar</button>
                 </form>
                 
+
+                {{-- EDITAR CATEGORIAS LIVEWIRE --}}
+                <div class="my-5">
+                    @livewire('crear-y-editar-categorias', ['categoriaable_id' => $producto->id, 'categoriaable_type' => 'App\Models\Producto'])
+
+                </div>
+
     
             </div>
         </div>
@@ -265,6 +272,7 @@
         });
     
     </script>
+
 
 
 
