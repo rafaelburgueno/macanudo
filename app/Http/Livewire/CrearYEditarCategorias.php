@@ -14,9 +14,10 @@ class CrearYEditarCategorias extends Component
     public $descripcionCategoria;
     public $category_id;
     public $categorias_collection;
-    public $respuestaCategoria = "";
     public $categoriaable_id;
     public $categoriaable_type;
+    public $categoriasVinculadas;
+    //public $elemento;
 
     
 
@@ -29,6 +30,11 @@ class CrearYEditarCategorias extends Component
         $this->categorias_collection = Categoria::all();
         $this->categoriaable_id = $categoriaable_id;
         $this->categoriaable_type = $categoriaable_type;
+
+        $modelo = $categoriaable_type;
+        $elemento = $modelo::find($categoriaable_id);
+        $this->categoriasVinculadas = $elemento->categorias;
+
     }
 
 
@@ -65,6 +71,9 @@ class CrearYEditarCategorias extends Component
         $this->emit('categoriaCreada', $this->nombreCategoria);
         
         $this->categorias_collection = Categoria::all();
+
+        $this->nombreCategoria = "";
+        $this->descripcionCategoria = "";
     }
 
 
@@ -82,6 +91,10 @@ class CrearYEditarCategorias extends Component
         $this->emit('categoriaEliminada', $nombreCategoria);
 
         $this->categorias_collection = Categoria::all();
+        
+        $modelo = $this->categoriaable_type;
+        $elemento = $modelo::find($this->categoriaable_id);
+        $this->categoriasVinculadas = $elemento->categorias;
     }
 
 
@@ -115,6 +128,11 @@ class CrearYEditarCategorias extends Component
             $this->emit('vincularDesvincular', 'Vinculado correctamente.');
             
         }
+
+        $modelo = $this->categoriaable_type;
+        $elemento = $modelo::find($this->categoriaable_id);
+        $this->categoriasVinculadas = $elemento->categorias;
+
     }
 
 

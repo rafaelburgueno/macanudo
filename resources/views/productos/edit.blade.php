@@ -218,6 +218,7 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-outline-danger mt-2">Eliminar</button>
                 </form>
+
                 
 
                 {{-- EDITAR CATEGORIAS LIVEWIRE --}}
