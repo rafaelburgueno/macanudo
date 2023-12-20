@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Producto;
 
 class Post extends Model
 {
@@ -71,7 +72,24 @@ class Post extends Model
             $productos = $productos->merge($categoria->productos);
         }
         $productos = $productos->unique('id');
-        // TODO: la lista de productos que se manda al front debe contener al menos 3 elementos
+        
+        // La lista de productos que se manda al front debe contener al menos 3 elementos
+        // si no hay 3 elementos, se agregan productos
+        if($productos->count() < 3){
+            while($productos->count() < 3){
+                // se agregan productos al azar
+                $productos = $productos->merge(Producto::inRandomOrder()->limit(3)->get());
+
+                $productos = $productos->unique('id');
+            }
+        }
+
+        // limitar la cantidad de productos a 3
+        $productos = $productos->take(3);
+
+        // reordena de forma aleatoria los elementos de la coleccion $productos
+        $productos = $productos->shuffle();
+
         
         return $productos;
     }
