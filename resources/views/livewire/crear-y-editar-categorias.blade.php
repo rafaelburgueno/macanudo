@@ -29,6 +29,33 @@
                                 </button>
                             </div>
                         </td>
+
+                        <td>
+                            @if ($categoriaable_type == 'App\Models\Producto')
+                                @if(count($categoria->posts))
+                                    <small>Posts con esta categoria:
+                                        <ul>
+                                            @foreach($categoria->posts as $post)
+                                                <li>{{ $post->titulo }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </small>
+                                @endif
+
+                            @elseif($categoriaable_type == 'App\Models\Post')
+                                @if(count($categoria->productos))
+                                    <small>Productos con esta categoria:
+                                        <ul>
+                                            @foreach($categoria->productos as $producto)
+                                                <li>{{ $producto->nombre }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </small>
+                                @endif
+
+                            @endif
+
+                        </td>
                         
                         <td> 
                             <div class="m-0 p-0 text-center">
