@@ -27,7 +27,7 @@ class CrearYEditarCategorias extends Component
 
     public function mount($categoriaable_id, $categoriaable_type){
         //$this->categorias_collection = $categorias_collection;
-        $this->categorias_collection = Categoria::all();
+        $this->categorias_collection = Categoria::orderBy('nombre', 'asc')->get();
         $this->categoriaable_id = $categoriaable_id;
         $this->categoriaable_type = $categoriaable_type;
 
