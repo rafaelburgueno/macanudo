@@ -221,10 +221,10 @@
             <h4>* 1 novedad</h4>
             
             <div class="text-center mt-auto">
-                <img src="{{asset('/storage/img/descuento15.png')}}" width="30%" class="">
+                <img src="{{asset('/storage/img/descuento20.png')}}" width="30%" class="">
                 
                 <h3 class="" style=" color: var(--blanco); background-color: transparent;text-shadow: 0.3px 0.3px #e5e6e1 ;  font-size:1.5cm ;">
-                    $969
+                    $910
                 </h3>
             </div>
             <span class=""></span>
@@ -239,10 +239,10 @@
             <h4>* 1 novedad</h4>
             
             <div class="text-center mt-auto">
-                <img src="{{asset('/storage/img/descuento18.png')}}" width="30%" class="">
+                <img src="{{asset('/storage/img/descuento25.png')}}" width="30%" class="">
                 
                 <h3 class="" style="color: var(--blanco); background-color: transparent;text-shadow: 0.3px 0.3px #e5e6e1 ;  font-size:1.5cm ;">
-                    $1599
+                    $1460
                 </h3>
             </div>
             <span class=""></span>
@@ -592,7 +592,7 @@
                     <!-- Se muestran los resultados del calculo del precio -->
                     <div class="text-center mb-3" id="precio_por_mes">
                         
-                        {{--<p class="m-1 h4 " id="precio_total">Precio total de la suscripción: $969</p>--}}
+                        {{--<p class="m-1 h4 " id="precio_total">Precio total de la suscripción: $910</p>--}}
                     </div>
 
                     
@@ -673,10 +673,10 @@
             var cantidad = $(this).val();
             if(cantidad == 3){
                 //$('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + precio_unitario*cantidad*descuento_por_tres_quesos + '</span>');
-                $('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + 969 + '</span><div class="text-center mt-3"><p><small>Se puede pagar con Mercado Pago, transferencia o efectivo, al recibir los productos.</small></p></div>');
+                $('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + 910 + '</span><div class="text-center mt-3"><p><small>Se puede pagar con Mercado Pago, transferencia o efectivo, al recibir los productos.</small></p></div>');
             }else{
                 //$('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + precio_unitario*cantidad*descuento_por_cinco_quesos + '</span>');
-                $('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + 1599 + '</span><div class="text-center mt-3"><p><small>Se puede pagar con Mercado Pago, transferencia o efectivo, al recibir los productos.</small></p></div>');
+                $('#precio_por_mes').html('<span class=" alert alert-success">Precio por mes $' + 1460 + '</span><div class="text-center mt-3"><p><small>Se puede pagar con Mercado Pago, transferencia o efectivo, al recibir los productos.</small></p></div>');
             }
         });
 

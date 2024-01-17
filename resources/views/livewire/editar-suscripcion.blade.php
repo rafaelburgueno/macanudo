@@ -96,8 +96,8 @@
                         <label class="" for="cantidad_de_quesos">Cantidad de quesos en la canasta</label>
                         <select required wire:model="cantidad_de_quesos" data-te-select-init id="cantidad_de_quesos" name="cantidad_de_quesos" autocomplete="cantidad_de_quesos" class="form-control">
                             
-                            <option value="3" @selected($suscripcion->cantidad_de_quesos == "3")>3 quesos  ($ 969)</option>
-                            <option value="5" @selected($suscripcion->cantidad_de_quesos == "5")>5 quesos  ($ 1599)</option>
+                            <option value="3" @selected($suscripcion->cantidad_de_quesos == "3")>3 quesos  ($ 910)</option>
+                            <option value="5" @selected($suscripcion->cantidad_de_quesos == "5")>5 quesos  ($ 1460)</option>
                             
                         </select>
                     </div>

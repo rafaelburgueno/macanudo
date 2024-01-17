@@ -48,6 +48,8 @@ class BannerController extends Controller
             //'relevancia' => 'required|max:100',
             'descripcion' => 'required|max:255',
             'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            // validacion del campo 'link'
+            'link' => 'nullable|url',
         ]);
             
         //el metodo store() debe ejecutarse en la misma linea en la que se asigna a la variable(sino no funca)
@@ -69,6 +71,8 @@ class BannerController extends Controller
         Multimedia::create([
             'url' => $url,
             'descripcion' => $request->descripcion,
+            // TODO: hacer una migracion para recibir el campo 'link'
+            'link' => $request->link,
             'relevancia' => $request->relevancia,
             //'imagen_con_info' => $imagen_con_info,
             'resolucion' => 'TODO',
@@ -126,6 +130,8 @@ class BannerController extends Controller
             //'relevancia' => 'required|max:100',
             'descripcion' => 'required|max:255',
             'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            // validacion del campo 'link'
+            'link' => 'nullable|url',
         ]);
             
         //el metodo store() debe ejecutarse en la misma linea en la que se asigna a la variable(sino no funca)
@@ -148,6 +154,7 @@ class BannerController extends Controller
             //'url' => $url,
             'descripcion' => $request->descripcion,
             'relevancia' => $request->relevancia,
+            'link' => $request->link,
             //'imagen_con_info' => $imagen_con_info,
             'resolucion' => 'TODO',
             'tipo' => 'imagen',

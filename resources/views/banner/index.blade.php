@@ -52,6 +52,15 @@
                                     </div>--}}
 
                                 </div>
+                                
+                                <!-- input para el campo 'link',  que se usa para el boton de accion del link-->
+                                <div class="form-group mb-3">
+                                    <label for="link">Link <small>(opcional)</small></label>
+                                    <textarea class="form-control" id="link" name="link" rows="3">{{ $imagen->link }}</textarea>
+                                    @error('link')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                             
                             <div class="col-md-4">
@@ -111,6 +120,15 @@
                                 <label for="descripcion">Descripción <small>(Se usa para completar el texto alternativo a las imagenes)</small></label>
                                 <textarea required class="form-control" id="descripcion" name="descripcion" rows="4" maxlength="255">{{old('descripcion')}}</textarea>
                                 @error('descripcion')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- input para el campo 'link',  que se usa para el boton de accion del link-->
+                            <div class="form-group mb-3">
+                                <label for="link">Link <small>(opcional. Se usa para definir el boton de accion)</small></label>
+                                <textarea required class="form-control" id="link" name="link" rows="4" maxlength="255">{{old('link')}}</textarea>
+                                @error('link')
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>

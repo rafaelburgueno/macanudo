@@ -13,7 +13,15 @@
                 @else
                 <div class="carousel-item">
                 @endif
+                
+                @if($imagen->link)
+                    <a href="{{ $imagen->link }}" {{--target="_blank"--}} >
+                        <img class="d-block w-100" src="{{$imagen->url}}" alt="{{ $imagen->descripcion }}">
+                    </a>
+                @else
                     <img class="d-block w-100" src="{{$imagen->url}}" alt="{{ $imagen->descripcion }}">
+                @endif
+                    
                 </div>
             @endforeach
 

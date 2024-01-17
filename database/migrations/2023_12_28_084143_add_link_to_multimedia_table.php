@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('productos', function (Blueprint $table) {
-            //$table->unsignedBigInteger('es_variedad_del_producto')->nullable(); // lo uso para encontrar el producto padre
-            //$table->boolean('tiene_variedades')->nullable()->default(false); //este valor lo uso para saber si tengo que traer datos adicionales
-
+        Schema::table('multimedia', function (Blueprint $table) {
+            // agregamos el campo 'link' para almacenar la url de la redireccion del boton de accion
+            $table->string('link')->nullable()->after('descripcion');
         });
     }
 
@@ -27,8 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('productos', function (Blueprint $table) {
+        Schema::table('multimedia', function (Blueprint $table) {
             //
+            $table->dropColumn('link');
         });
     }
 };

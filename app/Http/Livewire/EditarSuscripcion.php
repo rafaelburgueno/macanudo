@@ -49,11 +49,11 @@ class EditarSuscripcion extends Component
         //$suscripcion_guardada->tipo = $this->tipo;
         
         $suscripcion_guardada->cantidad_de_quesos = $this->cantidad_de_quesos;
-        //si la cantidad de quesos es 3 el precio de pa suscripcion es 969, si es 5 el precio es 1599
+        //si la cantidad de quesos es 3 el precio de pa suscripcion es 910, si es 5 el precio es 1460
         if($this->cantidad_de_quesos == 3){
-            $suscripcion_guardada->precio = 969;
+            $suscripcion_guardada->precio = 910;
         }else{
-            $suscripcion_guardada->precio = 1599;
+            $suscripcion_guardada->precio = 1460;
         }
 
         $this->precio = $suscripcion_guardada->precio;

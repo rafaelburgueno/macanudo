@@ -306,10 +306,10 @@ class SuscripcionController extends Controller
 
         if ($cantidad_de_quesos == 3) {
             //$precio = $cantidad_de_quesos * $precio_unitario * $descuento_por_tres_quesos;
-            $precio = 969;
+            $precio = 910;
         } elseif ($cantidad_de_quesos == 5) {
             //$precio = $cantidad_de_quesos * $precio_unitario * $descuento_por_cinco_quesos;
-            $precio = 1599;
+            $precio = 1460;
         }
 
 
