@@ -53,7 +53,7 @@
 
                                 // alerta para aceptar las cookies
                                 console.log("se ejecuta la funcion de actualizar el contador del carrito");
-                                if( !localStorage.getItem("cookies") || true){
+                                if( !localStorage.getItem("cookies") ){
                                     console.log("Se ejecuta la alerta para aceptar las cookies");
                                     // si la variable cookies no esta definida se le pide al usuario que acepte las cookies mediante un sweetalert
                                     /*Swal.fire({
@@ -105,6 +105,12 @@
                                 // trae los elementos que ubieran en el carrito
                                 if ( localStorage.getItem("carrito") ){
                                     let texto = localStorage.getItem("carrito");
+                                    mi_carrito = texto.split(",");
+                                }
+
+                                // si no se aceptaron las cookies toma el carrito almacenado en las variables de sesion
+                                if( !localStorage.getItem("cookies") ){
+                                    let texto = "{{ Session::get('carrito'); }}";
                                     mi_carrito = texto.split(",");
                                 }
 

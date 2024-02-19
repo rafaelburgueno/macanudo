@@ -133,13 +133,19 @@ if (alertTrigger) {
 	function anadirAlCarrito(id){
 		let mi_carrito = [];
 		
-		if ( localStorage.getItem("carrito") ){
+		/*if ( localStorage.getItem("carrito") ){*/
+		if( localStorage.getItem("cookies") ){
 			mi_carrito.push(localStorage.getItem("carrito"));
+		}else{
+			mi_carrito.push("{{ Session::get('carrito'); }}");
 		}
 
 		mi_carrito.push(id);
 		
-		localStorage.setItem("carrito", mi_carrito);
+		if( localStorage.getItem("cookies") ){
+			localStorage.setItem("carrito", mi_carrito);
+		}
+
 		
 
 		//console.log( typeof mi_carrito );
