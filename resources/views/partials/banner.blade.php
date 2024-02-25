@@ -1,6 +1,6 @@
 <!--  BANNER AGENDA INICIO-->
 @if($banner->count())
-<div class="containerr mb-5">
+<div class="containerr">
     <div id="carouselExampleFade" class="carousel slide carousel-fade align-items-center" data-ride="carousel">
         <div class="carousel-inner ">
             {{--<div class="carousel-item active">

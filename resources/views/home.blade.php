@@ -11,7 +11,7 @@
 @include('partials.banner')
 
 
-<div class="mt-3 mr-0 mb-3 ml-0 contenedor">
+<div class="mr-0 mb-3 ml-0 contenedor">
     <div class="row m-0 p-0">
         <div class="col m-0 p-0">
             <img src="{{asset('/storage/img/index.b.jpeg')}}" class="nav d-block w-100 m-0" alt="Imagen de diferentes tipos de productos de Macanudo, con el sobreimpreso '¿Querés conocer algo mejor que el queso?'">

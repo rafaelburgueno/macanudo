@@ -51,66 +51,11 @@
                         <script>
                             function actualizarContadorDelCarrito(){
 
-                                // alerta para aceptar las cookies
-                                console.log("se ejecuta la funcion de actualizar el contador del carrito");
-                                if( !localStorage.getItem("cookies") ){
-                                    console.log("Se ejecuta la alerta para aceptar las cookies");
-                                    // si la variable cookies no esta definida se le pide al usuario que acepte las cookies mediante un sweetalert
-                                    /*Swal.fire({
-                                        title: 'Acepta las cookies',
-                                        text: "Para poder agregar productos al carrito debes aceptar las cookies",
-                                        icon: 'warning',
-                                        showCancelButton: true,
-                                        confirmButtonColor: '#3085d6',
-                                        cancelButtonColor: '#d33',
-                                        confirmButtonText: 'Aceptar',
-                                        cancelButtonText: 'Cancelar'
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            localStorage.setItem("cookies", true);
-                                        }
-                                    });*/
-
-                                    Swal.fire({
-                                        title: 'Acepta las cookies',
-                                        text: "Para poder agregar productos al carrito debes aceptar las cookies",
-                                        /*icon: 'warning',*/
-                                        showCancelButton: true,
-                                        confirmButtonColor: '#4554a4',
-                                        cancelButtonColor: '#f04643',
-                                        confirmButtonText: 'Aceptar',
-                                        cancelButtonText: 'Cancelar',
-                                        position: 'bottom',
-                                        width: '100%',
-                                        
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            localStorage.setItem("cookies", true);
-                                        }
-                                    });
-
-
-                                    
-
-                                    
-
-
-                                    
-                                    /*localStorage.setItem("carrito", "");*/
-                                }
-
-                                console.log("el estado de las cookies es: " + localStorage.getItem("cookies") );
-
+                                
                                 let mi_carrito = [];
                                 // trae los elementos que ubieran en el carrito
                                 if ( localStorage.getItem("carrito") ){
                                     let texto = localStorage.getItem("carrito");
-                                    mi_carrito = texto.split(",");
-                                }
-
-                                // si no se aceptaron las cookies toma el carrito almacenado en las variables de sesion
-                                if( !localStorage.getItem("cookies") ){
-                                    let texto = "{{ Session::get('carrito'); }}";
                                     mi_carrito = texto.split(",");
                                 }
 

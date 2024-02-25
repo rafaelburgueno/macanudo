@@ -232,7 +232,7 @@
 
 <!--MODAL POLITICAS DE PRIVACIDAD--MODAL POLITICAS DE PRIVACIDAD--MODAL POLITICAS DE PRIVACIDAD-->
 <!--MODAL POLITICAS DE PRIVACIDAD--MODAL POLITICAS DE PRIVACIDAD--MODAL POLITICAS DE PRIVACIDAD-->
-<div class="modal fade" id="politicas_de_privacidad" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="politicas_de_privacidadLabel" aria-hidden="true">
+<div style="z-index: 20000" class="modal fade" id="politicas_de_privacidad" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="politicas_de_privacidadLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content align-items-center negro">
             <div class="modal-header">

@@ -2,30 +2,6 @@
 <html lang="en">
 <head>
 
-    
-    <!-- Google tag (gtag.js) Sofía-->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9WD6T7QFEF"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-9WD6T7QFEF');
-    </script>
-    
-
-    
-    <!-- Google tag (gtag.js) Gabriel-->
-    {{--<script async src="https://www.googletagmanager.com/gtag/js?id=AW-620792546"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'AW-620792546');
-    </script>--}}
-    
-
     <!--<meta charset="UTF-8">-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -88,8 +64,82 @@
     <!-- ESTILOS CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/index.css')}}">
 
+
+    <!-- Google tag (gtag.js) Sofía-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9WD6T7QFEF"></script>
+    <script>
+        function ejecutarGTM(){
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            gtag('config', 'G-9WD6T7QFEF');
+            
+            console.log("se ejecuto el codigo GTM");
+        }
+    </script>
+    
+    <!-- Google tag (gtag.js) Gabriel-->
+    {{--<script async src="https://www.googletagmanager.com/gtag/js?id=AW-620792546"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-620792546');
+    </script>--}}
+
+
+
 </head>
 <body>
+
+    <script> 
+        // alerta para aceptar las cookies
+        console.log("se revisa el estado de las cookies");
+        
+        if( localStorage.getItem("cookies") == null ){
+            console.log("Se ejecuta la alerta para aceptar las cookies");
+            // si la variable cookies no esta definida se le pide al usuario que acepte las cookies mediante un sweetalert
+
+            Swal.fire({
+                title: 'Acepta las cookies',
+                /*text: "Macanudo utiliza cookies de terceros para mejorar la experiencia del usuario. Al continuar navegando aceptas su uso y nuestra <a href='https://www.google.com'>política de cookies</a>",*/
+                html: 'Macanudo utiliza cookies de terceros para mejorar la experiencia del usuario. Al continuar navegando aceptas su uso y nuestra <a role="button" href="#" data-toggle="modal" data-target="#politicas_de_privacidad">política de cookies</a>',
+                container: {
+                    zIndex: 10000
+                },
+                /*icon: 'warning',*/
+                showCancelButton: true,
+                confirmButtonColor: '#4554a4',
+                cancelButtonColor: '#f04643',
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                position: 'bottom',
+                width: '100%',
+                
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.setItem("cookies", "aceptadas");
+                    ejecutarGTM();
+                }else if(result.isDismissed){
+                    localStorage.setItem("cookies", "no aceptadas");
+                }
+            });
+            
+            console.log("el estado de las cookies es: " + localStorage.getItem("cookies") );
+        }
+
+
+        //si las cookies fueron aceptadas se ejecuta el codigo GTM
+        if( localStorage.getItem("cookies") == "aceptadas" ){
+            ejecutarGTM();
+        }
+    
+
+
+
+    </script>
 
 
     <!-- Header -->
