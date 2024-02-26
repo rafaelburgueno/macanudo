@@ -242,13 +242,107 @@
             </div>
             <h5 class="modal-title text-center" id="politicas_de_privacidadLabel">Politicas de privacidad</h5><br>
             <div class="modal-body">
-                <p>Los datos personales proporcionados en el sitio web serán tratados por MACANUDO según lo 
+                {{--<p>Los datos personales proporcionados en el sitio web serán tratados por MACANUDO según lo 
                     establecido en la Ley Nº 18.331 del 11 de agosto de 2008 y su decreto reglamentario 
                     Nº 414/2009 del 31 de agosto de 2009. <br>
                     <a href="https://www.impo.com.uy/bases/leyes/18331-2008" target="_blank">Ley de proteccion de datos</a>. <br>
                     MACANUDO podrá utilizar cookies cuando se utilice el sitio web. No obstante, el usuario 
                     podrá configurar su navegador para ser avisado de la recepción de las cookies e impedir 
-                    en caso de considerarlo adecuado.</p>
+                    en caso de considerarlo adecuado.</p>--}}
+                
+                <p>
+                    <!--Introducción:-->
+                    Macanudo (en adelante, "Macanudo" o "la empresa") se compromete a proteger la privacidad de los 
+                    usuarios que visitan nuestro sitio web alimentosmacanudo.com (en adelante, "el sitio web").
+                </p>
+
+                <p>
+                    Información personal:
+                    Los datos personales proporcionados en el sitio web, como nombre, correo electrónico, dirección o 
+                    número de teléfono, serán tratados por Macanudo de acuerdo a la 
+                    <a href="https://www.impo.com.uy/bases/leyes/18331-2008" target="_blank">Ley Nº 18.331 de Protección de 
+                    Datos Personales</a> del 11 de agosto de 2008 y su decreto reglamentario Nº 414/2009 del 31 de agosto 
+                    de 2009.
+                </p>
+
+                {{--<p>
+                    Uso de cookies:
+                    Macanudo utiliza cookies propias y de terceros, como Google Tag Manager, para mejorar la 
+                    experiencia del usuario en el sitio web. Las cookies son pequeños archivos de texto que se 
+                    almacenan en el dispositivo del usuario y que permiten recopilar información sobre su navegación, 
+                    preferencias e idioma.
+                </p>--}}
+
+                {{--<p>
+                    Tipos de cookies:
+                    Cookies técnicas: Son necesarias para el correcto funcionamiento del sitio web.
+                    Cookies de análisis: Permiten recopilar información sobre el uso del sitio web por parte de los 
+                    usuarios, como las páginas visitadas, el tiempo de navegación o la procedencia.
+                    Cookies de publicidad: Permiten mostrar anuncios relevantes a los intereses del usuario.
+                </p>--}}
+
+                {{--<p>
+                    Opciones del usuario:
+                    El usuario puede configurar su navegador para aceptar o rechazar las cookies, así como para 
+                    eliminarlas en cualquier momento. También puede optar por no aceptar cookies de terceros.
+                </p>--}}
+                
+                <h5>Política de Cookies:</h5>
+                
+                <p>
+                    {{--Introducción:--}}
+                    Esta Política de Cookies explica cómo Macanudo utiliza cookies en el sitio web.
+                </p>
+
+                <p>
+                    ¿Qué son las cookies?
+                    Las cookies son pequeños archivos de texto que se almacenan en el dispositivo del usuario 
+                    cuando este visita un sitio web. Las cookies permiten al sitio web recordar las acciones y 
+                    preferencias del usuario durante un período de tiempo, lo que evita que el usuario tenga que 
+                    volver a introducirlas cada vez que visita el sitio web o navega de una página a otra.
+                </p>
+
+                <p>
+                    ¿Qué tipos de cookies utiliza Macanudo?
+                    Macanudo utiliza los siguientes tipos de cookies en el sitio web:
+                    Cookies técnicas: Son necesarias para el correcto funcionamiento del sitio web. Permiten al 
+                    usuario navegar por el sitio web y utilizar sus funciones, como acceder a áreas seguras o 
+                    realizar compras.
+                    Cookies de análisis(Google Tag Manager): Permiten recopilar información sobre el uso del sitio web por parte de los 
+                    usuarios, como las páginas visitadas, el tiempo de navegación o la procedencia. Esta información 
+                    se utiliza para mejorar el sitio web y la experiencia del usuario.
+                    Cookies de publicidad: Permiten mostrar anuncios relevantes a los intereses del usuario. Estas 
+                    cookies se basan en la actividad del usuario en el sitio web y en otros sitios web que visita.
+                </p>
+
+                <p>
+                    ¿Cómo puedo gestionar las cookies?
+                    El usuario puede configurar su navegador para aceptar o rechazar las cookies, así como para 
+                    eliminarlas en cualquier momento.
+                </p>
+
+                <p>
+                    ¿Qué ocurre si rechazo las cookies?
+                    Si el usuario rechaza las cookies, algunas funciones del sitio web podrían no funcionar 
+                    correctamente.
+                </p>
+
+                <p>
+                    Contacto:
+                    Si el usuario tiene alguna pregunta sobre la Política de Cookies de Macanudo, puede ponerse 
+                    en contacto con la empresa a través del siguiente correo electrónico:
+                    <a href="mailto:{{env('MAIL_FROM_ADDRESS')}}">{{env('MAIL_FROM_ADDRESS')}}</a>
+                </p>
+
+                <p>
+                    Modificaciones:
+                    Macanudo se reserva el derecho de modificar la Política de Cookies en cualquier momento.
+                </p>
+
+                <p>
+                    Fecha de la última modificación: 2024-02-26
+                </p>
+
             </div>
 
         </div>
