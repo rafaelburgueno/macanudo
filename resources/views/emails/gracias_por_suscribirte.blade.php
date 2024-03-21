@@ -198,7 +198,7 @@ h5, .h5 {
 
         <p class="text-secondary" style="color: #5c5c5c;">
             
-            Recibirás una canasta con {{$suscripcion->cantidad_de_quesos}} quesos cada {{Str::lower($suscripcion->dia_de_entrega)}}.
+            Recibirás una canasta con {{$suscripcion->cantidad_de_quesos}} noquesos cada {{Str::lower($suscripcion->dia_de_entrega)}}.
             <br>
             La dirección definida para recibir el pedido es {{$suscripcion->direccion_de_entrega}}.
             <br>

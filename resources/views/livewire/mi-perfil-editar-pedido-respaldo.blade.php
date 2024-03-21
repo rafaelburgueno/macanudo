@@ -4,7 +4,7 @@
 
 
         @if($pedido->tipo == 'club del queso')
-            <p><strong>El pedido corresponde a tu suscripción al Club del queso </strong></p>
+            <p><strong>El pedido corresponde a tu suscripción al Club del noqueso </strong></p>
         @endif
 
         @if( Auth::user()->rol == 'administrador' )

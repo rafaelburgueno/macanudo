@@ -28,7 +28,7 @@
                         <div class="form-group mb-3">
                             <label for="status">Tipo</label>
                             <select disabled class="form-control" id="tipo" name="tipo">
-                                <option value="club del queso" @selected((old('tipo') == "club del queso") || $pedido->tipo == "club del queso" )>club del queso</option>
+                                <option value="club del queso" @selected((old('tipo') == "club del queso") || $pedido->tipo == "club del queso" )>club del noqueso</option>
                                 <option value="compra particular" @selected((old('tipo') == "compra particular") || $pedido->tipo == "compra particular" )>compra particular</option>
                                 <option value="pedido normal" @selected((old('tipo') == "pedido normal") || $pedido->tipo == "pedido normal" )>pedido normal</option>
                             </select>

@@ -160,7 +160,7 @@
     <div class="row  mr-0  ml-0 ">
         <div class="col">
             <h3 class="text-center  scroll-content fadeLeft" style=" color: var(--lila) ;">
-                los quesos del club</h3><br><br>
+                los noquesos del club</h3><br><br>
         </div>
     </div>
     <div class="row  mr-0  ml-0 ">
@@ -214,7 +214,7 @@
     <div class="row text-center">
         <div class="col-sm-2 mt-3"></div><br>
         <div class="col-sm-4  mt-3 border border-5 border-light text-light d-flex flex-column">
-            <h2 class="scroll-content fadeLeft mt-3">CANASTA 3 QUESOS</h2>
+            <h2 class="scroll-content fadeLeft mt-3">CANASTA 3 NOQUESOS</h2>
             <br>
             <h4>* 1 Untable</h4>
             <h4>* 1 productos Linea Siempre</h4>
@@ -231,7 +231,7 @@
         </div>
         <br>
         <div class="col-sm-4  mt-3 border border-5 border-light text-light d-flex flex-column">
-            <h2 class="scroll-content fadeLeft mt-3">CANASTA 5 QUESOS</h2>
+            <h2 class="scroll-content fadeLeft mt-3">CANASTA 5 NOQUESOS</h2>
             <br>
             <h4>* 1 Untable</h4>
             <h4>* 2 productos Linea Siempre</h4>
@@ -320,7 +320,7 @@
         <div class="col text-center">
             <h5>
                 <a href="" class="" data-toggle="modal" data-target="#modal_terminos_y_condiciones_del_club">
-                    Leer términos y condiciones del Club del queso
+                    Leer términos y condiciones del Club del noqueso
                 </a>
             </h5>
             <br>
@@ -408,7 +408,7 @@
             
             {{--<h5 class="modal-title text-center" id="exampleModalLabel">Completa tus datos</h5>--}}
 
-            <p class="mx-3 mt-3">El Club Del Queso te entrega en tu casa todos los meses una variedad de productos, 
+            <p class="mx-3 mt-3">El Club Del Noqueso te entrega en tu casa todos los meses una variedad de productos, 
                 entre los que encontraras productos clásicos y todos los meses un producto especial 
                 de edición limitada que solo se elaborara para el club. 
                 <br>
@@ -564,13 +564,13 @@
                     </div>--}}
                     <!-- radio button para seleccionar la cantidad de quesos -->
                     <div class="form-group">
-                        <label>¿Qué cantidad de quesos preferís para tu canasta?</label>
+                        <label>¿Qué cantidad de noquesos preferís para tu canasta?</label>
                         <div class="row">
                             <div class="col-6 text-center">
                                 <label class="p-0 m-0 w-100 recalcular_precio" for="quesos_3">
                                     <div class="border rounded mr-1 p-3">
                                         <input required type="radio" id="quesos_3" name="cantidad_de_quesos" value="3" @if(old('cantidad_de_quesos') == "3") checked @endif>
-                                        3 quesos
+                                        3 noquesos
                                     </div>
                                 </label>
                             </div>
@@ -578,7 +578,7 @@
                                 <label class="p-0 m-0 w-100 recalcular_precio" for="quesos_5">
                                     <div class="border rounded ml-1 p-3">
                                         <input required type="radio" id="quesos_5" name="cantidad_de_quesos" value="5" @if(old('cantidad_de_quesos') == "5") checked @endif>
-                                        5 quesos
+                                        5 noquesos
                                     </div>
                                 </label>
                             </div>

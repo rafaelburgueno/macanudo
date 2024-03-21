@@ -47,7 +47,7 @@ class SuscripcionNotification extends Notification
         //dd($this->suscripcion->user->name);
         $suscripcion = $this->suscripcion;
 
-        $descripcion_de_la_suscripcion = 'Mientras la suscripción esté activa, recibirás una canasta con ' . $suscripcion->cantidad_de_quesos . ' quesos cada ' . Str::lower($suscripcion->dia_de_entrega). '. La dirección definida para recibir el pedido es ' . $suscripcion->direccion_de_entrega . '.';
+        $descripcion_de_la_suscripcion = 'Mientras la suscripción esté activa, recibirás una canasta con ' . $suscripcion->cantidad_de_quesos . ' noquesos cada ' . Str::lower($suscripcion->dia_de_entrega). '. La dirección definida para recibir el pedido es ' . $suscripcion->direccion_de_entrega . '.';
 
         $descripcion_del_pago = 'El costo de la suscripción es de $' . $suscripcion->precio . ', y deberás pagar con Mercado Pago, transferencia o efectivo, al recibir los productos.';
 

@@ -265,7 +265,7 @@
                         <td><a class="btn btn-light" data-toggle="modal" data-target="#info_de_la_suscripcion_{{ $suscripcion->id }}">Ver</a></td>
                         <td>{{ $suscripcion->dia_de_entrega }}</td>
                         <td>{{ $suscripcion->direccion_de_entrega }}</td>
-                        <td>{{ $suscripcion->cantidad_de_quesos }} <small>quesos</small></td>
+                        <td>{{ $suscripcion->cantidad_de_quesos }} <small>noquesos</small></td>
                         <td>$ {{ $suscripcion->precio }}</td>
                         <td>
                             @if($suscripcion->user != null)
@@ -318,7 +318,7 @@
                                     <p>Dia de entrega: {{$suscripcion->dia_de_entrega}}</p>
                                     <p>Direccion de entrega: {{$suscripcion->direccion_de_entrega}}</p>
                                     <p>Telefono: {{$suscripcion->telefono}}</p>
-                                    <p>Tipo: {{$suscripcion->cantidad_de_quesos}} quesos</p>
+                                    <p>Tipo: {{$suscripcion->cantidad_de_quesos}} noquesos</p>
                                     <p>Precio: $ {{$suscripcion->precio}}</p>
                                     @if($suscripcion->user != null)
                                         <p>Nombre: {{$suscripcion->user->name}}</p>

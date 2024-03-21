@@ -370,7 +370,7 @@
                                             </div>
                                             <div class="col text-center">
                                                 @if($pedido->tipo == 'club del queso')
-                                                    <strong>Club del queso</strong>
+                                                    <strong>Club del noqueso</strong>
                                                 @endif
                                             </div>
                                             <div class="col text-right">

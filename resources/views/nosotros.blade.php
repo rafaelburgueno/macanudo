@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('title', 'Nosotros')
-@section('meta-description', 'Conoce más acerca de nuestro proceso de elaboración de quesos veganos con castañas de cajú. Descubre nuestra historia, valores y objetivos.')
+@section('meta-description', 'Conoce más acerca de nuestro proceso de elaboración de noquesos veganos con castañas de cajú. Descubre nuestra historia, valores y objetivos.')
     
     
 @section('content')
@@ -65,7 +65,7 @@
                 interesadas en comprar nuestros productos, por eso nos lanzamos al nuevo camino de emprender.
                 Así
                 nace
-                Macanudo Queso y comienza otra etapa de desafíos.
+                Macanudo y comienza otra etapa de desafíos.
 
             </p>
 

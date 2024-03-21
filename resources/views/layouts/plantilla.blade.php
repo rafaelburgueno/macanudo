@@ -103,9 +103,10 @@
             // si la variable cookies no esta definida se le pide al usuario que acepte las cookies mediante un sweetalert
 
             Swal.fire({
-                title: 'Utilizamos cookies',
+                /*title: 'Utilizamos cookies',*/
                 /*text: "Macanudo utiliza cookies de terceros para mejorar la experiencia del usuario. Al continuar navegando aceptas su uso y nuestra <a href='https://www.google.com'>política de cookies</a>",*/
-                html: 'Macanudo se compromete a proteger la privacidad de los usuarios que visitan el sitio web. Al continuar navegando aceptas nuestra <a role="button" href="#" data-toggle="modal" data-target="#politicas_de_privacidad">política de cookies</a>.',
+                /*html: 'Macanudo se compromete a proteger la privacidad de los usuarios que visitan el sitio web. Al continuar navegando aceptas nuestra <a role="button" href="#" data-toggle="modal" data-target="#politicas_de_privacidad">política de cookies</a>.',*/
+                html: 'Al hacer clic en “Aceptar las cookies”, usted acepta que las cookies se guarden en su dispositivo para mejorar la navegación del sitio, analizar el uso del mismo, y colaborar con nuestros estudios para marketing. Puede leer nuestra <a role="button" href="#" data-toggle="modal" data-target="#politicas_de_privacidad">política de cookies</a> para más información.',
                 container: {
                     zIndex: 10000
                 },
@@ -113,7 +114,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#4554a4',
                 cancelButtonColor: '#f04643',
-                confirmButtonText: 'Aceptar',
+                confirmButtonText: 'Aceptar las cookies',
                 cancelButtonText: 'Cancelar',
                 position: 'bottom',
                 width: '100%',
