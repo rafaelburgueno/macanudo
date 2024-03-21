@@ -49,6 +49,20 @@
     </div>
 
 
+    {{-- EDITAR COMENTARIOS LIVEWIRE --}}
+    <div class="mb-5">
+        <h2 class="text-center mb-5">Comentarios</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    @livewire('crear-y-ver-comentarios-en-posts', ['post' => $post])
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
     <!------------------- Categorias ------------------->
     <div class="mb-5">
         @if(count($post->categorias) && count($post->productos_asociados()))
