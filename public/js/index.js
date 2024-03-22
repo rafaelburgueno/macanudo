@@ -256,3 +256,31 @@ Livewire.on('vincularDesvincular', (mensaje) => {
 	})
 	
 })
+
+
+
+// ***************************************
+// alertas relativasa los comentarios
+// ***************************************
+// Alerta de comentario creado
+Livewire.on('comentarioCreado', () => {
+	
+	console.log('comentario creado con exitooo: ');
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 4000,
+		timerProgressBar: true,
+		didOpen: (toast) => {
+			toast.addEventListener('mouseenter', Swal.stopTimer)
+			toast.addEventListener('mouseleave', Swal.resumeTimer)
+		}
+	})
+
+	Toast.fire({
+		icon: 'success',
+		title: 'Comentario creado con exito. Se publicara despues de ser aprobado.'
+	})
+	
+})

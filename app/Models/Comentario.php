@@ -9,6 +9,8 @@ class Comentario extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nombre', 'email', 'texto', 'comentarioable_id', 'comentarioable_type'];
+
 
     /**
      * Devuelve un elemento al que apunta el Comentario
