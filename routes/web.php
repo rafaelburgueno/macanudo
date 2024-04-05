@@ -380,6 +380,19 @@ Route::post('contacto', [ComentarioController::class, 'formulario_de_contacto'])
 
 /*
 |--------------------------------------------------------------------------
+| Comentarios
+|--------------------------------------------------------------------------
+| La ruta de comentarios es administrada por el controlador
+| ComentarioController.
+*/
+Route::get('comentarios', [ComentarioController::class, 'index'])->name('comentarios')->middleware('acceso.administrador');
+    
+
+
+
+
+/*
+|--------------------------------------------------------------------------
 | banner
 |--------------------------------------------------------------------------
 | La ruta banner es administrada por el controlador 

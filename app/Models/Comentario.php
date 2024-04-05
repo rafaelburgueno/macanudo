@@ -23,4 +23,20 @@ class Comentario extends Model
     }
 
 
+    /**
+     * Devuelve el nombre o titulo del elemento al que apunta el Comentario
+     * ya sea un Post, Comentario o un Producto
+     * 
+     * testeado tinker exitoso
+     * 
+     */
+    public function getElementoAlQueApunta(){
+        /*TODO: hacer que devuelva el nombre o titulo del elemento 
+        al que apunta el Comentario, ya sea un Post, Comentario o un Producto*/
+        
+        //return "holander";
+        
+    }
+
+
 }

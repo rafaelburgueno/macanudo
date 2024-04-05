@@ -80,4 +80,18 @@ class ComentarioController extends Controller
     }
 
 
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Este metodo devuelve la vista de la pagina para administrar Comentarios
+    |--------------------------------------------------------------------------
+    */
+    public function index(){
+        //return "holisss mundo!";
+        $comentarios = Comentario::all();
+        return view('comentarios.index', compact('comentarios'));
+    }
+
+
 }
