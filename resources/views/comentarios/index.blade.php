@@ -34,8 +34,8 @@
 					<th>Nombre</th>
                     <th>Email</th>
 					<th>Texto</th>
-					<th>Referido a...</th>
-					<th>Calificacion</th>
+					<th>Pertenece a...</th>
+					<th>Calificación</th>
 					<th>Activo?</th>
 					<th>Creación</th>
 				</tr>
@@ -44,11 +44,12 @@
 			
 				@foreach ($comentarios as $comentario)
 					<tr>
-                        <td>{{ $comentario->id }}</td>
-                        <td>{{ $comentario->nombre }}</td>
-                        <td>{{ $comentario->email }}</td>
-                        <td>{{ Str::limit($comentario->texto, 10, '...') }} </td>
-                        <td>{{ $comentario->getElementoAlQueApunta()}}</td>
+						@livewire('editar-comentario', ['comentario' => $comentario])
+                        {{--<td>{{ $comentario->id }}</td>
+                        <td><small>{{ $comentario->nombre }}</small></td>
+                        <td><small>{{ $comentario->email }}</small></td>
+                        <td><small>{{ Str::limit($comentario->texto, 30, '...') }}</small> </td>
+                        <td><small>{{ $comentario->getElementoAlQueApunta()}}</small></td>
                         <td>{{ $comentario->calificacion }}</td>
                         <td>
 							@if($comentario->activo)
@@ -57,7 +58,7 @@
 							NO
 							@endif
 						</td>
-                        <td>{{ $comentario->created_at }}</td>
+                        <td><small>{{ $comentario->created_at }}</small></td>--}}
 						
 						
 					</tr>

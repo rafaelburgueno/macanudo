@@ -33,6 +33,16 @@ class Comentario extends Model
     public function getElementoAlQueApunta(){
         /*TODO: hacer que devuelva el nombre o titulo del elemento 
         al que apunta el Comentario, ya sea un Post, Comentario o un Producto*/
+
+        if($this->comentarioable_type == "App\Models\Post"){
+            return 'Post: ' . $this->comentarioable->titulo;
+            //return Post::find($this->comentarioable_id)->titulo;
+        }elseif($this->comentarioable_type == "App\Models\Producto"){
+            return 'Producto: ' . $this->comentarioable->nombre;
+        }else{
+            return $this->comentarioable_type;
+
+        }
         
         //return "holander";
         
