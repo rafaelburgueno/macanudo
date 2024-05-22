@@ -43,24 +43,24 @@
 			<tbody>
 			
 				@foreach ($comentarios as $comentario)
+					{{--<div>
+					@livewire('editar-comentario', ['comentarioId' => $coment->id])
+					</div>--}}
 					<tr>
-						@livewire('editar-comentario', ['comentario' => $comentario])
-                        {{--<td>{{ $comentario->id }}</td>
-                        <td><small>{{ $comentario->nombre }}</small></td>
-                        <td><small>{{ $comentario->email }}</small></td>
-                        <td><small>{{ Str::limit($comentario->texto, 30, '...') }}</small> </td>
-                        <td><small>{{ $comentario->getElementoAlQueApunta()}}</small></td>
-                        <td>{{ $comentario->calificacion }}</td>
-                        <td>
+						<td><a href="{{route('comentarios.edit', $comentario)}}" class="btn btn-sm btn-outline-secondary ">{{ $comentario->id }}</a></td>
+						<td><small>{{ $comentario->nombre }}</small></td>
+						<td><small>{{ $comentario->email }}</small></td>
+						<td><small>{{ Str::limit($comentario->texto, 50, '...') }}</small> </td>
+						<td><small>{{ $comentario->getElementoAlQueApunta()}}</small></td>
+						<td>{{ $comentario->calificacion }}</td>
+						<td>
 							@if($comentario->activo)
 							SI
 							@else
 							NO
 							@endif
 						</td>
-                        <td><small>{{ $comentario->created_at }}</small></td>--}}
-						
-						
+						<td><small>{{ $comentario->created_at }}</small></td>
 					</tr>
 				@endforeach
 			</tbody>

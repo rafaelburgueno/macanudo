@@ -119,7 +119,7 @@ Route::get('/club_macanudo', function () {
 |--------------------------------------------------------------------------
 | FORMULARIO DEL CLUB MACANUDO 
 |--------------------------------------------------------------------------
-| esta ruta es exclusiva para recivir el formulario de contacto
+| esta ruta es exclusiva para recivir el formulario del club macanudo
 | 
 */
 //Route::post('formulario_del_club_macanudo', [ClubMacanudoController::class, 'formulario_del_club_macanudo'])->name('formulario_del_club_macanudo'); 
@@ -386,7 +386,16 @@ Route::post('contacto', [ComentarioController::class, 'formulario_de_contacto'])
 | ComentarioController.
 */
 Route::get('comentarios', [ComentarioController::class, 'index'])->name('comentarios')->middleware('acceso.administrador');
-    
+/* rutas para el crud de comentarios */
+Route::controller(ComentarioController::class)->group(function () {
+    Route::get('comentarios', 'index')->name('comentarios.index')->middleware('acceso.administrador');
+    //Route::get('comentarios/create', 'create')->name('comentarios.create')->middleware('acceso.administrador');
+    //Route::post('comentarios', 'store')->name('comentarios.store')->middleware('acceso.administrador');
+    //Route::get('comentarios/{comentario}', 'show')->name('comentarios.show');
+    Route::get('comentarios/{comentario}/edit', 'edit')->name('comentarios.edit')->middleware('acceso.administrador');
+    Route::put('comentarios/{comentario}', 'update')->name('comentarios.update')->middleware('acceso.administrador');
+    //Route::delete('comentarios/{comentario}', 'destroy')->name('comentarios.destroy')->middleware('acceso.administrador');
+});
 
 
 

@@ -20,7 +20,9 @@ class ComentarioController extends Controller
     */
     public function formulario_de_contacto(Request $request){
 
-        //return $request;
+        //return $request->ip();
+        //return $request->userAgent();
+        //return $request->os();
         //return $request->get('nombre');
         $request->validate([ //TODO: revisar las validaciones porque no funcionan
             'nombre' => 'required|max:255',
@@ -40,18 +42,20 @@ class ComentarioController extends Controller
 
         if(!$response->success || $response->score < 0.8 ){
         //if($response->success ){
-            Log::debug('Se detecto el uso de bots, el $response->success fue: ' . $response->success . ' en el formulario de contacto, ComentarioController.php linea 43. Direccion del atacante: ' . $request->email . '. Texto del atacante: ' . $request->texto . '.');
+        //if(true ){
+        // $request->userAgent();
+            Log::debug('BOTS, ip: '. $request->ip() .', $request->userAgent(): '. $request->userAgent() .', $response->success: ' . $response->success . ', formulario de contacto, ComentarioController.php linea 47. Direccion del atacante: ' . $request->email . '. Texto del atacante: ' . $request->texto . '.');
             
             if(isset($response->score)){
             //if ($response->has('score')) {
-                Log::debug('Se detecto el uso de bots($response-score: '.$response->score.' ) en el formulario de contacto, ComentarioController.php linea 47. Direccion del atacante: ' . $request->email . '. Texto del atacante: ' . $request->texto . '.');
+                Log::debug('BOTS, $response-score: '.$response->score.', formulario de contacto, ComentarioController.php linea 51. Direccion del atacante: ' . $request->email . '. Texto del atacante: ' . $request->texto . '.');
             }
 
             session()->flash('error', 'El formulario no pudo ser enviado, se detecto el uso de bots.');
             return redirect() -> route('home');
         }else{
             // dejo registrado el score en el archivo laravel.log
-            Log::debug('El score de la validacion de recaptcha fue de: ' . $response->score . ' en el formulario de contacto, ComentarioController.php linea 49. Direccion del contacto: ' . $request->email . '. Texto del contacto: ' . $request->texto . '.'); 
+            Log::debug('El score de la validacion de recaptcha fue de: ' . $response->score . ' en el formulario de contacto, ComentarioController.php linea 58. Direccion del contacto: ' . $request->email . '. Texto del contacto: ' . $request->texto . '.'); 
         }
         // FIN DE VALIDACION DE RECAPTCHA
 
@@ -91,6 +95,51 @@ class ComentarioController extends Controller
         //return "holisss mundo!";
         $comentarios = Comentario::all();
         return view('comentarios.index', compact('comentarios'));
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Este metodo devuelve la vista de la pagina para editar un Comentario
+    |--------------------------------------------------------------------------
+    */
+    public function edit(Comentario $comentario){
+        //$comentario = Comentario::find($id);
+        return view('comentarios.edit', compact('comentario'));
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Este metodo actualiza un Comentario
+    |--------------------------------------------------------------------------
+    */
+    public function update(Request $request, Comentario $comentario){
+        //return $request->all();
+        $request->validate([
+            'nombre' => 'required',
+            'email' => 'required|email',
+            'texto' => 'required',
+            'calificacion' => 'required',
+            //'activo' => 'required',
+        ]);
+        
+        // creo un booleano para el campo 'activo'
+        if($request->activo == 'on'){
+            $request->activo = 1;
+        }else{
+            $request->activo = 0;
+        }
+
+        $comentario->update([
+            'nombre' => $request->nombre,
+            'email' => $request->email,
+            'texto' => $request->texto,
+            'calificacion' => $request->calificacion,
+            'activo' => $request->activo,
+        ]);
+        session()->flash('exito', 'El comentario fue editado.');
+        return redirect()->route('comentarios.index');
     }
 
 
