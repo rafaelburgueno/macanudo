@@ -13,7 +13,7 @@
 	$(document).ready( function () {
 		$('#tabla_comentarios').DataTable({
 			order: [
-				[0, 'asc']
+				[0, 'desc']
 			]
 		});
 	} );

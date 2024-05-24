@@ -35,6 +35,18 @@ class Post extends Model
     }
 
 
+    /**
+     * Devuelve un array de elementos del modelo Comentario, asociados a esa instancia de Post, siempre y cuando el campo activo sea true
+     * relacion uno(Post) a muchos(Comentario) polimorfica
+     * se filtran los comentarios activos
+     * testeado tinker exitoso
+     * @var array Comentario
+     */
+    public function comentariosActivos(){
+        return $this->morphMany('App\Models\Comentario', 'comentarioable')->where('activo', true)->orderBy('calificacion', 'desc');
+    }
+
+
 
     /**
      * Devuelve un array de elementos del modelo Multimedia, asociados a esa instancia de Post
@@ -72,15 +84,29 @@ class Post extends Model
             $productos = $productos->merge($categoria->productos);
         }
         $productos = $productos->unique('id');
+
+        // la lista de productos que se manda al front deben ser productos activos
+        $productos = $productos->where('activo', true);
+
+        //la lista de productos que se manda al front deben ser productos con stock
+        $productos = $productos->where('stock', '>', 0);
         
         // La lista de productos que se manda al front debe contener al menos 3 elementos
         // si no hay 3 elementos, se agregan productos
         if($productos->count() < 3){
+            $i = 0;
             while($productos->count() < 3){
                 // se agregan productos al azar
-                $productos = $productos->merge(Producto::inRandomOrder()->limit(3)->get());
+                $productos = $productos->merge(Producto::inRandomOrder()->where('activo', true)->where('stock', '>', 0)->limit(3)->get());
 
                 $productos = $productos->unique('id');
+
+                // si no sale del bucle en 10 iteraciones, se sale del bucle
+                $i++;
+                if($i > 15){
+                    break;
+                }
+
             }
         }
 

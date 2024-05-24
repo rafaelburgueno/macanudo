@@ -44,18 +44,18 @@ class ComentarioController extends Controller
         //if($response->success ){
         //if(true ){
         // $request->userAgent();
-            Log::debug('BOTS, ip: '. $request->ip() .', $request->userAgent(): '. $request->userAgent() .', $response->success: ' . $response->success . ', formulario de contacto, ComentarioController.php linea 47. Direccion del atacante: ' . $request->email . '. Texto del atacante: ' . $request->texto . '.');
+            Log::warning('BOTS, ip: '. $request->ip() .', $request->userAgent(): '. $request->userAgent() .', $response->success: ' . $response->success . ', formulario de contacto, ComentarioController.php linea 47. Direccion del atacante: ' . $request->email . '. Texto del atacante: ' . $request->texto . '.');
             
             if(isset($response->score)){
             //if ($response->has('score')) {
-                Log::debug('BOTS, $response-score: '.$response->score.', formulario de contacto, ComentarioController.php linea 51. Direccion del atacante: ' . $request->email . '. Texto del atacante: ' . $request->texto . '.');
+                Log::warning('BOTS, $response-score: '.$response->score.', formulario de contacto, ComentarioController.php linea 51. Direccion del atacante: ' . $request->email . '. Texto del atacante: ' . $request->texto . '.');
             }
 
             session()->flash('error', 'El formulario no pudo ser enviado, se detecto el uso de bots.');
             return redirect() -> route('home');
         }else{
             // dejo registrado el score en el archivo laravel.log
-            Log::debug('El score de la validacion de recaptcha fue de: ' . $response->score . ' en el formulario de contacto, ComentarioController.php linea 58. Direccion del contacto: ' . $request->email . '. Texto del contacto: ' . $request->texto . '.'); 
+            Log::info('El score de la validacion de recaptcha fue de: ' . $response->score . ' en el formulario de contacto, ComentarioController.php linea 58. Direccion del contacto: ' . $request->email . '. Texto del contacto: ' . $request->texto . '.'); 
         }
         // FIN DE VALIDACION DE RECAPTCHA
 
@@ -77,6 +77,9 @@ class ComentarioController extends Controller
         } catch (Exception $e) {
             Log::error('Error al enviar correo electrónico a MAIL_RECEPTOR_DE_NOTIFICACIONES y MAIL_REGISTROS, desde el controlador ComentarioController.php: ' . $e->getMessage());
         }
+
+        // Log para registrar la llegada de un nuevo mensaje
+        Log::notice('Nuevo mensaje recibido en el formulario de contacto, ComentarioController.php linea 82. Email: ' . $request->email . '. Texto: ' . $request->texto . '.');
 
         session()->flash('exito', 'Su mensaje fue recibido');
         return redirect() -> route('home');
@@ -138,6 +141,7 @@ class ComentarioController extends Controller
             'calificacion' => $request->calificacion,
             'activo' => $request->activo,
         ]);
+
         session()->flash('exito', 'El comentario fue editado.');
         return redirect()->route('comentarios.index');
     }
