@@ -5,14 +5,14 @@
         @foreach($comentarios as $comentario)
             
             <div class="card text-dark mb-1">
-
-                <div class="card-body">
-                    <p class="card-text">{{ $comentario->texto }}</p>
-                </div>
-                <div class="card-footer">
+                <div class="card-header">
                     <small class="text-info float-left">{{ $comentario->nombre }}</small>
                     <small class="text-muted float-right">{{ $comentario->created_at->format('d/m/Y') }}</small>
                 </div>
+                <div class="card-body">
+                    <p class="card-text">{{ $comentario->texto }}</p>
+                </div>
+                
             </div>
             
         @endforeach
