@@ -469,10 +469,11 @@
 
                     <!-- Teléfono -->
                     <div class="form-group mb-4">    
-                        <label for="telefono" class="negro">Teléfono <small>(Obligatorio)</small>: </label>
+                        <label for="telefono" class="negro">Teléfono <small>(Obligatorio. Si el teléfono es de Argentina se debe comenzar con "+54" o "+549" seguido de 10 dígitos)</small>: </label>
                         {{--<input value="{{old('telefono')}}" type="text" pattern="\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="..." title="Número de teléfono inválido" required>--}}
                         {{--<input value="{{old('telefono')}}" type="text" pattern="(?=^.{8,15}$)\+?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,4}" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="Número de teléfono inválido" required>--}}
-                        <input value="{{old('telefono')}}" type="text" pattern="^(09\d{7}|[42]\d{7})$" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="El número de teléfono debe comenzar con '09', '2' o '4' segiodo de 7 numeros." required>
+                        {{--pattern="^(09\d{7}|[42]\d{7})$" para telefonos fijos y moviles de uruguay--}}
+                        <input value="{{old('telefono')}}" type="text" pattern="^(09\d{7}|2\d{7}|4\d{7}|(\+549|\+54)\d{10})$" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono" title="Si el número de teléfono es de Uruguay debe comenzar con '09', '2' o '4' segiodo de 7 dígitos. Y si el número de teléfono es de Argentina debe comenzar con '+54' o '+549' seguido de 10 dígitos." required>
                         @error('telefono')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
