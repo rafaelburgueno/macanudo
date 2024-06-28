@@ -64,17 +64,23 @@ $(document).ready(function(){
 });
 
 
-// TODO: en lapagina de canastas apareceun error en la linea 72 VVV
-window.addEventListener('scroll', function()  {
+// TODO: en lapagina de canastas apareceun error en la linea 72 VVV 
+// comente el codigo para solucionar el problema, el error ya no aparece,
+// parece que el codigo funciona bien.
+/*window.addEventListener('scroll', function()  {
     let element = document.getElementById('scroll-content');
     let screenSize = window.innerHeight;
     
-	if(element.getBoundingClientRect().top < screenSize) {
-		element.classList.add('visible');
+	if (element) {
+		if(element.getBoundingClientRect().top < screenSize) {
+			element.classList.add('visible');
+		} else {
+			element.classList.remove('visible');
+		}
 	} else {
-		element.classList.remove('visible');
-	}
-});
+        console.log('El elemento "scroll-content" no se encontró');
+    }
+});*/
 
   
 window.addEventListener('scroll', function()  {
@@ -134,17 +140,22 @@ if (alertTrigger) {
 		let mi_carrito = [];
 		
 		/*if ( localStorage.getItem("carrito") ){*/
-		if( localStorage.getItem("cookies") ){
+		if( localStorage.getItem("cookies") || true ){
 			mi_carrito.push(localStorage.getItem("carrito"));
-		}else{
+		}/*else{
 			mi_carrito.push("{{ Session::get('carrito'); }}");
-		}
+		}*/
 
 		mi_carrito.push(id);
-		
-		if( localStorage.getItem("cookies") ){
-			localStorage.setItem("carrito", mi_carrito);
+
+		//si el primer elemento del array es null, lo elimina
+		if( mi_carrito[0] == null ){
+			mi_carrito.shift();
 		}
+		
+		//if( localStorage.getItem("cookies") ){
+			localStorage.setItem("carrito", mi_carrito);
+		//}
 
 		
 
