@@ -12,14 +12,14 @@
     <div class="col-sm-4 d-flex flex-column"></div>
     <div class="col-sm-4 d-flex flex-column align-items-center">
         <a href="#" class="">
-            <img src="{{asset('/storage/img/Logo Club del Queso.png')}}" class="img-fluid"
+            <img src="{{asset('/storage/img/logo.club.png')}}" class="img-fluid"
                 style="display: block;margin-left: auto;margin-right: auto;" width="100%">
         </a>
     </div>
     <div class="col-sm-4 d-flex flex-column align-items-end"></div>
 </div>--}}
 <div class="container-fluid text-center">
-    <img src="{{asset('/storage/img/Logo Club del Queso.png')}}" class="img-fluid mx-auto">
+    <img src="{{asset('/storage/img/logo.club.png')}}" class="img-fluid mx-auto">
 </div>
 <br>
 {{--
@@ -395,7 +395,7 @@
 <div class="modal fade" id="suscribirme_al_club" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog negro" role="document">
-        <div class="modal-content align-items-center">
+        <div class="modal-content align-items-center ">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="borrar()">
                     <span aria-hidden="true">&times;</span>
@@ -647,7 +647,7 @@
                     <!--Aceptar terminos y condiciones del club macanudo-->
                     <div class="form-group mb-3">
                         <input @checked(old('terminos_y_condiciones_del_club')) required type="checkbox" class="h1" name="terminos_y_condiciones_del_club" value="1" id="terminos_y_condiciones_del_club">
-                        <label class="" for="terminos_y_condiciones_del_club">Acepto los <a href="#" data-toggle="modal" data-target="#modal_terminos_y_condiciones_del_club">términos y condiciones</a> del Club Macanudo.</label>
+                        <label class="" for="terminos_y_condiciones_del_club">Acepto los <a href="#" data-toggle="modal" data-target="#modal_terminos_y_condiciones_del_club">términos y condiciones</a> del Club del Noqueso.</label>
                     </div>
                     
 
@@ -780,7 +780,7 @@
 <div class="modal fade" id="modal_terminos_y_condiciones_del_club" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modal_terminos_y_condiciones_del_clubLabel"
     aria-hidden="true">
     <div class="modal-dialog negro" role="document">
-        <div class="modal-content align-items-center">
+        <div class="modal-content align-items-center p-5">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="borrar()">
                     <span aria-hidden="true">&times;</span>
@@ -788,87 +788,39 @@
 
             </div>
             <h5 class="modal-title text-center" id="modal_terminos_y_condiciones_del_clubLabel">Términos y condiciones de Club Macanudo</h5>
-            <div class="modal-body">
-                <h6>ACEPTACIÓN</h6>
-                <p>El uso de este sitio web, {{env('APP_URL')}} y todas las páginas de este dominio, 
-                    constituye la aceptación de los siguientes términos y condiciones. Macanudo se reserva 
-                    el derecho de buscar todos los recursos disponibles por ley por cualquier violación 
-                    de estos términos de uso, incluida cualquier violación de los derechos del nombre y 
-                    logotipo de MACANUDO y sus derechos en relación con la información, texto, video, 
-                    audio o imágenes (juntos o separados) de este sitio web. El uso no autorizado está 
-                    prohibido. No puede copiarse ni reproducirse de ninguna manera sin el permiso previo 
-                    por escrito de Macanudo.</p>
+            <div class="modal-body m-5">
+               
 
-                <h6>USUARIO</h6>
-                <p>Se considera usuario a los efectos de estos Términos y Condiciones  cualquier persona 
-                    física, jurídica o entidad pública, estatal o no, que ingrese al sitio para recorrer, 
-                    conocer, informarse, realizar una compra, o utilice la página web y su contenido, 
-                    directamente o a través de una aplicación.</p>
+                <h6>MIEMBROS</h6>
+                <p>Para se miembro del CLUB DEL NOQUESO debe completar los datos del formulario de inscripción en la web de MACANUDO en la sección CLUB DEL NOQUESO https://www.alimentosmacanudo.com/club_macanudo
+                    En caso de no poder completar el formulario enviar mensaje  a contacto@alimentosmacanudo.com o comunicarse  por cualquier vía de contacto que proporcionamos en esta web.
+                    El registro a nuestro club le crea una cuenta en nuestra web que le permite guardar sus compras y productos favoritos, asi como tambien acceder a contenido exclusivo para miembros en nuestro blog. Para esto debe completar el paso de la validación de su cuenta a través de un email enviado a su casilla de correo proporcionada en el formulario.
+                    </p>
 
-                <h6>EL SITIO WEB</h6>
-                <p>La utilización del sitio web tiene carácter gratuito para el usuario, (exceptuando la 
-                    realización de una compra), quien se obliga a utilizarlo respetando la normativa 
-                    nacional vigente, las buenas costumbres y el orden público.</p>
+                <h6>OBLIGACIONES</h6>
+                <p>El usuario miembro del club se compromete a:<br>
+                    NO falsear los datos sobre sí mismo, Siempre que se solicite enviar información ésta debe ser verídica sobre su persona y su domicilio.<br>
+                    NO hacerse pasar por otra persona,<br>
+                    NO utilizar medios de pago de otra persona sin su consentimiento,<br>
+                    NO acceder o intentar acceder a la cuenta o al login de terceras personas,<br>
+                    Darse de baja en el plazo establecido (5 dias antes de su próxima entrega),<br>
+                    Abonar la cuota de la membresía en tiempo y forma. <br>
+                    Estar disponible para recibir la canasta o comunicarse por cualquier cambio por nuestras vías de contacto.<br> 
+                    Avisar cualquier modificación en los datos de contacto o domicilio (esto lo puede hacer directamente modificando sus datos en su perfil en la web de MACANUDO o por las diferentes vías de contacto)
+                        </p><br>
+                        
+                <h6>BENEFICIOS DEL CLUB DEL NOQUESO</h6>
 
-                <p>MACANUDO es creador y se hace responsable por todo el contenido,  texto, imágenes, 
-                    audios, fotos y videos incluidos en este sitio web. </p>
+                <p>MACANUDO se compromete a:<br>
+                Entregar en el tiempo y la dirección elegida por el usuario miembro del club una vez al mes la canasta que fue seleccionada,<br>
+                Enviar un bonus de cumpleaños, para los usuarios con más de seis meses de antigüedad como miembros del CLUB DEL NOQUESO<br>
+                Brindar acceso a contenido exclusivo para miembros en nuestro blog,<br>
+                No realizar el cobro del envío de su canasta, <br>
+                Dar de baja su membresía cuando lo solicite en el tiempo establecido<br>
+                 </p>
 
-                <p>Todas las marcas, nombres comerciales o signos distintivos de cualquier clase que 
-                    eventualmente aparezcan en este sitio web son propiedad de MACANUDO o  de terceros, 
-                    sin que pueda entenderse que el uso o acceso al sitio atribuye al usuario derecho 
-                    alguno sobre las citadas marcas, nombres comerciales o signos distintivos de cualquier 
-                    clase.</p>
-
-                <p>MACANUDO se reserva la facultad de modificar, en cualquier momento y sin previo aviso, 
-                    la presentación, configuración, contenidos y servicios del sitio web, pudiendo 
-                    interrumpir, desactivar y/o cancelar cualquiera de los contenidos y/o servicios 
-                    presentados, por tiempo parcial o definitivo,  integrados o incorporados a este, 
-                    sin expresión de causa y sin responsabilidad.</p>
-
-                <h6>DATOS PERSONALES</h6>
-                <p>Los datos personales proporcionados en el sitio web serán tratados por MACANUDO según 
-                    lo establecido en la Ley Nº 18.331 del 11 de agosto de 2008 y su decreto reglamentario 
-                    Nº 414/2009 del 31 de agosto de 2009. link a la ley de proteccion de datos 
-                    https://www.impo.com.uy/bases/leyes/18331-2008</p>
-
-                <p>MACANUDO podrá utilizar cookies cuando se utilice el sitio web. No obstante, el usuario 
-                    podrá configurar su navegador para ser avisado de la recepción de las cookies e impedir 
-                    en caso de considerarlo adecuado.</p>
-
-                <h6>ENLACES</h6>
-                <p>Este sitio ocasionalmente podría contener enlaces de hipertexto a otros sitios.</p>
-                <p>MACANUDO no asume ninguna 
-                    responsabilidad por esos sitios, incluidas las prácticas de privacidad o 
-                    el contenido de dichos sitios web</p>
-
-                <h6>OBLIGACIONES DEL USUARIO</h6>
-                <p>El usuario se compromete a:</p>
-                <p>NO incumplir todas las leyes, reglamentos y normas aplicables a nivel local, regional y 
-                    nacional; NO dañar, inutilizar o deteriorar los sistemas informáticos que sustentan el 
-                    sitio web {{env('APP_URL')}} y  de otros usuarios o de terceros, ni los contenidos 
-                    incorporados y/o almacenados en estos; NO modificar los sistemas de ninguna manera y no 
-                    utilizar versiones de sistemas modificados con el fin de obtener acceso no autorizado a 
-                    cualquier contenido y/o servicios del sitio; NO interferir ni interrumpir el acceso y 
-                    utilización del sitio web, servidores o redes conectados a este o incumplir los 
-                    requisitos, procedimientos y regulaciones de la política de conexión de redes; NO 
-                    infringir los derechos de propiedad intelectual y de privacidad, entre otros, los 
-                    derechos de patente (copyright), los derechos sobre la base de datos, las marcas 
-                    registradas o el know how de terceros; NO acceder o intentar acceder a la cuenta o al 
-                    login de terceras personas o empresas que sean usuarias de este sitio web; NO copiar, 
-                    modificar, reproducir, eliminar, distribuir, descargar, almacenar, transmitir, vender, 
-                    revender, publicar, invertir el proceso de creación o crear productos derivados a partir 
-                    del contenido del sitio web; NO hacerse pasar por otra persona o empresa: NO utilizar 
-                    el Sitio Web de forma no autorizada o para alguna actividad delictiva;NO falsear los 
-                    datos sobre sí mismo, sobre su asociación con terceros o sobre su empresa.</p>
-
-                <h6>COMO DENUNCIAR CONTENIDOS</h6>
-                <p>En caso de contenido erróneo, incompleto, desactualizado, que vulnere derechos de 
-                    propiedad intelectual o ante cualquier otra situación irregular de hecho o de derecho, 
-                    el usuario podrá comunicarse a través del correo electrónico: 
-                    <a href="mailto:{{env('MAIL_FROM_ADDRESS')}}">{{env('MAIL_FROM_ADDRESS')}}</a></p>
-
-                <h6>CONTACTO</h6>
-                <p>Por cualquier queja, sugerencia o propuesta de colaboración, puede comunicarse a 
+                
+                <p>Por cualquier duda, inconveniente o sugerencia puede comunicarse a 
                     <a href="mailto:{{env('MAIL_FROM_ADDRESS')}}">{{env('MAIL_FROM_ADDRESS')}}</a> o a cualquier dato de contacto proporcionado en este sitio 
                     web.</p>
 

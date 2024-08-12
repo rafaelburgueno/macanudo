@@ -16,7 +16,7 @@
         <div class="col m-0 p-0">
             <img src="{{asset('/storage/img/index.b.jpeg')}}" class="nav d-block w-100 m-0" alt="Imagen de diferentes tipos de productos de Macanudo, con el sobreimpreso '¿Querés conocer algo mejor que el queso?'">
             <p class="abajo-centrado">
-                <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('nuestros_productos')}}" style="font-size: 1.28em">
+                <a class="btn1 btn-lg shadown btn-blanco negro" type="button" href="{{route('nuestros_productos')}} " style="font-size: 1.28em" onClick="{() => gtagSendEvent('https://www.alimentosmacanudo.com/nuestros_productos')}" >
                     Ver productos
                 </a>
         </div>
