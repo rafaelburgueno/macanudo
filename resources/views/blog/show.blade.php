@@ -15,12 +15,28 @@
     });
 </script>
 
+<!-- botones para ir al post anterior o siguiente -->
+<div class="container">
+    <div class="row mt-5 mb-0">
+        <div class="col-6">
+            @if($post->getPreviousPost())
+                <a href="{{ route('blog.show', $post->getPreviousPost()->slug) }}" class="btn btn-sm btn-secondary">Post anterior</a>
+            @endif
+        </div>
+        <div class="col-6 text-right">
+            @if($post->getNextPost())
+                <a href="{{ route('blog.show', $post->getNextPost()->slug) }}" class="btn btn-sm btn-secondary">Post siguiente</a>
+            @endif
+        </div>
+    </div>
 
-<div class="text-center my-4 text-white">
-    <h1 id="in" class="text-center pt-2">{{ $post->titulo }}</h1>
-    @if($post->descripcion)
-        <p>{{ $post->descripcion }}</p>
-    @endif
+    <div class="text-center mb-4 text-white">
+        <h1 id="in" class="text-center pt-2">{{ $post->titulo }}</h1>
+        @if($post->descripcion)
+            <p>{{ $post->descripcion }}</p>
+        @endif
+        
+    </div>
 </div>
 
 
@@ -59,6 +75,43 @@
         </div>
     </div>
     
+    <!-- otros posts -->
+    <div class="mb-5">
+        <h2 class="text-center mb-5">Otros posts</h2>
+        <div class="card-columns">
+    
+            @foreach ($post->getThreeDifferentPosts() as $otro_post)
+            <div class="mb-4">
+                <div class="card m-0">
+                    
+                    @if (count($otro_post->multimedias))
+                    <a href="{{route('blog.show', $otro_post)}}" class="">
+                        <img src="{{$otro_post->multimedias->last()->url}}" class="card-img-top" alt="{{ $otro_post->multimedias->last()->descripcion }}">
+                    </a>
+                    @endif
+                    
+    
+                    <div class="card-body pb-2">
+                        <a href="{{route('blog.show', $otro_post)}}" class="">
+                            <h5 class="card-title titulo">{{$otro_post->titulo}}</h5>
+                        </a>
+                        
+                        @if ($otro_post->descripcion)
+                            <p class="card-text text-dark">{{$otro_post->descripcion}}</p>
+                        @endif
+                        
+                        <small class="mb-0 text-dark">Creado el {{ $otro_post->updated_at->format('d/m/Y') }}</small>
+                        
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            @endforeach
+        
+        </div>
+        
+    </div>
 
 
     <!------------------- Categorias ------------------->

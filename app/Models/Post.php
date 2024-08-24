@@ -121,4 +121,25 @@ class Post extends Model
     }
 
 
+    /**
+     * el siguiente metodo se utiliza para obtener el posts inmediatamente anterior y posterior segun la fecha de creacion de un post dado
+    */
+    public function getPreviousPost(){
+        return Post::where('created_at', '<', $this->created_at)->orderBy('created_at', 'desc')->first();
+    }
+
+    public function getNextPost(){
+        return Post::where('created_at', '>', $this->created_at)->orderBy('created_at', 'asc')->first();
+    }
+
+
+    /** 
+     * el siguiente metodo se utiliza para obtener tres posts distintos al post dado
+     */
+    public function getThreeDifferentPosts(){
+        return Post::where('id', '!=', $this->id)->inRandomOrder()->limit(3)->get();
+    }
+
+
+
 }
