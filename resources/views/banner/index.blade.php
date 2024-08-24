@@ -127,7 +127,7 @@
                             <!-- input para el campo 'link',  que se usa para el boton de accion del link-->
                             <div class="form-group mb-3">
                                 <label for="link">Link <small>(opcional. Se usa para definir el boton de accion)</small></label>
-                                <textarea required class="form-control" id="link" name="link" rows="4" maxlength="255">{{old('link')}}</textarea>
+                                <textarea class="form-control" id="link" name="link" rows="4" maxlength="255">{{old('link')}}</textarea>
                                 @error('link')
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror

@@ -26,6 +26,7 @@
             @endforeach
 
         </div>
+        @if($banner->count()>1)
         <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -34,6 +35,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+        @endif
     </div>
     <script> 
     $(document).ready(function(){
